@@ -1047,7 +1047,7 @@ var require_aliyun_oss_sdk = __commonJS({
               require2("core-js/modules/es.typed-array.to-string.js");
               var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
               var util = require2("util");
-              var path2 = require2("path");
+              var path3 = require2("path");
               var mime = require2("mime");
               var copy = require2("copy-to");
               var _require = require2("../common/utils/isBlob"), isBlob = _require.isBlob;
@@ -1078,13 +1078,13 @@ var require_aliyun_oss_sdk = __commonJS({
                           minPartSize = 100 * 1024;
                           if (!options.mime) {
                             if (isFile(file)) {
-                              options.mime = mime.getType(path2.extname(file.name));
+                              options.mime = mime.getType(path3.extname(file.name));
                             } else if (isBlob(file)) {
                               options.mime = file.type;
                             } else if (isBuffer(file)) {
                               options.mime = "";
                             } else {
-                              options.mime = mime.getType(path2.extname(file));
+                              options.mime = mime.getType(path3.extname(file));
                             }
                           }
                           options.headers = options.headers || {};
@@ -1520,7 +1520,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var fs2 = require2("fs");
           var copy = require2("copy-to");
-          var path2 = require2("path");
+          var path3 = require2("path");
           var mime = require2("mime");
           var callback = require2("../common/callback");
           var merge = require2("merge-descriptors");
@@ -1587,7 +1587,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       }
                       if (!options.mime) {
                         if (isFile(file)) {
-                          options.mime = mime.getType(path2.extname(file.name));
+                          options.mime = mime.getType(path3.extname(file.name));
                         } else {
                           options.mime = file.type;
                         }
@@ -5624,7 +5624,7 @@ var require_aliyun_oss_sdk = __commonJS({
               var mime = require2("mime");
               var dateFormat = require2("dateformat");
               var copy = require2("copy-to");
-              var path2 = require2("path");
+              var path3 = require2("path");
               var _require = require2("./encoder"), encoder = _require.encoder;
               var _require2 = require2("./isIP"), isIP = _require2.isIP;
               var _require3 = require2("./setRegion"), setRegion = _require3.setRegion;
@@ -5669,7 +5669,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   } else if (isDingTalk()) {
                     headers["Content-Type"] = "application/octet-stream";
                   } else {
-                    headers["Content-Type"] = mime.getType(params.mime || path2.extname(params.object || ""));
+                    headers["Content-Type"] = mime.getType(params.mime || path3.extname(params.object || ""));
                   }
                 }
                 if (!getHeader(headers, "Content-Type")) {
@@ -6287,8 +6287,8 @@ var require_aliyun_oss_sdk = __commonJS({
             var _iterator = _createForOfIteratorHelper(keysToOmit), _step;
             try {
               for (_iterator.s(); !(_step = _iterator.n()).done; ) {
-                var path2 = _step.value;
-                delete cloneObject[path2];
+                var path3 = _step.value;
+                delete cloneObject[path3];
               }
             } catch (err) {
               _iterator.e(err);
@@ -12639,7 +12639,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var defineProperty = Object.defineProperty;
           var stringSlice = uncurryThis("".slice);
           var replace = uncurryThis("".replace);
-          var join2 = uncurryThis([].join);
+          var join3 = uncurryThis([].join);
           var CONFIGURABLE_LENGTH = DESCRIPTORS && !fails(function() {
             return defineProperty(function() {
             }, "length", { value: 8 }).length !== 8;
@@ -12672,7 +12672,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             var state = enforceInternalState(value);
             if (!hasOwn(state, "source")) {
-              state.source = join2(TEMPLATE, typeof name == "string" ? name : "");
+              state.source = join3(TEMPLATE, typeof name == "string" ? name : "");
             }
             return value;
           };
@@ -14314,12 +14314,12 @@ var require_aliyun_oss_sdk = __commonJS({
           module4.exports = isCallable(WeakMap2) && /native code/.test(String(WeakMap2));
         }, { "../internals/global": 188, "../internals/is-callable": 203 }], 304: [function(require2, module4, exports3) {
           "use strict";
-          var path2 = require2("../internals/path");
+          var path3 = require2("../internals/path");
           var hasOwn = require2("../internals/has-own-property");
           var wrappedWellKnownSymbolModule = require2("../internals/well-known-symbol-wrapped");
           var defineProperty = require2("../internals/object-define-property").f;
           module4.exports = function(NAME) {
-            var Symbol2 = path2.Symbol || (path2.Symbol = {});
+            var Symbol2 = path3.Symbol || (path3.Symbol = {});
             if (!hasOwn(Symbol2, NAME))
               defineProperty(Symbol2, NAME, {
                 value: wrappedWellKnownSymbolModule.f(NAME)
@@ -14573,7 +14573,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var ES3_STRINGS = IndexedObject !== Object;
           var FORCED = ES3_STRINGS || !arrayMethodIsStrict("join", ",");
           $2({ target: "Array", proto: true, forced: FORCED }, {
-            join: function join2(separator) {
+            join: function join3(separator) {
               return nativeJoin(toIndexedObject(this), separator === void 0 ? "," : separator);
             }
           });
@@ -14894,7 +14894,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var IS_PURE = require2("../internals/is-pure");
           var DESCRIPTORS = require2("../internals/descriptors");
           var global2 = require2("../internals/global");
-          var path2 = require2("../internals/path");
+          var path3 = require2("../internals/path");
           var uncurryThis = require2("../internals/function-uncurry-this");
           var isForced = require2("../internals/is-forced");
           var hasOwn = require2("../internals/has-own-property");
@@ -14910,7 +14910,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var trim = require2("../internals/string-trim").trim;
           var NUMBER = "Number";
           var NativeNumber = global2[NUMBER];
-          var PureNumberNamespace = path2[NUMBER];
+          var PureNumberNamespace = path3[NUMBER];
           var NumberPrototype = NativeNumber.prototype;
           var TypeError2 = global2.TypeError;
           var stringSlice = uncurryThis("".slice);
@@ -14985,9 +14985,9 @@ var require_aliyun_oss_sdk = __commonJS({
             }
           };
           if (IS_PURE && PureNumberNamespace)
-            copyConstructorProperties(path2[NUMBER], PureNumberNamespace);
+            copyConstructorProperties(path3[NUMBER], PureNumberNamespace);
           if (FORCED || IS_PURE)
-            copyConstructorProperties(path2[NUMBER], NativeNumber);
+            copyConstructorProperties(path3[NUMBER], NativeNumber);
         }, { "../internals/descriptors": 153, "../internals/export": 170, "../internals/fails": 171, "../internals/function-uncurry-this": 181, "../internals/global": 188, "../internals/has-own-property": 189, "../internals/inherit-if-required": 196, "../internals/is-forced": 205, "../internals/is-pure": 210, "../internals/is-symbol": 212, "../internals/object-define-property": 231, "../internals/object-get-own-property-descriptor": 232, "../internals/object-get-own-property-names": 234, "../internals/object-is-prototype-of": 238, "../internals/path": 247, "../internals/string-trim": 273, "../internals/this-number-value": 278, "../internals/to-primitive": 288 }], 325: [function(require2, module4, exports3) {
           "use strict";
           var $2 = require2("../internals/export");
@@ -16560,7 +16560,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var aTypedArray = ArrayBufferViewCore.aTypedArray;
           var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
           var $join = uncurryThis([].join);
-          exportTypedArrayMethod("join", function join2(separator) {
+          exportTypedArrayMethod("join", function join3(separator) {
             return $join(aTypedArray(this), separator);
           });
         }, { "../internals/array-buffer-view-core": 117, "../internals/function-uncurry-this": 181 }], 367: [function(require2, module4, exports3) {
@@ -16815,12 +16815,12 @@ var require_aliyun_oss_sdk = __commonJS({
           var Uint8Array2 = global2.Uint8Array;
           var Uint8ArrayPrototype = Uint8Array2 && Uint8Array2.prototype || {};
           var arrayToString = [].toString;
-          var join2 = uncurryThis([].join);
+          var join3 = uncurryThis([].join);
           if (fails(function() {
             arrayToString.call({});
           })) {
             arrayToString = function toString() {
-              return join2(this);
+              return join3(this);
             };
           }
           var IS_NOT_ARRAY_METHOD = Uint8ArrayPrototype.toString !== arrayToString;
@@ -19044,11 +19044,11 @@ var require_aliyun_oss_sdk = __commonJS({
               }
             }
           };
-          Mime.prototype.getType = function(path2) {
-            path2 = String(path2);
-            var last = path2.replace(/^.*[/\\]/, "").toLowerCase();
+          Mime.prototype.getType = function(path3) {
+            path3 = String(path3);
+            var last = path3.replace(/^.*[/\\]/, "").toLowerCase();
             var ext = last.replace(/^.*\./, "").toLowerCase();
-            var hasPath = last.length < path2.length;
+            var hasPath = last.length < path3.length;
             var hasDot = ext.length < last.length - 1;
             return (hasDot || !hasPath) && this._types[ext] || null;
           };
@@ -20235,20 +20235,20 @@ var require_aliyun_oss_sdk = __commonJS({
           (function(process) {
             (function() {
               "use strict";
-              function assertPath(path2) {
-                if (typeof path2 !== "string") {
-                  throw new TypeError("Path must be a string. Received " + JSON.stringify(path2));
+              function assertPath(path3) {
+                if (typeof path3 !== "string") {
+                  throw new TypeError("Path must be a string. Received " + JSON.stringify(path3));
                 }
               }
-              function normalizeStringPosix(path2, allowAboveRoot) {
+              function normalizeStringPosix(path3, allowAboveRoot) {
                 var res = "";
                 var lastSegmentLength = 0;
                 var lastSlash = -1;
                 var dots = 0;
                 var code;
-                for (var i = 0; i <= path2.length; ++i) {
-                  if (i < path2.length)
-                    code = path2.charCodeAt(i);
+                for (var i = 0; i <= path3.length; ++i) {
+                  if (i < path3.length)
+                    code = path3.charCodeAt(i);
                   else if (code === 47)
                     break;
                   else
@@ -20288,9 +20288,9 @@ var require_aliyun_oss_sdk = __commonJS({
                       }
                     } else {
                       if (res.length > 0)
-                        res += "/" + path2.slice(lastSlash + 1, i);
+                        res += "/" + path3.slice(lastSlash + 1, i);
                       else
-                        res = path2.slice(lastSlash + 1, i);
+                        res = path3.slice(lastSlash + 1, i);
                       lastSegmentLength = i - lastSlash - 1;
                     }
                     lastSlash = i;
@@ -20321,20 +20321,20 @@ var require_aliyun_oss_sdk = __commonJS({
                   var resolvedAbsolute = false;
                   var cwd;
                   for (var i = arguments.length - 1; i >= -1 && !resolvedAbsolute; i--) {
-                    var path2;
+                    var path3;
                     if (i >= 0)
-                      path2 = arguments[i];
+                      path3 = arguments[i];
                     else {
                       if (cwd === void 0)
                         cwd = process.cwd();
-                      path2 = cwd;
+                      path3 = cwd;
                     }
-                    assertPath(path2);
-                    if (path2.length === 0) {
+                    assertPath(path3);
+                    if (path3.length === 0) {
                       continue;
                     }
-                    resolvedPath = path2 + "/" + resolvedPath;
-                    resolvedAbsolute = path2.charCodeAt(0) === 47;
+                    resolvedPath = path3 + "/" + resolvedPath;
+                    resolvedAbsolute = path3.charCodeAt(0) === 47;
                   }
                   resolvedPath = normalizeStringPosix(resolvedPath, !resolvedAbsolute);
                   if (resolvedAbsolute) {
@@ -20348,26 +20348,26 @@ var require_aliyun_oss_sdk = __commonJS({
                     return ".";
                   }
                 },
-                normalize: function normalize(path2) {
-                  assertPath(path2);
-                  if (path2.length === 0)
+                normalize: function normalize(path3) {
+                  assertPath(path3);
+                  if (path3.length === 0)
                     return ".";
-                  var isAbsolute = path2.charCodeAt(0) === 47;
-                  var trailingSeparator = path2.charCodeAt(path2.length - 1) === 47;
-                  path2 = normalizeStringPosix(path2, !isAbsolute);
-                  if (path2.length === 0 && !isAbsolute)
-                    path2 = ".";
-                  if (path2.length > 0 && trailingSeparator)
-                    path2 += "/";
+                  var isAbsolute = path3.charCodeAt(0) === 47;
+                  var trailingSeparator = path3.charCodeAt(path3.length - 1) === 47;
+                  path3 = normalizeStringPosix(path3, !isAbsolute);
+                  if (path3.length === 0 && !isAbsolute)
+                    path3 = ".";
+                  if (path3.length > 0 && trailingSeparator)
+                    path3 += "/";
                   if (isAbsolute)
-                    return "/" + path2;
-                  return path2;
+                    return "/" + path3;
+                  return path3;
                 },
-                isAbsolute: function isAbsolute(path2) {
-                  assertPath(path2);
-                  return path2.length > 0 && path2.charCodeAt(0) === 47;
+                isAbsolute: function isAbsolute(path3) {
+                  assertPath(path3);
+                  return path3.length > 0 && path3.charCodeAt(0) === 47;
                 },
-                join: function join2() {
+                join: function join3() {
                   if (arguments.length === 0)
                     return ".";
                   var joined;
@@ -20453,19 +20453,19 @@ var require_aliyun_oss_sdk = __commonJS({
                     return to.slice(toStart);
                   }
                 },
-                _makeLong: function _makeLong(path2) {
-                  return path2;
+                _makeLong: function _makeLong(path3) {
+                  return path3;
                 },
-                dirname: function dirname(path2) {
-                  assertPath(path2);
-                  if (path2.length === 0)
+                dirname: function dirname(path3) {
+                  assertPath(path3);
+                  if (path3.length === 0)
                     return ".";
-                  var code = path2.charCodeAt(0);
+                  var code = path3.charCodeAt(0);
                   var hasRoot = code === 47;
                   var end = -1;
                   var matchedSlash = true;
-                  for (var i = path2.length - 1; i >= 1; --i) {
-                    code = path2.charCodeAt(i);
+                  for (var i = path3.length - 1; i >= 1; --i) {
+                    code = path3.charCodeAt(i);
                     if (code === 47) {
                       if (!matchedSlash) {
                         end = i;
@@ -20479,23 +20479,23 @@ var require_aliyun_oss_sdk = __commonJS({
                     return hasRoot ? "/" : ".";
                   if (hasRoot && end === 1)
                     return "//";
-                  return path2.slice(0, end);
+                  return path3.slice(0, end);
                 },
-                basename: function basename(path2, ext) {
+                basename: function basename(path3, ext) {
                   if (ext !== void 0 && typeof ext !== "string")
                     throw new TypeError('"ext" argument must be a string');
-                  assertPath(path2);
+                  assertPath(path3);
                   var start = 0;
                   var end = -1;
                   var matchedSlash = true;
                   var i;
-                  if (ext !== void 0 && ext.length > 0 && ext.length <= path2.length) {
-                    if (ext.length === path2.length && ext === path2)
+                  if (ext !== void 0 && ext.length > 0 && ext.length <= path3.length) {
+                    if (ext.length === path3.length && ext === path3)
                       return "";
                     var extIdx = ext.length - 1;
                     var firstNonSlashEnd = -1;
-                    for (i = path2.length - 1; i >= 0; --i) {
-                      var code = path2.charCodeAt(i);
+                    for (i = path3.length - 1; i >= 0; --i) {
+                      var code = path3.charCodeAt(i);
                       if (code === 47) {
                         if (!matchedSlash) {
                           start = i + 1;
@@ -20521,11 +20521,11 @@ var require_aliyun_oss_sdk = __commonJS({
                     if (start === end)
                       end = firstNonSlashEnd;
                     else if (end === -1)
-                      end = path2.length;
-                    return path2.slice(start, end);
+                      end = path3.length;
+                    return path3.slice(start, end);
                   } else {
-                    for (i = path2.length - 1; i >= 0; --i) {
-                      if (path2.charCodeAt(i) === 47) {
+                    for (i = path3.length - 1; i >= 0; --i) {
+                      if (path3.charCodeAt(i) === 47) {
                         if (!matchedSlash) {
                           start = i + 1;
                           break;
@@ -20537,18 +20537,18 @@ var require_aliyun_oss_sdk = __commonJS({
                     }
                     if (end === -1)
                       return "";
-                    return path2.slice(start, end);
+                    return path3.slice(start, end);
                   }
                 },
-                extname: function extname(path2) {
-                  assertPath(path2);
+                extname: function extname(path3) {
+                  assertPath(path3);
                   var startDot = -1;
                   var startPart = 0;
                   var end = -1;
                   var matchedSlash = true;
                   var preDotState = 0;
-                  for (var i = path2.length - 1; i >= 0; --i) {
-                    var code = path2.charCodeAt(i);
+                  for (var i = path3.length - 1; i >= 0; --i) {
+                    var code = path3.charCodeAt(i);
                     if (code === 47) {
                       if (!matchedSlash) {
                         startPart = i + 1;
@@ -20574,7 +20574,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
                     return "";
                   }
-                  return path2.slice(startDot, end);
+                  return path3.slice(startDot, end);
                 },
                 format: function format(pathObject) {
                   if (pathObject === null || typeof pathObject !== "object") {
@@ -20582,12 +20582,12 @@ var require_aliyun_oss_sdk = __commonJS({
                   }
                   return _format("/", pathObject);
                 },
-                parse: function parse(path2) {
-                  assertPath(path2);
+                parse: function parse(path3) {
+                  assertPath(path3);
                   var ret = { root: "", dir: "", base: "", ext: "", name: "" };
-                  if (path2.length === 0)
+                  if (path3.length === 0)
                     return ret;
-                  var code = path2.charCodeAt(0);
+                  var code = path3.charCodeAt(0);
                   var isAbsolute = code === 47;
                   var start;
                   if (isAbsolute) {
@@ -20600,10 +20600,10 @@ var require_aliyun_oss_sdk = __commonJS({
                   var startPart = 0;
                   var end = -1;
                   var matchedSlash = true;
-                  var i = path2.length - 1;
+                  var i = path3.length - 1;
                   var preDotState = 0;
                   for (; i >= start; --i) {
-                    code = path2.charCodeAt(i);
+                    code = path3.charCodeAt(i);
                     if (code === 47) {
                       if (!matchedSlash) {
                         startPart = i + 1;
@@ -20629,22 +20629,22 @@ var require_aliyun_oss_sdk = __commonJS({
                   preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
                     if (end !== -1) {
                       if (startPart === 0 && isAbsolute)
-                        ret.base = ret.name = path2.slice(1, end);
+                        ret.base = ret.name = path3.slice(1, end);
                       else
-                        ret.base = ret.name = path2.slice(startPart, end);
+                        ret.base = ret.name = path3.slice(startPart, end);
                     }
                   } else {
                     if (startPart === 0 && isAbsolute) {
-                      ret.name = path2.slice(1, startDot);
-                      ret.base = path2.slice(1, end);
+                      ret.name = path3.slice(1, startDot);
+                      ret.base = path3.slice(1, end);
                     } else {
-                      ret.name = path2.slice(startPart, startDot);
-                      ret.base = path2.slice(startPart, end);
+                      ret.name = path3.slice(startPart, startDot);
+                      ret.base = path3.slice(startPart, end);
                     }
-                    ret.ext = path2.slice(startDot, end);
+                    ret.ext = path3.slice(startDot, end);
                   }
                   if (startPart > 0)
-                    ret.dir = path2.slice(0, startPart - 1);
+                    ret.dir = path3.slice(0, startPart - 1);
                   else if (isAbsolute)
                     ret.dir = "/";
                   return ret;
@@ -24046,7 +24046,7 @@ var require_aliyun_oss_sdk = __commonJS({
               this.head = this.tail = null;
               this.length = 0;
             };
-            BufferList.prototype.join = function join2(s) {
+            BufferList.prototype.join = function join3(s) {
               if (this.length === 0)
                 return "";
               var p = this.head;
@@ -28110,7 +28110,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
             }, {
               key: "join",
-              value: function join2(s) {
+              value: function join3(s) {
                 if (this.length === 0)
                   return "";
                 var p = this.head;
@@ -34336,10 +34336,10 @@ var require_aliyun_oss_sdk = __commonJS({
                 var protocol = opts.protocol || defaultProtocol;
                 var host = opts.hostname || opts.host;
                 var port = opts.port;
-                var path2 = opts.path || "/";
+                var path3 = opts.path || "/";
                 if (host && host.indexOf(":") !== -1)
                   host = "[" + host + "]";
-                opts.url = (host ? protocol + "//" + host : "") + (port ? ":" + port : "") + path2;
+                opts.url = (host ? protocol + "//" + host : "") + (port ? ":" + port : "") + path3;
                 opts.method = (opts.method || "GET").toUpperCase();
                 opts.headers = opts.headers || {};
                 var req = new ClientRequest(opts);
@@ -36026,10 +36026,75 @@ __export(main_exports, {
   default: () => ShareOnlinePlugin
 });
 module.exports = __toCommonJS(main_exports);
+var import_obsidian4 = require("obsidian");
+
+// src/settings.ts
 var import_obsidian = require("obsidian");
-var fs = __toESM(require("fs"));
 var path = __toESM(require("path"));
 var os = __toESM(require("os"));
+var DEFAULT_SETTINGS = {
+  exportPath: path.join(os.homedir(), "Desktop"),
+  ossRegion: "",
+  ossBucket: "",
+  ossAccessKeyId: "",
+  ossAccessKeySecret: "",
+  ossPrefix: "notes"
+};
+var ShareOnlineSettingTab = class extends import_obsidian.PluginSettingTab {
+  constructor(app, plugin) {
+    super(app, plugin);
+    this.plugin = plugin;
+  }
+  display() {
+    const { containerEl } = this;
+    containerEl.empty();
+    containerEl.createEl("h3", { text: "\u672C\u5730\u5BFC\u51FA" });
+    new import_obsidian.Setting(containerEl).setName("\u5BFC\u51FA\u8DEF\u5F84").setDesc("\u7B14\u8BB0\u5BFC\u51FA\u7684\u76EE\u6807\u6587\u4EF6\u5939\uFF0C\u9ED8\u8BA4\u4E3A\u684C\u9762").addText(
+      (text) => text.setPlaceholder(DEFAULT_SETTINGS.exportPath).setValue(this.plugin.settings.exportPath).onChange(async (value) => {
+        this.plugin.settings.exportPath = value.trim() || DEFAULT_SETTINGS.exportPath;
+        await this.plugin.saveSettings();
+      })
+    );
+    containerEl.createEl("h3", { text: "\u963F\u91CC\u4E91 OSS" });
+    new import_obsidian.Setting(containerEl).setName("Region").setDesc("\u4F8B\u5982 oss-cn-hangzhou").addText(
+      (text) => text.setPlaceholder("oss-cn-hangzhou").setValue(this.plugin.settings.ossRegion).onChange(async (value) => {
+        this.plugin.settings.ossRegion = value.trim();
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian.Setting(containerEl).setName("Bucket").addText(
+      (text) => text.setPlaceholder("my-bucket").setValue(this.plugin.settings.ossBucket).onChange(async (value) => {
+        this.plugin.settings.ossBucket = value.trim();
+        await this.plugin.saveSettings();
+      })
+    );
+    new import_obsidian.Setting(containerEl).setName("Access Key ID").addText((text) => {
+      text.setPlaceholder("AccessKey ID").setValue(this.plugin.settings.ossAccessKeyId).onChange(async (value) => {
+        this.plugin.settings.ossAccessKeyId = value.trim();
+        await this.plugin.saveSettings();
+      });
+      text.inputEl.type = "password";
+    });
+    new import_obsidian.Setting(containerEl).setName("Access Key Secret").addText((text) => {
+      text.setPlaceholder("AccessKey Secret").setValue(this.plugin.settings.ossAccessKeySecret).onChange(async (value) => {
+        this.plugin.settings.ossAccessKeySecret = value.trim();
+        await this.plugin.saveSettings();
+      });
+      text.inputEl.type = "password";
+    });
+    new import_obsidian.Setting(containerEl).setName("\u4E0A\u4F20\u524D\u7F00\u8DEF\u5F84").setDesc("OSS \u4E2D\u7684\u76EE\u5F55\u524D\u7F00\uFF0C\u4F8B\u5982 notes \u2192 notes/<\u7B14\u8BB0\u540D>/index.html").addText(
+      (text) => text.setPlaceholder("notes").setValue(this.plugin.settings.ossPrefix).onChange(async (value) => {
+        this.plugin.settings.ossPrefix = value.trim() || DEFAULT_SETTINGS.ossPrefix;
+        await this.plugin.saveSettings();
+      })
+    );
+  }
+};
+
+// src/exporter.ts
+var import_obsidian2 = require("obsidian");
+var fs = __toESM(require("fs"));
+var path2 = __toESM(require("path"));
 
 // node_modules/marked/lib/marked.esm.js
 function M() {
@@ -37339,57 +37404,14 @@ var Kt = g.parseInline;
 var Xt = b.parse;
 var Jt = x.lex;
 
-// main.ts
-var OSS = require_aliyun_oss_sdk();
-var DEFAULT_SETTINGS = {
-  exportPath: path.join(os.homedir(), "Desktop"),
-  ossRegion: "",
-  ossBucket: "",
-  ossAccessKeyId: "",
-  ossAccessKeySecret: "",
-  ossPrefix: "notes"
-};
-var ShareOnlinePlugin = class extends import_obsidian.Plugin {
-  async onload() {
-    await this.loadSettings();
-    this.addSettingTab(new ShareOnlineSettingTab(this.app, this));
-    this.addCommand({
-      id: "export-current-note-to-desktop",
-      name: "\u5BFC\u51FA\u5F53\u524D\u7B14\u8BB0\u5230\u672C\u5730",
-      callback: () => this.exportCurrentNote()
-    });
-    this.addCommand({
-      id: "export-note-to-desktop",
-      name: "\u9009\u62E9\u7B14\u8BB0\u5BFC\u51FA\u5230\u672C\u5730",
-      callback: () => new ExportNoteModal(this.app, this).open()
-    });
-    this.addCommand({
-      id: "export-current-note-to-oss",
-      name: "\u5BFC\u51FA\u5F53\u524D\u7B14\u8BB0\u5E76\u4E0A\u4F20\u5230 OSS",
-      callback: () => this.exportCurrentNote(true)
-    });
-    this.addCommand({
-      id: "export-note-to-oss",
-      name: "\u9009\u62E9\u7B14\u8BB0\u5BFC\u51FA\u5E76\u4E0A\u4F20\u5230 OSS",
-      callback: () => new ExportNoteModal(this.app, this, true).open()
-    });
-  }
-  async loadSettings() {
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
-  }
-  async saveSettings() {
-    await this.saveData(this.settings);
-  }
-  async exportCurrentNote(uploadToOss = false) {
-    const activeFile = this.app.workspace.getActiveFile();
-    if (!activeFile) {
-      new import_obsidian.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
-      return;
-    }
-    await this.exportFile(activeFile, uploadToOss);
-  }
-  buildHtml(title, htmlBody) {
-    return `<!DOCTYPE html>
+// src/renderer.ts
+async function renderNote(rawContent) {
+  const content = rawContent.replace(/^---[\s\S]*?---\n?/, "");
+  const htmlBody = await g(content);
+  return { html: htmlBody, css: buildCss() };
+}
+function buildHtml(title, htmlBody) {
+  return `<!DOCTYPE html>
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
@@ -37402,9 +37424,9 @@ var ShareOnlinePlugin = class extends import_obsidian.Plugin {
 ${htmlBody}  </article>
 </body>
 </html>`;
-  }
-  buildCss() {
-    return `/* Base */
+}
+function buildCss() {
+  return `/* Base */
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
@@ -37503,130 +37525,95 @@ hr {
 /* Image */
 img { max-width: 100%; border-radius: 4px; }
 `;
+}
+
+// src/exporter.ts
+async function exportToLocal(vault, file, exportRoot) {
+  const raw = await vault.read(file);
+  const { html: htmlBody, css } = await renderNote(raw);
+  const html = buildHtml(file.basename, htmlBody);
+  const folderPath = path2.join(exportRoot, file.basename);
+  fs.mkdirSync(folderPath, { recursive: true });
+  fs.writeFileSync(path2.join(folderPath, "index.html"), html, "utf8");
+  fs.writeFileSync(path2.join(folderPath, "style.css"), css, "utf8");
+  new import_obsidian2.Notice(`\u5DF2\u5BFC\u51FA\u5230\u672C\u5730\uFF1A${folderPath}`);
+  return { noteName: file.basename, html, css };
+}
+
+// src/oss.ts
+var import_obsidian3 = require("obsidian");
+var OSS = require_aliyun_oss_sdk();
+async function uploadToOss(settings, noteName, html, css) {
+  const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret, ossPrefix } = settings;
+  if (!ossRegion || !ossBucket || !ossAccessKeyId || !ossAccessKeySecret) {
+    new import_obsidian3.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
+    return;
   }
-  async exportFile(file, uploadToOss = false) {
-    try {
-      const raw = await this.app.vault.read(file);
-      const content = raw.replace(/^---[\s\S]*?---\n?/, "");
-      const htmlBody = await g(content);
-      const html = this.buildHtml(file.basename, htmlBody);
-      const css = this.buildCss();
-      const exportRoot = this.settings.exportPath || DEFAULT_SETTINGS.exportPath;
-      const folderPath = path.join(exportRoot, file.basename);
-      fs.mkdirSync(folderPath, { recursive: true });
-      const htmlPath = path.join(folderPath, "index.html");
-      const cssPath = path.join(folderPath, "style.css");
-      fs.writeFileSync(htmlPath, html, "utf8");
-      fs.writeFileSync(cssPath, css, "utf8");
-      new import_obsidian.Notice(`\u5DF2\u5BFC\u51FA\u5230\u672C\u5730\uFF1A${folderPath}`);
-      if (uploadToOss) {
-        await this.uploadToOss(file.basename, htmlPath, cssPath);
-      }
-    } catch (err) {
-      new import_obsidian.Notice(`\u5BFC\u51FA\u5931\u8D25\uFF1A${err.message}`);
-      console.error(err);
-    }
+  new import_obsidian3.Notice("\u6B63\u5728\u4E0A\u4F20\u5230 OSS...");
+  const client = new OSS({
+    region: ossRegion,
+    accessKeyId: ossAccessKeyId,
+    accessKeySecret: ossAccessKeySecret,
+    bucket: ossBucket,
+    authorizationV4: true
+  });
+  const prefix = ossPrefix.replace(/\/$/, "");
+  const htmlKey = `${prefix}/${noteName}/index.html`;
+  const cssKey = `${prefix}/${noteName}/style.css`;
+  await client.put(htmlKey, new Blob([html], { type: "text/html; charset=utf-8" }));
+  await client.put(cssKey, new Blob([css], { type: "text/css; charset=utf-8" }));
+  const url = `https://${ossBucket}.${ossRegion}.aliyuncs.com/${htmlKey}`;
+  await navigator.clipboard.writeText(url);
+  new import_obsidian3.Notice(`\u4E0A\u4F20\u6210\u529F\uFF01\u94FE\u63A5\u5DF2\u590D\u5236\u5230\u526A\u8D34\u677F
+${url}`);
+}
+
+// main.ts
+var ShareOnlinePlugin = class extends import_obsidian4.Plugin {
+  async onload() {
+    await this.loadSettings();
+    this.addSettingTab(new ShareOnlineSettingTab(this.app, this));
+    this.addCommand({
+      id: "export-current-note-to-desktop",
+      name: "\u5BFC\u51FA\u5230\u672C\u5730",
+      callback: () => this.exportCurrentNote()
+    });
+    this.addCommand({
+      id: "export-current-note-to-oss",
+      name: "\u5BFC\u51FA\u5230 OSS",
+      callback: () => this.exportCurrentNote(true)
+    });
   }
-  async uploadToOss(noteName, htmlPath, cssPath) {
-    const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret, ossPrefix } = this.settings;
-    if (!ossRegion || !ossBucket || !ossAccessKeyId || !ossAccessKeySecret) {
-      new import_obsidian.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
+  async loadSettings() {
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+  }
+  async saveSettings() {
+    await this.saveData(this.settings);
+  }
+  async exportCurrentNote(toOss = false) {
+    const file = this.app.workspace.getActiveFile();
+    if (!file) {
+      new import_obsidian4.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
       return;
     }
-    new import_obsidian.Notice("\u6B63\u5728\u4E0A\u4F20\u5230 OSS...");
+    await this.exportFile(file, toOss);
+  }
+  async exportFile(file, toOss = false) {
     try {
-      const client = new OSS({
-        region: ossRegion,
-        accessKeyId: ossAccessKeyId,
-        accessKeySecret: ossAccessKeySecret,
-        bucket: ossBucket
-      });
-      const prefix = ossPrefix.replace(/\/$/, "");
-      const htmlKey = `${prefix}/${noteName}/index.html`;
-      const cssKey = `${prefix}/${noteName}/style.css`;
-      await client.put(htmlKey, htmlPath, {
-        headers: { "Content-Type": "text/html; charset=utf-8" }
-      });
-      await client.put(cssKey, cssPath, {
-        headers: { "Content-Type": "text/css; charset=utf-8" }
-      });
-      const url = `https://${ossBucket}.${ossRegion}.aliyuncs.com/${htmlKey}`;
-      await navigator.clipboard.writeText(url);
-      new import_obsidian.Notice(`\u4E0A\u4F20\u6210\u529F\uFF01\u94FE\u63A5\u5DF2\u590D\u5236\u5230\u526A\u8D34\u677F
-${url}`);
+      const result = await exportToLocal(
+        this.app.vault,
+        file,
+        this.settings.exportPath || DEFAULT_SETTINGS.exportPath
+      );
+      if (toOss) {
+        await uploadToOss(this.settings, result.noteName, result.html, result.css);
+      }
     } catch (err) {
-      new import_obsidian.Notice(`OSS \u4E0A\u4F20\u5931\u8D25\uFF1A${err.message}`);
+      new import_obsidian4.Notice(`\u5BFC\u51FA\u5931\u8D25\uFF1A${err.message}`);
       console.error(err);
     }
   }
   onunload() {
-  }
-};
-var ShareOnlineSettingTab = class extends import_obsidian.PluginSettingTab {
-  constructor(app, plugin) {
-    super(app, plugin);
-    this.plugin = plugin;
-  }
-  display() {
-    const { containerEl } = this;
-    containerEl.empty();
-    containerEl.createEl("h3", { text: "\u672C\u5730\u5BFC\u51FA" });
-    new import_obsidian.Setting(containerEl).setName("\u5BFC\u51FA\u8DEF\u5F84").setDesc("\u7B14\u8BB0\u5BFC\u51FA\u7684\u76EE\u6807\u6587\u4EF6\u5939\uFF0C\u9ED8\u8BA4\u4E3A\u684C\u9762").addText(
-      (text) => text.setPlaceholder(DEFAULT_SETTINGS.exportPath).setValue(this.plugin.settings.exportPath).onChange(async (value) => {
-        this.plugin.settings.exportPath = value.trim() || DEFAULT_SETTINGS.exportPath;
-        await this.plugin.saveSettings();
-      })
-    );
-    containerEl.createEl("h3", { text: "\u963F\u91CC\u4E91 OSS" });
-    new import_obsidian.Setting(containerEl).setName("Region").setDesc("\u4F8B\u5982 oss-cn-hangzhou").addText(
-      (text) => text.setPlaceholder("oss-cn-hangzhou").setValue(this.plugin.settings.ossRegion).onChange(async (value) => {
-        this.plugin.settings.ossRegion = value.trim();
-        await this.plugin.saveSettings();
-      })
-    );
-    new import_obsidian.Setting(containerEl).setName("Bucket").addText(
-      (text) => text.setPlaceholder("my-bucket").setValue(this.plugin.settings.ossBucket).onChange(async (value) => {
-        this.plugin.settings.ossBucket = value.trim();
-        await this.plugin.saveSettings();
-      })
-    );
-    new import_obsidian.Setting(containerEl).setName("Access Key ID").addText((text) => {
-      text.setPlaceholder("AccessKey ID").setValue(this.plugin.settings.ossAccessKeyId).onChange(async (value) => {
-        this.plugin.settings.ossAccessKeyId = value.trim();
-        await this.plugin.saveSettings();
-      });
-      text.inputEl.type = "password";
-    });
-    new import_obsidian.Setting(containerEl).setName("Access Key Secret").addText((text) => {
-      text.setPlaceholder("AccessKey Secret").setValue(this.plugin.settings.ossAccessKeySecret).onChange(async (value) => {
-        this.plugin.settings.ossAccessKeySecret = value.trim();
-        await this.plugin.saveSettings();
-      });
-      text.inputEl.type = "password";
-    });
-    new import_obsidian.Setting(containerEl).setName("\u4E0A\u4F20\u524D\u7F00\u8DEF\u5F84").setDesc("OSS \u4E2D\u7684\u76EE\u5F55\u524D\u7F00\uFF0C\u4F8B\u5982 notes \u2192 notes/<\u7B14\u8BB0\u540D>/index.html").addText(
-      (text) => text.setPlaceholder("notes").setValue(this.plugin.settings.ossPrefix).onChange(async (value) => {
-        this.plugin.settings.ossPrefix = value.trim() || DEFAULT_SETTINGS.ossPrefix;
-        await this.plugin.saveSettings();
-      })
-    );
-  }
-};
-var ExportNoteModal = class extends import_obsidian.FuzzySuggestModal {
-  constructor(app, plugin, uploadToOss = false) {
-    super(app);
-    this.plugin = plugin;
-    this.uploadToOss = uploadToOss;
-    this.setPlaceholder("\u8F93\u5165\u7B14\u8BB0\u540D\u79F0\u641C\u7D22...");
-  }
-  getItems() {
-    return this.app.vault.getMarkdownFiles();
-  }
-  getItemText(file) {
-    return file.path;
-  }
-  onChooseItem(file) {
-    this.plugin.exportFile(file, this.uploadToOss);
   }
 };
 /*! Bundled license information:
