@@ -40,8 +40,13 @@ var import_obsidian = require("obsidian");
 var fs = __toESM(require("fs"));
 var path = __toESM(require("path"));
 var os = __toESM(require("os"));
+var DEFAULT_SETTINGS = {
+  exportPath: path.join(os.homedir(), "Desktop")
+};
 var ShareOnlinePlugin = class extends import_obsidian.Plugin {
   async onload() {
+    await this.loadSettings();
+    this.addSettingTab(new ShareOnlineSettingTab(this.app, this));
     this.addCommand({
       id: "export-current-note-to-desktop",
       name: "\u5BFC\u51FA\u5F53\u524D\u7B14\u8BB0\u5230\u684C\u9762",
@@ -52,6 +57,12 @@ var ShareOnlinePlugin = class extends import_obsidian.Plugin {
       name: "\u9009\u62E9\u7B14\u8BB0\u5BFC\u51FA\u5230\u684C\u9762",
       callback: () => new ExportNoteModal(this.app, this).open()
     });
+  }
+  async loadSettings() {
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+  }
+  async saveSettings() {
+    await this.saveData(this.settings);
   }
   async exportCurrentNote() {
     const activeFile = this.app.workspace.getActiveFile();
@@ -64,15 +75,32 @@ var ShareOnlinePlugin = class extends import_obsidian.Plugin {
   async exportFile(file) {
     try {
       const content = await this.app.vault.read(file);
-      const desktopPath = path.join(os.homedir(), "Desktop", file.name);
-      fs.writeFileSync(desktopPath, content, "utf8");
-      new import_obsidian.Notice(`\u5DF2\u5BFC\u51FA\u5230\u684C\u9762\uFF1A${file.name}`);
+      const exportPath = this.settings.exportPath || DEFAULT_SETTINGS.exportPath;
+      const destPath = path.join(exportPath, file.name);
+      fs.writeFileSync(destPath, content, "utf8");
+      new import_obsidian.Notice(`\u5DF2\u5BFC\u51FA\u5230\uFF1A${destPath}`);
     } catch (err) {
       new import_obsidian.Notice(`\u5BFC\u51FA\u5931\u8D25\uFF1A${err.message}`);
       console.error(err);
     }
   }
   onunload() {
+  }
+};
+var ShareOnlineSettingTab = class extends import_obsidian.PluginSettingTab {
+  constructor(app, plugin) {
+    super(app, plugin);
+    this.plugin = plugin;
+  }
+  display() {
+    const { containerEl } = this;
+    containerEl.empty();
+    new import_obsidian.Setting(containerEl).setName("\u5BFC\u51FA\u8DEF\u5F84").setDesc("\u7B14\u8BB0\u5BFC\u51FA\u7684\u76EE\u6807\u6587\u4EF6\u5939\u8DEF\u5F84\uFF0C\u9ED8\u8BA4\u4E3A\u684C\u9762").addText(
+      (text) => text.setPlaceholder(DEFAULT_SETTINGS.exportPath).setValue(this.plugin.settings.exportPath).onChange(async (value) => {
+        this.plugin.settings.exportPath = value.trim() || DEFAULT_SETTINGS.exportPath;
+        await this.plugin.saveSettings();
+      })
+    );
   }
 };
 var ExportNoteModal = class extends import_obsidian.FuzzySuggestModal {
