@@ -1,4 +1,5 @@
 import { App, TFile, MarkdownRenderer, Component } from "obsidian";
+import { renderBaseAsTable, resolveBaseEmbeds } from "./base-renderer";
 
 const THEME = "#65A692";
 
@@ -43,7 +44,8 @@ export async function renderNote(
   file: TFile,
   rawContent: string
 ): Promise<{ html: string; css: string }> {
-  const content = rawContent.replace(/^---[\s\S]*?---\n?/, "");
+  let content = rawContent.replace(/^---[\s\S]*?---\n?/, "");
+  content = resolveBaseEmbeds(content);
   const { processed, entries } = extractMath(content);
 
   const el = document.createElement("div");
@@ -67,8 +69,44 @@ export async function renderNote(
   // Remove Obsidian's native copy buttons
   el.querySelectorAll(".copy-code-button").forEach((b) => b.remove());
 
-  // Wrap tables in .table-wrapper
+  // Replace base embed placeholders (data-base-embed attr) with real tables
+  const basePlaceholders = Array.from(el.querySelectorAll<HTMLElement>("[data-base-embed]"));
+  for (const placeholder of basePlaceholders) {
+    const name = placeholder.getAttribute("data-base-embed") ?? "";
+    const baseFile = app.vault.getFiles().find(
+      f => f.path === name || f.name === name || f.name === name.split("/").pop()
+    ) as TFile | undefined;
+    const temp = document.createElement("div");
+    if (baseFile) {
+      temp.innerHTML = await renderBaseAsTable(app, baseFile);
+    } else {
+      temp.innerHTML = `<p class="base-error">Base 未找到: ${name}</p>`;
+    }
+    placeholder.replaceWith(...Array.from(temp.childNodes));
+  }
+
+  // Fallback: replace any .internal-embed elements pointing to .base files
+  // (in case MarkdownRenderer created them instead of rendering the placeholder)
+  const internalEmbeds = Array.from(el.querySelectorAll<HTMLElement>(".internal-embed"));
+  for (const embed of internalEmbeds) {
+    const src = embed.getAttribute("src") ?? "";
+    if (!src.endsWith(".base")) continue;
+    const baseName = src.split("/").pop() ?? src;
+    const baseFile = app.vault.getFiles().find(
+      f => f.path === src || f.name === baseName
+    ) as TFile | undefined;
+    const temp = document.createElement("div");
+    if (baseFile) {
+      temp.innerHTML = await renderBaseAsTable(app, baseFile);
+    } else {
+      temp.innerHTML = `<p class="base-error">Base 未找到: ${src}</p>`;
+    }
+    embed.replaceWith(...Array.from(temp.childNodes));
+  }
+
+  // Wrap tables in .table-wrapper (skip tables already inside one)
   el.querySelectorAll("table").forEach((table) => {
+    if (table.closest(".table-wrapper")) return;
     const wrapper = document.createElement("div");
     wrapper.className = "table-wrapper";
     table.parentNode?.insertBefore(wrapper, table);
@@ -741,6 +779,10 @@ img { max-width: 100%; border-radius: 4px; }
 /* ── Misc ── */
 strong { font-weight: 600; }
 em { font-style: italic; }
+
+/* ── Base embed ── */
+.base-empty { color: #aaa; font-size: 13px; margin: 0.8em 0; }
+.base-error { color: #E06C75; font-size: 13px; margin: 0.8em 0; }
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 3px; height: 3px; }

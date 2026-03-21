@@ -119,7 +119,7 @@ export default class ShareOnlinePlugin extends Plugin {
 			);
 			menu.addItem((item) =>
 				item
-					.setTitle("更新线上内容")
+					.setTitle("内容更新")
 					.setIcon("refresh-cw")
 					.onClick(() => this.updateNote(file))
 			);
@@ -210,5 +210,5 @@ export default class ShareOnlinePlugin extends Plugin {
 		}
 	}
 
-	onunload() {}
+	onunload() { }
 }

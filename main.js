@@ -36021,7 +36021,7 @@ __export(main_exports, {
   default: () => ShareOnlinePlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian5 = require("obsidian");
+var import_obsidian6 = require("obsidian");
 
 // src/settings.ts
 var import_obsidian = require("obsidian");
@@ -36094,12 +36094,261 @@ var ShareOnlineSettingTab = class extends import_obsidian.PluginSettingTab {
 };
 
 // src/exporter.ts
-var import_obsidian3 = require("obsidian");
+var import_obsidian4 = require("obsidian");
 var fs = __toESM(require("fs"));
 var path2 = __toESM(require("path"));
 
 // src/renderer.ts
+var import_obsidian3 = require("obsidian");
+
+// src/base-renderer.ts
 var import_obsidian2 = require("obsidian");
+function splitTopLevelArgs(s) {
+  const args = [];
+  let depth = 0, cur = "", inStr = false, strChar = "";
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (inStr) {
+      cur += c;
+      if (c === strChar)
+        inStr = false;
+    } else if (c === '"' || c === "'") {
+      inStr = true;
+      strChar = c;
+      cur += c;
+    } else if (c === "(" || c === "[") {
+      depth++;
+      cur += c;
+    } else if (c === ")" || c === "]") {
+      depth--;
+      cur += c;
+    } else if (c === "," && depth === 0) {
+      args.push(cur.trim());
+      cur = "";
+    } else {
+      cur += c;
+    }
+  }
+  if (cur.trim())
+    args.push(cur.trim());
+  return args;
+}
+function findTopLevelOp(expr, op) {
+  let depth = 0, inStr = false, strChar = "";
+  for (let i = 0; i < expr.length; i++) {
+    const c = expr[i];
+    if (inStr) {
+      if (c === strChar)
+        inStr = false;
+    } else if (c === '"' || c === "'") {
+      inStr = true;
+      strChar = c;
+    } else if (c === "(" || c === "[")
+      depth++;
+    else if (c === ")" || c === "]")
+      depth--;
+    else if (depth === 0 && expr.startsWith(op, i))
+      return i;
+  }
+  return -1;
+}
+function evalBoolExpr(expr, fm) {
+  const m = expr.trim().match(/^(\w+)\.isEmpty\(\)$/);
+  if (m) {
+    const v = fm[m[1]];
+    return v === void 0 || v === null || v === "";
+  }
+  return false;
+}
+function formatDateValue(val) {
+  let d;
+  if (typeof val === "number")
+    d = new Date(val);
+  else if (/^\d{10,}$/.test(val))
+    d = new Date(parseInt(val));
+  else
+    d = new Date(val);
+  if (isNaN(d.getTime()))
+    return String(val);
+  const y = d.getFullYear();
+  const mo = String(d.getMonth() + 1).padStart(2, "0");
+  const dy = String(d.getDate()).padStart(2, "0");
+  return `${y}-${mo}-${dy}`;
+}
+function evalExpr(expr, file, fm, stat) {
+  expr = expr.trim();
+  const strLit = expr.match(/^(['"])(.*)\1$/);
+  if (strLit)
+    return strLit[2];
+  const linkM = expr.match(/^link\(([\s\S]+)\)$/);
+  if (linkM) {
+    const args = splitTopLevelArgs(linkM[1]);
+    return args.length >= 2 ? evalExpr(args[1], file, fm, stat) : file.basename;
+  }
+  const ifM = expr.match(/^if\(([\s\S]+)\)$/);
+  if (ifM) {
+    const args = splitTopLevelArgs(ifM[1]);
+    if (args.length >= 3) {
+      return evalExpr(evalBoolExpr(args[0], fm) ? args[1] : args[2], file, fm, stat);
+    }
+  }
+  const fmtM = expr.match(/^([\s\S]+)\.format\("([^"]+)"\)$/);
+  if (fmtM) {
+    const inner = evalExpr(fmtM[1], file, fm, stat);
+    const numeric = inner === String(stat.ctime) ? stat.ctime : inner === String(stat.mtime) ? stat.mtime : inner;
+    return formatDateValue(typeof numeric === "number" ? numeric : String(numeric));
+  }
+  const sliceM = expr.match(/^([\s\S]+)\.slice\((\d+)(?:,\s*(\d+))?\)$/);
+  if (sliceM) {
+    const inner = evalExpr(sliceM[1], file, fm, stat);
+    const start = parseInt(sliceM[2]);
+    return sliceM[3] !== void 0 ? inner.slice(start, parseInt(sliceM[3])) : inner.slice(start);
+  }
+  const plusIdx = findTopLevelOp(expr, "+");
+  if (plusIdx !== -1) {
+    return evalExpr(expr.slice(0, plusIdx), file, fm, stat) + evalExpr(expr.slice(plusIdx + 1), file, fm, stat);
+  }
+  if (expr === "file.basename")
+    return file.basename;
+  if (expr === "file.name")
+    return file.name;
+  if (expr === "file.path")
+    return file.path;
+  if (expr === "file.ext")
+    return file.extension;
+  if (expr === "file.ctime")
+    return String(stat.ctime);
+  if (expr === "file.mtime")
+    return String(stat.mtime);
+  if (expr === "file.backlinks")
+    return "";
+  if (fm[expr] !== void 0 && fm[expr] !== null)
+    return String(fm[expr]);
+  return "";
+}
+function matchesFilter(expr, file, meta) {
+  var _a, _b, _c, _d, _e, _f;
+  expr = expr.trim();
+  const bodyTags = (_b = (_a = meta == null ? void 0 : meta.tags) == null ? void 0 : _a.map((t) => t.tag.replace(/^#/, ""))) != null ? _b : [];
+  const fmTags = (_c = meta == null ? void 0 : meta.frontmatter) == null ? void 0 : _c.tags;
+  const fmTagList = Array.isArray(fmTags) ? fmTags : fmTags ? [String(fmTags)] : [];
+  const allTags = /* @__PURE__ */ new Set([...bodyTags, ...fmTagList]);
+  const containsAllM = expr.match(/^file\.tags\.containsAll\((.+)\)$/);
+  if (containsAllM) {
+    const req = ((_d = containsAllM[1].match(/["']([^"']+)["']/g)) != null ? _d : []).map((s) => s.replace(/["']/g, ""));
+    return req.every((t) => allTags.has(t));
+  }
+  const containsM = expr.match(/^file\.tags\.contains\((.+)\)$/);
+  if (containsM)
+    return allTags.has(containsM[1].replace(/["']/g, ""));
+  const folderM = expr.match(/^file\.folder\s*==\s*["']([^"']+)["']$/);
+  if (folderM)
+    return ((_f = (_e = file.parent) == null ? void 0 : _e.path) != null ? _f : "") === folderM[1];
+  const extM = expr.match(/^file\.ext\s*==\s*["']([^"']+)["']$/);
+  if (extM)
+    return file.extension === extM[1];
+  return true;
+}
+async function renderBaseAsTable(app, baseFile) {
+  var _a, _b, _c, _d, _e;
+  const raw = await app.vault.read(baseFile);
+  let config;
+  try {
+    config = (0, import_obsidian2.parseYaml)(raw);
+  } catch (e) {
+    return `<div class="base-error">\u65E0\u6CD5\u89E3\u6790 ${baseFile.name}</div>`;
+  }
+  const view = (_b = (_a = config.views) == null ? void 0 : _a[0]) != null ? _b : {};
+  const formulas = (_c = config.formulas) != null ? _c : {};
+  let matched = app.vault.getMarkdownFiles().filter((f) => {
+    const meta = app.metadataCache.getFileCache(f);
+    const filters = config.filters;
+    if (!filters)
+      return true;
+    if (filters.and)
+      return filters.and.every((e) => matchesFilter(e, f, meta));
+    if (filters.or)
+      return filters.or.some((e) => matchesFilter(e, f, meta));
+    return true;
+  });
+  if ((_d = view.sort) == null ? void 0 : _d.length) {
+    const { property: sortProp, direction } = view.sort[0];
+    const desc = (direction == null ? void 0 : direction.toUpperCase()) === "DESC";
+    matched.sort((a, b) => {
+      const getV = (f) => {
+        var _a2, _b2;
+        const fm = (_b2 = (_a2 = app.metadataCache.getFileCache(f)) == null ? void 0 : _a2.frontmatter) != null ? _b2 : {};
+        const s = { mtime: f.stat.mtime, ctime: f.stat.ctime };
+        if (sortProp.startsWith("formula.")) {
+          const key = sortProp.slice(8);
+          return formulas[key] ? evalExpr(formulas[key], f, fm, s) : "";
+        }
+        if (sortProp === "file.mtime")
+          return String(f.stat.mtime);
+        if (sortProp === "file.ctime")
+          return String(f.stat.ctime);
+        if (sortProp === "file.name")
+          return f.name;
+        const v = fm[sortProp];
+        return v !== void 0 ? String(v) : "";
+      };
+      const va = getV(a), vb = getV(b);
+      const cmp = va < vb ? -1 : va > vb ? 1 : 0;
+      return desc ? -cmp : cmp;
+    });
+  }
+  if (view.limit)
+    matched = matched.slice(0, view.limit);
+  if (matched.length === 0)
+    return `<div class="base-empty">\uFF08\u65E0\u5339\u914D\u8BB0\u5F55\uFF09</div>`;
+  const order = ((_e = view.order) == null ? void 0 : _e.length) ? view.order : Object.keys(formulas).map((k) => `formula.${k}`);
+  const colLabel = (col) => col.startsWith("formula.") ? col.slice(8) : col.startsWith("file.") ? col.slice(5) : col;
+  const thead = `<tr>${order.map((c) => `<th>${colLabel(c)}</th>`).join("")}</tr>`;
+  const tbody = matched.map((f) => {
+    var _a2, _b2;
+    const fm = (_b2 = (_a2 = app.metadataCache.getFileCache(f)) == null ? void 0 : _a2.frontmatter) != null ? _b2 : {};
+    const s = { mtime: f.stat.mtime, ctime: f.stat.ctime };
+    const cells = order.map((col) => {
+      if (col.startsWith("formula.")) {
+        const key = col.slice(8);
+        return formulas[key] ? evalExpr(formulas[key], f, fm, s) : "";
+      }
+      if (col === "file.mtime")
+        return formatDateValue(f.stat.mtime);
+      if (col === "file.ctime")
+        return formatDateValue(f.stat.ctime);
+      if (col === "file.name")
+        return f.name;
+      if (col === "file.basename")
+        return f.basename;
+      if (col === "file.backlinks")
+        return "";
+      const v = fm[col];
+      return v !== void 0 ? String(v) : "";
+    });
+    return `<tr>${cells.map((c) => `<td>${c}</td>`).join("")}</tr>`;
+  }).join("\n");
+  return `<div class="table-wrapper">
+<table>
+<thead>${thead}</thead>
+<tbody>
+${tbody}
+</tbody>
+</table>
+</div>`;
+}
+function resolveBaseEmbeds(content) {
+  return content.replace(
+    /!\[\[([^\]]+\.base)\]\]/g,
+    (_, name) => `
+
+<div data-base-embed="${name}"></div>
+
+`
+  );
+}
+
+// src/renderer.ts
 var THEME = "#65A692";
 function extractMath(content) {
   const entries = [];
@@ -36124,28 +36373,63 @@ function extractMath(content) {
   return { processed, entries };
 }
 async function renderNote(app, file, rawContent) {
-  const content = rawContent.replace(/^---[\s\S]*?---\n?/, "");
+  var _a, _b, _c;
+  let content = rawContent.replace(/^---[\s\S]*?---\n?/, "");
+  content = resolveBaseEmbeds(content);
   const { processed, entries } = extractMath(content);
   const el = document.createElement("div");
   el.className = "markdown-preview-view markdown-rendered";
-  const component = new import_obsidian2.Component();
+  const component = new import_obsidian3.Component();
   component.load();
-  await import_obsidian2.MarkdownRenderer.render(app, processed, el, file.path, component);
+  await import_obsidian3.MarkdownRenderer.render(app, processed, el, file.path, component);
   await new Promise((r) => setTimeout(r, 300));
   component.unload();
   el.querySelectorAll("[data-mi]").forEach((placeholder) => {
-    var _a;
-    const idx = parseInt((_a = placeholder.getAttribute("data-mi")) != null ? _a : "0");
+    var _a2;
+    const idx = parseInt((_a2 = placeholder.getAttribute("data-mi")) != null ? _a2 : "0");
     const entry = entries[idx];
     if (entry)
       placeholder.textContent = entry.latex;
   });
   el.querySelectorAll(".copy-code-button").forEach((b) => b.remove());
+  const basePlaceholders = Array.from(el.querySelectorAll("[data-base-embed]"));
+  for (const placeholder of basePlaceholders) {
+    const name = (_a = placeholder.getAttribute("data-base-embed")) != null ? _a : "";
+    const baseFile = app.vault.getFiles().find(
+      (f) => f.path === name || f.name === name || f.name === name.split("/").pop()
+    );
+    const temp = document.createElement("div");
+    if (baseFile) {
+      temp.innerHTML = await renderBaseAsTable(app, baseFile);
+    } else {
+      temp.innerHTML = `<p class="base-error">Base \u672A\u627E\u5230: ${name}</p>`;
+    }
+    placeholder.replaceWith(...Array.from(temp.childNodes));
+  }
+  const internalEmbeds = Array.from(el.querySelectorAll(".internal-embed"));
+  for (const embed of internalEmbeds) {
+    const src = (_b = embed.getAttribute("src")) != null ? _b : "";
+    if (!src.endsWith(".base"))
+      continue;
+    const baseName = (_c = src.split("/").pop()) != null ? _c : src;
+    const baseFile = app.vault.getFiles().find(
+      (f) => f.path === src || f.name === baseName
+    );
+    const temp = document.createElement("div");
+    if (baseFile) {
+      temp.innerHTML = await renderBaseAsTable(app, baseFile);
+    } else {
+      temp.innerHTML = `<p class="base-error">Base \u672A\u627E\u5230: ${src}</p>`;
+    }
+    embed.replaceWith(...Array.from(temp.childNodes));
+  }
   el.querySelectorAll("table").forEach((table) => {
-    var _a;
+    var _a2;
+    if (table.closest(".table-wrapper"))
+      return;
     const wrapper = document.createElement("div");
     wrapper.className = "table-wrapper";
-    (_a = table.parentNode) == null ? void 0 : _a.insertBefore(wrapper, table);
+    (_a2 = table.parentNode) == null ? void 0 : _a2.insertBefore(wrapper, table);
     wrapper.appendChild(table);
   });
   return { html: el.innerHTML, css: buildCss() };
@@ -36815,6 +37099,10 @@ img { max-width: 100%; border-radius: 4px; }
 strong { font-weight: 600; }
 em { font-style: italic; }
 
+/* \u2500\u2500 Base embed \u2500\u2500 */
+.base-empty { color: #aaa; font-size: 13px; margin: 0.8em 0; }
+.base-error { color: #E06C75; font-size: 13px; margin: 0.8em 0; }
+
 /* \u2500\u2500 Scrollbar \u2500\u2500 */
 ::-webkit-scrollbar { width: 3px; height: 3px; }
 ::-webkit-scrollbar-thumb { background: transparent; border-radius: 999px; transition: background 0.3s; }
@@ -36837,20 +37125,20 @@ async function exportToLocal(app, vault, file, exportRoot) {
   fs.mkdirSync(folderPath, { recursive: true });
   fs.writeFileSync(path2.join(folderPath, "index.html"), result.html, "utf8");
   fs.writeFileSync(path2.join(folderPath, "style.css"), result.css, "utf8");
-  new import_obsidian3.Notice(`\u5DF2\u5BFC\u51FA\u5230\u672C\u5730\uFF1A${folderPath}`);
+  new import_obsidian4.Notice(`\u5DF2\u5BFC\u51FA\u5230\u672C\u5730\uFF1A${folderPath}`);
   return result;
 }
 
 // src/oss.ts
-var import_obsidian4 = require("obsidian");
+var import_obsidian5 = require("obsidian");
 var OSS = require_aliyun_oss_sdk();
 async function uploadToOss(settings, noteName, html, css) {
   const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret, ossPrefix } = settings;
   if (!ossRegion || !ossBucket || !ossAccessKeyId || !ossAccessKeySecret) {
-    new import_obsidian4.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
+    new import_obsidian5.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
     return "";
   }
-  new import_obsidian4.Notice("\u6B63\u5728\u4E0A\u4F20\u5230 OSS...");
+  new import_obsidian5.Notice("\u6B63\u5728\u4E0A\u4F20\u5230 OSS...");
   const client = new OSS({
     region: ossRegion,
     accessKeyId: ossAccessKeyId,
@@ -36866,14 +37154,14 @@ async function uploadToOss(settings, noteName, html, css) {
   const { ossDomain } = settings;
   const base = ossDomain || `https://${ossBucket}.${ossRegion}.aliyuncs.com`;
   const url = `${base}/${htmlKey}`;
-  new import_obsidian4.Notice(`\u4E0A\u4F20\u6210\u529F
+  new import_obsidian5.Notice(`\u4E0A\u4F20\u6210\u529F
 ${url}`);
   return url;
 }
 async function deleteFromOss(settings, noteName) {
   const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret, ossPrefix } = settings;
   if (!ossRegion || !ossBucket || !ossAccessKeyId || !ossAccessKeySecret) {
-    new import_obsidian4.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
+    new import_obsidian5.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
     return;
   }
   const client = new OSS({
@@ -36891,7 +37179,7 @@ async function deleteFromOss(settings, noteName) {
 // main.ts
 var THEME_COLOR = "#65A692";
 var SVG_SHARE = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`;
-var ShareOnlinePlugin = class extends import_obsidian5.Plugin {
+var ShareOnlinePlugin = class extends import_obsidian6.Plugin {
   async onload() {
     await this.loadSettings();
     this.addSettingTab(new ShareOnlineSettingTab(this.app, this));
@@ -36955,11 +37243,11 @@ var ShareOnlinePlugin = class extends import_obsidian5.Plugin {
   showShareMenu(event) {
     const file = this.app.workspace.getActiveFile();
     if (!file) {
-      new import_obsidian5.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
+      new import_obsidian6.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
       return;
     }
     const published = !!this.getShareLink(file);
-    const menu = new import_obsidian5.Menu();
+    const menu = new import_obsidian6.Menu();
     if (!published) {
       menu.addItem(
         (item) => item.setTitle("\u53D1\u5E03\u5230\u7EBF\u4E0A").setIcon("upload-cloud").onClick(() => this.publishNote(file))
@@ -36975,7 +37263,7 @@ var ShareOnlinePlugin = class extends import_obsidian5.Plugin {
         })
       );
       menu.addItem(
-        (item) => item.setTitle("\u66F4\u65B0\u7EBF\u4E0A\u5185\u5BB9").setIcon("refresh-cw").onClick(() => this.updateNote(file))
+        (item) => item.setTitle("\u5185\u5BB9\u66F4\u65B0").setIcon("refresh-cw").onClick(() => this.updateNote(file))
       );
       menu.addItem(
         (item) => item.setTitle("\u505C\u6B62\u5206\u4EAB").setIcon("eye-off").onClick(() => this.unpublishNote(file))
@@ -36994,7 +37282,7 @@ var ShareOnlinePlugin = class extends import_obsidian5.Plugin {
       await this.setShareLink(file, url);
       this.updateStatusBar();
       await navigator.clipboard.writeText(url);
-      new import_obsidian5.Notice("\u53D1\u5E03\u6210\u529F\uFF01\u94FE\u63A5\u5DF2\u590D\u5236\u5230\u526A\u8D34\u677F");
+      new import_obsidian6.Notice("\u53D1\u5E03\u6210\u529F\uFF01\u94FE\u63A5\u5DF2\u590D\u5236\u5230\u526A\u8D34\u677F");
     }
   }
   async updateNote(file) {
@@ -37004,7 +37292,7 @@ var ShareOnlinePlugin = class extends import_obsidian5.Plugin {
     if (url) {
       await this.setShareLink(file, url);
       this.updateStatusBar();
-      new import_obsidian5.Notice("\u66F4\u65B0\u6210\u529F\uFF01");
+      new import_obsidian6.Notice("\u66F4\u65B0\u6210\u529F\uFF01");
     }
   }
   async unpublishNote(file) {
@@ -37019,12 +37307,12 @@ var ShareOnlinePlugin = class extends import_obsidian5.Plugin {
     }
     await this.removeShareLink(file);
     this.updateStatusBar();
-    new import_obsidian5.Notice("\u5DF2\u505C\u6B62\u5206\u4EAB");
+    new import_obsidian6.Notice("\u5DF2\u505C\u6B62\u5206\u4EAB");
   }
   async exportCurrentNote(toOss = false) {
     const file = this.app.workspace.getActiveFile();
     if (!file) {
-      new import_obsidian5.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
+      new import_obsidian6.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
       return;
     }
     await this.exportFile(file, toOss);
@@ -37044,7 +37332,7 @@ var ShareOnlinePlugin = class extends import_obsidian5.Plugin {
         return "";
       }
     } catch (err) {
-      new import_obsidian5.Notice(`\u5BFC\u51FA\u5931\u8D25\uFF1A${err.message}`);
+      new import_obsidian6.Notice(`\u5BFC\u51FA\u5931\u8D25\uFF1A${err.message}`);
       console.error(err);
       return "";
     }
