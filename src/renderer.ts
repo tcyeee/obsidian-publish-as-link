@@ -783,6 +783,8 @@ em { font-style: italic; }
 /* ── Base embed ── */
 .base-empty { color: #aaa; font-size: 13px; margin: 0.8em 0; }
 .base-error { color: #E06C75; font-size: 13px; margin: 0.8em 0; }
+.base-link  { color: ${THEME}; text-decoration: none; font-size: inherit; }
+.base-link:hover { text-decoration: underline; }
 
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 3px; height: 3px; }

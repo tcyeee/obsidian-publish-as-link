@@ -17193,8 +17193,8 @@ var require_aliyun_oss_sdk = __commonJS({
         }, { "get-intrinsic": 390, "gopd": 391, "has-property-descriptors": 392 }], 385: [function(require2, module4, exports3) {
           "use strict";
           var matchHtmlRegExp = /["'&<>]/;
-          module4.exports = escapeHtml;
-          function escapeHtml(string) {
+          module4.exports = escapeHtml2;
+          function escapeHtml2(string) {
             var str = "" + string;
             var match = matchHtmlRegExp.exec(str);
             if (!match) {
@@ -36160,7 +36160,7 @@ function evalBoolExpr(expr, fm) {
   }
   return false;
 }
-function formatDateValue(val) {
+function formatDateValue(val, fmt = "YYYY-MM-DD") {
   let d;
   if (typeof val === "number")
     d = new Date(val);
@@ -36170,61 +36170,77 @@ function formatDateValue(val) {
     d = new Date(val);
   if (isNaN(d.getTime()))
     return String(val);
-  const y = d.getFullYear();
-  const mo = String(d.getMonth() + 1).padStart(2, "0");
-  const dy = String(d.getDate()).padStart(2, "0");
-  return `${y}-${mo}-${dy}`;
+  const tokens = {
+    YYYY: String(d.getFullYear()),
+    MM: String(d.getMonth() + 1).padStart(2, "0"),
+    DD: String(d.getDate()).padStart(2, "0"),
+    HH: String(d.getHours()).padStart(2, "0"),
+    mm: String(d.getMinutes()).padStart(2, "0"),
+    ss: String(d.getSeconds()).padStart(2, "0")
+  };
+  return fmt.replace(/YYYY|MM|DD|HH|mm|ss/g, (t) => {
+    var _a;
+    return (_a = tokens[t]) != null ? _a : t;
+  });
 }
-function evalExpr(expr, file, fm, stat) {
+function escapeHtml(s) {
+  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+function evalExpr(expr, ctx) {
   expr = expr.trim();
-  const strLit = expr.match(/^(['"])(.*)\1$/);
+  const strLit = expr.match(/^(['"])(.*)\1$/s);
   if (strLit)
-    return strLit[2];
+    return escapeHtml(strLit[2]);
   const linkM = expr.match(/^link\(([\s\S]+)\)$/);
   if (linkM) {
     const args = splitTopLevelArgs(linkM[1]);
-    return args.length >= 2 ? evalExpr(args[1], file, fm, stat) : file.basename;
+    const display = args.length >= 2 ? evalExpr(args[1], ctx) : escapeHtml(ctx.file.basename);
+    const href = `obsidian://open?vault=${encodeURIComponent(ctx.vaultName)}&file=${encodeURIComponent(ctx.file.path)}`;
+    return `<a href="${href}" class="base-link">${display}</a>`;
   }
   const ifM = expr.match(/^if\(([\s\S]+)\)$/);
   if (ifM) {
     const args = splitTopLevelArgs(ifM[1]);
     if (args.length >= 3) {
-      return evalExpr(evalBoolExpr(args[0], fm) ? args[1] : args[2], file, fm, stat);
+      return evalExpr(evalBoolExpr(args[0], ctx.fm) ? args[1] : args[2], ctx);
     }
   }
   const fmtM = expr.match(/^([\s\S]+)\.format\("([^"]+)"\)$/);
   if (fmtM) {
-    const inner = evalExpr(fmtM[1], file, fm, stat);
-    const numeric = inner === String(stat.ctime) ? stat.ctime : inner === String(stat.mtime) ? stat.mtime : inner;
-    return formatDateValue(typeof numeric === "number" ? numeric : String(numeric));
+    const inner = evalExpr(fmtM[1], ctx);
+    const numeric = inner === String(ctx.stat.ctime) ? ctx.stat.ctime : inner === String(ctx.stat.mtime) ? ctx.stat.mtime : inner;
+    return formatDateValue(
+      typeof numeric === "number" ? numeric : String(numeric),
+      fmtM[2]
+      // ← the actual format string, e.g. "YYYY-MM-DD"
+    );
   }
   const sliceM = expr.match(/^([\s\S]+)\.slice\((\d+)(?:,\s*(\d+))?\)$/);
   if (sliceM) {
-    const inner = evalExpr(sliceM[1], file, fm, stat);
+    const inner = evalExpr(sliceM[1], ctx);
     const start = parseInt(sliceM[2]);
     return sliceM[3] !== void 0 ? inner.slice(start, parseInt(sliceM[3])) : inner.slice(start);
   }
   const plusIdx = findTopLevelOp(expr, "+");
   if (plusIdx !== -1) {
-    return evalExpr(expr.slice(0, plusIdx), file, fm, stat) + evalExpr(expr.slice(plusIdx + 1), file, fm, stat);
+    return evalExpr(expr.slice(0, plusIdx), ctx) + evalExpr(expr.slice(plusIdx + 1), ctx);
   }
   if (expr === "file.basename")
-    return file.basename;
+    return escapeHtml(ctx.file.basename);
   if (expr === "file.name")
-    return file.name;
+    return escapeHtml(ctx.file.name);
   if (expr === "file.path")
-    return file.path;
+    return escapeHtml(ctx.file.path);
   if (expr === "file.ext")
-    return file.extension;
+    return escapeHtml(ctx.file.extension);
   if (expr === "file.ctime")
-    return String(stat.ctime);
+    return String(ctx.stat.ctime);
   if (expr === "file.mtime")
-    return String(stat.mtime);
+    return String(ctx.stat.mtime);
   if (expr === "file.backlinks")
     return "";
-  if (fm[expr] !== void 0 && fm[expr] !== null)
-    return String(fm[expr]);
-  return "";
+  const v = ctx.fm[expr];
+  return v !== void 0 && v !== null ? escapeHtml(String(v)) : "";
 }
 function matchesFilter(expr, file, meta) {
   var _a, _b, _c, _d, _e, _f;
@@ -36249,6 +36265,11 @@ function matchesFilter(expr, file, meta) {
     return file.extension === extM[1];
   return true;
 }
+function colLabel(col, properties) {
+  var _a, _b, _c, _d, _e, _f, _g, _h;
+  const bare = col.startsWith("formula.") ? col.slice(8) : col.startsWith("file.") ? col.slice(5) : col;
+  return (_h = (_g = (_e = (_c = (_a = properties == null ? void 0 : properties["note." + bare]) == null ? void 0 : _a.displayName) != null ? _c : (_b = properties == null ? void 0 : properties[bare]) == null ? void 0 : _b.displayName) != null ? _e : (_d = properties == null ? void 0 : properties["note." + col]) == null ? void 0 : _d.displayName) != null ? _g : (_f = properties == null ? void 0 : properties[col]) == null ? void 0 : _f.displayName) != null ? _h : bare;
+}
 async function renderBaseAsTable(app, baseFile) {
   var _a, _b, _c, _d, _e;
   const raw = await app.vault.read(baseFile);
@@ -36260,6 +36281,8 @@ async function renderBaseAsTable(app, baseFile) {
   }
   const view = (_b = (_a = config.views) == null ? void 0 : _a[0]) != null ? _b : {};
   const formulas = (_c = config.formulas) != null ? _c : {};
+  const properties = config.properties;
+  const vaultName = app.vault.getName();
   let matched = app.vault.getMarkdownFiles().filter((f) => {
     const meta = app.metadataCache.getFileCache(f);
     const filters = config.filters;
@@ -36279,9 +36302,10 @@ async function renderBaseAsTable(app, baseFile) {
         var _a2, _b2;
         const fm = (_b2 = (_a2 = app.metadataCache.getFileCache(f)) == null ? void 0 : _a2.frontmatter) != null ? _b2 : {};
         const s = { mtime: f.stat.mtime, ctime: f.stat.ctime };
+        const ctx = { file: f, fm, stat: s, vaultName };
         if (sortProp.startsWith("formula.")) {
           const key = sortProp.slice(8);
-          return formulas[key] ? evalExpr(formulas[key], f, fm, s) : "";
+          return formulas[key] ? evalExpr(formulas[key], ctx) : "";
         }
         if (sortProp === "file.mtime")
           return String(f.stat.mtime);
@@ -36302,29 +36326,29 @@ async function renderBaseAsTable(app, baseFile) {
   if (matched.length === 0)
     return `<div class="base-empty">\uFF08\u65E0\u5339\u914D\u8BB0\u5F55\uFF09</div>`;
   const order = ((_e = view.order) == null ? void 0 : _e.length) ? view.order : Object.keys(formulas).map((k) => `formula.${k}`);
-  const colLabel = (col) => col.startsWith("formula.") ? col.slice(8) : col.startsWith("file.") ? col.slice(5) : col;
-  const thead = `<tr>${order.map((c) => `<th>${colLabel(c)}</th>`).join("")}</tr>`;
+  const thead = `<tr>${order.map((c) => `<th>${colLabel(c, properties)}</th>`).join("")}</tr>`;
   const tbody = matched.map((f) => {
     var _a2, _b2;
     const fm = (_b2 = (_a2 = app.metadataCache.getFileCache(f)) == null ? void 0 : _a2.frontmatter) != null ? _b2 : {};
     const s = { mtime: f.stat.mtime, ctime: f.stat.ctime };
+    const ctx = { file: f, fm, stat: s, vaultName };
     const cells = order.map((col) => {
       if (col.startsWith("formula.")) {
         const key = col.slice(8);
-        return formulas[key] ? evalExpr(formulas[key], f, fm, s) : "";
+        return formulas[key] ? evalExpr(formulas[key], ctx) : "";
       }
       if (col === "file.mtime")
         return formatDateValue(f.stat.mtime);
       if (col === "file.ctime")
         return formatDateValue(f.stat.ctime);
       if (col === "file.name")
-        return f.name;
+        return escapeHtml(f.name);
       if (col === "file.basename")
-        return f.basename;
+        return escapeHtml(f.basename);
       if (col === "file.backlinks")
         return "";
       const v = fm[col];
-      return v !== void 0 ? String(v) : "";
+      return v !== void 0 ? escapeHtml(String(v)) : "";
     });
     return `<tr>${cells.map((c) => `<td>${c}</td>`).join("")}</tr>`;
   }).join("\n");
@@ -37102,6 +37126,8 @@ em { font-style: italic; }
 /* \u2500\u2500 Base embed \u2500\u2500 */
 .base-empty { color: #aaa; font-size: 13px; margin: 0.8em 0; }
 .base-error { color: #E06C75; font-size: 13px; margin: 0.8em 0; }
+.base-link  { color: ${THEME}; text-decoration: none; font-size: inherit; }
+.base-link:hover { text-decoration: underline; }
 
 /* \u2500\u2500 Scrollbar \u2500\u2500 */
 ::-webkit-scrollbar { width: 3px; height: 3px; }
