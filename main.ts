@@ -193,7 +193,7 @@ export default class ShareOnlinePlugin extends Plugin {
 		try {
 			if (toOss) {
 				const result = await prepareExport(this.app, this.app.vault, file, existingName);
-				return await uploadToOss(this.settings, result.noteName, result.html, result.css);
+				return await uploadToOss(this.settings, this.app.vault, result.noteName, result.html, result.css, result.images);
 			} else {
 				await exportToLocal(
 					this.app,

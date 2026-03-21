@@ -1,4 +1,4 @@
-import { App, TFile, MarkdownRenderer, Component } from "obsidian";
+import { App, TFile, MarkdownRenderer, Component, FileSystemAdapter } from "obsidian";
 import { renderBaseAsTable, resolveBaseEmbeds } from "./base-renderer";
 
 const THEME = "#65A692";
@@ -38,12 +38,80 @@ function extractMath(content: string): { processed: string; entries: MathEntry[]
   return { processed, entries };
 }
 
+/* ── Image collection helpers ───────────────────────────────────────────── */
+
+/**
+ * Register an image TFile into the export map.
+ * Returns the de-duplicated filename that will be used under images/.
+ */
+function registerImage(imgFile: TFile, images: Map<string, TFile>): string {
+  for (const [name, f] of images) {
+    if (f.path === imgFile.path) return name; // already registered
+  }
+  let name = imgFile.name;
+  if (images.has(name)) {
+    const ext  = imgFile.extension ? `.${imgFile.extension}` : "";
+    const base = imgFile.basename;
+    let i = 1;
+    while (images.has(`${base}_${i}${ext}`)) i++;
+    name = `${base}_${i}${ext}`;
+  }
+  images.set(name, imgFile);
+  return name;
+}
+
+/**
+ * Scan the rendered DOM for images, collect the originating TFiles,
+ * and rewrite every img[src] to a relative `images/{name}` path.
+ */
+function collectImages(
+  app: App,
+  sourceFile: TFile,
+  el: HTMLElement
+): Map<string, TFile> {
+  const images = new Map<string, TFile>();
+  const vaultBasePath =
+    app.vault.adapter instanceof FileSystemAdapter
+      ? app.vault.adapter.basePath
+      : "";
+
+  // ── 1. Obsidian wiki-style embeds: .internal-embed[src] wrapping an <img> ──
+  el.querySelectorAll<HTMLElement>(".internal-embed").forEach(embed => {
+    const imgEl = embed.querySelector<HTMLImageElement>("img");
+    if (!imgEl) return;
+    const src = embed.getAttribute("src") ?? "";
+    const imgFile = app.metadataCache.getFirstLinkpathDest(src, sourceFile.path);
+    if (!imgFile) return;
+    const name = registerImage(imgFile, images);
+    imgEl.setAttribute("src", `images/${name}`);
+    imgEl.removeAttribute("srcset");
+  });
+
+  // ── 2. Standalone <img> with app://local/... src (markdown-style images) ──
+  el.querySelectorAll<HTMLImageElement>("img").forEach(img => {
+    const src = img.getAttribute("src") ?? "";
+    if (!src.startsWith("app://local") || !vaultBasePath) return;
+    try {
+      const absPath = decodeURIComponent(src.replace(/^app:\/\/local/, ""));
+      if (!absPath.startsWith(vaultBasePath)) return;
+      const relPath = absPath.slice(vaultBasePath.length).replace(/^[/\\]/, "");
+      const imgFile = app.vault.getAbstractFileByPath(relPath) as TFile | null;
+      if (!imgFile) return;
+      const name = registerImage(imgFile, images);
+      img.setAttribute("src", `images/${name}`);
+      img.removeAttribute("srcset");
+    } catch { /* external or malformed URL — leave as-is */ }
+  });
+
+  return images;
+}
+
 /* ── Renderer ──────────────────────────────────────────────────────────── */
 export async function renderNote(
   app: App,
   file: TFile,
   rawContent: string
-): Promise<{ html: string; css: string }> {
+): Promise<{ html: string; css: string; images: Map<string, TFile> }> {
   let content = rawContent.replace(/^---[\s\S]*?---\n?/, "");
   content = resolveBaseEmbeds(content);
   const { processed, entries } = extractMath(content);
@@ -113,7 +181,10 @@ export async function renderNote(
     wrapper.appendChild(table);
   });
 
-  return { html: el.innerHTML, css: buildCss() };
+  // Collect images and rewrite src to relative paths
+  const images = collectImages(app, file, el);
+
+  return { html: el.innerHTML, css: buildCss(), images };
 }
 
 /* ── HTML builder ──────────────────────────────────────────────────────── */

@@ -36396,6 +36396,60 @@ function extractMath(content) {
   processed = processed.replace(/\x00C(\d+)\x00/g, (_, i) => codes[+i]);
   return { processed, entries };
 }
+function registerImage(imgFile, images) {
+  for (const [name2, f] of images) {
+    if (f.path === imgFile.path)
+      return name2;
+  }
+  let name = imgFile.name;
+  if (images.has(name)) {
+    const ext = imgFile.extension ? `.${imgFile.extension}` : "";
+    const base = imgFile.basename;
+    let i = 1;
+    while (images.has(`${base}_${i}${ext}`))
+      i++;
+    name = `${base}_${i}${ext}`;
+  }
+  images.set(name, imgFile);
+  return name;
+}
+function collectImages(app, sourceFile, el) {
+  const images = /* @__PURE__ */ new Map();
+  const vaultBasePath = app.vault.adapter instanceof import_obsidian3.FileSystemAdapter ? app.vault.adapter.basePath : "";
+  el.querySelectorAll(".internal-embed").forEach((embed) => {
+    var _a;
+    const imgEl = embed.querySelector("img");
+    if (!imgEl)
+      return;
+    const src = (_a = embed.getAttribute("src")) != null ? _a : "";
+    const imgFile = app.metadataCache.getFirstLinkpathDest(src, sourceFile.path);
+    if (!imgFile)
+      return;
+    const name = registerImage(imgFile, images);
+    imgEl.setAttribute("src", `images/${name}`);
+    imgEl.removeAttribute("srcset");
+  });
+  el.querySelectorAll("img").forEach((img) => {
+    var _a;
+    const src = (_a = img.getAttribute("src")) != null ? _a : "";
+    if (!src.startsWith("app://local") || !vaultBasePath)
+      return;
+    try {
+      const absPath = decodeURIComponent(src.replace(/^app:\/\/local/, ""));
+      if (!absPath.startsWith(vaultBasePath))
+        return;
+      const relPath = absPath.slice(vaultBasePath.length).replace(/^[/\\]/, "");
+      const imgFile = app.vault.getAbstractFileByPath(relPath);
+      if (!imgFile)
+        return;
+      const name = registerImage(imgFile, images);
+      img.setAttribute("src", `images/${name}`);
+      img.removeAttribute("srcset");
+    } catch (e) {
+    }
+  });
+  return images;
+}
 async function renderNote(app, file, rawContent) {
   var _a, _b, _c;
   let content = rawContent.replace(/^---[\s\S]*?---\n?/, "");
@@ -36456,7 +36510,8 @@ async function renderNote(app, file, rawContent) {
     (_a2 = table.parentNode) == null ? void 0 : _a2.insertBefore(wrapper, table);
     wrapper.appendChild(table);
   });
-  return { html: el.innerHTML, css: buildCss() };
+  const images = collectImages(app, file, el);
+  return { html: el.innerHTML, css: buildCss(), images };
 }
 function buildHtml(title, htmlBody) {
   const svgCopy = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
@@ -37140,10 +37195,10 @@ body:hover ::-webkit-scrollbar-thumb { background: rgba(128,128,128,0.4); }
 // src/exporter.ts
 async function prepareExport(app, vault, file, existingName) {
   const raw = await vault.read(file);
-  const { html: htmlBody, css } = await renderNote(app, file, raw);
+  const { html: htmlBody, css, images } = await renderNote(app, file, raw);
   const html = buildHtml(file.basename, htmlBody);
   const folderName = existingName != null ? existingName : Date.now().toString(36);
-  return { noteName: folderName, html, css };
+  return { noteName: folderName, html, css, images };
 }
 async function exportToLocal(app, vault, file, exportRoot) {
   const result = await prepareExport(app, vault, file);
@@ -37151,6 +37206,14 @@ async function exportToLocal(app, vault, file, exportRoot) {
   fs.mkdirSync(folderPath, { recursive: true });
   fs.writeFileSync(path2.join(folderPath, "index.html"), result.html, "utf8");
   fs.writeFileSync(path2.join(folderPath, "style.css"), result.css, "utf8");
+  if (result.images.size > 0) {
+    const imagesDir = path2.join(folderPath, "images");
+    fs.mkdirSync(imagesDir, { recursive: true });
+    for (const [exportName, imgFile] of result.images) {
+      const data = await vault.readBinary(imgFile);
+      fs.writeFileSync(path2.join(imagesDir, exportName), Buffer.from(data));
+    }
+  }
   new import_obsidian4.Notice(`\u5DF2\u5BFC\u51FA\u5230\u672C\u5730\uFF1A${folderPath}`);
   return result;
 }
@@ -37158,48 +37221,82 @@ async function exportToLocal(app, vault, file, exportRoot) {
 // src/oss.ts
 var import_obsidian5 = require("obsidian");
 var OSS = require_aliyun_oss_sdk();
-async function uploadToOss(settings, noteName, html, css) {
+function getMimeType(ext) {
+  var _a;
+  const map = {
+    png: "image/png",
+    jpg: "image/jpeg",
+    jpeg: "image/jpeg",
+    gif: "image/gif",
+    webp: "image/webp",
+    svg: "image/svg+xml",
+    bmp: "image/bmp",
+    avif: "image/avif"
+  };
+  return (_a = map[ext.toLowerCase()]) != null ? _a : "application/octet-stream";
+}
+function makeClient(settings) {
+  const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret } = settings;
+  return new OSS({
+    region: ossRegion,
+    accessKeyId: ossAccessKeyId,
+    accessKeySecret: ossAccessKeySecret,
+    bucket: ossBucket,
+    authorizationV4: true
+  });
+}
+async function uploadToOss(settings, vault, noteName, html, css, images) {
   const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret, ossPrefix } = settings;
   if (!ossRegion || !ossBucket || !ossAccessKeyId || !ossAccessKeySecret) {
     new import_obsidian5.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
     return "";
   }
   new import_obsidian5.Notice("\u6B63\u5728\u4E0A\u4F20\u5230 OSS...");
-  const client = new OSS({
-    region: ossRegion,
-    accessKeyId: ossAccessKeyId,
-    accessKeySecret: ossAccessKeySecret,
-    bucket: ossBucket,
-    authorizationV4: true
-  });
+  const client = makeClient(settings);
   const prefix = ossPrefix.replace(/\/$/, "");
-  const htmlKey = `${prefix}/${noteName}/index.html`;
-  const cssKey = `${prefix}/${noteName}/style.css`;
-  await client.put(htmlKey, new Blob([html], { type: "text/html; charset=utf-8" }));
-  await client.put(cssKey, new Blob([css], { type: "text/css; charset=utf-8" }));
-  const { ossDomain } = settings;
-  const base = ossDomain || `https://${ossBucket}.${ossRegion}.aliyuncs.com`;
-  const url = `${base}/${htmlKey}`;
+  await client.put(
+    `${prefix}/${noteName}/index.html`,
+    new Blob([html], { type: "text/html; charset=utf-8" })
+  );
+  await client.put(
+    `${prefix}/${noteName}/style.css`,
+    new Blob([css], { type: "text/css; charset=utf-8" })
+  );
+  for (const [exportName, imgFile] of images) {
+    const data = await vault.readBinary(imgFile);
+    await client.put(
+      `${prefix}/${noteName}/images/${exportName}`,
+      new Blob([data], { type: getMimeType(imgFile.extension) })
+    );
+  }
+  const base = settings.ossDomain || `https://${ossBucket}.${ossRegion}.aliyuncs.com`;
+  const url = `${base}/${prefix}/${noteName}/index.html`;
   new import_obsidian5.Notice(`\u4E0A\u4F20\u6210\u529F
 ${url}`);
   return url;
 }
 async function deleteFromOss(settings, noteName) {
+  var _a;
   const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret, ossPrefix } = settings;
   if (!ossRegion || !ossBucket || !ossAccessKeyId || !ossAccessKeySecret) {
     new import_obsidian5.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
     return;
   }
-  const client = new OSS({
-    region: ossRegion,
-    accessKeyId: ossAccessKeyId,
-    accessKeySecret: ossAccessKeySecret,
-    bucket: ossBucket,
-    authorizationV4: true
-  });
+  const client = makeClient(settings);
   const prefix = ossPrefix.replace(/\/$/, "");
-  await client.delete(`${prefix}/${noteName}/index.html`);
-  await client.delete(`${prefix}/${noteName}/style.css`);
+  const folderPrefix = `${prefix}/${noteName}/`;
+  try {
+    const listResult = await client.list({ prefix: folderPrefix, "max-keys": 1e3 });
+    const keys = ((_a = listResult.objects) != null ? _a : []).map((o) => o.name);
+    if (keys.length > 0) {
+      await client.deleteMulti(keys, { quiet: true });
+    }
+  } catch (e) {
+    await client.delete(`${folderPrefix}index.html`).catch(() => {
+    });
+    await client.delete(`${folderPrefix}style.css`).catch(() => {
+    });
+  }
 }
 
 // main.ts
@@ -37347,7 +37444,7 @@ var ShareOnlinePlugin = class extends import_obsidian6.Plugin {
     try {
       if (toOss) {
         const result = await prepareExport(this.app, this.app.vault, file, existingName);
-        return await uploadToOss(this.settings, result.noteName, result.html, result.css);
+        return await uploadToOss(this.settings, this.app.vault, result.noteName, result.html, result.css, result.images);
       } else {
         await exportToLocal(
           this.app,
