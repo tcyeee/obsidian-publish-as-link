@@ -36196,6 +36196,19 @@ function buildHtml(title, htmlBody) {
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <button class="toc-toggle" id="toc-toggle" title="\u76EE\u5F55">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+  </button>
+  <div class="toc-backdrop" id="toc-backdrop"></div>
+  <nav class="toc-sidebar" id="toc-sidebar">
+    <div class="toc-header">
+      <span class="toc-title">\u76EE\u5F55</span>
+      <button class="toc-close" id="toc-close" title="\u5173\u95ED">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div id="toc-inner"></div>
+  </nav>
   <div class="markdown-preview-view">
 ${htmlBody}
   </div>
@@ -36281,6 +36294,81 @@ ${htmlBody}
         });
       });
     })();
+
+    /* \u2500\u2500 TOC generation \u2500\u2500 */
+    (function() {
+      var sidebar  = document.getElementById('toc-sidebar');
+      var tocInner = document.getElementById('toc-inner');
+      if (!sidebar || !tocInner) return;
+
+      var headings = Array.prototype.slice.call(
+        document.querySelectorAll('.markdown-preview-view h1, .markdown-preview-view h2, .markdown-preview-view h3, .markdown-preview-view h4')
+      );
+      if (headings.length < 2) {
+        sidebar.style.display = 'none';
+        var tog = document.getElementById('toc-toggle');
+        if (tog) tog.style.display = 'none';
+        return;
+      }
+
+      // Ensure each heading has an id
+      headings.forEach(function(h, i) {
+        if (!h.id) h.id = 'toc-h-' + i;
+      });
+
+      // Build list
+      var ul = document.createElement('ul');
+      ul.className = 'toc-list';
+      headings.forEach(function(h) {
+        var li = document.createElement('li');
+        li.className = 'toc-item toc-' + h.tagName.toLowerCase();
+        var a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.className = 'toc-link';
+        a.textContent = h.textContent.replace(/\xB6$/, '').trim(); // strip Obsidian \xB6
+        a.addEventListener('click', function(e) {
+          e.preventDefault();
+          document.getElementById(h.id).scrollIntoView({ behavior: 'smooth' });
+        });
+        li.appendChild(a);
+        ul.appendChild(li);
+      });
+      tocInner.appendChild(ul);
+
+      // Active link tracking
+      var links = tocInner.querySelectorAll('.toc-link');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            links.forEach(function(l) { l.classList.remove('is-active'); });
+            var active = tocInner.querySelector('[href="#' + entry.target.id + '"]');
+            if (active) active.classList.add('is-active');
+          }
+        });
+      }, { rootMargin: '-8% 0px -80% 0px', threshold: 0 });
+      headings.forEach(function(h) { observer.observe(h); });
+
+      // Close drawer on link click (mobile)
+      tocInner.querySelectorAll('.toc-link').forEach(function(a) {
+        a.addEventListener('click', function() {
+          sidebar.classList.remove('is-open');
+          document.getElementById('toc-backdrop').classList.remove('is-visible');
+        });
+      });
+    })();
+
+    /* \u2500\u2500 TOC mobile toggle \u2500\u2500 */
+    (function() {
+      var toggle   = document.getElementById('toc-toggle');
+      var sidebar  = document.getElementById('toc-sidebar');
+      var backdrop = document.getElementById('toc-backdrop');
+      var closeBtn = document.getElementById('toc-close');
+      function openToc()  { sidebar.classList.add('is-open');    backdrop.classList.add('is-visible'); }
+      function closeToc() { sidebar.classList.remove('is-open'); backdrop.classList.remove('is-visible'); }
+      if (toggle)   toggle.addEventListener('click', openToc);
+      if (backdrop) backdrop.addEventListener('click', closeToc);
+      if (closeBtn) closeBtn.addEventListener('click', closeToc);
+    })();
   <\/script>
 </body>
 </html>`;
@@ -36300,11 +36388,141 @@ body {
   color: #24292e;
 }
 
+/* \u2500\u2500 TOC sidebar (desktop: fixed to viewport left) \u2500\u2500 */
+.toc-sidebar {
+  position: fixed;
+  left: 1.5rem;
+  top: 2rem;
+  width: 180px;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  font-size: 13px;
+  z-index: 50;
+}
+.toc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.toc-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #aaa;
+}
+.toc-close { display: none; }
+.toc-toggle { display: none; }
+.toc-backdrop { display: none; }
+.toc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.toc-item { margin: 0; }
+.toc-link {
+  display: block;
+  padding: 3px 8px;
+  color: #888;
+  font-size: 12.5px;
+  text-decoration: none;
+  line-height: 1.45;
+  border-left: 2px solid transparent;
+  transition: color 0.15s, border-color 0.15s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.toc-link:hover { color: #444; text-decoration: none; }
+.toc-link.is-active { color: ${THEME}; border-left-color: ${THEME}; }
+.toc-h2 .toc-link { padding-left: 8px; }
+.toc-h3 .toc-link { padding-left: 20px; font-size: 12px; }
+.toc-h4 .toc-link { padding-left: 32px; font-size: 11.5px; color: #aaa; }
+
+/* \u2500\u2500 TOC hidden on narrow desktop \u2500\u2500 */
+@media (max-width: 1199px) {
+  /* Sidebar becomes a slide-in drawer */
+  .toc-sidebar {
+    left: 0;
+    top: 0;
+    width: 280px;
+    height: 100dvh;
+    max-height: none;
+    background: #fff;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
+    transform: translateX(-100%);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 200;
+    overflow-y: auto;
+    padding: 0;
+  }
+  .toc-sidebar.is-open { transform: translateX(0); }
+  .toc-header {
+    position: sticky;
+    top: 0;
+    background: #fff;
+    padding: 1.1rem 1rem 0.8rem;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 0;
+  }
+  #toc-inner { padding: 0.75rem 1rem; }
+  .toc-title { font-size: 12px; color: #555; }
+  .toc-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px; height: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #aaa;
+    padding: 0;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+  .toc-close:hover { background: #f5f5f5; color: #555; }
+  /* Mobile toggle button */
+  .toc-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 1rem;
+    bottom: 1.5rem;
+    width: 44px; height: 44px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    z-index: 150;
+    color: #555;
+    padding: 0;
+  }
+  .toc-toggle:active { background: #f5f5f5; }
+  /* Backdrop */
+  .toc-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35);
+    z-index: 199;
+    display: none;
+  }
+  .toc-backdrop.is-visible { display: block; }
+}
+
 /* \u2500\u2500 Content container \u2500\u2500 */
 .markdown-preview-view {
   max-width: 780px;
   margin: 0 auto;
   padding: 2.5rem 3rem;
+}
+
+/* \u2500\u2500 Mobile content padding \u2500\u2500 */
+@media (max-width: 600px) {
+  body { padding: 0; }
+  .markdown-preview-view { padding: 1.5rem 1.25rem; }
 }
 
 /* \u2500\u2500 Headings \u2500\u2500 */
