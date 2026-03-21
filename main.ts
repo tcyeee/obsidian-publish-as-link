@@ -2,6 +2,7 @@ import { App, Modal, Notice, Plugin, PluginSettingTab, Setting, TFile, FuzzySugg
 import * as fs from "fs";
 import * as path from "path";
 import * as os from "os";
+import { marked } from "marked";
 
 interface ShareOnlineSettings {
 	exportPath: string;
@@ -53,9 +54,22 @@ export default class ShareOnlinePlugin extends Plugin {
 	async exportFile(file: TFile) {
 		try {
 			const content = await this.app.vault.read(file);
+			const htmlBody = await marked(content);
+			const title = file.basename;
+			const html = `<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title}</title>
+</head>
+<body>
+${htmlBody}</body>
+</html>`;
 			const exportPath = this.settings.exportPath || DEFAULT_SETTINGS.exportPath;
-			const destPath = path.join(exportPath, file.name);
-			fs.writeFileSync(destPath, content, "utf8");
+			const destName = file.name.replace(/\.md$/, ".html");
+			const destPath = path.join(exportPath, destName);
+			fs.writeFileSync(destPath, html, "utf8");
 			new Notice(`已导出到：${destPath}`);
 		} catch (err) {
 			new Notice(`导出失败：${(err as Error).message}`);
