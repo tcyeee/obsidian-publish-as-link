@@ -8,7 +8,6 @@ var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __getProtoOf = Object.getPrototypeOf;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
 var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
@@ -33,10 +32,6 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
   mod
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-var __publicField = (obj, key, value) => {
-  __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
-  return value;
-};
 
 // node_modules/ali-oss/dist/aliyun-oss-sdk.js
 var require_aliyun_oss_sdk = __commonJS({
@@ -48,17 +43,17 @@ var require_aliyun_oss_sdk = __commonJS({
         } else if (typeof define === "function" && define.amd) {
           define([], f);
         } else {
-          var g2;
+          var g;
           if (typeof window !== "undefined") {
-            g2 = window;
+            g = window;
           } else if (typeof global !== "undefined") {
-            g2 = global;
+            g = global;
           } else if (typeof self !== "undefined") {
-            g2 = self;
+            g = self;
           } else {
-            g2 = this;
+            g = this;
           }
-          g2.OSS = f();
+          g.OSS = f();
         }
       })(function() {
         var define2, module3, exports2;
@@ -70,8 +65,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   var c = "function" == typeof require && require;
                   if (!f && c)
                     return c(i2, true);
-                  if (u3)
-                    return u3(i2, true);
+                  if (u)
+                    return u(i2, true);
                   var a = new Error("Cannot find module '" + i2 + "'");
                   throw a.code = "MODULE_NOT_FOUND", a;
                 }
@@ -83,7 +78,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               return n[i2].exports;
             }
-            for (var u3 = "function" == typeof require && require, i = 0; i < t.length; i++)
+            for (var u = "function" == typeof require && require, i = 0; i < t.length; i++)
               o(t[i]);
             return o;
           }
@@ -1282,7 +1277,7 @@ var require_aliyun_oss_sdk = __commonJS({
                               };
                             }());
                           };
-                          all = Array.from(new Array(numParts), function(x2, i) {
+                          all = Array.from(new Array(numParts), function(x, i) {
                             return i + 1;
                           });
                           done = internalDoneParts.map(function(p) {
@@ -1963,8 +1958,8 @@ var require_aliyun_oss_sdk = __commonJS({
             if (!meta) {
               return;
             }
-            Object.keys(meta).forEach(function(k2) {
-              headers["x-oss-meta-".concat(k2)] = meta[k2];
+            Object.keys(meta).forEach(function(k) {
+              headers["x-oss-meta-".concat(k)] = meta[k];
             });
           };
           proto._deleteFileSafe = function _deleteFileSafe(filepath) {
@@ -2315,15 +2310,15 @@ var require_aliyun_oss_sdk = __commonJS({
                         if (!isArray(rules)) {
                           rules = [rules];
                         }
-                        rules = rules.map(function(_2) {
-                          if (_2.ID) {
-                            _2.id = _2.ID;
-                            delete _2.ID;
+                        rules = rules.map(function(_) {
+                          if (_.ID) {
+                            _.id = _.ID;
+                            delete _.ID;
                           }
-                          if (_2.Tag && !isArray(_2.Tag)) {
-                            _2.Tag = [_2.Tag];
+                          if (_.Tag && !isArray(_.Tag)) {
+                            _.Tag = [_.Tag];
                           }
-                          return formatObjKey(_2, "firstLowerCase");
+                          return formatObjKey(_, "firstLowerCase");
                         });
                       }
                       return _context.abrupt("return", {
@@ -2705,14 +2700,14 @@ var require_aliyun_oss_sdk = __commonJS({
                           Rule
                         }
                       };
-                      rules.forEach(function(_2) {
-                        defaultDaysAndDate2Expiration(_2);
-                        checkRule(_2);
-                        if (_2.id) {
-                          _2.ID = _2.id;
-                          delete _2.id;
+                      rules.forEach(function(_) {
+                        defaultDaysAndDate2Expiration(_);
+                        checkRule(_);
+                        if (_.id) {
+                          _.ID = _.id;
+                          delete _.id;
                         }
-                        Rule.push(_2);
+                        Rule.push(_);
                       });
                       paramXML = obj2xml(paramXMLObj, {
                         headers: true,
@@ -2776,8 +2771,8 @@ var require_aliyun_oss_sdk = __commonJS({
             tag = isObject(tag) ? [tag] : tag;
             var tagObj = {};
             var tagClone = deepCopy(tag);
-            tagClone.forEach(function(v2) {
-              tagObj[v2.key] = v2.value;
+            tagClone.forEach(function(v) {
+              tagObj[v.key] = v.value;
             });
             checkObjectTag(tagObj);
           }
@@ -3038,8 +3033,8 @@ var require_aliyun_oss_sdk = __commonJS({
               if (is_type_of_1.default.string(params.subres)) {
                 subresAsQuery[params.subres] = "";
               } else if (is_type_of_1.default.array(params.subres)) {
-                params.subres.forEach(function(k2) {
-                  subresAsQuery[k2] = "";
+                params.subres.forEach(function(k) {
+                  subresAsQuery[k] = "";
                 });
               } else {
                 subresAsQuery = params.subres;
@@ -3418,7 +3413,7 @@ var require_aliyun_oss_sdk = __commonJS({
                           };
                         }());
                       };
-                      all = Array.from(new Array(numParts), function(x2, i2) {
+                      all = Array.from(new Array(numParts), function(x, i2) {
                         return i2 + 1;
                       });
                       done = doneParts.map(function(p) {
@@ -3769,8 +3764,8 @@ var require_aliyun_oss_sdk = __commonJS({
                     while (1)
                       switch (_context6.prev = _context6.next) {
                         case 0:
-                          completeParts = parts.concat().sort(function(a, b2) {
-                            return a.number - b2.number;
+                          completeParts = parts.concat().sort(function(a, b) {
+                            return a.number - b.number;
                           }).filter(function(item, index, arr) {
                             return !index || item.number !== arr[index - 1].number;
                           });
@@ -3785,8 +3780,8 @@ var require_aliyun_oss_sdk = __commonJS({
                           xml += "</CompleteMultipartUpload>";
                           options = options || {};
                           opt = {};
-                          opt = deepCopyWith(options, function(_2) {
-                            if (isBuffer(_2))
+                          opt = deepCopyWith(options, function(_) {
+                            if (isBuffer(_))
                               return null;
                           });
                           opt.subres = {
@@ -3993,8 +3988,8 @@ var require_aliyun_oss_sdk = __commonJS({
                       Object.keys(options.headers).forEach(function(key) {
                         options.headers["x-oss-copy-source-".concat(key.toLowerCase())] = options.headers[key];
                       });
-                      if (options.meta || Object.keys(options.headers).find(function(_2) {
-                        return REPLACE_HEDERS.includes(_2.toLowerCase());
+                      if (options.meta || Object.keys(options.headers).find(function(_) {
+                        return REPLACE_HEDERS.includes(_.toLowerCase());
                       })) {
                         options.headers["x-oss-metadata-directive"] = "REPLACE";
                       }
@@ -4697,12 +4692,12 @@ var require_aliyun_oss_sdk = __commonJS({
                         status: result.status
                       };
                       if (result.status === 200) {
-                        Object.keys(result.headers).forEach(function(k2) {
-                          if (k2.indexOf("x-oss-meta-") === 0) {
+                        Object.keys(result.headers).forEach(function(k) {
+                          if (k.indexOf("x-oss-meta-") === 0) {
                             if (!data.meta) {
                               data.meta = {};
                             }
-                            data.meta[k2.substring(11)] = result.headers[k2];
+                            data.meta[k.substring(11)] = result.headers[k];
                           }
                         });
                       }
@@ -5171,13 +5166,13 @@ var require_aliyun_oss_sdk = __commonJS({
           proto.cancel = function cancel(abort) {
             this.options.cancelFlag = true;
             if (isArray(this.multipartUploadStreams)) {
-              this.multipartUploadStreams.forEach(function(_2) {
-                if (_2.destroyed === false) {
+              this.multipartUploadStreams.forEach(function(_) {
+                if (_.destroyed === false) {
                   var err = {
                     name: "cancel",
                     message: "cancel"
                   };
-                  _2.destroy(err);
+                  _.destroy(err);
                 }
               });
             }
@@ -5302,10 +5297,10 @@ var require_aliyun_oss_sdk = __commonJS({
                   return [];
                 }
                 var OSS_PREFIX = "x-oss-";
-                return (0, _toConsumableArray2.default)(new Set(additionalHeaders.map(function(v2) {
-                  return v2.toLowerCase();
-                }))).filter(function(v2) {
-                  return v2 !== "content-type" && v2 !== "content-md5" && !v2.startsWith(OSS_PREFIX);
+                return (0, _toConsumableArray2.default)(new Set(additionalHeaders.map(function(v) {
+                  return v.toLowerCase();
+                }))).filter(function(v) {
+                  return v !== "content-type" && v !== "content-md5" && !v.startsWith(OSS_PREFIX);
                 }).sort();
               };
               exports3.getCanonicalRequest = function getCanonicalRequest(method, request, bucketName, objectName, additionalHeaders) {
@@ -5323,26 +5318,26 @@ var require_aliyun_oss_sdk = __commonJS({
                 ];
                 signContent.push(qs2.stringify(queries, {
                   encoder: encodeString,
-                  sort: function sort(a, b2) {
-                    return a.localeCompare(b2);
+                  sort: function sort(a, b) {
+                    return a.localeCompare(b);
                   },
                   strictNullHandling: true
                 }));
                 if (additionalHeaders) {
-                  additionalHeaders.forEach(function(v2) {
-                    if (!Object.prototype.hasOwnProperty.call(headers, v2)) {
-                      throw Error("Can't find additional header ".concat(v2, " in request headers."));
+                  additionalHeaders.forEach(function(v) {
+                    if (!Object.prototype.hasOwnProperty.call(headers, v)) {
+                      throw Error("Can't find additional header ".concat(v, " in request headers."));
                     }
                   });
                 }
                 var tempHeaders = new Set(additionalHeaders);
-                Object.keys(headers).forEach(function(v2) {
-                  if (v2 === "content-type" || v2 === "content-md5" || v2.startsWith(OSS_PREFIX)) {
-                    tempHeaders.add(v2);
+                Object.keys(headers).forEach(function(v) {
+                  if (v === "content-type" || v === "content-md5" || v.startsWith(OSS_PREFIX)) {
+                    tempHeaders.add(v);
                   }
                 });
-                var canonicalHeaders = "".concat((0, _toConsumableArray2.default)(tempHeaders).sort().map(function(v2) {
-                  return "".concat(v2, ":").concat(is.string(headers[v2]) ? headers[v2].trim() : headers[v2], "\n");
+                var canonicalHeaders = "".concat((0, _toConsumableArray2.default)(tempHeaders).sort().map(function(v) {
+                  return "".concat(v, ":").concat(is.string(headers[v]) ? headers[v].trim() : headers[v], "\n");
                 }).join(""));
                 signContent.push(canonicalHeaders);
                 if (additionalHeaders && additionalHeaders.length > 0) {
@@ -5389,8 +5384,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 var product = this.getProduct(cloudBoxId);
                 var fixedAdditionalHeaders = this.fixAdditionalHeaders(additionalHeaders);
                 var fixedHeaders = {};
-                Object.entries(request.headers).forEach(function(v2) {
-                  fixedHeaders[v2[0]] = is.string(v2[1]) ? Buffer2.from(v2[1], headerEncoding).toString() : v2[1];
+                Object.entries(request.headers).forEach(function(v) {
+                  fixedHeaders[v[0]] = is.string(v[1]) ? Buffer2.from(v[1], headerEncoding).toString() : v[1];
                 });
                 var date = fixedHeaders["x-oss-date"] || request.queries && request.queries["x-oss-date"];
                 var canonicalRequest = this.getCanonicalRequest(method, {
@@ -5419,9 +5414,9 @@ var require_aliyun_oss_sdk = __commonJS({
                   subResource[trafficLimitKey] = options.trafficLimit;
                 }
                 if (options.response) {
-                  Object.keys(options.response).forEach(function(k2) {
-                    var key = "response-".concat(k2.toLowerCase());
-                    subResource[key] = options.response[k2];
+                  Object.keys(options.response).forEach(function(k) {
+                    var key = "response-".concat(k.toLowerCase());
+                    subResource[key] = options.response[k];
                   });
                 }
                 Object.keys(options).forEach(function(key) {
@@ -5688,26 +5683,26 @@ var require_aliyun_oss_sdk = __commonJS({
                   }
                 }
                 var hasOwnProperty = Object.prototype.hasOwnProperty;
-                for (var k2 in headers) {
-                  if (headers[k2] && hasOwnProperty.call(headers, k2)) {
-                    headers[k2] = encoder(String(headers[k2]), this.options.headerEncoding);
+                for (var k in headers) {
+                  if (headers[k] && hasOwnProperty.call(headers, k)) {
+                    headers[k] = encoder(String(headers[k]), this.options.headerEncoding);
                   }
                 }
                 var queries = {};
                 if (_isString(params.subres)) {
                   queries[params.subres] = null;
                 } else if (_isArray(params.subres)) {
-                  params.subres.forEach(function(v2) {
-                    queries[v2] = null;
+                  params.subres.forEach(function(v) {
+                    queries[v] = null;
                   });
                 } else if (_isObject(params.subres)) {
-                  Object.entries(params.subres).forEach(function(v2) {
-                    queries[v2[0]] = v2[1] === "" ? null : v2[1];
+                  Object.entries(params.subres).forEach(function(v) {
+                    queries[v[0]] = v[1] === "" ? null : v[1];
                   });
                 }
                 if (_isObject(params.query)) {
-                  Object.entries(params.query).forEach(function(v2) {
-                    queries[v2[0]] = v2[1];
+                  Object.entries(params.query).forEach(function(v) {
+                    queries[v[0]] = v[1];
                   });
                 }
                 headers.authorization = this.options.authorizationV4 ? this.authorizationV4(params.method, {
@@ -5768,31 +5763,31 @@ var require_aliyun_oss_sdk = __commonJS({
             if (!isObject_1.isObject(o))
               return;
             var _conf$remove = conf.remove, remove = _conf$remove === void 0 ? [] : _conf$remove, _conf$rename = conf.rename, rename = _conf$rename === void 0 ? {} : _conf$rename, _conf$camel = conf.camel, camel = _conf$camel === void 0 ? [] : _conf$camel, _conf$bool = conf.bool, bool = _conf$bool === void 0 ? [] : _conf$bool, _conf$lowerFirst = conf.lowerFirst, lowerFirst = _conf$lowerFirst === void 0 ? false : _conf$lowerFirst;
-            remove.forEach(function(v2) {
-              return delete o[v2];
+            remove.forEach(function(v) {
+              return delete o[v];
             });
-            Object.entries(rename).forEach(function(v2) {
-              if (!o[v2[0]])
+            Object.entries(rename).forEach(function(v) {
+              if (!o[v[0]])
                 return;
-              if (o[v2[1]])
+              if (o[v[1]])
                 return;
-              o[v2[1]] = o[v2[0]];
-              delete o[v2[0]];
+              o[v[1]] = o[v[0]];
+              delete o[v[0]];
             });
-            camel.forEach(function(v2) {
-              if (!o[v2])
+            camel.forEach(function(v) {
+              if (!o[v])
                 return;
-              var afterKey = v2.replace(/^(.)/, function($0) {
+              var afterKey = v.replace(/^(.)/, function($0) {
                 return $0.toLowerCase();
-              }).replace(/-(\w)/g, function(_2, $1) {
+              }).replace(/-(\w)/g, function(_, $1) {
                 return $1.toUpperCase();
               });
               if (o[afterKey])
                 return;
-              o[afterKey] = o[v2];
+              o[afterKey] = o[v];
             });
-            bool.forEach(function(v2) {
-              o[v2] = fixBool(o[v2]);
+            bool.forEach(function(v) {
+              o[v] = fixBool(o[v]);
             });
             if (typeof finalKill === "function") {
               finalKill(o);
@@ -5859,8 +5854,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 return value.slice();
               }
               var copy = Array.isArray(value) ? [] : {};
-              Object.keys(value).forEach(function(k2) {
-                copy[k2] = deepCopyWithHelper(value[k2], k2, value);
+              Object.keys(value).forEach(function(k) {
+                copy[k] = deepCopyWithHelper(value[k], k, value);
               });
               return copy;
             }
@@ -5937,11 +5932,11 @@ var require_aliyun_oss_sdk = __commonJS({
             return inventoryConfig;
           }
           exports3.formatInventoryConfig = formatInventoryConfig;
-          function formatFn(_2) {
-            dataFix_1.dataFix(_2, {
+          function formatFn(_) {
+            dataFix_1.dataFix(_, {
               bool: ["IsEnabled"]
             }, function(conf) {
-              var _a2, _b;
+              var _a, _b;
               conf.prefix = conf.Filter.Prefix;
               delete conf.Filter;
               conf.OSSBucketDestination = conf.Destination.OSSBucketDestination;
@@ -5952,13 +5947,13 @@ var require_aliyun_oss_sdk = __commonJS({
               delete conf.Destination;
               conf.frequency = conf.Schedule.Frequency;
               delete conf.Schedule.Frequency;
-              if (((_a2 = conf === null || conf === void 0 ? void 0 : conf.OptionalFields) === null || _a2 === void 0 ? void 0 : _a2.Field) && !isArray_1.isArray((_b = conf.OptionalFields) === null || _b === void 0 ? void 0 : _b.Field))
+              if (((_a = conf === null || conf === void 0 ? void 0 : conf.OptionalFields) === null || _a === void 0 ? void 0 : _a.Field) && !isArray_1.isArray((_b = conf.OptionalFields) === null || _b === void 0 ? void 0 : _b.Field))
                 conf.OptionalFields.Field = [conf.OptionalFields.Field];
             });
-            _2 = formatObjKey_1.formatObjKey(_2, "firstLowerCase", {
+            _ = formatObjKey_1.formatObjKey(_, "firstLowerCase", {
               exclude: ["OSSBucketDestination", "SSE-OSS", "SSE-KMS"]
             });
-            return _2;
+            return _;
           }
         }, { "../utils/dataFix": 59, "../utils/formatObjKey": 64, "../utils/isArray": 67, "../utils/isObject": 74, "core-js/modules/es.array.map.js": 318, "core-js/modules/es.regexp.exec.js": 338, "core-js/modules/es.string.replace.js": 345 }], 64: [function(require2, module4, exports3) {
           "use strict";
@@ -5998,12 +5993,12 @@ var require_aliyun_oss_sdk = __commonJS({
             if (options && options.exclude && options.exclude.includes(key))
               return key;
             if (type === "firstUpperCase") {
-              key = key.replace(/^./, function(_2) {
-                return _2.toUpperCase();
+              key = key.replace(/^./, function(_) {
+                return _.toUpperCase();
               });
             } else if (type === "firstLowerCase") {
-              key = key.replace(/^./, function(_2) {
-                return _2.toLowerCase();
+              key = key.replace(/^./, function(_) {
+                return _.toLowerCase();
               });
             }
             return key;
@@ -6109,8 +6104,8 @@ var require_aliyun_oss_sdk = __commonJS({
             value: true
           });
           exports3.isFunction = void 0;
-          exports3.isFunction = function(v2) {
-            return typeof v2 === "function";
+          exports3.isFunction = function(v) {
+            return typeof v === "function";
           };
         }, {}], 73: [function(require2, module4, exports3) {
           "use strict";
@@ -6226,15 +6221,15 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (it)
                   o = it;
                 var i = 0;
-                var F2 = function F3() {
+                var F = function F2() {
                 };
-                return { s: F2, n: function n() {
+                return { s: F, n: function n() {
                   if (i >= o.length)
                     return { done: true };
                   return { done: false, value: o[i++] };
-                }, e: function e(_e2) {
-                  throw _e2;
-                }, f: F2 };
+                }, e: function e(_e) {
+                  throw _e;
+                }, f: F };
               }
               throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
             }
@@ -6475,11 +6470,11 @@ var require_aliyun_oss_sdk = __commonJS({
           function checkCredentials(obj) {
             var stsTokenKey = ["accessKeySecret", "accessKeyId", "stsToken"];
             var objKeys = Object.keys(obj);
-            stsTokenKey.forEach(function(_2) {
+            stsTokenKey.forEach(function(_) {
               if (!objKeys.find(function(key) {
-                return key === _2;
+                return key === _;
               })) {
-                throw Error("refreshSTSToken must return contains ".concat(_2));
+                throw Error("refreshSTSToken must return contains ".concat(_));
               }
             });
           }
@@ -6558,7 +6553,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }, module4.exports.__esModule = true, module4.exports["default"] = module4.exports;
             var t, e = {}, r = Object.prototype, n = r.hasOwnProperty, o = Object.defineProperty || function(t2, e2, r2) {
               t2[e2] = r2.value;
-            }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u3 = i.toStringTag || "@@toStringTag";
+            }, i = "function" == typeof Symbol ? Symbol : {}, a = i.iterator || "@@iterator", c = i.asyncIterator || "@@asyncIterator", u = i.toStringTag || "@@toStringTag";
             function define3(t2, e2, r2) {
               return Object.defineProperty(t2, e2, {
                 value: r2,
@@ -6594,7 +6589,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
             }
             e.wrap = wrap;
-            var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y2 = {};
+            var h = "suspendedStart", l = "suspendedYield", f = "executing", s = "completed", y = {};
             function Generator() {
             }
             function GeneratorFunction() {
@@ -6605,9 +6600,9 @@ var require_aliyun_oss_sdk = __commonJS({
             define3(p, a, function() {
               return this;
             });
-            var d = Object.getPrototypeOf, v2 = d && d(d(values([])));
-            v2 && v2 !== r && n.call(v2, a) && (p = v2);
-            var g2 = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
+            var d = Object.getPrototypeOf, v = d && d(d(values([])));
+            v && v !== r && n.call(v, a) && (p = v);
+            var g = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(p);
             function defineIteratorMethods(t2) {
               ["next", "throw", "return"].forEach(function(e2) {
                 define3(t2, e2, function(t3) {
@@ -6619,13 +6614,13 @@ var require_aliyun_oss_sdk = __commonJS({
               function invoke(r3, o2, i2, a2) {
                 var c2 = tryCatch(t2[r3], t2, o2);
                 if ("throw" !== c2.type) {
-                  var u4 = c2.arg, h2 = u4.value;
+                  var u2 = c2.arg, h2 = u2.value;
                   return h2 && "object" == _typeof(h2) && n.call(h2, "__await") ? e2.resolve(h2.__await).then(function(t3) {
                     invoke("next", t3, i2, a2);
                   }, function(t3) {
                     invoke("throw", t3, i2, a2);
                   }) : e2.resolve(h2).then(function(t3) {
-                    u4.value = t3, i2(u4);
+                    u2.value = t3, i2(u2);
                   }, function(t3) {
                     return invoke("throw", t3, i2, a2);
                   });
@@ -6660,11 +6655,11 @@ var require_aliyun_oss_sdk = __commonJS({
                 for (n2.method = i2, n2.arg = a2; ; ) {
                   var c2 = n2.delegate;
                   if (c2) {
-                    var u4 = maybeInvokeDelegate(c2, n2);
-                    if (u4) {
-                      if (u4 === y2)
+                    var u2 = maybeInvokeDelegate(c2, n2);
+                    if (u2) {
+                      if (u2 === y)
                         continue;
-                      return u4;
+                      return u2;
                     }
                   }
                   if ("next" === n2.method)
@@ -6678,7 +6673,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   o2 = f;
                   var p2 = tryCatch(e2, r2, n2);
                   if ("normal" === p2.type) {
-                    if (o2 = n2.done ? s : l, p2.arg === y2)
+                    if (o2 = n2.done ? s : l, p2.arg === y)
                       continue;
                     return {
                       value: p2.arg,
@@ -6692,12 +6687,12 @@ var require_aliyun_oss_sdk = __commonJS({
             function maybeInvokeDelegate(e2, r2) {
               var n2 = r2.method, o2 = e2.iterator[n2];
               if (o2 === t)
-                return r2.delegate = null, "throw" === n2 && e2.iterator["return"] && (r2.method = "return", r2.arg = t, maybeInvokeDelegate(e2, r2), "throw" === r2.method) || "return" !== n2 && (r2.method = "throw", r2.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y2;
+                return r2.delegate = null, "throw" === n2 && e2.iterator["return"] && (r2.method = "return", r2.arg = t, maybeInvokeDelegate(e2, r2), "throw" === r2.method) || "return" !== n2 && (r2.method = "throw", r2.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y;
               var i2 = tryCatch(o2, e2.iterator, r2.arg);
               if ("throw" === i2.type)
-                return r2.method = "throw", r2.arg = i2.arg, r2.delegate = null, y2;
+                return r2.method = "throw", r2.arg = i2.arg, r2.delegate = null, y;
               var a2 = i2.arg;
-              return a2 ? a2.done ? (r2[e2.resultName] = a2.value, r2.next = e2.nextLoc, "return" !== r2.method && (r2.method = "next", r2.arg = t), r2.delegate = null, y2) : a2 : (r2.method = "throw", r2.arg = new TypeError("iterator result is not an object"), r2.delegate = null, y2);
+              return a2 ? a2.done ? (r2[e2.resultName] = a2.value, r2.next = e2.nextLoc, "return" !== r2.method && (r2.method = "next", r2.arg = t), r2.delegate = null, y) : a2 : (r2.method = "throw", r2.arg = new TypeError("iterator result is not an object"), r2.delegate = null, y);
             }
             function pushTryEntry(t2) {
               var e2 = {
@@ -6733,17 +6728,17 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               throw new TypeError(_typeof(e2) + " is not iterable");
             }
-            return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g2, "constructor", {
+            return GeneratorFunction.prototype = GeneratorFunctionPrototype, o(g, "constructor", {
               value: GeneratorFunctionPrototype,
               configurable: true
             }), o(GeneratorFunctionPrototype, "constructor", {
               value: GeneratorFunction,
               configurable: true
-            }), GeneratorFunction.displayName = define3(GeneratorFunctionPrototype, u3, "GeneratorFunction"), e.isGeneratorFunction = function(t2) {
+            }), GeneratorFunction.displayName = define3(GeneratorFunctionPrototype, u, "GeneratorFunction"), e.isGeneratorFunction = function(t2) {
               var e2 = "function" == typeof t2 && t2.constructor;
               return !!e2 && (e2 === GeneratorFunction || "GeneratorFunction" === (e2.displayName || e2.name));
             }, e.mark = function(t2) {
-              return Object.setPrototypeOf ? Object.setPrototypeOf(t2, GeneratorFunctionPrototype) : (t2.__proto__ = GeneratorFunctionPrototype, define3(t2, u3, "GeneratorFunction")), t2.prototype = Object.create(g2), t2;
+              return Object.setPrototypeOf ? Object.setPrototypeOf(t2, GeneratorFunctionPrototype) : (t2.__proto__ = GeneratorFunctionPrototype, define3(t2, u, "GeneratorFunction")), t2.prototype = Object.create(g), t2;
             }, e.awrap = function(t2) {
               return {
                 __await: t2
@@ -6756,9 +6751,9 @@ var require_aliyun_oss_sdk = __commonJS({
               return e.isGeneratorFunction(r2) ? a2 : a2.next().then(function(t3) {
                 return t3.done ? t3.value : a2.next();
               });
-            }, defineIteratorMethods(g2), define3(g2, u3, "Generator"), define3(g2, a, function() {
+            }, defineIteratorMethods(g), define3(g, u, "Generator"), define3(g, a, function() {
               return this;
-            }), define3(g2, "toString", function() {
+            }), define3(g, "toString", function() {
               return "[object Generator]";
             }), e.keys = function(t2) {
               var e2 = Object(t2), r2 = [];
@@ -6798,8 +6793,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   if ("root" === i2.tryLoc)
                     return handle("end");
                   if (i2.tryLoc <= this.prev) {
-                    var c2 = n.call(i2, "catchLoc"), u4 = n.call(i2, "finallyLoc");
-                    if (c2 && u4) {
+                    var c2 = n.call(i2, "catchLoc"), u2 = n.call(i2, "finallyLoc");
+                    if (c2 && u2) {
                       if (this.prev < i2.catchLoc)
                         return handle(i2.catchLoc, true);
                       if (this.prev < i2.finallyLoc)
@@ -6808,7 +6803,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       if (this.prev < i2.catchLoc)
                         return handle(i2.catchLoc, true);
                     } else {
-                      if (!u4)
+                      if (!u2)
                         throw new Error("try statement without catch or finally");
                       if (this.prev < i2.finallyLoc)
                         return handle(i2.finallyLoc);
@@ -6826,18 +6821,18 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 i2 && ("break" === t2 || "continue" === t2) && i2.tryLoc <= e2 && e2 <= i2.finallyLoc && (i2 = null);
                 var a2 = i2 ? i2.completion : {};
-                return a2.type = t2, a2.arg = e2, i2 ? (this.method = "next", this.next = i2.finallyLoc, y2) : this.complete(a2);
+                return a2.type = t2, a2.arg = e2, i2 ? (this.method = "next", this.next = i2.finallyLoc, y) : this.complete(a2);
               },
               complete: function complete(t2, e2) {
                 if ("throw" === t2.type)
                   throw t2.arg;
-                return "break" === t2.type || "continue" === t2.type ? this.next = t2.arg : "return" === t2.type ? (this.rval = this.arg = t2.arg, this.method = "return", this.next = "end") : "normal" === t2.type && e2 && (this.next = e2), y2;
+                return "break" === t2.type || "continue" === t2.type ? this.next = t2.arg : "return" === t2.type ? (this.rval = this.arg = t2.arg, this.method = "return", this.next = "end") : "normal" === t2.type && e2 && (this.next = e2), y;
               },
               finish: function finish(t2) {
                 for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
                   var r2 = this.tryEntries[e2];
                   if (r2.finallyLoc === t2)
-                    return this.complete(r2.completion, r2.afterLoc), resetTryEntry(r2), y2;
+                    return this.complete(r2.completion, r2.afterLoc), resetTryEntry(r2), y;
                 }
               },
               "catch": function _catch(t2) {
@@ -6859,7 +6854,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   iterator: values(e2),
                   resultName: r2,
                   nextLoc: n2
-                }, "next" === this.method && (this.arg = t), y2;
+                }, "next" === this.method && (this.arg = t), y;
               }
             }, e;
           }
@@ -6921,32 +6916,32 @@ var require_aliyun_oss_sdk = __commonJS({
             (function() {
               "use strict";
               var objectAssign = require2("object.assign/polyfill")();
-              function compare(a, b2) {
-                if (a === b2) {
+              function compare(a, b) {
+                if (a === b) {
                   return 0;
                 }
-                var x2 = a.length;
-                var y2 = b2.length;
-                for (var i = 0, len = Math.min(x2, y2); i < len; ++i) {
-                  if (a[i] !== b2[i]) {
-                    x2 = a[i];
-                    y2 = b2[i];
+                var x = a.length;
+                var y = b.length;
+                for (var i = 0, len = Math.min(x, y); i < len; ++i) {
+                  if (a[i] !== b[i]) {
+                    x = a[i];
+                    y = b[i];
                     break;
                   }
                 }
-                if (x2 < y2) {
+                if (x < y) {
                   return -1;
                 }
-                if (y2 < x2) {
+                if (y < x) {
                   return 1;
                 }
                 return 0;
               }
-              function isBuffer(b2) {
+              function isBuffer(b) {
                 if (global2.Buffer && typeof global2.Buffer.isBuffer === "function") {
-                  return global2.Buffer.isBuffer(b2);
+                  return global2.Buffer.isBuffer(b);
                 }
-                return !!(b2 != null && b2._isBuffer);
+                return !!(b != null && b._isBuffer);
               }
               var util = require2("util/");
               var hasOwn = Object.prototype.hasOwnProperty;
@@ -7108,24 +7103,24 @@ var require_aliyun_oss_sdk = __commonJS({
               function isArguments(object) {
                 return Object.prototype.toString.call(object) == "[object Arguments]";
               }
-              function objEquiv(a, b2, strict2, actualVisitedObjects) {
-                if (a === null || a === void 0 || b2 === null || b2 === void 0)
+              function objEquiv(a, b, strict2, actualVisitedObjects) {
+                if (a === null || a === void 0 || b === null || b === void 0)
                   return false;
-                if (util.isPrimitive(a) || util.isPrimitive(b2))
-                  return a === b2;
-                if (strict2 && Object.getPrototypeOf(a) !== Object.getPrototypeOf(b2))
+                if (util.isPrimitive(a) || util.isPrimitive(b))
+                  return a === b;
+                if (strict2 && Object.getPrototypeOf(a) !== Object.getPrototypeOf(b))
                   return false;
                 var aIsArgs = isArguments(a);
-                var bIsArgs = isArguments(b2);
+                var bIsArgs = isArguments(b);
                 if (aIsArgs && !bIsArgs || !aIsArgs && bIsArgs)
                   return false;
                 if (aIsArgs) {
                   a = pSlice.call(a);
-                  b2 = pSlice.call(b2);
-                  return _deepEqual(a, b2, strict2);
+                  b = pSlice.call(b);
+                  return _deepEqual(a, b, strict2);
                 }
                 var ka = objectKeys(a);
-                var kb = objectKeys(b2);
+                var kb = objectKeys(b);
                 var key, i;
                 if (ka.length !== kb.length)
                   return false;
@@ -7137,7 +7132,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 for (i = ka.length - 1; i >= 0; i--) {
                   key = ka[i];
-                  if (!_deepEqual(a[key], b2[key], strict2, actualVisitedObjects))
+                  if (!_deepEqual(a[key], b[key], strict2, actualVisitedObjects))
                     return false;
                 }
                 return true;
@@ -7287,12 +7282,12 @@ var require_aliyun_oss_sdk = __commonJS({
                 var i = 1;
                 var args = arguments;
                 var len = args.length;
-                var str = String(f).replace(formatRegExp, function(x3) {
-                  if (x3 === "%%")
+                var str = String(f).replace(formatRegExp, function(x2) {
+                  if (x2 === "%%")
                     return "%";
                   if (i >= len)
-                    return x3;
-                  switch (x3) {
+                    return x2;
+                  switch (x2) {
                     case "%s":
                       return String(args[i++]);
                     case "%d":
@@ -7300,18 +7295,18 @@ var require_aliyun_oss_sdk = __commonJS({
                     case "%j":
                       try {
                         return JSON.stringify(args[i++]);
-                      } catch (_2) {
+                      } catch (_) {
                         return "[Circular]";
                       }
                     default:
-                      return x3;
+                      return x2;
                   }
                 });
-                for (var x2 = args[i]; i < len; x2 = args[++i]) {
-                  if (isNull(x2) || !isObject(x2)) {
-                    str += " " + x2;
+                for (var x = args[i]; i < len; x = args[++i]) {
+                  if (isNull(x) || !isObject(x)) {
+                    str += " " + x;
                   } else {
-                    str += " " + inspect(x2);
+                    str += " " + inspect(x);
                   }
                 }
                 return str;
@@ -7655,8 +7650,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 return arg === void 0;
               }
               exports3.isUndefined = isUndefined;
-              function isRegExp(re2) {
-                return isObject(re2) && objectToString(re2) === "[object RegExp]";
+              function isRegExp(re) {
+                return isObject(re) && objectToString(re) === "[object RegExp]";
               }
               exports3.isRegExp = isRegExp;
               function isObject(arg) {
@@ -7746,11 +7741,11 @@ var require_aliyun_oss_sdk = __commonJS({
                 "Uint8Array",
                 "Uint8ClampedArray"
               ];
-              var g2 = typeof globalThis === "undefined" ? global2 : globalThis;
+              var g = typeof globalThis === "undefined" ? global2 : globalThis;
               module4.exports = function availableTypedArrays() {
                 var out = [];
                 for (var i = 0; i < possibleNames.length; i++) {
-                  if (typeof g2[possibleNames[i]] === "function") {
+                  if (typeof g[possibleNames[i]] === "function") {
                     out[out.length] = possibleNames[i];
                   }
                 }
@@ -8396,9 +8391,9 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (valueOf != null && valueOf !== value) {
                   return Buffer3.from(valueOf, encodingOrOffset, length);
                 }
-                var b2 = fromObject(value);
-                if (b2)
-                  return b2;
+                var b = fromObject(value);
+                if (b)
+                  return b;
                 if (typeof Symbol !== "undefined" && Symbol.toPrimitive != null && typeof value[Symbol.toPrimitive] === "function") {
                   return Buffer3.from(
                     value[Symbol.toPrimitive]("string"),
@@ -8518,33 +8513,33 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 return Buffer3.alloc(+length);
               }
-              Buffer3.isBuffer = function isBuffer(b2) {
-                return b2 != null && b2._isBuffer === true && b2 !== Buffer3.prototype;
+              Buffer3.isBuffer = function isBuffer(b) {
+                return b != null && b._isBuffer === true && b !== Buffer3.prototype;
               };
-              Buffer3.compare = function compare(a, b2) {
+              Buffer3.compare = function compare(a, b) {
                 if (isInstance(a, Uint8Array))
                   a = Buffer3.from(a, a.offset, a.byteLength);
-                if (isInstance(b2, Uint8Array))
-                  b2 = Buffer3.from(b2, b2.offset, b2.byteLength);
-                if (!Buffer3.isBuffer(a) || !Buffer3.isBuffer(b2)) {
+                if (isInstance(b, Uint8Array))
+                  b = Buffer3.from(b, b.offset, b.byteLength);
+                if (!Buffer3.isBuffer(a) || !Buffer3.isBuffer(b)) {
                   throw new TypeError(
                     'The "buf1", "buf2" arguments must be one of type Buffer or Uint8Array'
                   );
                 }
-                if (a === b2)
+                if (a === b)
                   return 0;
-                var x2 = a.length;
-                var y2 = b2.length;
-                for (var i = 0, len = Math.min(x2, y2); i < len; ++i) {
-                  if (a[i] !== b2[i]) {
-                    x2 = a[i];
-                    y2 = b2[i];
+                var x = a.length;
+                var y = b.length;
+                for (var i = 0, len = Math.min(x, y); i < len; ++i) {
+                  if (a[i] !== b[i]) {
+                    x = a[i];
+                    y = b[i];
                     break;
                   }
                 }
-                if (x2 < y2)
+                if (x < y)
                   return -1;
-                if (y2 < x2)
+                if (y < x)
                   return 1;
                 return 0;
               };
@@ -8689,10 +8684,10 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               }
               Buffer3.prototype._isBuffer = true;
-              function swap(b2, n, m2) {
-                var i = b2[n];
-                b2[n] = b2[m2];
-                b2[m2] = i;
+              function swap(b, n, m) {
+                var i = b[n];
+                b[n] = b[m];
+                b[m] = i;
               }
               Buffer3.prototype.swap16 = function swap16() {
                 var len = this.length;
@@ -8737,12 +8732,12 @@ var require_aliyun_oss_sdk = __commonJS({
                 return slowToString.apply(this, arguments);
               };
               Buffer3.prototype.toLocaleString = Buffer3.prototype.toString;
-              Buffer3.prototype.equals = function equals(b2) {
-                if (!Buffer3.isBuffer(b2))
+              Buffer3.prototype.equals = function equals(b) {
+                if (!Buffer3.isBuffer(b))
                   throw new TypeError("Argument must be a Buffer");
-                if (this === b2)
+                if (this === b)
                   return true;
-                return Buffer3.compare(this, b2) === 0;
+                return Buffer3.compare(this, b) === 0;
               };
               Buffer3.prototype.inspect = function inspect() {
                 var str = "";
@@ -8791,21 +8786,21 @@ var require_aliyun_oss_sdk = __commonJS({
                 thisEnd >>>= 0;
                 if (this === target)
                   return 0;
-                var x2 = thisEnd - thisStart;
-                var y2 = end - start;
-                var len = Math.min(x2, y2);
+                var x = thisEnd - thisStart;
+                var y = end - start;
+                var len = Math.min(x, y);
                 var thisCopy = this.slice(thisStart, thisEnd);
                 var targetCopy = target.slice(start, end);
                 for (var i = 0; i < len; ++i) {
                   if (thisCopy[i] !== targetCopy[i]) {
-                    x2 = thisCopy[i];
-                    y2 = targetCopy[i];
+                    x = thisCopy[i];
+                    y = targetCopy[i];
                     break;
                   }
                 }
-                if (x2 < y2)
+                if (x < y)
                   return -1;
-                if (y2 < x2)
+                if (y < x)
                   return 1;
                 return 0;
               };
@@ -8901,8 +8896,8 @@ var require_aliyun_oss_sdk = __commonJS({
                     byteOffset = arrLength - valLength;
                   for (i = byteOffset; i >= 0; i--) {
                     var found = true;
-                    for (var j2 = 0; j2 < valLength; j2++) {
-                      if (read(arr, i + j2) !== read(val, j2)) {
+                    for (var j = 0; j < valLength; j++) {
+                      if (read(arr, i + j) !== read(val, j)) {
                         found = false;
                         break;
                       }
@@ -9880,8 +9875,8 @@ var require_aliyun_oss_sdk = __commonJS({
             this.src = src;
             this._withAccess = withAccess;
           }
-          Copy.prototype.withAccess = function(w2) {
-            this._withAccess = w2 !== false;
+          Copy.prototype.withAccess = function(w) {
+            this._withAccess = w !== false;
             return this;
           };
           Copy.prototype.pick = function(keys) {
@@ -10109,10 +10104,10 @@ var require_aliyun_oss_sdk = __commonJS({
               return it;
             throw new TypeError2("Target is not a typed array");
           };
-          var aTypedArrayConstructor = function(C2) {
-            if (isCallable(C2) && (!setPrototypeOf || isPrototypeOf(TypedArray, C2)))
-              return C2;
-            throw new TypeError2(tryToString(C2) + " is not a typed array constructor");
+          var aTypedArrayConstructor = function(C) {
+            if (isCallable(C) && (!setPrototypeOf || isPrototypeOf(TypedArray, C)))
+              return C;
+            throw new TypeError2(tryToString(C) + " is not a typed array constructor");
           };
           var exportTypedArrayMethod = function(KEY, property, forced, options) {
             if (!DESCRIPTORS)
@@ -10471,8 +10466,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var deletePropertyOrThrow = require2("../internals/delete-property-or-throw");
           var min = Math.min;
           module4.exports = [].copyWithin || function copyWithin(target, start) {
-            var O2 = toObject(this);
-            var len = lengthOfArrayLike(O2);
+            var O = toObject(this);
+            var len = lengthOfArrayLike(O);
             var to = toAbsoluteIndex(target, len);
             var from = toAbsoluteIndex(start, len);
             var end = arguments.length > 2 ? arguments[2] : void 0;
@@ -10484,14 +10479,14 @@ var require_aliyun_oss_sdk = __commonJS({
               to += count - 1;
             }
             while (count-- > 0) {
-              if (from in O2)
-                O2[to] = O2[from];
+              if (from in O)
+                O[to] = O[from];
               else
-                deletePropertyOrThrow(O2, to);
+                deletePropertyOrThrow(O, to);
               to += inc;
               from += inc;
             }
-            return O2;
+            return O;
           };
         }, { "../internals/delete-property-or-throw": 152, "../internals/length-of-array-like": 219, "../internals/to-absolute-index": 279, "../internals/to-object": 285 }], 120: [function(require2, module4, exports3) {
           "use strict";
@@ -10499,15 +10494,15 @@ var require_aliyun_oss_sdk = __commonJS({
           var toAbsoluteIndex = require2("../internals/to-absolute-index");
           var lengthOfArrayLike = require2("../internals/length-of-array-like");
           module4.exports = function fill(value) {
-            var O2 = toObject(this);
-            var length = lengthOfArrayLike(O2);
+            var O = toObject(this);
+            var length = lengthOfArrayLike(O);
             var argumentsLength = arguments.length;
             var index = toAbsoluteIndex(argumentsLength > 1 ? arguments[1] : void 0, length);
             var end = argumentsLength > 2 ? arguments[2] : void 0;
             var endPos = end === void 0 ? length : toAbsoluteIndex(end, length);
             while (endPos > index)
-              O2[index++] = value;
-            return O2;
+              O[index++] = value;
+            return O;
           };
         }, { "../internals/length-of-array-like": 219, "../internals/to-absolute-index": 279, "../internals/to-object": 285 }], 121: [function(require2, module4, exports3) {
           "use strict";
@@ -10542,18 +10537,18 @@ var require_aliyun_oss_sdk = __commonJS({
           var getIteratorMethod = require2("../internals/get-iterator-method");
           var $Array = Array;
           module4.exports = function from(arrayLike) {
-            var O2 = toObject(arrayLike);
+            var O = toObject(arrayLike);
             var IS_CONSTRUCTOR = isConstructor(this);
             var argumentsLength = arguments.length;
             var mapfn = argumentsLength > 1 ? arguments[1] : void 0;
             var mapping = mapfn !== void 0;
             if (mapping)
               mapfn = bind(mapfn, argumentsLength > 2 ? arguments[2] : void 0);
-            var iteratorMethod = getIteratorMethod(O2);
+            var iteratorMethod = getIteratorMethod(O);
             var index = 0;
             var length, result, step, iterator, next, value;
             if (iteratorMethod && !(this === $Array && isArrayIteratorMethod(iteratorMethod))) {
-              iterator = getIterator(O2, iteratorMethod);
+              iterator = getIterator(O, iteratorMethod);
               next = iterator.next;
               result = IS_CONSTRUCTOR ? new this() : [];
               for (; !(step = call(next, iterator)).done; index++) {
@@ -10561,10 +10556,10 @@ var require_aliyun_oss_sdk = __commonJS({
                 createProperty(result, index, value);
               }
             } else {
-              length = lengthOfArrayLike(O2);
+              length = lengthOfArrayLike(O);
               result = IS_CONSTRUCTOR ? new this(length) : $Array(length);
               for (; length > index; index++) {
-                value = mapping ? mapfn(O2[index], index) : O2[index];
+                value = mapping ? mapfn(O[index], index) : O[index];
                 createProperty(result, index, value);
               }
             }
@@ -10578,19 +10573,19 @@ var require_aliyun_oss_sdk = __commonJS({
           var lengthOfArrayLike = require2("../internals/length-of-array-like");
           var createMethod = function(IS_INCLUDES) {
             return function($this, el, fromIndex) {
-              var O2 = toIndexedObject($this);
-              var length = lengthOfArrayLike(O2);
+              var O = toIndexedObject($this);
+              var length = lengthOfArrayLike(O);
               var index = toAbsoluteIndex(fromIndex, length);
               var value;
               if (IS_INCLUDES && el !== el)
                 while (length > index) {
-                  value = O2[index++];
+                  value = O[index++];
                   if (value !== value)
                     return true;
                 }
               else
                 for (; length > index; index++) {
-                  if ((IS_INCLUDES || index in O2) && O2[index] === el)
+                  if ((IS_INCLUDES || index in O) && O[index] === el)
                     return IS_INCLUDES || index || 0;
                 }
               return !IS_INCLUDES && -1;
@@ -10622,8 +10617,8 @@ var require_aliyun_oss_sdk = __commonJS({
             var IS_FILTER_REJECT = TYPE === 7;
             var NO_HOLES = TYPE === 5 || IS_FIND_INDEX;
             return function($this, callbackfn, that, specificCreate) {
-              var O2 = toObject($this);
-              var self2 = IndexedObject(O2);
+              var O = toObject($this);
+              var self2 = IndexedObject(O);
               var length = lengthOfArrayLike(self2);
               var boundFunction = bind(callbackfn, that);
               var index = 0;
@@ -10633,7 +10628,7 @@ var require_aliyun_oss_sdk = __commonJS({
               for (; length > index; index++)
                 if (NO_HOLES || index in self2) {
                   value = self2[index];
-                  result = boundFunction(value, index, O2);
+                  result = boundFunction(value, index, O);
                   if (TYPE) {
                     if (IS_MAP)
                       target[index] = result;
@@ -10701,15 +10696,15 @@ var require_aliyun_oss_sdk = __commonJS({
           module4.exports = FORCED ? function lastIndexOf(searchElement) {
             if (NEGATIVE_ZERO)
               return apply($lastIndexOf, this, arguments) || 0;
-            var O2 = toIndexedObject(this);
-            var length = lengthOfArrayLike(O2);
+            var O = toIndexedObject(this);
+            var length = lengthOfArrayLike(O);
             var index = length - 1;
             if (arguments.length > 1)
               index = min(index, toIntegerOrInfinity(arguments[1]));
             if (index < 0)
               index = length + index;
             for (; index >= 0; index--)
-              if (index in O2 && O2[index] === searchElement)
+              if (index in O && O[index] === searchElement)
                 return index || 0;
             return -1;
           } : $lastIndexOf;
@@ -10749,9 +10744,9 @@ var require_aliyun_oss_sdk = __commonJS({
           var $TypeError = TypeError;
           var createMethod = function(IS_RIGHT) {
             return function(that, callbackfn, argumentsLength, memo) {
-              var O2 = toObject(that);
-              var self2 = IndexedObject(O2);
-              var length = lengthOfArrayLike(O2);
+              var O = toObject(that);
+              var self2 = IndexedObject(O);
+              var length = lengthOfArrayLike(O);
               aCallable(callbackfn);
               var index = IS_RIGHT ? length - 1 : 0;
               var i = IS_RIGHT ? -1 : 1;
@@ -10769,7 +10764,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               for (; IS_RIGHT ? index >= 0 : length > index; index += i)
                 if (index in self2) {
-                  memo = callbackfn(memo, self2[index], index, O2);
+                  memo = callbackfn(memo, self2[index], index, O);
                 }
               return memo;
             };
@@ -10797,13 +10792,13 @@ var require_aliyun_oss_sdk = __commonJS({
               return error instanceof TypeError;
             }
           }();
-          module4.exports = SILENT_ON_NON_WRITABLE_LENGTH_SET ? function(O2, length) {
-            if (isArray(O2) && !getOwnPropertyDescriptor(O2, "length").writable) {
+          module4.exports = SILENT_ON_NON_WRITABLE_LENGTH_SET ? function(O, length) {
+            if (isArray(O) && !getOwnPropertyDescriptor(O, "length").writable) {
               throw new $TypeError("Cannot set read only .length");
             }
-            return O2.length = length;
-          } : function(O2, length) {
-            return O2.length = length;
+            return O.length = length;
+          } : function(O, length) {
+            return O.length = length;
           };
         }, { "../internals/descriptors": 153, "../internals/is-array": 201 }], 131: [function(require2, module4, exports3) {
           "use strict";
@@ -10817,15 +10812,15 @@ var require_aliyun_oss_sdk = __commonJS({
             var length = array.length;
             if (length < 8) {
               var i = 1;
-              var element, j2;
+              var element, j;
               while (i < length) {
-                j2 = i;
+                j = i;
                 element = array[i];
-                while (j2 && comparefn(array[j2 - 1], element) > 0) {
-                  array[j2] = array[--j2];
+                while (j && comparefn(array[j - 1], element) > 0) {
+                  array[j] = array[--j];
                 }
-                if (j2 !== i++)
-                  array[j2] = element;
+                if (j !== i++)
+                  array[j] = element;
               }
             } else {
               var middle = floor(length / 2);
@@ -10851,18 +10846,18 @@ var require_aliyun_oss_sdk = __commonJS({
           var SPECIES = wellKnownSymbol("species");
           var $Array = Array;
           module4.exports = function(originalArray) {
-            var C2;
+            var C;
             if (isArray(originalArray)) {
-              C2 = originalArray.constructor;
-              if (isConstructor(C2) && (C2 === $Array || isArray(C2.prototype)))
-                C2 = void 0;
-              else if (isObject(C2)) {
-                C2 = C2[SPECIES];
-                if (C2 === null)
-                  C2 = void 0;
+              C = originalArray.constructor;
+              if (isConstructor(C) && (C === $Array || isArray(C.prototype)))
+                C = void 0;
+              else if (isObject(C)) {
+                C = C[SPECIES];
+                if (C === null)
+                  C = void 0;
               }
             }
-            return C2 === void 0 ? $Array : C2;
+            return C === void 0 ? $Array : C;
           };
         }, { "../internals/is-array": 201, "../internals/is-constructor": 204, "../internals/is-object": 208, "../internals/well-known-symbol": 306 }], 134: [function(require2, module4, exports3) {
           "use strict";
@@ -10952,8 +10947,8 @@ var require_aliyun_oss_sdk = __commonJS({
             }
           };
           module4.exports = TO_STRING_TAG_SUPPORT ? classofRaw : function(it) {
-            var O2, tag, result;
-            return it === void 0 ? "Undefined" : it === null ? "Null" : typeof (tag = tryGet(O2 = $Object(it), TO_STRING_TAG)) == "string" ? tag : CORRECT_ARGUMENTS ? classofRaw(O2) : (result = classofRaw(O2)) === "Object" && isCallable(O2.callee) ? "Arguments" : result;
+            var O, tag, result;
+            return it === void 0 ? "Undefined" : it === null ? "Null" : typeof (tag = tryGet(O = $Object(it), TO_STRING_TAG)) == "string" ? tag : CORRECT_ARGUMENTS ? classofRaw(O) : (result = classofRaw(O)) === "Object" && isCallable(O.callee) ? "Arguments" : result;
           };
         }, { "../internals/classof-raw": 137, "../internals/is-callable": 203, "../internals/to-string-tag-support": 290, "../internals/well-known-symbol": 306 }], 139: [function(require2, module4, exports3) {
           "use strict";
@@ -11158,7 +11153,7 @@ var require_aliyun_oss_sdk = __commonJS({
           };
         }, { "../internals/an-instance": 113, "../internals/create-iter-result-object": 144, "../internals/define-built-in-accessor": 148, "../internals/define-built-ins": 150, "../internals/descriptors": 153, "../internals/function-bind-context": 175, "../internals/internal-metadata": 198, "../internals/internal-state": 199, "../internals/is-null-or-undefined": 207, "../internals/iterate": 213, "../internals/iterator-define": 216, "../internals/object-create": 229, "../internals/set-species": 265 }], 140: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var global2 = require2("../internals/global");
           var uncurryThis = require2("../internals/function-uncurry-this");
           var isForced = require2("../internals/is-forced");
@@ -11248,7 +11243,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 delete NativePrototype.clear;
             }
             exported[CONSTRUCTOR_NAME] = Constructor;
-            $2({ global: true, constructor: true, forced: Constructor !== NativeConstructor }, exported);
+            $({ global: true, constructor: true, forced: Constructor !== NativeConstructor }, exported);
             setToStringTag(Constructor, CONSTRUCTOR_NAME);
             if (!IS_WEAK)
               common.setStrong(Constructor, CONSTRUCTOR_NAME, IS_MAP);
@@ -11292,10 +11287,10 @@ var require_aliyun_oss_sdk = __commonJS({
           "use strict";
           var fails = require2("../internals/fails");
           module4.exports = !fails(function() {
-            function F2() {
+            function F() {
             }
-            F2.prototype.constructor = null;
-            return Object.getPrototypeOf(new F2()) !== F2.prototype;
+            F.prototype.constructor = null;
+            return Object.getPrototypeOf(new F()) !== F.prototype;
           });
         }, { "../internals/fails": 171 }], 144: [function(require2, module4, exports3) {
           "use strict";
@@ -11352,7 +11347,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var definePropertyModule = require2("../internals/object-define-property");
           var makeBuiltIn = require2("../internals/make-built-in");
           var defineGlobalProperty = require2("../internals/define-global-property");
-          module4.exports = function(O2, key, value, options) {
+          module4.exports = function(O, key, value, options) {
             if (!options)
               options = {};
             var simple = options.enumerable;
@@ -11361,28 +11356,28 @@ var require_aliyun_oss_sdk = __commonJS({
               makeBuiltIn(value, name, options);
             if (options.global) {
               if (simple)
-                O2[key] = value;
+                O[key] = value;
               else
                 defineGlobalProperty(key, value);
             } else {
               try {
                 if (!options.unsafe)
-                  delete O2[key];
-                else if (O2[key])
+                  delete O[key];
+                else if (O[key])
                   simple = true;
               } catch (error) {
               }
               if (simple)
-                O2[key] = value;
+                O[key] = value;
               else
-                definePropertyModule.f(O2, key, {
+                definePropertyModule.f(O, key, {
                   value,
                   enumerable: false,
                   configurable: !options.nonConfigurable,
                   writable: !options.nonWritable
                 });
             }
-            return O2;
+            return O;
           };
         }, { "../internals/define-global-property": 151, "../internals/is-callable": 203, "../internals/make-built-in": 220, "../internals/object-define-property": 231 }], 150: [function(require2, module4, exports3) {
           "use strict";
@@ -11408,9 +11403,9 @@ var require_aliyun_oss_sdk = __commonJS({
           "use strict";
           var tryToString = require2("../internals/try-to-string");
           var $TypeError = TypeError;
-          module4.exports = function(O2, P2) {
-            if (!delete O2[P2])
-              throw new $TypeError("Cannot delete property " + tryToString(P2) + " of " + tryToString(O2));
+          module4.exports = function(O, P) {
+            if (!delete O[P])
+              throw new $TypeError("Cannot delete property " + tryToString(P) + " of " + tryToString(O));
           };
         }, { "../internals/try-to-string": 293 }], 153: [function(require2, module4, exports3) {
           "use strict";
@@ -11618,29 +11613,29 @@ var require_aliyun_oss_sdk = __commonJS({
           module4.exports = function(KEY, exec, FORCED, SHAM) {
             var SYMBOL = wellKnownSymbol(KEY);
             var DELEGATES_TO_SYMBOL = !fails(function() {
-              var O2 = {};
-              O2[SYMBOL] = function() {
+              var O = {};
+              O[SYMBOL] = function() {
                 return 7;
               };
-              return ""[KEY](O2) !== 7;
+              return ""[KEY](O) !== 7;
             });
             var DELEGATES_TO_EXEC = DELEGATES_TO_SYMBOL && !fails(function() {
               var execCalled = false;
-              var re2 = /a/;
+              var re = /a/;
               if (KEY === "split") {
-                re2 = {};
-                re2.constructor = {};
-                re2.constructor[SPECIES] = function() {
-                  return re2;
+                re = {};
+                re.constructor = {};
+                re.constructor[SPECIES] = function() {
+                  return re;
                 };
-                re2.flags = "";
-                re2[SYMBOL] = /./[SYMBOL];
+                re.flags = "";
+                re[SYMBOL] = /./[SYMBOL];
               }
-              re2.exec = function() {
+              re.exec = function() {
                 execCalled = true;
                 return null;
               };
-              re2[SYMBOL]("");
+              re[SYMBOL]("");
               return !execCalled;
             });
             if (!DELEGATES_TO_SYMBOL || !DELEGATES_TO_EXEC || FORCED) {
@@ -11815,8 +11810,8 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               if (isArray(this))
                 return value;
-              for (var j2 = 0; j2 < keysLength; j2++)
-                if (keys[j2] === key)
+              for (var j = 0; j < keysLength; j++)
+                if (keys[j] === key)
                   return value;
             };
           };
@@ -11824,8 +11819,8 @@ var require_aliyun_oss_sdk = __commonJS({
           "use strict";
           var aCallable = require2("../internals/a-callable");
           var isNullOrUndefined = require2("../internals/is-null-or-undefined");
-          module4.exports = function(V2, P2) {
-            var func = V2[P2];
+          module4.exports = function(V, P) {
+            var func = V[P];
             return isNullOrUndefined(func) ? void 0 : aCallable(func);
           };
         }, { "../internals/a-callable": 108, "../internals/is-null-or-undefined": 207 }], 187: [function(require2, module4, exports3) {
@@ -11840,7 +11835,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var SUBSTITUTION_SYMBOLS_NO_NAMED = /\$([$&'`]|\d{1,2})/g;
           module4.exports = function(matched, str, position, captures, namedCaptures, replacement) {
             var tailPos = position + matched.length;
-            var m2 = captures.length;
+            var m = captures.length;
             var symbols = SUBSTITUTION_SYMBOLS_NO_NAMED;
             if (namedCaptures !== void 0) {
               namedCaptures = toObject(namedCaptures);
@@ -11864,11 +11859,11 @@ var require_aliyun_oss_sdk = __commonJS({
                   var n = +ch;
                   if (n === 0)
                     return match;
-                  if (n > m2) {
+                  if (n > m) {
                     var f = floor(n / 10);
                     if (f === 0)
                       return match;
-                    if (f <= m2)
+                    if (f <= m)
                       return captures[f - 1] === void 0 ? charAt(ch, 1) : captures[f - 1] + charAt(ch, 1);
                     return match;
                   }
@@ -11905,9 +11900,9 @@ var require_aliyun_oss_sdk = __commonJS({
           module4.exports = {};
         }, {}], 191: [function(require2, module4, exports3) {
           "use strict";
-          module4.exports = function(a, b2) {
+          module4.exports = function(a, b) {
             try {
-              arguments.length === 1 ? console.error(a) : console.error(a, b2);
+              arguments.length === 1 ? console.error(a) : console.error(a, b);
             } catch (error) {
             }
           };
@@ -12067,7 +12062,7 @@ var require_aliyun_oss_sdk = __commonJS({
           module4.exports = store.inspectSource;
         }, { "../internals/function-uncurry-this": 181, "../internals/is-callable": 203, "../internals/shared-store": 268 }], 198: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var uncurryThis = require2("../internals/function-uncurry-this");
           var hiddenKeys = require2("../internals/hidden-keys");
           var isObject = require2("../internals/is-object");
@@ -12135,7 +12130,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 return result;
               };
-              $2({ target: "Object", stat: true, forced: true }, {
+              $({ target: "Object", stat: true, forced: true }, {
                 getOwnPropertyNames: getOwnPropertyNamesExternalModule.f
               });
             }
@@ -12472,7 +12467,7 @@ var require_aliyun_oss_sdk = __commonJS({
           };
         }, { "../internals/create-property-descriptor": 146, "../internals/iterators": 218, "../internals/iterators-core": 217, "../internals/object-create": 229, "../internals/set-to-string-tag": 266 }], 216: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var call = require2("../internals/function-call");
           var IS_PURE = require2("../internals/is-pure");
           var FunctionName = require2("../internals/function-name");
@@ -12567,7 +12562,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   }
                 }
               else
-                $2({ target: NAME, proto: true, forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME }, methods);
+                $({ target: NAME, proto: true, forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME }, methods);
             }
             if ((!IS_PURE || FORCED) && IterablePrototype[ITERATOR] !== defaultIterator) {
               defineBuiltIn(IterablePrototype, ITERATOR, defaultIterator, { name: DEFAULT });
@@ -12688,8 +12683,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var roundTiesToEven = function(n) {
             return n + INVERSE_EPSILON - INVERSE_EPSILON;
           };
-          module4.exports = function(x2, FLOAT_EPSILON, FLOAT_MAX_VALUE, FLOAT_MIN_VALUE) {
-            var n = +x2;
+          module4.exports = function(x, FLOAT_EPSILON, FLOAT_MAX_VALUE, FLOAT_MIN_VALUE) {
+            var n = +x;
             var absolute = abs(n);
             var s = sign(n);
             if (absolute < FLOAT_MIN_VALUE)
@@ -12706,21 +12701,21 @@ var require_aliyun_oss_sdk = __commonJS({
           var FLOAT32_EPSILON = 11920928955078125e-23;
           var FLOAT32_MAX_VALUE = 34028234663852886e22;
           var FLOAT32_MIN_VALUE = 11754943508222875e-54;
-          module4.exports = Math.fround || function fround(x2) {
-            return floatRound(x2, FLOAT32_EPSILON, FLOAT32_MAX_VALUE, FLOAT32_MIN_VALUE);
+          module4.exports = Math.fround || function fround(x) {
+            return floatRound(x, FLOAT32_EPSILON, FLOAT32_MAX_VALUE, FLOAT32_MIN_VALUE);
           };
         }, { "../internals/math-float-round": 221 }], 223: [function(require2, module4, exports3) {
           "use strict";
-          module4.exports = Math.sign || function sign(x2) {
-            var n = +x2;
+          module4.exports = Math.sign || function sign(x) {
+            var n = +x;
             return n === 0 || n !== n ? n : n < 0 ? -1 : 1;
           };
         }, {}], 224: [function(require2, module4, exports3) {
           "use strict";
           var ceil = Math.ceil;
           var floor = Math.floor;
-          module4.exports = Math.trunc || function trunc(x2) {
-            var n = +x2;
+          module4.exports = Math.trunc || function trunc(x) {
+            var n = +x;
             return (n > 0 ? floor : ceil)(n);
           };
         }, {}], 225: [function(require2, module4, exports3) {
@@ -12792,9 +12787,9 @@ var require_aliyun_oss_sdk = __commonJS({
           "use strict";
           var aCallable = require2("../internals/a-callable");
           var $TypeError = TypeError;
-          var PromiseCapability = function(C2) {
+          var PromiseCapability = function(C) {
             var resolve, reject;
-            this.promise = new C2(function($$resolve, $$reject) {
+            this.promise = new C(function($$resolve, $$reject) {
               if (resolve !== void 0 || reject !== void 0)
                 throw new $TypeError("Bad Promise constructor");
               resolve = $$resolve;
@@ -12803,8 +12798,8 @@ var require_aliyun_oss_sdk = __commonJS({
             this.resolve = aCallable(resolve);
             this.reject = aCallable(reject);
           };
-          module4.exports.f = function(C2) {
-            return new PromiseCapability(C2);
+          module4.exports.f = function(C) {
+            return new PromiseCapability(C);
           };
         }, { "../internals/a-callable": 108 }], 227: [function(require2, module4, exports3) {
           "use strict";
@@ -12842,16 +12837,16 @@ var require_aliyun_oss_sdk = __commonJS({
             }), { b: 2 })).b !== 1)
               return true;
             var A = {};
-            var B2 = {};
+            var B = {};
             var symbol = Symbol("assign detection");
             var alphabet = "abcdefghijklmnopqrst";
             A[symbol] = 7;
             alphabet.split("").forEach(function(chr) {
-              B2[chr] = chr;
+              B[chr] = chr;
             });
-            return $assign({}, A)[symbol] !== 7 || objectKeys($assign({}, B2)).join("") !== alphabet;
+            return $assign({}, A)[symbol] !== 7 || objectKeys($assign({}, B)).join("") !== alphabet;
           }) ? function assign(target, source) {
-            var T2 = toObject(target);
+            var T = toObject(target);
             var argumentsLength = arguments.length;
             var index = 1;
             var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
@@ -12860,15 +12855,15 @@ var require_aliyun_oss_sdk = __commonJS({
               var S = IndexedObject(arguments[index++]);
               var keys = getOwnPropertySymbols ? concat(objectKeys(S), getOwnPropertySymbols(S)) : objectKeys(S);
               var length = keys.length;
-              var j2 = 0;
+              var j = 0;
               var key;
-              while (length > j2) {
-                key = keys[j2++];
+              while (length > j) {
+                key = keys[j++];
                 if (!DESCRIPTORS || call(propertyIsEnumerable, S, key))
-                  T2[key] = S[key];
+                  T[key] = S[key];
               }
             }
-            return T2;
+            return T;
           } : $assign;
         }, { "../internals/descriptors": 153, "../internals/fails": 171, "../internals/function-call": 177, "../internals/function-uncurry-this": 181, "../internals/indexed-object": 195, "../internals/object-get-own-property-symbols": 235, "../internals/object-keys": 240, "../internals/object-property-is-enumerable": 241, "../internals/to-object": 285 }], 229: [function(require2, module4, exports3) {
           "use strict";
@@ -12922,13 +12917,13 @@ var require_aliyun_oss_sdk = __commonJS({
             return NullProtoObject();
           };
           hiddenKeys[IE_PROTO] = true;
-          module4.exports = Object.create || function create(O2, Properties) {
+          module4.exports = Object.create || function create(O, Properties) {
             var result;
-            if (O2 !== null) {
-              EmptyConstructor[PROTOTYPE] = anObject(O2);
+            if (O !== null) {
+              EmptyConstructor[PROTOTYPE] = anObject(O);
               result = new EmptyConstructor();
               EmptyConstructor[PROTOTYPE] = null;
-              result[IE_PROTO] = O2;
+              result[IE_PROTO] = O;
             } else
               result = NullProtoObject();
             return Properties === void 0 ? result : definePropertiesModule.f(result, Properties);
@@ -12941,16 +12936,16 @@ var require_aliyun_oss_sdk = __commonJS({
           var anObject = require2("../internals/an-object");
           var toIndexedObject = require2("../internals/to-indexed-object");
           var objectKeys = require2("../internals/object-keys");
-          exports3.f = DESCRIPTORS && !V8_PROTOTYPE_DEFINE_BUG ? Object.defineProperties : function defineProperties(O2, Properties) {
-            anObject(O2);
+          exports3.f = DESCRIPTORS && !V8_PROTOTYPE_DEFINE_BUG ? Object.defineProperties : function defineProperties(O, Properties) {
+            anObject(O);
             var props = toIndexedObject(Properties);
             var keys = objectKeys(Properties);
             var length = keys.length;
             var index = 0;
             var key;
             while (length > index)
-              definePropertyModule.f(O2, key = keys[index++], props[key]);
-            return O2;
+              definePropertyModule.f(O, key = keys[index++], props[key]);
+            return O;
           };
         }, { "../internals/an-object": 114, "../internals/descriptors": 153, "../internals/object-define-property": 231, "../internals/object-keys": 240, "../internals/to-indexed-object": 282, "../internals/v8-prototype-define-bug": 301 }], 231: [function(require2, module4, exports3) {
           "use strict";
@@ -12965,14 +12960,14 @@ var require_aliyun_oss_sdk = __commonJS({
           var ENUMERABLE = "enumerable";
           var CONFIGURABLE = "configurable";
           var WRITABLE = "writable";
-          exports3.f = DESCRIPTORS ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O2, P2, Attributes) {
-            anObject(O2);
-            P2 = toPropertyKey(P2);
+          exports3.f = DESCRIPTORS ? V8_PROTOTYPE_DEFINE_BUG ? function defineProperty(O, P, Attributes) {
+            anObject(O);
+            P = toPropertyKey(P);
             anObject(Attributes);
-            if (typeof O2 === "function" && P2 === "prototype" && "value" in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {
-              var current = $getOwnPropertyDescriptor(O2, P2);
+            if (typeof O === "function" && P === "prototype" && "value" in Attributes && WRITABLE in Attributes && !Attributes[WRITABLE]) {
+              var current = $getOwnPropertyDescriptor(O, P);
               if (current && current[WRITABLE]) {
-                O2[P2] = Attributes.value;
+                O[P] = Attributes.value;
                 Attributes = {
                   configurable: CONFIGURABLE in Attributes ? Attributes[CONFIGURABLE] : current[CONFIGURABLE],
                   enumerable: ENUMERABLE in Attributes ? Attributes[ENUMERABLE] : current[ENUMERABLE],
@@ -12980,21 +12975,21 @@ var require_aliyun_oss_sdk = __commonJS({
                 };
               }
             }
-            return $defineProperty(O2, P2, Attributes);
-          } : $defineProperty : function defineProperty(O2, P2, Attributes) {
-            anObject(O2);
-            P2 = toPropertyKey(P2);
+            return $defineProperty(O, P, Attributes);
+          } : $defineProperty : function defineProperty(O, P, Attributes) {
+            anObject(O);
+            P = toPropertyKey(P);
             anObject(Attributes);
             if (IE8_DOM_DEFINE)
               try {
-                return $defineProperty(O2, P2, Attributes);
+                return $defineProperty(O, P, Attributes);
               } catch (error) {
               }
             if ("get" in Attributes || "set" in Attributes)
               throw new $TypeError("Accessors not supported");
             if ("value" in Attributes)
-              O2[P2] = Attributes.value;
-            return O2;
+              O[P] = Attributes.value;
+            return O;
           };
         }, { "../internals/an-object": 114, "../internals/descriptors": 153, "../internals/ie8-dom-define": 193, "../internals/to-property-key": 289, "../internals/v8-prototype-define-bug": 301 }], 232: [function(require2, module4, exports3) {
           "use strict";
@@ -13007,16 +13002,16 @@ var require_aliyun_oss_sdk = __commonJS({
           var hasOwn = require2("../internals/has-own-property");
           var IE8_DOM_DEFINE = require2("../internals/ie8-dom-define");
           var $getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-          exports3.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O2, P2) {
-            O2 = toIndexedObject(O2);
-            P2 = toPropertyKey(P2);
+          exports3.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
+            O = toIndexedObject(O);
+            P = toPropertyKey(P);
             if (IE8_DOM_DEFINE)
               try {
-                return $getOwnPropertyDescriptor(O2, P2);
+                return $getOwnPropertyDescriptor(O, P);
               } catch (error) {
               }
-            if (hasOwn(O2, P2))
-              return createPropertyDescriptor(!call(propertyIsEnumerableModule.f, O2, P2), O2[P2]);
+            if (hasOwn(O, P))
+              return createPropertyDescriptor(!call(propertyIsEnumerableModule.f, O, P), O[P]);
           };
         }, { "../internals/create-property-descriptor": 146, "../internals/descriptors": 153, "../internals/function-call": 177, "../internals/has-own-property": 189, "../internals/ie8-dom-define": 193, "../internals/object-property-is-enumerable": 241, "../internals/to-indexed-object": 282, "../internals/to-property-key": 289 }], 233: [function(require2, module4, exports3) {
           "use strict";
@@ -13040,8 +13035,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var internalObjectKeys = require2("../internals/object-keys-internal");
           var enumBugKeys = require2("../internals/enum-bug-keys");
           var hiddenKeys = enumBugKeys.concat("length", "prototype");
-          exports3.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O2) {
-            return internalObjectKeys(O2, hiddenKeys);
+          exports3.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+            return internalObjectKeys(O, hiddenKeys);
           };
         }, { "../internals/enum-bug-keys": 169, "../internals/object-keys-internal": 239 }], 235: [function(require2, module4, exports3) {
           "use strict";
@@ -13056,8 +13051,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var IE_PROTO = sharedKey("IE_PROTO");
           var $Object = Object;
           var ObjectPrototype = $Object.prototype;
-          module4.exports = CORRECT_PROTOTYPE_GETTER ? $Object.getPrototypeOf : function(O2) {
-            var object = toObject(O2);
+          module4.exports = CORRECT_PROTOTYPE_GETTER ? $Object.getPrototypeOf : function(O) {
+            var object = toObject(O);
             if (hasOwn(object, IE_PROTO))
               return object[IE_PROTO];
             var constructor = object.constructor;
@@ -13096,14 +13091,14 @@ var require_aliyun_oss_sdk = __commonJS({
           var hiddenKeys = require2("../internals/hidden-keys");
           var push = uncurryThis([].push);
           module4.exports = function(object, names) {
-            var O2 = toIndexedObject(object);
+            var O = toIndexedObject(object);
             var i = 0;
             var result = [];
             var key;
-            for (key in O2)
-              !hasOwn(hiddenKeys, key) && hasOwn(O2, key) && push(result, key);
+            for (key in O)
+              !hasOwn(hiddenKeys, key) && hasOwn(O, key) && push(result, key);
             while (names.length > i)
-              if (hasOwn(O2, key = names[i++])) {
+              if (hasOwn(O, key = names[i++])) {
                 ~indexOf(result, key) || push(result, key);
               }
             return result;
@@ -13112,16 +13107,16 @@ var require_aliyun_oss_sdk = __commonJS({
           "use strict";
           var internalObjectKeys = require2("../internals/object-keys-internal");
           var enumBugKeys = require2("../internals/enum-bug-keys");
-          module4.exports = Object.keys || function keys(O2) {
-            return internalObjectKeys(O2, enumBugKeys);
+          module4.exports = Object.keys || function keys(O) {
+            return internalObjectKeys(O, enumBugKeys);
           };
         }, { "../internals/enum-bug-keys": 169, "../internals/object-keys-internal": 239 }], 241: [function(require2, module4, exports3) {
           "use strict";
           var $propertyIsEnumerable = {}.propertyIsEnumerable;
           var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
           var NASHORN_BUG = getOwnPropertyDescriptor && !$propertyIsEnumerable.call({ 1: 2 }, 1);
-          exports3.f = NASHORN_BUG ? function propertyIsEnumerable(V2) {
-            var descriptor = getOwnPropertyDescriptor(this, V2);
+          exports3.f = NASHORN_BUG ? function propertyIsEnumerable(V) {
+            var descriptor = getOwnPropertyDescriptor(this, V);
             return !!descriptor && descriptor.enumerable;
           } : $propertyIsEnumerable;
         }, {}], 242: [function(require2, module4, exports3) {
@@ -13139,14 +13134,14 @@ var require_aliyun_oss_sdk = __commonJS({
               CORRECT_SETTER = test instanceof Array;
             } catch (error) {
             }
-            return function setPrototypeOf(O2, proto) {
-              anObject(O2);
+            return function setPrototypeOf(O, proto) {
+              anObject(O);
               aPossiblePrototype(proto);
               if (CORRECT_SETTER)
-                setter(O2, proto);
+                setter(O, proto);
               else
-                O2.__proto__ = proto;
-              return O2;
+                O.__proto__ = proto;
+              return O;
             };
           }() : void 0);
         }, { "../internals/a-possible-prototype": 110, "../internals/an-object": 114, "../internals/function-uncurry-this-accessor": 179 }], 243: [function(require2, module4, exports3) {
@@ -13161,23 +13156,23 @@ var require_aliyun_oss_sdk = __commonJS({
           var propertyIsEnumerable = uncurryThis($propertyIsEnumerable);
           var push = uncurryThis([].push);
           var IE_BUG = DESCRIPTORS && fails(function() {
-            var O2 = /* @__PURE__ */ Object.create(null);
-            O2[2] = 2;
-            return !propertyIsEnumerable(O2, 2);
+            var O = /* @__PURE__ */ Object.create(null);
+            O[2] = 2;
+            return !propertyIsEnumerable(O, 2);
           });
           var createMethod = function(TO_ENTRIES) {
             return function(it) {
-              var O2 = toIndexedObject(it);
-              var keys = objectKeys(O2);
-              var IE_WORKAROUND = IE_BUG && objectGetPrototypeOf(O2) === null;
+              var O = toIndexedObject(it);
+              var keys = objectKeys(O);
+              var IE_WORKAROUND = IE_BUG && objectGetPrototypeOf(O) === null;
               var length = keys.length;
               var i = 0;
               var result = [];
               var key;
               while (length > i) {
                 key = keys[i++];
-                if (!DESCRIPTORS || (IE_WORKAROUND ? key in O2 : propertyIsEnumerable(O2, key))) {
-                  push(result, TO_ENTRIES ? [key, O2[key]] : O2[key]);
+                if (!DESCRIPTORS || (IE_WORKAROUND ? key in O : propertyIsEnumerable(O, key))) {
+                  push(result, TO_ENTRIES ? [key, O[key]] : O[key]);
                 }
               }
               return result;
@@ -13295,13 +13290,13 @@ var require_aliyun_oss_sdk = __commonJS({
           var anObject = require2("../internals/an-object");
           var isObject = require2("../internals/is-object");
           var newPromiseCapability = require2("../internals/new-promise-capability");
-          module4.exports = function(C2, x2) {
-            anObject(C2);
-            if (isObject(x2) && x2.constructor === C2)
-              return x2;
-            var promiseCapability = newPromiseCapability.f(C2);
+          module4.exports = function(C, x) {
+            anObject(C);
+            if (isObject(x) && x.constructor === C)
+              return x;
+            var promiseCapability = newPromiseCapability.f(C);
             var resolve = promiseCapability.resolve;
-            resolve(x2);
+            resolve(x);
             return promiseCapability.promise;
           };
         }, { "../internals/an-object": 114, "../internals/is-object": 208, "../internals/new-promise-capability": 226 }], 252: [function(require2, module4, exports3) {
@@ -13405,21 +13400,21 @@ var require_aliyun_oss_sdk = __commonJS({
           var PATCH = UPDATES_LAST_INDEX_WRONG || NPCG_INCLUDED || UNSUPPORTED_Y || UNSUPPORTED_DOT_ALL || UNSUPPORTED_NCG;
           if (PATCH) {
             patchedExec = function exec(string) {
-              var re2 = this;
-              var state = getInternalState(re2);
+              var re = this;
+              var state = getInternalState(re);
               var str = toString(string);
               var raw = state.raw;
               var result, reCopy, lastIndex, match, i, object, group;
               if (raw) {
-                raw.lastIndex = re2.lastIndex;
+                raw.lastIndex = re.lastIndex;
                 result = call(patchedExec, raw, str);
-                re2.lastIndex = raw.lastIndex;
+                re.lastIndex = raw.lastIndex;
                 return result;
               }
               var groups = state.groups;
-              var sticky = UNSUPPORTED_Y && re2.sticky;
-              var flags = call(regexpFlags, re2);
-              var source = re2.source;
+              var sticky = UNSUPPORTED_Y && re.sticky;
+              var flags = call(regexpFlags, re);
+              var source = re.source;
               var charsAdded = 0;
               var strCopy = str;
               if (sticky) {
@@ -13427,8 +13422,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (indexOf(flags, "g") === -1) {
                   flags += "g";
                 }
-                strCopy = stringSlice(str, re2.lastIndex);
-                if (re2.lastIndex > 0 && (!re2.multiline || re2.multiline && charAt(str, re2.lastIndex - 1) !== "\n")) {
+                strCopy = stringSlice(str, re.lastIndex);
+                if (re.lastIndex > 0 && (!re.multiline || re.multiline && charAt(str, re.lastIndex - 1) !== "\n")) {
                   source = "(?: " + source + ")";
                   strCopy = " " + strCopy;
                   charsAdded++;
@@ -13439,18 +13434,18 @@ var require_aliyun_oss_sdk = __commonJS({
                 reCopy = new RegExp("^" + source + "$(?!\\s)", flags);
               }
               if (UPDATES_LAST_INDEX_WRONG)
-                lastIndex = re2.lastIndex;
-              match = call(nativeExec, sticky ? reCopy : re2, strCopy);
+                lastIndex = re.lastIndex;
+              match = call(nativeExec, sticky ? reCopy : re, strCopy);
               if (sticky) {
                 if (match) {
                   match.input = stringSlice(match.input, charsAdded);
                   match[0] = stringSlice(match[0], charsAdded);
-                  match.index = re2.lastIndex;
-                  re2.lastIndex += match[0].length;
+                  match.index = re.lastIndex;
+                  re.lastIndex += match[0].length;
                 } else
-                  re2.lastIndex = 0;
+                  re.lastIndex = 0;
               } else if (UPDATES_LAST_INDEX_WRONG && match) {
-                re2.lastIndex = re2.global ? match.index + match[0].length : lastIndex;
+                re.lastIndex = re.global ? match.index + match[0].length : lastIndex;
               }
               if (NPCG_INCLUDED && match && match.length > 1) {
                 call(nativeReplace, match[0], reCopy, function() {
@@ -13512,17 +13507,17 @@ var require_aliyun_oss_sdk = __commonJS({
           var global2 = require2("../internals/global");
           var $RegExp = global2.RegExp;
           var UNSUPPORTED_Y = fails(function() {
-            var re2 = $RegExp("a", "y");
-            re2.lastIndex = 2;
-            return re2.exec("abcd") !== null;
+            var re = $RegExp("a", "y");
+            re.lastIndex = 2;
+            return re.exec("abcd") !== null;
           });
           var MISSED_STICKY = UNSUPPORTED_Y || fails(function() {
             return !$RegExp("a", "y").sticky;
           });
           var BROKEN_CARET = UNSUPPORTED_Y || fails(function() {
-            var re2 = $RegExp("^r", "gy");
-            re2.lastIndex = 2;
-            return re2.exec("str") !== null;
+            var re = $RegExp("^r", "gy");
+            re.lastIndex = 2;
+            return re.exec("str") !== null;
           });
           module4.exports = {
             BROKEN_CARET,
@@ -13535,8 +13530,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var global2 = require2("../internals/global");
           var $RegExp = global2.RegExp;
           module4.exports = fails(function() {
-            var re2 = $RegExp(".", "s");
-            return !(re2.dotAll && re2.test("\n") && re2.flags === "s");
+            var re = $RegExp(".", "s");
+            return !(re.dotAll && re.test("\n") && re.flags === "s");
           });
         }, { "../internals/fails": 171, "../internals/global": 188 }], 261: [function(require2, module4, exports3) {
           "use strict";
@@ -13544,8 +13539,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var global2 = require2("../internals/global");
           var $RegExp = global2.RegExp;
           module4.exports = fails(function() {
-            var re2 = $RegExp("(?<a>b)", "g");
-            return re2.exec("b").groups.a !== "b" || "b".replace(re2, "$<a>c") !== "bc";
+            var re = $RegExp("(?<a>b)", "g");
+            return re.exec("b").groups.a !== "b" || "b".replace(re, "$<a>c") !== "bc";
           });
         }, { "../internals/fails": 171, "../internals/global": 188 }], 262: [function(require2, module4, exports3) {
           "use strict";
@@ -13569,8 +13564,8 @@ var require_aliyun_oss_sdk = __commonJS({
           };
         }, { "../internals/descriptors": 153, "../internals/global": 188 }], 264: [function(require2, module4, exports3) {
           "use strict";
-          module4.exports = Object.is || function is(x2, y2) {
-            return x2 === y2 ? x2 !== 0 || 1 / x2 === 1 / y2 : x2 !== x2 && y2 !== y2;
+          module4.exports = Object.is || function is(x, y) {
+            return x === y ? x !== 0 || 1 / x === 1 / y : x !== x && y !== y;
           };
         }, {}], 265: [function(require2, module4, exports3) {
           "use strict";
@@ -13638,10 +13633,10 @@ var require_aliyun_oss_sdk = __commonJS({
           var isNullOrUndefined = require2("../internals/is-null-or-undefined");
           var wellKnownSymbol = require2("../internals/well-known-symbol");
           var SPECIES = wellKnownSymbol("species");
-          module4.exports = function(O2, defaultConstructor) {
-            var C2 = anObject(O2).constructor;
+          module4.exports = function(O, defaultConstructor) {
+            var C = anObject(O).constructor;
             var S;
-            return C2 === void 0 || isNullOrUndefined(S = anObject(C2)[SPECIES]) ? defaultConstructor : aConstructor(S);
+            return C === void 0 || isNullOrUndefined(S = anObject(C)[SPECIES]) ? defaultConstructor : aConstructor(S);
           };
         }, { "../internals/a-constructor": 109, "../internals/an-object": 114, "../internals/is-null-or-undefined": 207, "../internals/well-known-symbol": 306 }], 271: [function(require2, module4, exports3) {
           "use strict";
@@ -13993,7 +13988,7 @@ var require_aliyun_oss_sdk = __commonJS({
           };
         }, {}], 294: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var global2 = require2("../internals/global");
           var call = require2("../internals/function-call");
           var DESCRIPTORS = require2("../internals/descriptors");
@@ -14078,7 +14073,7 @@ var require_aliyun_oss_sdk = __commonJS({
               addGetter(TypedArrayPrototype, "byteLength");
               addGetter(TypedArrayPrototype, "length");
             }
-            $2({ target: "Object", stat: true, forced: !NATIVE_ARRAY_BUFFER_VIEWS }, {
+            $({ target: "Object", stat: true, forced: !NATIVE_ARRAY_BUFFER_VIEWS }, {
               getOwnPropertyDescriptor: wrappedGetOwnPropertyDescriptor,
               defineProperty: wrappedDefineProperty
             });
@@ -14185,7 +14180,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               var FORCED = TypedArrayConstructor !== NativeTypedArrayConstructor;
               exported[CONSTRUCTOR_NAME] = TypedArrayConstructor;
-              $2({ global: true, constructor: true, forced: FORCED, sham: !NATIVE_ARRAY_BUFFER_VIEWS }, exported);
+              $({ global: true, constructor: true, forced: FORCED, sham: !NATIVE_ARRAY_BUFFER_VIEWS }, exported);
               if (!(BYTES_PER_ELEMENT in TypedArrayConstructor)) {
                 createNonEnumerableProperty(TypedArrayConstructor, BYTES_PER_ELEMENT, BYTES);
               }
@@ -14238,29 +14233,29 @@ var require_aliyun_oss_sdk = __commonJS({
           var aTypedArrayConstructor = require2("../internals/array-buffer-view-core").aTypedArrayConstructor;
           var toBigInt = require2("../internals/to-big-int");
           module4.exports = function from(source) {
-            var C2 = aConstructor(this);
-            var O2 = toObject(source);
+            var C = aConstructor(this);
+            var O = toObject(source);
             var argumentsLength = arguments.length;
             var mapfn = argumentsLength > 1 ? arguments[1] : void 0;
             var mapping = mapfn !== void 0;
-            var iteratorMethod = getIteratorMethod(O2);
+            var iteratorMethod = getIteratorMethod(O);
             var i, length, result, thisIsBigIntArray, value, step, iterator, next;
             if (iteratorMethod && !isArrayIteratorMethod(iteratorMethod)) {
-              iterator = getIterator(O2, iteratorMethod);
+              iterator = getIterator(O, iteratorMethod);
               next = iterator.next;
-              O2 = [];
+              O = [];
               while (!(step = call(next, iterator)).done) {
-                O2.push(step.value);
+                O.push(step.value);
               }
             }
             if (mapping && argumentsLength > 2) {
               mapfn = bind(mapfn, arguments[2]);
             }
-            length = lengthOfArrayLike(O2);
-            result = new (aTypedArrayConstructor(C2))(length);
+            length = lengthOfArrayLike(O);
+            result = new (aTypedArrayConstructor(C))(length);
             thisIsBigIntArray = isBigIntArray(result);
             for (i = 0; length > i; i++) {
-              value = mapping ? mapfn(O2[i], i) : O2[i];
+              value = mapping ? mapfn(O[i], i) : O[i];
               result[i] = thisIsBigIntArray ? toBigInt(value) : +value;
             }
             return result;
@@ -14351,20 +14346,20 @@ var require_aliyun_oss_sdk = __commonJS({
           module4.exports = "	\n\v\f\r \xA0\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF";
         }, {}], 308: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var global2 = require2("../internals/global");
           var arrayBufferModule = require2("../internals/array-buffer");
           var setSpecies = require2("../internals/set-species");
           var ARRAY_BUFFER = "ArrayBuffer";
           var ArrayBuffer2 = arrayBufferModule[ARRAY_BUFFER];
           var NativeArrayBuffer = global2[ARRAY_BUFFER];
-          $2({ global: true, constructor: true, forced: NativeArrayBuffer !== ArrayBuffer2 }, {
+          $({ global: true, constructor: true, forced: NativeArrayBuffer !== ArrayBuffer2 }, {
             ArrayBuffer: ArrayBuffer2
           });
           setSpecies(ARRAY_BUFFER);
         }, { "../internals/array-buffer": 118, "../internals/export": 170, "../internals/global": 188, "../internals/set-species": 265 }], 309: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var uncurryThis = require2("../internals/function-uncurry-this-clause");
           var fails = require2("../internals/fails");
           var ArrayBufferModule = require2("../internals/array-buffer");
@@ -14381,7 +14376,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var INCORRECT_SLICE = fails(function() {
             return !new ArrayBuffer2(2).slice(1, void 0).byteLength;
           });
-          $2({ target: "ArrayBuffer", proto: true, unsafe: true, forced: INCORRECT_SLICE }, {
+          $({ target: "ArrayBuffer", proto: true, unsafe: true, forced: INCORRECT_SLICE }, {
             slice: function slice(start, end) {
               if (nativeArrayBufferSlice && end === void 0) {
                 return nativeArrayBufferSlice(anObject(this), start);
@@ -14401,7 +14396,7 @@ var require_aliyun_oss_sdk = __commonJS({
           });
         }, { "../internals/an-object": 114, "../internals/array-buffer": 118, "../internals/export": 170, "../internals/fails": 171, "../internals/function-uncurry-this-clause": 180, "../internals/species-constructor": 270, "../internals/to-absolute-index": 279, "../internals/to-length": 284 }], 310: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var fails = require2("../internals/fails");
           var isArray = require2("../internals/is-array");
           var isObject = require2("../internals/is-object");
@@ -14419,31 +14414,31 @@ var require_aliyun_oss_sdk = __commonJS({
             array[IS_CONCAT_SPREADABLE] = false;
             return array.concat()[0] !== array;
           });
-          var isConcatSpreadable = function(O2) {
-            if (!isObject(O2))
+          var isConcatSpreadable = function(O) {
+            if (!isObject(O))
               return false;
-            var spreadable = O2[IS_CONCAT_SPREADABLE];
-            return spreadable !== void 0 ? !!spreadable : isArray(O2);
+            var spreadable = O[IS_CONCAT_SPREADABLE];
+            return spreadable !== void 0 ? !!spreadable : isArray(O);
           };
           var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !arrayMethodHasSpeciesSupport("concat");
-          $2({ target: "Array", proto: true, arity: 1, forced: FORCED }, {
+          $({ target: "Array", proto: true, arity: 1, forced: FORCED }, {
             // eslint-disable-next-line no-unused-vars -- required for `.length`
             concat: function concat(arg) {
-              var O2 = toObject(this);
-              var A = arraySpeciesCreate(O2, 0);
+              var O = toObject(this);
+              var A = arraySpeciesCreate(O, 0);
               var n = 0;
-              var i, k2, length, len, E2;
+              var i, k, length, len, E;
               for (i = -1, length = arguments.length; i < length; i++) {
-                E2 = i === -1 ? O2 : arguments[i];
-                if (isConcatSpreadable(E2)) {
-                  len = lengthOfArrayLike(E2);
+                E = i === -1 ? O : arguments[i];
+                if (isConcatSpreadable(E)) {
+                  len = lengthOfArrayLike(E);
                   doesNotExceedSafeInteger(n + len);
-                  for (k2 = 0; k2 < len; k2++, n++)
-                    if (k2 in E2)
-                      createProperty(A, n, E2[k2]);
+                  for (k = 0; k < len; k++, n++)
+                    if (k in E)
+                      createProperty(A, n, E[k]);
                 } else {
                   doesNotExceedSafeInteger(n + 1);
-                  createProperty(A, n++, E2);
+                  createProperty(A, n++, E);
                 }
               }
               A.length = n;
@@ -14452,27 +14447,27 @@ var require_aliyun_oss_sdk = __commonJS({
           });
         }, { "../internals/array-method-has-species-support": 127, "../internals/array-species-create": 134, "../internals/create-property": 147, "../internals/does-not-exceed-safe-integer": 155, "../internals/engine-v8-version": 167, "../internals/export": 170, "../internals/fails": 171, "../internals/is-array": 201, "../internals/is-object": 208, "../internals/length-of-array-like": 219, "../internals/to-object": 285, "../internals/well-known-symbol": 306 }], 311: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var fill = require2("../internals/array-fill");
           var addToUnscopables = require2("../internals/add-to-unscopables");
-          $2({ target: "Array", proto: true }, {
+          $({ target: "Array", proto: true }, {
             fill
           });
           addToUnscopables("fill");
         }, { "../internals/add-to-unscopables": 111, "../internals/array-fill": 120, "../internals/export": 170 }], 312: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var $filter = require2("../internals/array-iteration").filter;
           var arrayMethodHasSpeciesSupport = require2("../internals/array-method-has-species-support");
           var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport("filter");
-          $2({ target: "Array", proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+          $({ target: "Array", proto: true, forced: !HAS_SPECIES_SUPPORT }, {
             filter: function filter(callbackfn) {
               return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : void 0);
             }
           });
         }, { "../internals/array-iteration": 125, "../internals/array-method-has-species-support": 127, "../internals/export": 170 }], 313: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var $find = require2("../internals/array-iteration").find;
           var addToUnscopables = require2("../internals/add-to-unscopables");
           var FIND = "find";
@@ -14481,7 +14476,7 @@ var require_aliyun_oss_sdk = __commonJS({
             Array(1)[FIND](function() {
               SKIPS_HOLES = false;
             });
-          $2({ target: "Array", proto: true, forced: SKIPS_HOLES }, {
+          $({ target: "Array", proto: true, forced: SKIPS_HOLES }, {
             find: function find(callbackfn) {
               return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : void 0);
             }
@@ -14489,25 +14484,25 @@ var require_aliyun_oss_sdk = __commonJS({
           addToUnscopables(FIND);
         }, { "../internals/add-to-unscopables": 111, "../internals/array-iteration": 125, "../internals/export": 170 }], 314: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var from = require2("../internals/array-from");
           var checkCorrectnessOfIteration = require2("../internals/check-correctness-of-iteration");
           var INCORRECT_ITERATION = !checkCorrectnessOfIteration(function(iterable) {
             Array.from(iterable);
           });
-          $2({ target: "Array", stat: true, forced: INCORRECT_ITERATION }, {
+          $({ target: "Array", stat: true, forced: INCORRECT_ITERATION }, {
             from
           });
         }, { "../internals/array-from": 123, "../internals/check-correctness-of-iteration": 136, "../internals/export": 170 }], 315: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var $includes = require2("../internals/array-includes").includes;
           var fails = require2("../internals/fails");
           var addToUnscopables = require2("../internals/add-to-unscopables");
           var BROKEN_ON_SPARSE = fails(function() {
             return !Array(1).includes();
           });
-          $2({ target: "Array", proto: true, forced: BROKEN_ON_SPARSE }, {
+          $({ target: "Array", proto: true, forced: BROKEN_ON_SPARSE }, {
             includes: function includes(el) {
               return $includes(this, el, arguments.length > 1 ? arguments[1] : void 0);
             }
@@ -14564,7 +14559,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }
         }, { "../internals/add-to-unscopables": 111, "../internals/create-iter-result-object": 144, "../internals/descriptors": 153, "../internals/internal-state": 199, "../internals/is-pure": 210, "../internals/iterator-define": 216, "../internals/iterators": 218, "../internals/object-define-property": 231, "../internals/to-indexed-object": 282 }], 317: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var uncurryThis = require2("../internals/function-uncurry-this");
           var IndexedObject = require2("../internals/indexed-object");
           var toIndexedObject = require2("../internals/to-indexed-object");
@@ -14572,25 +14567,25 @@ var require_aliyun_oss_sdk = __commonJS({
           var nativeJoin = uncurryThis([].join);
           var ES3_STRINGS = IndexedObject !== Object;
           var FORCED = ES3_STRINGS || !arrayMethodIsStrict("join", ",");
-          $2({ target: "Array", proto: true, forced: FORCED }, {
+          $({ target: "Array", proto: true, forced: FORCED }, {
             join: function join3(separator) {
               return nativeJoin(toIndexedObject(this), separator === void 0 ? "," : separator);
             }
           });
         }, { "../internals/array-method-is-strict": 128, "../internals/export": 170, "../internals/function-uncurry-this": 181, "../internals/indexed-object": 195, "../internals/to-indexed-object": 282 }], 318: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var $map = require2("../internals/array-iteration").map;
           var arrayMethodHasSpeciesSupport = require2("../internals/array-method-has-species-support");
           var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport("map");
-          $2({ target: "Array", proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+          $({ target: "Array", proto: true, forced: !HAS_SPECIES_SUPPORT }, {
             map: function map(callbackfn) {
               return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : void 0);
             }
           });
         }, { "../internals/array-iteration": 125, "../internals/array-method-has-species-support": 127, "../internals/export": 170 }], 319: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var isArray = require2("../internals/is-array");
           var isConstructor = require2("../internals/is-constructor");
           var isObject = require2("../internals/is-object");
@@ -14605,15 +14600,15 @@ var require_aliyun_oss_sdk = __commonJS({
           var SPECIES = wellKnownSymbol("species");
           var $Array = Array;
           var max = Math.max;
-          $2({ target: "Array", proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+          $({ target: "Array", proto: true, forced: !HAS_SPECIES_SUPPORT }, {
             slice: function slice(start, end) {
-              var O2 = toIndexedObject(this);
-              var length = lengthOfArrayLike(O2);
-              var k2 = toAbsoluteIndex(start, length);
+              var O = toIndexedObject(this);
+              var length = lengthOfArrayLike(O);
+              var k = toAbsoluteIndex(start, length);
               var fin = toAbsoluteIndex(end === void 0 ? length : end, length);
               var Constructor, result, n;
-              if (isArray(O2)) {
-                Constructor = O2.constructor;
+              if (isArray(O)) {
+                Constructor = O.constructor;
                 if (isConstructor(Constructor) && (Constructor === $Array || isArray(Constructor.prototype))) {
                   Constructor = void 0;
                 } else if (isObject(Constructor)) {
@@ -14622,20 +14617,20 @@ var require_aliyun_oss_sdk = __commonJS({
                     Constructor = void 0;
                 }
                 if (Constructor === $Array || Constructor === void 0) {
-                  return nativeSlice(O2, k2, fin);
+                  return nativeSlice(O, k, fin);
                 }
               }
-              result = new (Constructor === void 0 ? $Array : Constructor)(max(fin - k2, 0));
-              for (n = 0; k2 < fin; k2++, n++)
-                if (k2 in O2)
-                  createProperty(result, n, O2[k2]);
+              result = new (Constructor === void 0 ? $Array : Constructor)(max(fin - k, 0));
+              for (n = 0; k < fin; k++, n++)
+                if (k in O)
+                  createProperty(result, n, O[k]);
               result.length = n;
               return result;
             }
           });
         }, { "../internals/array-method-has-species-support": 127, "../internals/array-slice": 131, "../internals/create-property": 147, "../internals/export": 170, "../internals/is-array": 201, "../internals/is-constructor": 204, "../internals/is-object": 208, "../internals/length-of-array-like": 219, "../internals/to-absolute-index": 279, "../internals/to-indexed-object": 282, "../internals/well-known-symbol": 306 }], 320: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var uncurryThis = require2("../internals/function-uncurry-this");
           var aCallable = require2("../internals/a-callable");
           var toObject = require2("../internals/to-object");
@@ -14690,8 +14685,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 test.push({ k: chr + index, v: value });
               }
             }
-            test.sort(function(a, b2) {
-              return b2.v - a.v;
+            test.sort(function(a, b) {
+              return b.v - a.v;
             });
             for (index = 0; index < test.length; index++) {
               chr = test[index].k.charAt(0);
@@ -14702,17 +14697,17 @@ var require_aliyun_oss_sdk = __commonJS({
           });
           var FORCED = FAILS_ON_UNDEFINED || !FAILS_ON_NULL || !STRICT_METHOD || !STABLE_SORT;
           var getSortCompare = function(comparefn) {
-            return function(x2, y2) {
-              if (y2 === void 0)
+            return function(x, y) {
+              if (y === void 0)
                 return -1;
-              if (x2 === void 0)
+              if (x === void 0)
                 return 1;
               if (comparefn !== void 0)
-                return +comparefn(x2, y2) || 0;
-              return toString(x2) > toString(y2) ? 1 : -1;
+                return +comparefn(x, y) || 0;
+              return toString(x) > toString(y) ? 1 : -1;
             };
           };
-          $2({ target: "Array", proto: true, forced: FORCED }, {
+          $({ target: "Array", proto: true, forced: FORCED }, {
             sort: function sort(comparefn) {
               if (comparefn !== void 0)
                 aCallable(comparefn);
@@ -14738,7 +14733,7 @@ var require_aliyun_oss_sdk = __commonJS({
           });
         }, { "../internals/a-callable": 108, "../internals/array-method-is-strict": 128, "../internals/array-sort": 132, "../internals/delete-property-or-throw": 152, "../internals/engine-ff-version": 158, "../internals/engine-is-ie-or-edge": 161, "../internals/engine-v8-version": 167, "../internals/engine-webkit-version": 168, "../internals/export": 170, "../internals/fails": 171, "../internals/function-uncurry-this": 181, "../internals/length-of-array-like": 219, "../internals/to-object": 285, "../internals/to-string": 291 }], 321: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var toObject = require2("../internals/to-object");
           var toAbsoluteIndex = require2("../internals/to-absolute-index");
           var toIntegerOrInfinity = require2("../internals/to-integer-or-infinity");
@@ -14752,13 +14747,13 @@ var require_aliyun_oss_sdk = __commonJS({
           var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport("splice");
           var max = Math.max;
           var min = Math.min;
-          $2({ target: "Array", proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+          $({ target: "Array", proto: true, forced: !HAS_SPECIES_SUPPORT }, {
             splice: function splice(start, deleteCount) {
-              var O2 = toObject(this);
-              var len = lengthOfArrayLike(O2);
+              var O = toObject(this);
+              var len = lengthOfArrayLike(O);
               var actualStart = toAbsoluteIndex(start, len);
               var argumentsLength = arguments.length;
-              var insertCount, actualDeleteCount, A, k2, from, to;
+              var insertCount, actualDeleteCount, A, k, from, to;
               if (argumentsLength === 0) {
                 insertCount = actualDeleteCount = 0;
               } else if (argumentsLength === 1) {
@@ -14769,38 +14764,38 @@ var require_aliyun_oss_sdk = __commonJS({
                 actualDeleteCount = min(max(toIntegerOrInfinity(deleteCount), 0), len - actualStart);
               }
               doesNotExceedSafeInteger(len + insertCount - actualDeleteCount);
-              A = arraySpeciesCreate(O2, actualDeleteCount);
-              for (k2 = 0; k2 < actualDeleteCount; k2++) {
-                from = actualStart + k2;
-                if (from in O2)
-                  createProperty(A, k2, O2[from]);
+              A = arraySpeciesCreate(O, actualDeleteCount);
+              for (k = 0; k < actualDeleteCount; k++) {
+                from = actualStart + k;
+                if (from in O)
+                  createProperty(A, k, O[from]);
               }
               A.length = actualDeleteCount;
               if (insertCount < actualDeleteCount) {
-                for (k2 = actualStart; k2 < len - actualDeleteCount; k2++) {
-                  from = k2 + actualDeleteCount;
-                  to = k2 + insertCount;
-                  if (from in O2)
-                    O2[to] = O2[from];
+                for (k = actualStart; k < len - actualDeleteCount; k++) {
+                  from = k + actualDeleteCount;
+                  to = k + insertCount;
+                  if (from in O)
+                    O[to] = O[from];
                   else
-                    deletePropertyOrThrow(O2, to);
+                    deletePropertyOrThrow(O, to);
                 }
-                for (k2 = len; k2 > len - actualDeleteCount + insertCount; k2--)
-                  deletePropertyOrThrow(O2, k2 - 1);
+                for (k = len; k > len - actualDeleteCount + insertCount; k--)
+                  deletePropertyOrThrow(O, k - 1);
               } else if (insertCount > actualDeleteCount) {
-                for (k2 = len - actualDeleteCount; k2 > actualStart; k2--) {
-                  from = k2 + actualDeleteCount - 1;
-                  to = k2 + insertCount - 1;
-                  if (from in O2)
-                    O2[to] = O2[from];
+                for (k = len - actualDeleteCount; k > actualStart; k--) {
+                  from = k + actualDeleteCount - 1;
+                  to = k + insertCount - 1;
+                  if (from in O)
+                    O[to] = O[from];
                   else
-                    deletePropertyOrThrow(O2, to);
+                    deletePropertyOrThrow(O, to);
                 }
               }
-              for (k2 = 0; k2 < insertCount; k2++) {
-                O2[k2 + actualStart] = arguments[k2 + 2];
+              for (k = 0; k < insertCount; k++) {
+                O[k + actualStart] = arguments[k + 2];
               }
-              setArrayLength(O2, len - actualDeleteCount + insertCount);
+              setArrayLength(O, len - actualDeleteCount + insertCount);
               return A;
             }
           });
@@ -14829,7 +14824,7 @@ var require_aliyun_oss_sdk = __commonJS({
           }
         }, { "../internals/define-built-in-accessor": 148, "../internals/descriptors": 153, "../internals/function-name": 178, "../internals/function-uncurry-this": 181 }], 323: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var getBuiltIn = require2("../internals/get-built-in");
           var apply = require2("../internals/function-apply");
           var call = require2("../internals/function-call");
@@ -14879,7 +14874,7 @@ var require_aliyun_oss_sdk = __commonJS({
             return match;
           };
           if ($stringify) {
-            $2({ target: "JSON", stat: true, arity: 3, forced: WRONG_SYMBOLS_CONVERSION || ILL_FORMED_UNICODE }, {
+            $({ target: "JSON", stat: true, arity: 3, forced: WRONG_SYMBOLS_CONVERSION || ILL_FORMED_UNICODE }, {
               // eslint-disable-next-line no-unused-vars -- required for `.length`
               stringify: function stringify(it, replacer, space) {
                 var args = arraySlice(arguments);
@@ -14890,7 +14885,7 @@ var require_aliyun_oss_sdk = __commonJS({
           }
         }, { "../internals/array-slice": 131, "../internals/export": 170, "../internals/fails": 171, "../internals/function-apply": 174, "../internals/function-call": 177, "../internals/function-uncurry-this": 181, "../internals/get-built-in": 182, "../internals/get-json-replacer-function": 185, "../internals/is-callable": 203, "../internals/is-symbol": 212, "../internals/symbol-constructor-detection": 274 }], 324: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var IS_PURE = require2("../internals/is-pure");
           var DESCRIPTORS = require2("../internals/descriptors");
           var global2 = require2("../internals/global");
@@ -14971,15 +14966,15 @@ var require_aliyun_oss_sdk = __commonJS({
           NumberWrapper.prototype = NumberPrototype;
           if (FORCED && !IS_PURE)
             NumberPrototype.constructor = NumberWrapper;
-          $2({ global: true, constructor: true, wrap: true, forced: FORCED }, {
+          $({ global: true, constructor: true, wrap: true, forced: FORCED }, {
             Number: NumberWrapper
           });
           var copyConstructorProperties = function(target, source) {
             for (var keys = DESCRIPTORS ? getOwnPropertyNames(source) : (
               // ES3:
               "MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,EPSILON,MAX_SAFE_INTEGER,MIN_SAFE_INTEGER,isFinite,isInteger,isNaN,isSafeInteger,parseFloat,parseInt,fromString,range".split(",")
-            ), j2 = 0, key; keys.length > j2; j2++) {
-              if (hasOwn(source, key = keys[j2]) && !hasOwn(target, key)) {
+            ), j = 0, key; keys.length > j; j++) {
+              if (hasOwn(source, key = keys[j]) && !hasOwn(target, key)) {
                 defineProperty(target, key, getOwnPropertyDescriptor(source, key));
               }
             }
@@ -14990,23 +14985,23 @@ var require_aliyun_oss_sdk = __commonJS({
             copyConstructorProperties(path3[NUMBER], NativeNumber);
         }, { "../internals/descriptors": 153, "../internals/export": 170, "../internals/fails": 171, "../internals/function-uncurry-this": 181, "../internals/global": 188, "../internals/has-own-property": 189, "../internals/inherit-if-required": 196, "../internals/is-forced": 205, "../internals/is-pure": 210, "../internals/is-symbol": 212, "../internals/object-define-property": 231, "../internals/object-get-own-property-descriptor": 232, "../internals/object-get-own-property-names": 234, "../internals/object-is-prototype-of": 238, "../internals/path": 247, "../internals/string-trim": 273, "../internals/this-number-value": 278, "../internals/to-primitive": 288 }], 325: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var assign = require2("../internals/object-assign");
-          $2({ target: "Object", stat: true, arity: 2, forced: Object.assign !== assign }, {
+          $({ target: "Object", stat: true, arity: 2, forced: Object.assign !== assign }, {
             assign
           });
         }, { "../internals/export": 170, "../internals/object-assign": 228 }], 326: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var $entries = require2("../internals/object-to-array").entries;
-          $2({ target: "Object", stat: true }, {
-            entries: function entries(O2) {
-              return $entries(O2);
+          $({ target: "Object", stat: true }, {
+            entries: function entries(O) {
+              return $entries(O);
             }
           });
         }, { "../internals/export": 170, "../internals/object-to-array": 243 }], 327: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var NATIVE_SYMBOL = require2("../internals/symbol-constructor-detection");
           var fails = require2("../internals/fails");
           var getOwnPropertySymbolsModule = require2("../internals/object-get-own-property-symbols");
@@ -15014,7 +15009,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var FORCED = !NATIVE_SYMBOL || fails(function() {
             getOwnPropertySymbolsModule.f(1);
           });
-          $2({ target: "Object", stat: true, forced: FORCED }, {
+          $({ target: "Object", stat: true, forced: FORCED }, {
             getOwnPropertySymbols: function getOwnPropertySymbols(it) {
               var $getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
               return $getOwnPropertySymbols ? $getOwnPropertySymbols(toObject(it)) : [];
@@ -15022,14 +15017,14 @@ var require_aliyun_oss_sdk = __commonJS({
           });
         }, { "../internals/export": 170, "../internals/fails": 171, "../internals/object-get-own-property-symbols": 235, "../internals/symbol-constructor-detection": 274, "../internals/to-object": 285 }], 328: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var toObject = require2("../internals/to-object");
           var nativeKeys = require2("../internals/object-keys");
           var fails = require2("../internals/fails");
           var FAILS_ON_PRIMITIVES = fails(function() {
             nativeKeys(1);
           });
-          $2({ target: "Object", stat: true, forced: FAILS_ON_PRIMITIVES }, {
+          $({ target: "Object", stat: true, forced: FAILS_ON_PRIMITIVES }, {
             keys: function keys(it) {
               return nativeKeys(toObject(it));
             }
@@ -15044,21 +15039,21 @@ var require_aliyun_oss_sdk = __commonJS({
           }
         }, { "../internals/define-built-in": 149, "../internals/object-to-string": 244, "../internals/to-string-tag-support": 290 }], 330: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var call = require2("../internals/function-call");
           var aCallable = require2("../internals/a-callable");
           var newPromiseCapabilityModule = require2("../internals/new-promise-capability");
           var perform = require2("../internals/perform");
           var iterate = require2("../internals/iterate");
           var PROMISE_STATICS_INCORRECT_ITERATION = require2("../internals/promise-statics-incorrect-iteration");
-          $2({ target: "Promise", stat: true, forced: PROMISE_STATICS_INCORRECT_ITERATION }, {
+          $({ target: "Promise", stat: true, forced: PROMISE_STATICS_INCORRECT_ITERATION }, {
             all: function all(iterable) {
-              var C2 = this;
-              var capability = newPromiseCapabilityModule.f(C2);
+              var C = this;
+              var capability = newPromiseCapabilityModule.f(C);
               var resolve = capability.resolve;
               var reject = capability.reject;
               var result = perform(function() {
-                var $promiseResolve = aCallable(C2.resolve);
+                var $promiseResolve = aCallable(C.resolve);
                 var values = [];
                 var counter = 0;
                 var remaining = 1;
@@ -15066,7 +15061,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   var index = counter++;
                   var alreadyCalled = false;
                   remaining++;
-                  call($promiseResolve, C2, promise).then(function(value) {
+                  call($promiseResolve, C, promise).then(function(value) {
                     if (alreadyCalled)
                       return;
                     alreadyCalled = true;
@@ -15083,7 +15078,7 @@ var require_aliyun_oss_sdk = __commonJS({
           });
         }, { "../internals/a-callable": 108, "../internals/export": 170, "../internals/function-call": 177, "../internals/iterate": 213, "../internals/new-promise-capability": 226, "../internals/perform": 248, "../internals/promise-statics-incorrect-iteration": 252 }], 331: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var IS_PURE = require2("../internals/is-pure");
           var FORCED_PROMISE_CONSTRUCTOR = require2("../internals/promise-constructor-detection").CONSTRUCTOR;
           var NativePromiseConstructor = require2("../internals/promise-native-constructor");
@@ -15091,7 +15086,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var isCallable = require2("../internals/is-callable");
           var defineBuiltIn = require2("../internals/define-built-in");
           var NativePromisePrototype = NativePromiseConstructor && NativePromiseConstructor.prototype;
-          $2({ target: "Promise", proto: true, forced: FORCED_PROMISE_CONSTRUCTOR, real: true }, {
+          $({ target: "Promise", proto: true, forced: FORCED_PROMISE_CONSTRUCTOR, real: true }, {
             "catch": function(onRejected) {
               return this.then(void 0, onRejected);
             }
@@ -15104,7 +15099,7 @@ var require_aliyun_oss_sdk = __commonJS({
           }
         }, { "../internals/define-built-in": 149, "../internals/export": 170, "../internals/get-built-in": 182, "../internals/is-callable": 203, "../internals/is-pure": 210, "../internals/promise-constructor-detection": 249, "../internals/promise-native-constructor": 250 }], 332: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var IS_PURE = require2("../internals/is-pure");
           var IS_NODE = require2("../internals/engine-is-node");
           var global2 = require2("../internals/global");
@@ -15350,8 +15345,8 @@ var require_aliyun_oss_sdk = __commonJS({
               this.resolve = bind(internalResolve, state);
               this.reject = bind(internalReject, state);
             };
-            newPromiseCapabilityModule.f = newPromiseCapability = function(C2) {
-              return C2 === PromiseConstructor || C2 === PromiseWrapper ? new OwnPromiseCapability(C2) : newGenericPromiseCapability(C2);
+            newPromiseCapabilityModule.f = newPromiseCapability = function(C) {
+              return C === PromiseConstructor || C === PromiseWrapper ? new OwnPromiseCapability(C) : newGenericPromiseCapability(C);
             };
             if (!IS_PURE && isCallable(NativePromiseConstructor) && NativePromisePrototype !== Object.prototype) {
               nativeThen = NativePromisePrototype.then;
@@ -15372,7 +15367,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
             }
           }
-          $2({ global: true, constructor: true, wrap: true, forced: FORCED_PROMISE_CONSTRUCTOR }, {
+          $({ global: true, constructor: true, wrap: true, forced: FORCED_PROMISE_CONSTRUCTOR }, {
             Promise: PromiseConstructor
           });
           setToStringTag(PromiseConstructor, PROMISE, false, true);
@@ -15387,22 +15382,22 @@ var require_aliyun_oss_sdk = __commonJS({
           require2("../modules/es.promise.resolve");
         }, { "../modules/es.promise.all": 330, "../modules/es.promise.catch": 331, "../modules/es.promise.constructor": 332, "../modules/es.promise.race": 334, "../modules/es.promise.reject": 335, "../modules/es.promise.resolve": 336 }], 334: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var call = require2("../internals/function-call");
           var aCallable = require2("../internals/a-callable");
           var newPromiseCapabilityModule = require2("../internals/new-promise-capability");
           var perform = require2("../internals/perform");
           var iterate = require2("../internals/iterate");
           var PROMISE_STATICS_INCORRECT_ITERATION = require2("../internals/promise-statics-incorrect-iteration");
-          $2({ target: "Promise", stat: true, forced: PROMISE_STATICS_INCORRECT_ITERATION }, {
+          $({ target: "Promise", stat: true, forced: PROMISE_STATICS_INCORRECT_ITERATION }, {
             race: function race(iterable) {
-              var C2 = this;
-              var capability = newPromiseCapabilityModule.f(C2);
+              var C = this;
+              var capability = newPromiseCapabilityModule.f(C);
               var reject = capability.reject;
               var result = perform(function() {
-                var $promiseResolve = aCallable(C2.resolve);
+                var $promiseResolve = aCallable(C.resolve);
                 iterate(iterable, function(promise) {
-                  call($promiseResolve, C2, promise).then(capability.resolve, reject);
+                  call($promiseResolve, C, promise).then(capability.resolve, reject);
                 });
               });
               if (result.error)
@@ -15412,10 +15407,10 @@ var require_aliyun_oss_sdk = __commonJS({
           });
         }, { "../internals/a-callable": 108, "../internals/export": 170, "../internals/function-call": 177, "../internals/iterate": 213, "../internals/new-promise-capability": 226, "../internals/perform": 248, "../internals/promise-statics-incorrect-iteration": 252 }], 335: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var newPromiseCapabilityModule = require2("../internals/new-promise-capability");
           var FORCED_PROMISE_CONSTRUCTOR = require2("../internals/promise-constructor-detection").CONSTRUCTOR;
-          $2({ target: "Promise", stat: true, forced: FORCED_PROMISE_CONSTRUCTOR }, {
+          $({ target: "Promise", stat: true, forced: FORCED_PROMISE_CONSTRUCTOR }, {
             reject: function reject(r) {
               var capability = newPromiseCapabilityModule.f(this);
               var capabilityReject = capability.reject;
@@ -15425,7 +15420,7 @@ var require_aliyun_oss_sdk = __commonJS({
           });
         }, { "../internals/export": 170, "../internals/new-promise-capability": 226, "../internals/promise-constructor-detection": 249 }], 336: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var getBuiltIn = require2("../internals/get-built-in");
           var IS_PURE = require2("../internals/is-pure");
           var NativePromiseConstructor = require2("../internals/promise-native-constructor");
@@ -15433,9 +15428,9 @@ var require_aliyun_oss_sdk = __commonJS({
           var promiseResolve = require2("../internals/promise-resolve");
           var PromiseConstructorWrapper = getBuiltIn("Promise");
           var CHECK_WRAPPER = IS_PURE && !FORCED_PROMISE_CONSTRUCTOR;
-          $2({ target: "Promise", stat: true, forced: IS_PURE || FORCED_PROMISE_CONSTRUCTOR }, {
-            resolve: function resolve(x2) {
-              return promiseResolve(CHECK_WRAPPER && this === PromiseConstructorWrapper ? NativePromiseConstructor : this, x2);
+          $({ target: "Promise", stat: true, forced: IS_PURE || FORCED_PROMISE_CONSTRUCTOR }, {
+            resolve: function resolve(x) {
+              return promiseResolve(CHECK_WRAPPER && this === PromiseConstructorWrapper ? NativePromiseConstructor : this, x);
             }
           });
         }, { "../internals/export": 170, "../internals/get-built-in": 182, "../internals/is-pure": 210, "../internals/promise-constructor-detection": 249, "../internals/promise-native-constructor": 250, "../internals/promise-resolve": 251 }], 337: [function(require2, module4, exports3) {
@@ -15617,9 +15612,9 @@ var require_aliyun_oss_sdk = __commonJS({
           setSpecies("RegExp");
         }, { "../internals/create-non-enumerable-property": 145, "../internals/define-built-in": 149, "../internals/descriptors": 153, "../internals/fails": 171, "../internals/function-uncurry-this": 181, "../internals/global": 188, "../internals/has-own-property": 189, "../internals/inherit-if-required": 196, "../internals/internal-state": 199, "../internals/is-forced": 205, "../internals/is-regexp": 211, "../internals/object-create": 229, "../internals/object-get-own-property-names": 234, "../internals/object-is-prototype-of": 238, "../internals/proxy-accessor": 253, "../internals/regexp-get-flags": 258, "../internals/regexp-sticky-helpers": 259, "../internals/regexp-unsupported-dot-all": 260, "../internals/regexp-unsupported-ncg": 261, "../internals/set-species": 265, "../internals/to-string": 291, "../internals/well-known-symbol": 306 }], 338: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var exec = require2("../internals/regexp-exec");
-          $2({ target: "RegExp", proto: true, forced: /./.exec !== exec }, {
+          $({ target: "RegExp", proto: true, forced: /./.exec !== exec }, {
             exec
           });
         }, { "../internals/export": 170, "../internals/regexp-exec": 256 }], 339: [function(require2, module4, exports3) {
@@ -15659,14 +15654,14 @@ var require_aliyun_oss_sdk = __commonJS({
           require2("../modules/es.set.constructor");
         }, { "../modules/es.set.constructor": 340 }], 342: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var uncurryThis = require2("../internals/function-uncurry-this");
           var notARegExp = require2("../internals/not-a-regexp");
           var requireObjectCoercible = require2("../internals/require-object-coercible");
           var toString = require2("../internals/to-string");
           var correctIsRegExpLogic = require2("../internals/correct-is-regexp-logic");
           var stringIndexOf = uncurryThis("".indexOf);
-          $2({ target: "String", proto: true, forced: !correctIsRegExpLogic("includes") }, {
+          $({ target: "String", proto: true, forced: !correctIsRegExpLogic("includes") }, {
             includes: function includes(searchString) {
               return !!~stringIndexOf(
                 toString(requireObjectCoercible(this)),
@@ -15719,9 +15714,9 @@ var require_aliyun_oss_sdk = __commonJS({
               // `String.prototype.match` method
               // https://tc39.es/ecma262/#sec-string.prototype.match
               function match(regexp) {
-                var O2 = requireObjectCoercible(this);
+                var O = requireObjectCoercible(this);
                 var matcher = isNullOrUndefined(regexp) ? void 0 : getMethod(regexp, MATCH);
-                return matcher ? call(matcher, regexp, O2) : new RegExp(regexp)[MATCH](toString(O2));
+                return matcher ? call(matcher, regexp, O) : new RegExp(regexp)[MATCH](toString(O));
               },
               // `RegExp.prototype[@@match]` method
               // https://tc39.es/ecma262/#sec-regexp.prototype-@@match
@@ -15788,23 +15783,23 @@ var require_aliyun_oss_sdk = __commonJS({
             return false;
           }();
           var REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function() {
-            var re2 = /./;
-            re2.exec = function() {
+            var re = /./;
+            re.exec = function() {
               var result = [];
               result.groups = { a: "7" };
               return result;
             };
-            return "".replace(re2, "$<a>") !== "7";
+            return "".replace(re, "$<a>") !== "7";
           });
-          fixRegExpWellKnownSymbolLogic("replace", function(_2, nativeReplace, maybeCallNative) {
+          fixRegExpWellKnownSymbolLogic("replace", function(_, nativeReplace, maybeCallNative) {
             var UNSAFE_SUBSTITUTE = REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE ? "$" : "$0";
             return [
               // `String.prototype.replace` method
               // https://tc39.es/ecma262/#sec-string.prototype.replace
               function replace(searchValue, replaceValue) {
-                var O2 = requireObjectCoercible(this);
+                var O = requireObjectCoercible(this);
                 var replacer = isNullOrUndefined(searchValue) ? void 0 : getMethod(searchValue, REPLACE);
-                return replacer ? call(replacer, searchValue, O2, replaceValue) : call(nativeReplace, toString(O2), searchValue, replaceValue);
+                return replacer ? call(replacer, searchValue, O, replaceValue) : call(nativeReplace, toString(O), searchValue, replaceValue);
               },
               // `RegExp.prototype[@@replace]` method
               // https://tc39.es/ecma262/#sec-regexp.prototype-@@replace
@@ -15846,8 +15841,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   var position = max(min(toIntegerOrInfinity(result.index), S.length), 0);
                   var captures = [];
                   var replacement;
-                  for (var j2 = 1; j2 < result.length; j2++)
-                    push(captures, maybeToString(result[j2]));
+                  for (var j = 1; j < result.length; j++)
+                    push(captures, maybeToString(result[j]));
                   var namedCaptures = result.groups;
                   if (functionalReplace) {
                     var replacerArgs = concat([matched], captures, position, S);
@@ -15882,9 +15877,9 @@ var require_aliyun_oss_sdk = __commonJS({
               // `String.prototype.search` method
               // https://tc39.es/ecma262/#sec-string.prototype.search
               function search(regexp) {
-                var O2 = requireObjectCoercible(this);
+                var O = requireObjectCoercible(this);
                 var searcher = isNullOrUndefined(regexp) ? void 0 : getMethod(regexp, SEARCH);
-                return searcher ? call(searcher, regexp, O2) : new RegExp(regexp)[SEARCH](toString(O2));
+                return searcher ? call(searcher, regexp, O) : new RegExp(regexp)[SEARCH](toString(O));
               },
               // `RegExp.prototype[@@search]` method
               // https://tc39.es/ecma262/#sec-regexp.prototype-@@search
@@ -15932,12 +15927,12 @@ var require_aliyun_oss_sdk = __commonJS({
           var push = uncurryThis($push);
           var stringSlice = uncurryThis("".slice);
           var SPLIT_WORKS_WITH_OVERWRITTEN_EXEC = !fails(function() {
-            var re2 = /(?:)/;
-            var originalExec = re2.exec;
-            re2.exec = function() {
+            var re = /(?:)/;
+            var originalExec = re.exec;
+            re.exec = function() {
               return originalExec.apply(this, arguments);
             };
-            var result = "ab".split(re2);
+            var result = "ab".split(re);
             return result.length !== 2 || result[0] !== "a" || result[1] !== "b";
           });
           fixRegExpWellKnownSymbolLogic("split", function(SPLIT, nativeSplit, maybeCallNative) {
@@ -15991,9 +15986,9 @@ var require_aliyun_oss_sdk = __commonJS({
               // `String.prototype.split` method
               // https://tc39.es/ecma262/#sec-string.prototype.split
               function split(separator, limit) {
-                var O2 = requireObjectCoercible(this);
+                var O = requireObjectCoercible(this);
                 var splitter = isNullOrUndefined(separator) ? void 0 : getMethod(separator, SPLIT);
-                return splitter ? call(splitter, separator, O2, limit) : call(internalSplit, toString(O2), separator, limit);
+                return splitter ? call(splitter, separator, O, limit) : call(internalSplit, toString(O), separator, limit);
               },
               // `RegExp.prototype[@@split]` method
               // https://tc39.es/ecma262/#sec-regexp.prototype-@@split
@@ -16006,34 +16001,34 @@ var require_aliyun_oss_sdk = __commonJS({
                 var res = maybeCallNative(internalSplit, rx, S, limit, internalSplit !== nativeSplit);
                 if (res.done)
                   return res.value;
-                var C2 = speciesConstructor(rx, RegExp);
+                var C = speciesConstructor(rx, RegExp);
                 var unicodeMatching = rx.unicode;
                 var flags = (rx.ignoreCase ? "i" : "") + (rx.multiline ? "m" : "") + (rx.unicode ? "u" : "") + (UNSUPPORTED_Y ? "g" : "y");
-                var splitter = new C2(UNSUPPORTED_Y ? "^(?:" + rx.source + ")" : rx, flags);
+                var splitter = new C(UNSUPPORTED_Y ? "^(?:" + rx.source + ")" : rx, flags);
                 var lim = limit === void 0 ? MAX_UINT32 : limit >>> 0;
                 if (lim === 0)
                   return [];
                 if (S.length === 0)
                   return callRegExpExec(splitter, S) === null ? [S] : [];
                 var p = 0;
-                var q2 = 0;
+                var q = 0;
                 var A = [];
-                while (q2 < S.length) {
-                  splitter.lastIndex = UNSUPPORTED_Y ? 0 : q2;
-                  var z2 = callRegExpExec(splitter, UNSUPPORTED_Y ? stringSlice(S, q2) : S);
+                while (q < S.length) {
+                  splitter.lastIndex = UNSUPPORTED_Y ? 0 : q;
+                  var z = callRegExpExec(splitter, UNSUPPORTED_Y ? stringSlice(S, q) : S);
                   var e;
-                  if (z2 === null || (e = min(toLength(splitter.lastIndex + (UNSUPPORTED_Y ? q2 : 0)), S.length)) === p) {
-                    q2 = advanceStringIndex(S, q2, unicodeMatching);
+                  if (z === null || (e = min(toLength(splitter.lastIndex + (UNSUPPORTED_Y ? q : 0)), S.length)) === p) {
+                    q = advanceStringIndex(S, q, unicodeMatching);
                   } else {
-                    push(A, stringSlice(S, p, q2));
+                    push(A, stringSlice(S, p, q));
                     if (A.length === lim)
                       return A;
-                    for (var i = 1; i <= z2.length - 1; i++) {
-                      push(A, z2[i]);
+                    for (var i = 1; i <= z.length - 1; i++) {
+                      push(A, z[i]);
                       if (A.length === lim)
                         return A;
                     }
-                    q2 = p = e;
+                    q = p = e;
                   }
                 }
                 push(A, stringSlice(S, p));
@@ -16043,7 +16038,7 @@ var require_aliyun_oss_sdk = __commonJS({
           }, !SPLIT_WORKS_WITH_OVERWRITTEN_EXEC, UNSUPPORTED_Y);
         }, { "../internals/advance-string-index": 112, "../internals/an-object": 114, "../internals/array-slice": 131, "../internals/fails": 171, "../internals/fix-regexp-well-known-symbol-logic": 172, "../internals/function-apply": 174, "../internals/function-call": 177, "../internals/function-uncurry-this": 181, "../internals/get-method": 186, "../internals/is-null-or-undefined": 207, "../internals/is-regexp": 211, "../internals/regexp-exec": 256, "../internals/regexp-exec-abstract": 255, "../internals/regexp-sticky-helpers": 259, "../internals/require-object-coercible": 262, "../internals/species-constructor": 270, "../internals/to-length": 284, "../internals/to-string": 291 }], 348: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var uncurryThis = require2("../internals/function-uncurry-this-clause");
           var getOwnPropertyDescriptor = require2("../internals/object-get-own-property-descriptor").f;
           var toLength = require2("../internals/to-length");
@@ -16059,7 +16054,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var descriptor = getOwnPropertyDescriptor(String.prototype, "startsWith");
             return descriptor && !descriptor.writable;
           }();
-          $2({ target: "String", proto: true, forced: !MDN_POLYFILL_BUG && !CORRECT_IS_REGEXP_LOGIC }, {
+          $({ target: "String", proto: true, forced: !MDN_POLYFILL_BUG && !CORRECT_IS_REGEXP_LOGIC }, {
             startsWith: function startsWith(searchString) {
               var that = toString(requireObjectCoercible(this));
               notARegExp(searchString);
@@ -16070,17 +16065,17 @@ var require_aliyun_oss_sdk = __commonJS({
           });
         }, { "../internals/correct-is-regexp-logic": 142, "../internals/export": 170, "../internals/function-uncurry-this-clause": 180, "../internals/is-pure": 210, "../internals/not-a-regexp": 227, "../internals/object-get-own-property-descriptor": 232, "../internals/require-object-coercible": 262, "../internals/to-length": 284, "../internals/to-string": 291 }], 349: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var $trim = require2("../internals/string-trim").trim;
           var forcedStringTrimMethod = require2("../internals/string-trim-forced");
-          $2({ target: "String", proto: true, forced: forcedStringTrimMethod("trim") }, {
+          $({ target: "String", proto: true, forced: forcedStringTrimMethod("trim") }, {
             trim: function trim() {
               return $trim(this);
             }
           });
         }, { "../internals/export": 170, "../internals/string-trim": 273, "../internals/string-trim-forced": 272 }], 350: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var global2 = require2("../internals/global");
           var call = require2("../internals/function-call");
           var uncurryThis = require2("../internals/function-uncurry-this");
@@ -16137,13 +16132,13 @@ var require_aliyun_oss_sdk = __commonJS({
           var ObjectPrototypeSymbols = shared("op-symbols");
           var WellKnownSymbolsStore = shared("wks");
           var USE_SETTER = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
-          var fallbackDefineProperty = function(O2, P2, Attributes) {
-            var ObjectPrototypeDescriptor = nativeGetOwnPropertyDescriptor(ObjectPrototype, P2);
+          var fallbackDefineProperty = function(O, P, Attributes) {
+            var ObjectPrototypeDescriptor = nativeGetOwnPropertyDescriptor(ObjectPrototype, P);
             if (ObjectPrototypeDescriptor)
-              delete ObjectPrototype[P2];
-            nativeDefineProperty(O2, P2, Attributes);
-            if (ObjectPrototypeDescriptor && O2 !== ObjectPrototype) {
-              nativeDefineProperty(ObjectPrototype, P2, ObjectPrototypeDescriptor);
+              delete ObjectPrototype[P];
+            nativeDefineProperty(O, P, Attributes);
+            if (ObjectPrototypeDescriptor && O !== ObjectPrototype) {
+              nativeDefineProperty(ObjectPrototype, P, ObjectPrototypeDescriptor);
             }
           };
           var setSymbolDescriptor = DESCRIPTORS && fails(function() {
@@ -16164,49 +16159,49 @@ var require_aliyun_oss_sdk = __commonJS({
               symbol.description = description;
             return symbol;
           };
-          var $defineProperty = function defineProperty(O2, P2, Attributes) {
-            if (O2 === ObjectPrototype)
-              $defineProperty(ObjectPrototypeSymbols, P2, Attributes);
-            anObject(O2);
-            var key = toPropertyKey(P2);
+          var $defineProperty = function defineProperty(O, P, Attributes) {
+            if (O === ObjectPrototype)
+              $defineProperty(ObjectPrototypeSymbols, P, Attributes);
+            anObject(O);
+            var key = toPropertyKey(P);
             anObject(Attributes);
             if (hasOwn(AllSymbols, key)) {
               if (!Attributes.enumerable) {
-                if (!hasOwn(O2, HIDDEN))
-                  nativeDefineProperty(O2, HIDDEN, createPropertyDescriptor(1, nativeObjectCreate(null)));
-                O2[HIDDEN][key] = true;
+                if (!hasOwn(O, HIDDEN))
+                  nativeDefineProperty(O, HIDDEN, createPropertyDescriptor(1, nativeObjectCreate(null)));
+                O[HIDDEN][key] = true;
               } else {
-                if (hasOwn(O2, HIDDEN) && O2[HIDDEN][key])
-                  O2[HIDDEN][key] = false;
+                if (hasOwn(O, HIDDEN) && O[HIDDEN][key])
+                  O[HIDDEN][key] = false;
                 Attributes = nativeObjectCreate(Attributes, { enumerable: createPropertyDescriptor(0, false) });
               }
-              return setSymbolDescriptor(O2, key, Attributes);
+              return setSymbolDescriptor(O, key, Attributes);
             }
-            return nativeDefineProperty(O2, key, Attributes);
+            return nativeDefineProperty(O, key, Attributes);
           };
-          var $defineProperties = function defineProperties(O2, Properties) {
-            anObject(O2);
+          var $defineProperties = function defineProperties(O, Properties) {
+            anObject(O);
             var properties = toIndexedObject(Properties);
             var keys = objectKeys(properties).concat($getOwnPropertySymbols(properties));
             $forEach(keys, function(key) {
               if (!DESCRIPTORS || call($propertyIsEnumerable, properties, key))
-                $defineProperty(O2, key, properties[key]);
+                $defineProperty(O, key, properties[key]);
             });
-            return O2;
+            return O;
           };
-          var $create = function create(O2, Properties) {
-            return Properties === void 0 ? nativeObjectCreate(O2) : $defineProperties(nativeObjectCreate(O2), Properties);
+          var $create = function create(O, Properties) {
+            return Properties === void 0 ? nativeObjectCreate(O) : $defineProperties(nativeObjectCreate(O), Properties);
           };
-          var $propertyIsEnumerable = function propertyIsEnumerable(V2) {
-            var P2 = toPropertyKey(V2);
-            var enumerable = call(nativePropertyIsEnumerable, this, P2);
-            if (this === ObjectPrototype && hasOwn(AllSymbols, P2) && !hasOwn(ObjectPrototypeSymbols, P2))
+          var $propertyIsEnumerable = function propertyIsEnumerable(V) {
+            var P = toPropertyKey(V);
+            var enumerable = call(nativePropertyIsEnumerable, this, P);
+            if (this === ObjectPrototype && hasOwn(AllSymbols, P) && !hasOwn(ObjectPrototypeSymbols, P))
               return false;
-            return enumerable || !hasOwn(this, P2) || !hasOwn(AllSymbols, P2) || hasOwn(this, HIDDEN) && this[HIDDEN][P2] ? enumerable : true;
+            return enumerable || !hasOwn(this, P) || !hasOwn(AllSymbols, P) || hasOwn(this, HIDDEN) && this[HIDDEN][P] ? enumerable : true;
           };
-          var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(O2, P2) {
-            var it = toIndexedObject(O2);
-            var key = toPropertyKey(P2);
+          var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(O, P) {
+            var it = toIndexedObject(O);
+            var key = toPropertyKey(P);
             if (it === ObjectPrototype && hasOwn(AllSymbols, key) && !hasOwn(ObjectPrototypeSymbols, key))
               return;
             var descriptor = nativeGetOwnPropertyDescriptor(it, key);
@@ -16215,8 +16210,8 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             return descriptor;
           };
-          var $getOwnPropertyNames = function getOwnPropertyNames(O2) {
-            var names = nativeGetOwnPropertyNames(toIndexedObject(O2));
+          var $getOwnPropertyNames = function getOwnPropertyNames(O) {
+            var names = nativeGetOwnPropertyNames(toIndexedObject(O));
             var result = [];
             $forEach(names, function(key) {
               if (!hasOwn(AllSymbols, key) && !hasOwn(hiddenKeys, key))
@@ -16224,9 +16219,9 @@ var require_aliyun_oss_sdk = __commonJS({
             });
             return result;
           };
-          var $getOwnPropertySymbols = function(O2) {
-            var IS_OBJECT_PROTOTYPE = O2 === ObjectPrototype;
-            var names = nativeGetOwnPropertyNames(IS_OBJECT_PROTOTYPE ? ObjectPrototypeSymbols : toIndexedObject(O2));
+          var $getOwnPropertySymbols = function(O) {
+            var IS_OBJECT_PROTOTYPE = O === ObjectPrototype;
+            var names = nativeGetOwnPropertyNames(IS_OBJECT_PROTOTYPE ? ObjectPrototypeSymbols : toIndexedObject(O));
             var result = [];
             $forEach(names, function(key) {
               if (hasOwn(AllSymbols, key) && (!IS_OBJECT_PROTOTYPE || hasOwn(ObjectPrototype, key))) {
@@ -16288,13 +16283,13 @@ var require_aliyun_oss_sdk = __commonJS({
               }
             }
           }
-          $2({ global: true, constructor: true, wrap: true, forced: !NATIVE_SYMBOL, sham: !NATIVE_SYMBOL }, {
+          $({ global: true, constructor: true, wrap: true, forced: !NATIVE_SYMBOL, sham: !NATIVE_SYMBOL }, {
             Symbol: $Symbol
           });
           $forEach(objectKeys(WellKnownSymbolsStore), function(name) {
             defineWellKnownSymbol(name);
           });
-          $2({ target: SYMBOL, stat: true, forced: !NATIVE_SYMBOL }, {
+          $({ target: SYMBOL, stat: true, forced: !NATIVE_SYMBOL }, {
             useSetter: function() {
               USE_SETTER = true;
             },
@@ -16302,7 +16297,7 @@ var require_aliyun_oss_sdk = __commonJS({
               USE_SETTER = false;
             }
           });
-          $2({ target: "Object", stat: true, forced: !NATIVE_SYMBOL, sham: !DESCRIPTORS }, {
+          $({ target: "Object", stat: true, forced: !NATIVE_SYMBOL, sham: !DESCRIPTORS }, {
             // `Object.create` method
             // https://tc39.es/ecma262/#sec-object.create
             create: $create,
@@ -16316,7 +16311,7 @@ var require_aliyun_oss_sdk = __commonJS({
             // https://tc39.es/ecma262/#sec-object.getownpropertydescriptors
             getOwnPropertyDescriptor: $getOwnPropertyDescriptor
           });
-          $2({ target: "Object", stat: true, forced: !NATIVE_SYMBOL }, {
+          $({ target: "Object", stat: true, forced: !NATIVE_SYMBOL }, {
             // `Object.getOwnPropertyNames` method
             // https://tc39.es/ecma262/#sec-object.getownpropertynames
             getOwnPropertyNames: $getOwnPropertyNames
@@ -16326,7 +16321,7 @@ var require_aliyun_oss_sdk = __commonJS({
           hiddenKeys[HIDDEN] = true;
         }, { "../internals/an-object": 114, "../internals/array-iteration": 125, "../internals/create-property-descriptor": 146, "../internals/define-built-in": 149, "../internals/define-built-in-accessor": 148, "../internals/descriptors": 153, "../internals/export": 170, "../internals/fails": 171, "../internals/function-call": 177, "../internals/function-uncurry-this": 181, "../internals/global": 188, "../internals/has-own-property": 189, "../internals/hidden-keys": 190, "../internals/internal-state": 199, "../internals/is-pure": 210, "../internals/object-create": 229, "../internals/object-define-properties": 230, "../internals/object-define-property": 231, "../internals/object-get-own-property-descriptor": 232, "../internals/object-get-own-property-names": 234, "../internals/object-get-own-property-names-external": 233, "../internals/object-get-own-property-symbols": 235, "../internals/object-is-prototype-of": 238, "../internals/object-keys": 240, "../internals/object-property-is-enumerable": 241, "../internals/set-to-string-tag": 266, "../internals/shared": 269, "../internals/shared-key": 267, "../internals/symbol-constructor-detection": 274, "../internals/symbol-define-to-primitive": 275, "../internals/to-indexed-object": 282, "../internals/to-property-key": 289, "../internals/to-string": 291, "../internals/uid": 299, "../internals/well-known-symbol": 306, "../internals/well-known-symbol-define": 304, "../internals/well-known-symbol-wrapped": 305 }], 351: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var DESCRIPTORS = require2("../internals/descriptors");
           var global2 = require2("../internals/global");
           var uncurryThis = require2("../internals/function-uncurry-this");
@@ -16368,13 +16363,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return desc === "" ? void 0 : desc;
               }
             });
-            $2({ global: true, constructor: true, forced: true }, {
+            $({ global: true, constructor: true, forced: true }, {
               Symbol: SymbolWrapper
             });
           }
         }, { "../internals/copy-constructor-properties": 141, "../internals/define-built-in-accessor": 148, "../internals/descriptors": 153, "../internals/export": 170, "../internals/function-uncurry-this": 181, "../internals/global": 188, "../internals/has-own-property": 189, "../internals/is-callable": 203, "../internals/object-is-prototype-of": 238, "../internals/to-string": 291 }], 352: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var getBuiltIn = require2("../internals/get-built-in");
           var hasOwn = require2("../internals/has-own-property");
           var toString = require2("../internals/to-string");
@@ -16382,7 +16377,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var NATIVE_SYMBOL_REGISTRY = require2("../internals/symbol-registry-detection");
           var StringToSymbolRegistry = shared("string-to-symbol-registry");
           var SymbolToStringRegistry = shared("symbol-to-string-registry");
-          $2({ target: "Symbol", stat: true, forced: !NATIVE_SYMBOL_REGISTRY }, {
+          $({ target: "Symbol", stat: true, forced: !NATIVE_SYMBOL_REGISTRY }, {
             "for": function(key) {
               var string = toString(key);
               if (hasOwn(StringToSymbolRegistry, string))
@@ -16406,14 +16401,14 @@ var require_aliyun_oss_sdk = __commonJS({
           require2("../modules/es.object.get-own-property-symbols");
         }, { "../modules/es.json.stringify": 323, "../modules/es.object.get-own-property-symbols": 327, "../modules/es.symbol.constructor": 350, "../modules/es.symbol.for": 352, "../modules/es.symbol.key-for": 355 }], 355: [function(require2, module4, exports3) {
           "use strict";
-          var $2 = require2("../internals/export");
+          var $ = require2("../internals/export");
           var hasOwn = require2("../internals/has-own-property");
           var isSymbol = require2("../internals/is-symbol");
           var tryToString = require2("../internals/try-to-string");
           var shared = require2("../internals/shared");
           var NATIVE_SYMBOL_REGISTRY = require2("../internals/symbol-registry-detection");
           var SymbolToStringRegistry = shared("symbol-to-string-registry");
-          $2({ target: "Symbol", stat: true, forced: !NATIVE_SYMBOL_REGISTRY }, {
+          $({ target: "Symbol", stat: true, forced: !NATIVE_SYMBOL_REGISTRY }, {
             keyFor: function keyFor(sym) {
               if (!isSymbol(sym))
                 throw new TypeError(tryToString(sym) + " is not a symbol");
@@ -16582,8 +16577,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var aTypedArray = ArrayBufferViewCore.aTypedArray;
           var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
           exportTypedArrayMethod("map", function map(mapfn) {
-            return $map(aTypedArray(this), mapfn, arguments.length > 1 ? arguments[1] : void 0, function(O2, length) {
-              return new (typedArraySpeciesConstructor(O2))(length);
+            return $map(aTypedArray(this), mapfn, arguments.length > 1 ? arguments[1] : void 0, function(O, length) {
+              return new (typedArraySpeciesConstructor(O))(length);
             });
           });
         }, { "../internals/array-buffer-view-core": 117, "../internals/array-iteration": 125, "../internals/typed-array-species-constructor": 298 }], 369: [function(require2, module4, exports3) {
@@ -16678,10 +16673,10 @@ var require_aliyun_oss_sdk = __commonJS({
           });
           exportTypedArrayMethod("slice", function slice(start, end) {
             var list = arraySlice(aTypedArray(this), start, end);
-            var C2 = typedArraySpeciesConstructor(this);
+            var C = typedArraySpeciesConstructor(this);
             var index = 0;
             var length = list.length;
-            var result = new C2(length);
+            var result = new C(length);
             while (length > index)
               result[index] = list[index++];
             return result;
@@ -16733,8 +16728,8 @@ var require_aliyun_oss_sdk = __commonJS({
               array[index] = 515 - index;
               expected[index] = index - 2 * mod + 3;
             }
-            nativeSort(array, function(a, b2) {
-              return (a / 4 | 0) - (b2 / 4 | 0);
+            nativeSort(array, function(a, b) {
+              return (a / 4 | 0) - (b / 4 | 0);
             });
             for (index = 0; index < 516; index++) {
               if (array[index] !== expected[index])
@@ -16742,16 +16737,16 @@ var require_aliyun_oss_sdk = __commonJS({
             }
           });
           var getSortCompare = function(comparefn) {
-            return function(x2, y2) {
+            return function(x, y) {
               if (comparefn !== void 0)
-                return +comparefn(x2, y2) || 0;
-              if (y2 !== y2)
+                return +comparefn(x, y) || 0;
+              if (y !== y)
                 return -1;
-              if (x2 !== x2)
+              if (x !== x)
                 return 1;
-              if (x2 === 0 && y2 === 0)
-                return 1 / x2 > 0 && 1 / y2 < 0 ? 1 : -1;
-              return x2 > y2;
+              if (x === 0 && y === 0)
+                return 1 / x > 0 && 1 / y < 0 ? 1 : -1;
+              return x > y;
             };
           };
           exportTypedArrayMethod("sort", function sort(comparefn) {
@@ -16770,13 +16765,13 @@ var require_aliyun_oss_sdk = __commonJS({
           var aTypedArray = ArrayBufferViewCore.aTypedArray;
           var exportTypedArrayMethod = ArrayBufferViewCore.exportTypedArrayMethod;
           exportTypedArrayMethod("subarray", function subarray(begin, end) {
-            var O2 = aTypedArray(this);
-            var length = O2.length;
+            var O = aTypedArray(this);
+            var length = O.length;
             var beginIndex = toAbsoluteIndex(begin, length);
-            var C2 = typedArraySpeciesConstructor(O2);
-            return new C2(
-              O2.buffer,
-              O2.byteOffset + beginIndex * O2.BYTES_PER_ELEMENT,
+            var C = typedArraySpeciesConstructor(O);
+            return new C(
+              O.buffer,
+              O.byteOffset + beginIndex * O.BYTES_PER_ELEMENT,
               toLength((end === void 0 ? length : toAbsoluteIndex(end, length)) - beginIndex)
             );
           });
@@ -16925,8 +16920,8 @@ var require_aliyun_oss_sdk = __commonJS({
             return arg === void 0;
           }
           exports3.isUndefined = isUndefined;
-          function isRegExp(re2) {
-            return objectToString(re2) === "[object RegExp]";
+          function isRegExp(re) {
+            return objectToString(re) === "[object RegExp]";
           }
           exports3.isRegExp = isRegExp;
           function isObject(arg) {
@@ -16982,48 +16977,48 @@ var require_aliyun_oss_sdk = __commonJS({
                     gmt = true;
                   }
                 }
-                var _2 = utc ? "getUTC" : "get";
-                var d = date[_2 + "Date"]();
-                var D2 = date[_2 + "Day"]();
-                var m2 = date[_2 + "Month"]();
-                var y2 = date[_2 + "FullYear"]();
-                var H2 = date[_2 + "Hours"]();
-                var M2 = date[_2 + "Minutes"]();
-                var s = date[_2 + "Seconds"]();
-                var L2 = date[_2 + "Milliseconds"]();
+                var _ = utc ? "getUTC" : "get";
+                var d = date[_ + "Date"]();
+                var D = date[_ + "Day"]();
+                var m = date[_ + "Month"]();
+                var y = date[_ + "FullYear"]();
+                var H = date[_ + "Hours"]();
+                var M = date[_ + "Minutes"]();
+                var s = date[_ + "Seconds"]();
+                var L = date[_ + "Milliseconds"]();
                 var o = utc ? 0 : date.getTimezoneOffset();
-                var W2 = getWeek(date);
-                var N2 = getDayOfWeek(date);
+                var W = getWeek(date);
+                var N = getDayOfWeek(date);
                 var flags = {
                   d,
                   dd: pad(d),
-                  ddd: dateFormat.i18n.dayNames[D2],
-                  dddd: dateFormat.i18n.dayNames[D2 + 7],
-                  m: m2 + 1,
-                  mm: pad(m2 + 1),
-                  mmm: dateFormat.i18n.monthNames[m2],
-                  mmmm: dateFormat.i18n.monthNames[m2 + 12],
-                  yy: String(y2).slice(2),
-                  yyyy: y2,
-                  h: H2 % 12 || 12,
-                  hh: pad(H2 % 12 || 12),
-                  H: H2,
-                  HH: pad(H2),
-                  M: M2,
-                  MM: pad(M2),
+                  ddd: dateFormat.i18n.dayNames[D],
+                  dddd: dateFormat.i18n.dayNames[D + 7],
+                  m: m + 1,
+                  mm: pad(m + 1),
+                  mmm: dateFormat.i18n.monthNames[m],
+                  mmmm: dateFormat.i18n.monthNames[m + 12],
+                  yy: String(y).slice(2),
+                  yyyy: y,
+                  h: H % 12 || 12,
+                  hh: pad(H % 12 || 12),
+                  H,
+                  HH: pad(H),
+                  M,
+                  MM: pad(M),
                   s,
                   ss: pad(s),
-                  l: pad(L2, 3),
-                  L: pad(Math.round(L2 / 10)),
-                  t: H2 < 12 ? "a" : "p",
-                  tt: H2 < 12 ? "am" : "pm",
-                  T: H2 < 12 ? "A" : "P",
-                  TT: H2 < 12 ? "AM" : "PM",
+                  l: pad(L, 3),
+                  L: pad(Math.round(L / 10)),
+                  t: H < 12 ? "a" : "p",
+                  tt: H < 12 ? "am" : "pm",
+                  T: H < 12 ? "A" : "P",
+                  TT: H < 12 ? "AM" : "PM",
                   Z: gmt ? "GMT" : utc ? "UTC" : (String(date).match(timezone) || [""]).pop().replace(timezoneClip, ""),
                   o: (o > 0 ? "-" : "+") + pad(Math.floor(Math.abs(o) / 60) * 100 + Math.abs(o) % 60, 4),
                   S: ["th", "st", "nd", "rd"][d % 10 > 3 ? 0 : (d % 100 - d % 10 != 10) * d % 10],
-                  W: W2,
-                  N: N2
+                  W,
+                  N
                 };
                 return mask.replace(token, function(match) {
                   if (match in flags) {
@@ -17346,7 +17341,7 @@ var require_aliyun_oss_sdk = __commonJS({
             return true;
           };
           function _addListener(target, type, listener, prepend) {
-            var m2;
+            var m;
             var events;
             var existing;
             checkListener(listener);
@@ -17376,15 +17371,15 @@ var require_aliyun_oss_sdk = __commonJS({
               } else {
                 existing.push(listener);
               }
-              m2 = _getMaxListeners(target);
-              if (m2 > 0 && existing.length > m2 && !existing.warned) {
+              m = _getMaxListeners(target);
+              if (m > 0 && existing.length > m && !existing.warned) {
                 existing.warned = true;
-                var w2 = new Error("Possible EventEmitter memory leak detected. " + existing.length + " " + String(type) + " listeners added. Use emitter.setMaxListeners() to increase limit");
-                w2.name = "MaxListenersExceededWarning";
-                w2.emitter = target;
-                w2.type = type;
-                w2.count = existing.length;
-                ProcessEmitWarning(w2);
+                var w = new Error("Possible EventEmitter memory leak detected. " + existing.length + " " + String(type) + " listeners added. Use emitter.setMaxListeners() to increase limit");
+                w.name = "MaxListenersExceededWarning";
+                w.emitter = target;
+                w.type = type;
+                w.count = existing.length;
+                ProcessEmitWarning(w);
               }
             }
             return target;
@@ -17630,12 +17625,12 @@ var require_aliyun_oss_sdk = __commonJS({
             }
           };
           var forEachObject = function forEachObject2(object, iterator, receiver) {
-            for (var k2 in object) {
-              if (hasOwnProperty.call(object, k2)) {
+            for (var k in object) {
+              if (hasOwnProperty.call(object, k)) {
                 if (receiver == null) {
-                  iterator(object[k2], k2, object);
+                  iterator(object[k], k, object);
                 } else {
-                  iterator.call(receiver, object[k2], k2, object);
+                  iterator.call(receiver, object[k], k, object);
                 }
               }
             }
@@ -17663,20 +17658,20 @@ var require_aliyun_oss_sdk = __commonJS({
           var toStr = Object.prototype.toString;
           var max = Math.max;
           var funcType = "[object Function]";
-          var concatty = function concatty2(a, b2) {
+          var concatty = function concatty2(a, b) {
             var arr = [];
             for (var i = 0; i < a.length; i += 1) {
               arr[i] = a[i];
             }
-            for (var j2 = 0; j2 < b2.length; j2 += 1) {
-              arr[j2 + a.length] = b2[j2];
+            for (var j = 0; j < b.length; j += 1) {
+              arr[j + a.length] = b[j];
             }
             return arr;
           };
           var slicy = function slicy2(arrLike, offset) {
             var arr = [];
-            for (var i = offset || 0, j2 = 0; i < arrLike.length; i += 1, j2 += 1) {
-              arr[j2] = arrLike[i];
+            for (var i = offset || 0, j = 0; i < arrLike.length; i += 1, j += 1) {
+              arr[j] = arrLike[i];
             }
             return arr;
           };
@@ -17769,8 +17764,8 @@ var require_aliyun_oss_sdk = __commonJS({
           }() : throwTypeError;
           var hasSymbols = require2("has-symbols")();
           var hasProto = require2("has-proto")();
-          var getProto = Object.getPrototypeOf || (hasProto ? function(x2) {
-            return x2.__proto__;
+          var getProto = Object.getPrototypeOf || (hasProto ? function(x) {
+            return x.__proto__;
           } : null);
           var needsEval = {};
           var TypedArray = typeof Uint8Array === "undefined" || !getProto ? undefined2 : getProto(Uint8Array);
@@ -18202,7 +18197,7 @@ var require_aliyun_oss_sdk = __commonJS({
           };
         }, { "ms": 432, "util": 489 }], 400: [function(require2, module4, exports3) {
           exports3.read = function(buffer, offset, isLE, mLen, nBytes) {
-            var e, m2;
+            var e, m;
             var eLen = nBytes * 8 - mLen - 1;
             var eMax = (1 << eLen) - 1;
             var eBias = eMax >> 1;
@@ -18216,23 +18211,23 @@ var require_aliyun_oss_sdk = __commonJS({
             nBits += eLen;
             for (; nBits > 0; e = e * 256 + buffer[offset + i], i += d, nBits -= 8) {
             }
-            m2 = e & (1 << -nBits) - 1;
+            m = e & (1 << -nBits) - 1;
             e >>= -nBits;
             nBits += mLen;
-            for (; nBits > 0; m2 = m2 * 256 + buffer[offset + i], i += d, nBits -= 8) {
+            for (; nBits > 0; m = m * 256 + buffer[offset + i], i += d, nBits -= 8) {
             }
             if (e === 0) {
               e = 1 - eBias;
             } else if (e === eMax) {
-              return m2 ? NaN : (s ? -1 : 1) * Infinity;
+              return m ? NaN : (s ? -1 : 1) * Infinity;
             } else {
-              m2 = m2 + Math.pow(2, mLen);
+              m = m + Math.pow(2, mLen);
               e = e - eBias;
             }
-            return (s ? -1 : 1) * m2 * Math.pow(2, e - mLen);
+            return (s ? -1 : 1) * m * Math.pow(2, e - mLen);
           };
           exports3.write = function(buffer, value, offset, isLE, mLen, nBytes) {
-            var e, m2, c;
+            var e, m, c;
             var eLen = nBytes * 8 - mLen - 1;
             var eMax = (1 << eLen) - 1;
             var eBias = eMax >> 1;
@@ -18242,7 +18237,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var s = value < 0 || value === 0 && 1 / value < 0 ? 1 : 0;
             value = Math.abs(value);
             if (isNaN(value) || value === Infinity) {
-              m2 = isNaN(value) ? 1 : 0;
+              m = isNaN(value) ? 1 : 0;
               e = eMax;
             } else {
               e = Math.floor(Math.log(value) / Math.LN2);
@@ -18260,19 +18255,19 @@ var require_aliyun_oss_sdk = __commonJS({
                 c /= 2;
               }
               if (e + eBias >= eMax) {
-                m2 = 0;
+                m = 0;
                 e = eMax;
               } else if (e + eBias >= 1) {
-                m2 = (value * c - 1) * Math.pow(2, mLen);
+                m = (value * c - 1) * Math.pow(2, mLen);
                 e = e + eBias;
               } else {
-                m2 = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen);
+                m = value * Math.pow(2, eBias - 1) * Math.pow(2, mLen);
                 e = 0;
               }
             }
-            for (; mLen >= 8; buffer[offset + i] = m2 & 255, i += d, m2 /= 256, mLen -= 8) {
+            for (; mLen >= 8; buffer[offset + i] = m & 255, i += d, m /= 256, mLen -= 8) {
             }
-            e = e << mLen | m2;
+            e = e << mLen | m;
             eLen += mLen;
             for (; eLen > 0; buffer[offset + i] = e & 255, i += d, e /= 256, eLen -= 8) {
             }
@@ -18534,8 +18529,8 @@ var require_aliyun_oss_sdk = __commonJS({
               reflectApply(function() {
                 throw 42;
               }, null, badArrayLike);
-            } catch (_2) {
-              if (_2 !== isCallableMarker) {
+            } catch (_) {
+              if (_ !== isCallableMarker) {
                 reflectApply = null;
               }
             }
@@ -18701,8 +18696,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   }
                 };
                 var re_utob = /[\uD800-\uDBFF][\uDC00-\uDFFFF]|[^\x00-\x7F]/g;
-                var utob = function(u3) {
-                  return u3.replace(re_utob, cb_utob);
+                var utob = function(u) {
+                  return u.replace(re_utob, cb_utob);
                 };
                 var cb_encode = function(ccc) {
                   var padlen = [0, 2, 1][ccc.length % 3], ord = ccc.charCodeAt(0) << 16 | (ccc.length > 1 ? ccc.charCodeAt(1) : 0) << 8 | (ccc.length > 2 ? ccc.charCodeAt(2) : 0), chars = [
@@ -18713,28 +18708,28 @@ var require_aliyun_oss_sdk = __commonJS({
                   ];
                   return chars.join("");
                 };
-                var btoa = global3.btoa && typeof global3.btoa == "function" ? function(b2) {
-                  return global3.btoa(b2);
-                } : function(b2) {
-                  if (b2.match(/[^\x00-\xFF]/))
+                var btoa = global3.btoa && typeof global3.btoa == "function" ? function(b) {
+                  return global3.btoa(b);
+                } : function(b) {
+                  if (b.match(/[^\x00-\xFF]/))
                     throw new RangeError(
                       "The string contains invalid characters."
                     );
-                  return b2.replace(/[\s\S]{1,3}/g, cb_encode);
+                  return b.replace(/[\s\S]{1,3}/g, cb_encode);
                 };
-                var _encode = function(u3) {
-                  return btoa(utob(String(u3)));
+                var _encode = function(u) {
+                  return btoa(utob(String(u)));
                 };
                 var mkUriSafe = function(b64) {
                   return b64.replace(/[+\/]/g, function(m0) {
                     return m0 == "+" ? "-" : "_";
                   }).replace(/=/g, "");
                 };
-                var encode = function(u3, urisafe) {
-                  return urisafe ? mkUriSafe(_encode(u3)) : _encode(u3);
+                var encode = function(u, urisafe) {
+                  return urisafe ? mkUriSafe(_encode(u)) : _encode(u);
                 };
-                var encodeURI2 = function(u3) {
-                  return encode(u3, true);
+                var encodeURI2 = function(u) {
+                  return encode(u, true);
                 };
                 var fromUint8Array;
                 if (global3.Uint8Array)
@@ -18763,8 +18758,8 @@ var require_aliyun_oss_sdk = __commonJS({
                       );
                   }
                 };
-                var btou = function(b2) {
-                  return b2.replace(re_btou, cb_btou);
+                var btou = function(b) {
+                  return b.replace(re_btou, cb_btou);
                 };
                 var cb_decode = function(cccc) {
                   var len = cccc.length, padlen = len % 4, n = (len > 0 ? b64tab[cccc.charAt(0)] << 18 : 0) | (len > 1 ? b64tab[cccc.charAt(1)] << 12 : 0) | (len > 2 ? b64tab[cccc.charAt(2)] << 6 : 0) | (len > 3 ? b64tab[cccc.charAt(3)] : 0), chars = [
@@ -18822,8 +18817,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   toUint8Array
                 };
                 if (typeof Object.defineProperty === "function") {
-                  var noEnum = function(v2) {
-                    return { value: v2, enumerable: false, writable: true, configurable: true };
+                  var noEnum = function(v) {
+                    return { value: v, enumerable: false, writable: true, configurable: true };
                   };
                   global3.Base64.extendString = function() {
                     Object.defineProperty(
@@ -19368,11 +19363,11 @@ var require_aliyun_oss_sdk = __commonJS({
           };
         }, {}], 432: [function(require2, module4, exports3) {
           var s = 1e3;
-          var m2 = s * 60;
-          var h = m2 * 60;
+          var m = s * 60;
+          var h = m * 60;
           var d = h * 24;
-          var w2 = d * 7;
-          var y2 = d * 365.25;
+          var w = d * 7;
+          var y = d * 365.25;
           module4.exports = function(val, options) {
             options = options || {};
             var type = typeof val;
@@ -19404,11 +19399,11 @@ var require_aliyun_oss_sdk = __commonJS({
               case "yrs":
               case "yr":
               case "y":
-                return n * y2;
+                return n * y;
               case "weeks":
               case "week":
               case "w":
-                return n * w2;
+                return n * w;
               case "days":
               case "day":
               case "d":
@@ -19424,7 +19419,7 @@ var require_aliyun_oss_sdk = __commonJS({
               case "mins":
               case "min":
               case "m":
-                return n * m2;
+                return n * m;
               case "seconds":
               case "second":
               case "secs":
@@ -19449,8 +19444,8 @@ var require_aliyun_oss_sdk = __commonJS({
             if (msAbs >= h) {
               return Math.round(ms / h) + "h";
             }
-            if (msAbs >= m2) {
-              return Math.round(ms / m2) + "m";
+            if (msAbs >= m) {
+              return Math.round(ms / m) + "m";
             }
             if (msAbs >= s) {
               return Math.round(ms / s) + "s";
@@ -19465,8 +19460,8 @@ var require_aliyun_oss_sdk = __commonJS({
             if (msAbs >= h) {
               return plural(ms, msAbs, h, "hour");
             }
-            if (msAbs >= m2) {
-              return plural(ms, msAbs, m2, "minute");
+            if (msAbs >= m) {
+              return plural(ms, msAbs, m, "minute");
             }
             if (msAbs >= s) {
               return plural(ms, msAbs, s, "second");
@@ -19513,8 +19508,8 @@ var require_aliyun_oss_sdk = __commonJS({
               var hasShammedSymbols = typeof Symbol === "function" && typeof Symbol.iterator === "object";
               var toStringTag = typeof Symbol === "function" && Symbol.toStringTag && (typeof Symbol.toStringTag === hasShammedSymbols ? "object" : "symbol") ? Symbol.toStringTag : null;
               var isEnumerable = Object.prototype.propertyIsEnumerable;
-              var gPO = (typeof Reflect === "function" ? Reflect.getPrototypeOf : Object.getPrototypeOf) || ([].__proto__ === Array.prototype ? function(O2) {
-                return O2.__proto__;
+              var gPO = (typeof Reflect === "function" ? Reflect.getPrototypeOf : Object.getPrototypeOf) || ([].__proto__ === Array.prototype ? function(O) {
+                return O.__proto__;
               } : null);
               function addNumericSeparator(num, str) {
                 if (num === Infinity || num === -Infinity || num !== num || num && num > -1e3 && num < 1e3 || $test.call(/e/, str)) {
@@ -19785,106 +19780,106 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (f.name) {
                   return f.name;
                 }
-                var m2 = $match.call(functionToString.call(f), /^function\s*([\w$]+)/);
-                if (m2) {
-                  return m2[1];
+                var m = $match.call(functionToString.call(f), /^function\s*([\w$]+)/);
+                if (m) {
+                  return m[1];
                 }
                 return null;
               }
-              function indexOf(xs, x2) {
+              function indexOf(xs, x) {
                 if (xs.indexOf) {
-                  return xs.indexOf(x2);
+                  return xs.indexOf(x);
                 }
                 for (var i = 0, l = xs.length; i < l; i++) {
-                  if (xs[i] === x2) {
+                  if (xs[i] === x) {
                     return i;
                   }
                 }
                 return -1;
               }
-              function isMap(x2) {
-                if (!mapSize || !x2 || typeof x2 !== "object") {
+              function isMap(x) {
+                if (!mapSize || !x || typeof x !== "object") {
                   return false;
                 }
                 try {
-                  mapSize.call(x2);
+                  mapSize.call(x);
                   try {
-                    setSize.call(x2);
+                    setSize.call(x);
                   } catch (s) {
                     return true;
                   }
-                  return x2 instanceof Map;
+                  return x instanceof Map;
                 } catch (e) {
                 }
                 return false;
               }
-              function isWeakMap(x2) {
-                if (!weakMapHas || !x2 || typeof x2 !== "object") {
+              function isWeakMap(x) {
+                if (!weakMapHas || !x || typeof x !== "object") {
                   return false;
                 }
                 try {
-                  weakMapHas.call(x2, weakMapHas);
+                  weakMapHas.call(x, weakMapHas);
                   try {
-                    weakSetHas.call(x2, weakSetHas);
+                    weakSetHas.call(x, weakSetHas);
                   } catch (s) {
                     return true;
                   }
-                  return x2 instanceof WeakMap;
+                  return x instanceof WeakMap;
                 } catch (e) {
                 }
                 return false;
               }
-              function isWeakRef(x2) {
-                if (!weakRefDeref || !x2 || typeof x2 !== "object") {
+              function isWeakRef(x) {
+                if (!weakRefDeref || !x || typeof x !== "object") {
                   return false;
                 }
                 try {
-                  weakRefDeref.call(x2);
+                  weakRefDeref.call(x);
                   return true;
                 } catch (e) {
                 }
                 return false;
               }
-              function isSet(x2) {
-                if (!setSize || !x2 || typeof x2 !== "object") {
+              function isSet(x) {
+                if (!setSize || !x || typeof x !== "object") {
                   return false;
                 }
                 try {
-                  setSize.call(x2);
+                  setSize.call(x);
                   try {
-                    mapSize.call(x2);
-                  } catch (m2) {
+                    mapSize.call(x);
+                  } catch (m) {
                     return true;
                   }
-                  return x2 instanceof Set;
+                  return x instanceof Set;
                 } catch (e) {
                 }
                 return false;
               }
-              function isWeakSet(x2) {
-                if (!weakSetHas || !x2 || typeof x2 !== "object") {
+              function isWeakSet(x) {
+                if (!weakSetHas || !x || typeof x !== "object") {
                   return false;
                 }
                 try {
-                  weakSetHas.call(x2, weakSetHas);
+                  weakSetHas.call(x, weakSetHas);
                   try {
-                    weakMapHas.call(x2, weakMapHas);
+                    weakMapHas.call(x, weakMapHas);
                   } catch (s) {
                     return true;
                   }
-                  return x2 instanceof WeakSet;
+                  return x instanceof WeakSet;
                 } catch (e) {
                 }
                 return false;
               }
-              function isElement(x2) {
-                if (!x2 || typeof x2 !== "object") {
+              function isElement(x) {
+                if (!x || typeof x !== "object") {
                   return false;
                 }
-                if (typeof HTMLElement !== "undefined" && x2 instanceof HTMLElement) {
+                if (typeof HTMLElement !== "undefined" && x instanceof HTMLElement) {
                   return true;
                 }
-                return typeof x2.nodeName === "string" && typeof x2.getAttribute === "function";
+                return typeof x.nodeName === "string" && typeof x.getAttribute === "function";
               }
               function inspectString(str, opts) {
                 if (str.length > opts.maxStringLength) {
@@ -19897,15 +19892,15 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               function lowbyte(c) {
                 var n = c.charCodeAt(0);
-                var x2 = {
+                var x = {
                   8: "b",
                   9: "t",
                   10: "n",
                   12: "f",
                   13: "r"
                 }[n];
-                if (x2) {
-                  return "\\" + x2;
+                if (x) {
+                  return "\\" + x;
                 }
                 return "\\x" + (n < 16 ? "0" : "") + $toUpperCase.call(n.toString(16));
               }
@@ -19961,8 +19956,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 var symMap;
                 if (hasShammedSymbols) {
                   symMap = {};
-                  for (var k2 = 0; k2 < syms.length; k2++) {
-                    symMap["$" + syms[k2]] = syms[k2];
+                  for (var k = 0; k < syms.length; k++) {
+                    symMap["$" + syms[k]] = syms[k];
                   }
                 }
                 for (var key in obj) {
@@ -19981,9 +19976,9 @@ var require_aliyun_oss_sdk = __commonJS({
                   }
                 }
                 if (typeof gOPS === "function") {
-                  for (var j2 = 0; j2 < syms.length; j2++) {
-                    if (isEnumerable.call(obj, syms[j2])) {
-                      xs.push("[" + inspect(syms[j2]) + "]: " + inspect(obj[syms[j2]], obj));
+                  for (var j = 0; j < syms.length; j++) {
+                    if (isEnumerable.call(obj, syms[j])) {
+                      xs.push("[" + inspect(syms[j]) + "]: " + inspect(obj[syms[j]], obj));
                     }
                   }
                 }
@@ -20044,11 +20039,11 @@ var require_aliyun_oss_sdk = __commonJS({
               if (typeof window === "undefined") {
                 return false;
               }
-              for (var k2 in window) {
+              for (var k in window) {
                 try {
-                  if (!excludedKeys["$" + k2] && has.call(window, k2) && window[k2] !== null && typeof window[k2] === "object") {
+                  if (!excludedKeys["$" + k] && has.call(window, k) && window[k] !== null && typeof window[k] === "object") {
                     try {
-                      equalsConstructorPrototype(window[k2]);
+                      equalsConstructorPrototype(window[k]);
                     } catch (e) {
                       return true;
                     }
@@ -20085,8 +20080,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               }
               if (isArguments && object.length > 0) {
-                for (var j2 = 0; j2 < object.length; ++j2) {
-                  theKeys.push(String(j2));
+                for (var j = 0; j < object.length; ++j) {
+                  theKeys.push(String(j));
                 }
               } else {
                 for (var name in object) {
@@ -20097,9 +20092,9 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               if (hasDontEnumBug) {
                 var skipConstructor = equalsConstructorPrototypeIfNotBuggy(object);
-                for (var k2 = 0; k2 < dontEnums.length; ++k2) {
-                  if (!(skipConstructor && dontEnums[k2] === "constructor") && has.call(object, dontEnums[k2])) {
-                    theKeys.push(dontEnums[k2]);
+                for (var k = 0; k < dontEnums.length; ++k) {
+                  if (!(skipConstructor && dontEnums[k] === "constructor") && has.call(object, dontEnums[k])) {
+                    theKeys.push(dontEnums[k]);
                   }
                 }
               }
@@ -20170,8 +20165,8 @@ var require_aliyun_oss_sdk = __commonJS({
               var getSymbols = hasSymbols && (Object.getOwnPropertySymbols || originalGetSymbols);
               if (getSymbols) {
                 var syms = getSymbols(from);
-                for (var j2 = 0; j2 < syms.length; ++j2) {
-                  var key = syms[j2];
+                for (var j = 0; j < syms.length; ++j) {
+                  var key = syms[j];
                   if ($propIsEnumerable(from, key)) {
                     $push(keys, key);
                   }
@@ -20202,8 +20197,8 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             var obj = Object.assign({}, map);
             var actual = "";
-            for (var k2 in obj) {
-              actual += k2;
+            for (var k in obj) {
+              actual += k;
             }
             return str !== actual;
           };
@@ -21633,45 +21628,45 @@ var require_aliyun_oss_sdk = __commonJS({
                   return digit + 22 + 75 * (digit < 26) - ((flag != 0) << 5);
                 }
                 function adapt(delta, numPoints, firstTime) {
-                  var k2 = 0;
+                  var k = 0;
                   delta = firstTime ? floor(delta / damp) : delta >> 1;
                   delta += floor(delta / numPoints);
-                  for (; delta > baseMinusTMin * tMax >> 1; k2 += base) {
+                  for (; delta > baseMinusTMin * tMax >> 1; k += base) {
                     delta = floor(delta / baseMinusTMin);
                   }
-                  return floor(k2 + (baseMinusTMin + 1) * delta / (delta + skew));
+                  return floor(k + (baseMinusTMin + 1) * delta / (delta + skew));
                 }
                 function decode(input) {
-                  var output = [], inputLength = input.length, out, i = 0, n = initialN, bias = initialBias, basic, j2, index, oldi, w2, k2, digit, t, baseMinusT;
+                  var output = [], inputLength = input.length, out, i = 0, n = initialN, bias = initialBias, basic, j, index, oldi, w, k, digit, t, baseMinusT;
                   basic = input.lastIndexOf(delimiter);
                   if (basic < 0) {
                     basic = 0;
                   }
-                  for (j2 = 0; j2 < basic; ++j2) {
-                    if (input.charCodeAt(j2) >= 128) {
+                  for (j = 0; j < basic; ++j) {
+                    if (input.charCodeAt(j) >= 128) {
                       error("not-basic");
                     }
-                    output.push(input.charCodeAt(j2));
+                    output.push(input.charCodeAt(j));
                   }
                   for (index = basic > 0 ? basic + 1 : 0; index < inputLength; ) {
-                    for (oldi = i, w2 = 1, k2 = base; ; k2 += base) {
+                    for (oldi = i, w = 1, k = base; ; k += base) {
                       if (index >= inputLength) {
                         error("invalid-input");
                       }
                       digit = basicToDigit(input.charCodeAt(index++));
-                      if (digit >= base || digit > floor((maxInt - i) / w2)) {
+                      if (digit >= base || digit > floor((maxInt - i) / w)) {
                         error("overflow");
                       }
-                      i += digit * w2;
-                      t = k2 <= bias ? tMin : k2 >= bias + tMax ? tMax : k2 - bias;
+                      i += digit * w;
+                      t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
                       if (digit < t) {
                         break;
                       }
                       baseMinusT = base - t;
-                      if (w2 > floor(maxInt / baseMinusT)) {
+                      if (w > floor(maxInt / baseMinusT)) {
                         error("overflow");
                       }
-                      w2 *= baseMinusT;
+                      w *= baseMinusT;
                     }
                     out = output.length + 1;
                     bias = adapt(i - oldi, out, oldi == 0);
@@ -21685,14 +21680,14 @@ var require_aliyun_oss_sdk = __commonJS({
                   return ucs2encode(output);
                 }
                 function encode(input) {
-                  var n, delta, handledCPCount, basicLength, bias, j2, m2, q2, k2, t, currentValue, output = [], inputLength, handledCPCountPlusOne, baseMinusT, qMinusT;
+                  var n, delta, handledCPCount, basicLength, bias, j, m, q, k, t, currentValue, output = [], inputLength, handledCPCountPlusOne, baseMinusT, qMinusT;
                   input = ucs2decode(input);
                   inputLength = input.length;
                   n = initialN;
                   delta = 0;
                   bias = initialBias;
-                  for (j2 = 0; j2 < inputLength; ++j2) {
-                    currentValue = input[j2];
+                  for (j = 0; j < inputLength; ++j) {
+                    currentValue = input[j];
                     if (currentValue < 128) {
                       output.push(stringFromCharCode(currentValue));
                     }
@@ -21702,37 +21697,37 @@ var require_aliyun_oss_sdk = __commonJS({
                     output.push(delimiter);
                   }
                   while (handledCPCount < inputLength) {
-                    for (m2 = maxInt, j2 = 0; j2 < inputLength; ++j2) {
-                      currentValue = input[j2];
-                      if (currentValue >= n && currentValue < m2) {
-                        m2 = currentValue;
+                    for (m = maxInt, j = 0; j < inputLength; ++j) {
+                      currentValue = input[j];
+                      if (currentValue >= n && currentValue < m) {
+                        m = currentValue;
                       }
                     }
                     handledCPCountPlusOne = handledCPCount + 1;
-                    if (m2 - n > floor((maxInt - delta) / handledCPCountPlusOne)) {
+                    if (m - n > floor((maxInt - delta) / handledCPCountPlusOne)) {
                       error("overflow");
                     }
-                    delta += (m2 - n) * handledCPCountPlusOne;
-                    n = m2;
-                    for (j2 = 0; j2 < inputLength; ++j2) {
-                      currentValue = input[j2];
+                    delta += (m - n) * handledCPCountPlusOne;
+                    n = m;
+                    for (j = 0; j < inputLength; ++j) {
+                      currentValue = input[j];
                       if (currentValue < n && ++delta > maxInt) {
                         error("overflow");
                       }
                       if (currentValue == n) {
-                        for (q2 = delta, k2 = base; ; k2 += base) {
-                          t = k2 <= bias ? tMin : k2 >= bias + tMax ? tMax : k2 - bias;
-                          if (q2 < t) {
+                        for (q = delta, k = base; ; k += base) {
+                          t = k <= bias ? tMin : k >= bias + tMax ? tMax : k - bias;
+                          if (q < t) {
                             break;
                           }
-                          qMinusT = q2 - t;
+                          qMinusT = q - t;
                           baseMinusT = base - t;
                           output.push(
                             stringFromCharCode(digitToBasic(t + qMinusT % baseMinusT, 0))
                           );
-                          q2 = floor(qMinusT / baseMinusT);
+                          q = floor(qMinusT / baseMinusT);
                         }
-                        output.push(stringFromCharCode(digitToBasic(q2, 0)));
+                        output.push(stringFromCharCode(digitToBasic(q, 0)));
                         bias = adapt(delta, handledCPCountPlusOne, handledCPCount == basicLength);
                         delta = 0;
                         ++handledCPCount;
@@ -22066,8 +22061,8 @@ var require_aliyun_oss_sdk = __commonJS({
             skipNulls: false,
             strictNullHandling: false
           };
-          var isNonNullishPrimitive = function isNonNullishPrimitive2(v2) {
-            return typeof v2 === "string" || typeof v2 === "number" || typeof v2 === "boolean" || typeof v2 === "symbol" || typeof v2 === "bigint";
+          var isNonNullishPrimitive = function isNonNullishPrimitive2(v) {
+            return typeof v === "string" || typeof v === "number" || typeof v === "boolean" || typeof v === "symbol" || typeof v === "bigint";
           };
           var sentinel = {};
           var stringify = function stringify2(object, prefix, generateArrayPrefix, commaRoundTrip, strictNullHandling, skipNulls, encoder, filter, sort, allowDots, serializeDate, format, formatter, encodeValuesOnly, charset, sideChannel) {
@@ -22131,8 +22126,8 @@ var require_aliyun_oss_sdk = __commonJS({
               objKeys = sort ? keys.sort(sort) : keys;
             }
             var adjustedPrefix = commaRoundTrip && isArray(obj) && obj.length === 1 ? prefix + "[]" : prefix;
-            for (var j2 = 0; j2 < objKeys.length; ++j2) {
-              var key = objKeys[j2];
+            for (var j = 0; j < objKeys.length; ++j) {
+              var key = objKeys[j];
               var value = typeof key === "object" && typeof key.value !== "undefined" ? key.value : obj[key];
               if (skipNulls && value === null) {
                 continue;
@@ -22292,9 +22287,9 @@ var require_aliyun_oss_sdk = __commonJS({
               var obj = item.obj[item.prop];
               if (isArray(obj)) {
                 var compacted = [];
-                for (var j2 = 0; j2 < obj.length; ++j2) {
-                  if (typeof obj[j2] !== "undefined") {
-                    compacted.push(obj[j2]);
+                for (var j = 0; j < obj.length; ++j) {
+                  if (typeof obj[j] !== "undefined") {
+                    compacted.push(obj[j]);
                   }
                 }
                 item.obj[item.prop] = compacted;
@@ -22422,8 +22417,8 @@ var require_aliyun_oss_sdk = __commonJS({
               var item = queue[i];
               var obj = item.obj[item.prop];
               var keys = Object.keys(obj);
-              for (var j2 = 0; j2 < keys.length; ++j2) {
-                var key = keys[j2];
+              for (var j = 0; j < keys.length; ++j) {
+                var key = keys[j];
                 var val = obj[key];
                 if (typeof val === "object" && val !== null && refs.indexOf(val) === -1) {
                   queue.push({ obj, prop: key });
@@ -22443,8 +22438,8 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             return !!(obj.constructor && obj.constructor.isBuffer && obj.constructor.isBuffer(obj));
           };
-          var combine = function combine2(a, b2) {
-            return [].concat(a, b2);
+          var combine = function combine2(a, b) {
+            return [].concat(a, b);
           };
           var maybeMap = function maybeMap2(val, fn) {
             if (isArray(val)) {
@@ -22491,22 +22486,22 @@ var require_aliyun_oss_sdk = __commonJS({
               len = maxKeys;
             }
             for (var i = 0; i < len; ++i) {
-              var x2 = qs2[i].replace(regexp, "%20"), idx = x2.indexOf(eq), kstr, vstr, k2, v2;
+              var x = qs2[i].replace(regexp, "%20"), idx = x.indexOf(eq), kstr, vstr, k, v;
               if (idx >= 0) {
-                kstr = x2.substr(0, idx);
-                vstr = x2.substr(idx + 1);
+                kstr = x.substr(0, idx);
+                vstr = x.substr(idx + 1);
               } else {
-                kstr = x2;
+                kstr = x;
                 vstr = "";
               }
-              k2 = decodeURIComponent(kstr);
-              v2 = decodeURIComponent(vstr);
-              if (!hasOwnProperty(obj, k2)) {
-                obj[k2] = v2;
-              } else if (isArray(obj[k2])) {
-                obj[k2].push(v2);
+              k = decodeURIComponent(kstr);
+              v = decodeURIComponent(vstr);
+              if (!hasOwnProperty(obj, k)) {
+                obj[k] = v;
+              } else if (isArray(obj[k])) {
+                obj[k].push(v);
               } else {
-                obj[k2] = [obj[k2], v2];
+                obj[k] = [obj[k], v];
               }
             }
             return obj;
@@ -22516,14 +22511,14 @@ var require_aliyun_oss_sdk = __commonJS({
           };
         }, {}], 450: [function(require2, module4, exports3) {
           "use strict";
-          var stringifyPrimitive = function(v2) {
-            switch (typeof v2) {
+          var stringifyPrimitive = function(v) {
+            switch (typeof v) {
               case "string":
-                return v2;
+                return v;
               case "boolean":
-                return v2 ? "true" : "false";
+                return v ? "true" : "false";
               case "number":
-                return isFinite(v2) ? v2 : "";
+                return isFinite(v) ? v : "";
               default:
                 return "";
             }
@@ -22535,14 +22530,14 @@ var require_aliyun_oss_sdk = __commonJS({
               obj = void 0;
             }
             if (typeof obj === "object") {
-              return map(objectKeys(obj), function(k2) {
-                var ks = encodeURIComponent(stringifyPrimitive(k2)) + eq;
-                if (isArray(obj[k2])) {
-                  return map(obj[k2], function(v2) {
-                    return ks + encodeURIComponent(stringifyPrimitive(v2));
+              return map(objectKeys(obj), function(k) {
+                var ks = encodeURIComponent(stringifyPrimitive(k)) + eq;
+                if (isArray(obj[k])) {
+                  return map(obj[k], function(v) {
+                    return ks + encodeURIComponent(stringifyPrimitive(v));
                   }).join(sep);
                 } else {
-                  return ks + encodeURIComponent(stringifyPrimitive(obj[k2]));
+                  return ks + encodeURIComponent(stringifyPrimitive(obj[k]));
                 }
               }).join(sep);
             }
@@ -22592,8 +22587,8 @@ var require_aliyun_oss_sdk = __commonJS({
           util.inherits(Duplex, Readable);
           {
             var keys = objectKeys(Writable.prototype);
-            for (var v2 = 0; v2 < keys.length; v2++) {
-              var method = keys[v2];
+            for (var v = 0; v < keys.length; v++) {
+              var method = keys[v];
               if (!Duplex.prototype[method])
                 Duplex.prototype[method] = Writable.prototype[method];
             }
@@ -23412,9 +23407,9 @@ var require_aliyun_oss_sdk = __commonJS({
                   stream.emit("end");
                 }
               }
-              function indexOf(xs, x2) {
+              function indexOf(xs, x) {
                 for (var i = 0, l = xs.length; i < l; i++) {
-                  if (xs[i] === x2)
+                  if (xs[i] === x)
                     return i;
                 }
                 return -1;
@@ -23625,7 +23620,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       return this.getBuffer();
                     }, "_writableState.buffer is deprecated. Use _writableState.getBuffer instead.", "DEP0003")
                   });
-                } catch (_2) {
+                } catch (_) {
                 }
               })();
               var realHasInstance;
@@ -24015,8 +24010,8 @@ var require_aliyun_oss_sdk = __commonJS({
               this.tail = null;
               this.length = 0;
             }
-            BufferList.prototype.push = function push(v2) {
-              var entry = { data: v2, next: null };
+            BufferList.prototype.push = function push(v) {
+              var entry = { data: v, next: null };
               if (this.length > 0)
                 this.tail.next = entry;
               else
@@ -24024,8 +24019,8 @@ var require_aliyun_oss_sdk = __commonJS({
               this.tail = entry;
               ++this.length;
             };
-            BufferList.prototype.unshift = function unshift(v2) {
-              var entry = { data: v2, next: this.head };
+            BufferList.prototype.unshift = function unshift(v) {
+              var entry = { data: v, next: this.head };
               if (this.length === 0)
                 this.tail = entry;
               this.head = entry;
@@ -24326,26 +24321,26 @@ var require_aliyun_oss_sdk = __commonJS({
             return byte >> 6 === 2 ? -1 : -2;
           }
           function utf8CheckIncomplete(self2, buf, i) {
-            var j2 = buf.length - 1;
-            if (j2 < i)
+            var j = buf.length - 1;
+            if (j < i)
               return 0;
-            var nb = utf8CheckByte(buf[j2]);
+            var nb = utf8CheckByte(buf[j]);
             if (nb >= 0) {
               if (nb > 0)
                 self2.lastNeed = nb - 1;
               return nb;
             }
-            if (--j2 < i || nb === -2)
+            if (--j < i || nb === -2)
               return 0;
-            nb = utf8CheckByte(buf[j2]);
+            nb = utf8CheckByte(buf[j]);
             if (nb >= 0) {
               if (nb > 0)
                 self2.lastNeed = nb - 2;
               return nb;
             }
-            if (--j2 < i || nb === -2)
+            if (--j < i || nb === -2)
               return 0;
-            nb = utf8CheckByte(buf[j2]);
+            nb = utf8CheckByte(buf[j]);
             if (nb >= 0) {
               if (nb > 0) {
                 if (nb === 2)
@@ -24594,10 +24589,10 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 if (!Object.create) {
                   Object.create = function(o) {
-                    function F2() {
+                    function F() {
                     }
-                    F2.prototype = o;
-                    var newf = new F2();
+                    F.prototype = o;
+                    var newf = new F();
                     return newf;
                   };
                 }
@@ -24634,8 +24629,8 @@ var require_aliyun_oss_sdk = __commonJS({
                     }
                     maxActual = Math.max(maxActual, len);
                   }
-                  var m2 = sax.MAX_BUFFER_LENGTH - maxActual;
-                  parser.bufferCheckPosition = m2 + parser.position;
+                  var m = sax.MAX_BUFFER_LENGTH - maxActual;
+                  parser.bufferCheckPosition = m + parser.position;
                 }
                 function clearBuffers(parser) {
                   for (var i = 0, l = buffers.length; i < l; i++) {
@@ -25344,9 +25339,9 @@ var require_aliyun_oss_sdk = __commonJS({
                     var tag = parser.tag = parser.tags.pop();
                     parser.tagName = parser.tag.name;
                     emitNode(parser, "onclosetag", parser.tagName);
-                    var x2 = {};
+                    var x = {};
                     for (var i in tag.ns) {
-                      x2[i] = tag.ns[i];
+                      x[i] = tag.ns[i];
                     }
                     var parent = parser.tags[parser.tags.length - 1] || parser;
                     if (parser.opt.xmlns && tag.ns !== parent.ns) {
@@ -26318,8 +26313,8 @@ var require_aliyun_oss_sdk = __commonJS({
               require2("inherits")(Duplex, Readable);
               {
                 var keys = objectKeys(Writable.prototype);
-                for (var v2 = 0; v2 < keys.length; v2++) {
-                  var method = keys[v2];
+                for (var v = 0; v < keys.length; v++) {
+                  var method = keys[v];
                   if (!Duplex.prototype[method])
                     Duplex.prototype[method] = Writable.prototype[method];
                 }
@@ -27191,9 +27186,9 @@ var require_aliyun_oss_sdk = __commonJS({
                   return from(Readable, iterable, opts);
                 };
               }
-              function indexOf(xs, x2) {
+              function indexOf(xs, x) {
                 for (var i = 0, l = xs.length; i < l; i++) {
-                  if (xs[i] === x2)
+                  if (xs[i] === x)
                     return i;
                 }
                 return -1;
@@ -27394,7 +27389,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       return this.getBuffer();
                     }, "_writableState.buffer is deprecated. Use _writableState.getBuffer instead.", "DEP0003")
                   });
-                } catch (_2) {
+                } catch (_) {
                 }
               })();
               var realHasInstance;
@@ -28065,9 +28060,9 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             _createClass(BufferList, [{
               key: "push",
-              value: function push(v2) {
+              value: function push(v) {
                 var entry = {
-                  data: v2,
+                  data: v,
                   next: null
                 };
                 if (this.length > 0)
@@ -28079,9 +28074,9 @@ var require_aliyun_oss_sdk = __commonJS({
               }
             }, {
               key: "unshift",
-              value: function unshift(v2) {
+              value: function unshift(v) {
                 var entry = {
-                  data: v2,
+                  data: v,
                   next: this.head
                 };
                 if (this.length === 0)
@@ -28223,7 +28218,7 @@ var require_aliyun_oss_sdk = __commonJS({
               // Make sure the linked list only shows the minimal necessary information.
             }, {
               key: custom,
-              value: function value(_2, options) {
+              value: function value(_, options) {
                 return inspect(this, _objectSpread(_objectSpread({}, options), {}, {
                   // Only inspect one level.
                   depth: 0,
@@ -28656,7 +28651,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 try {
                   if (!global2.localStorage)
                     return false;
-                } catch (_2) {
+                } catch (_) {
                   return false;
                 }
                 var val = global2.localStorage[name];
@@ -28914,12 +28909,12 @@ var require_aliyun_oss_sdk = __commonJS({
                 var i = 1;
                 var args = arguments;
                 var len = args.length;
-                var str = String(f).replace(formatRegExp, function(x3) {
-                  if (x3 === "%%")
+                var str = String(f).replace(formatRegExp, function(x2) {
+                  if (x2 === "%%")
                     return "%";
                   if (i >= len)
-                    return x3;
-                  switch (x3) {
+                    return x2;
+                  switch (x2) {
                     case "%s":
                       return String(args[i++]);
                     case "%d":
@@ -28927,18 +28922,18 @@ var require_aliyun_oss_sdk = __commonJS({
                     case "%j":
                       try {
                         return JSON.stringify(args[i++]);
-                      } catch (_2) {
+                      } catch (_) {
                         return "[Circular]";
                       }
                     default:
-                      return x3;
+                      return x2;
                   }
                 });
-                for (var x2 = args[i]; i < len; x2 = args[++i]) {
-                  if (isNull(x2) || !isObject(x2)) {
-                    str += " " + x2;
+                for (var x = args[i]; i < len; x = args[++i]) {
+                  if (isNull(x) || !isObject(x)) {
+                    str += " " + x;
                   } else {
-                    str += " " + inspect(x2);
+                    str += " " + inspect(x);
                   }
                 }
                 return str;
@@ -29286,8 +29281,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 return arg === void 0;
               }
               exports3.isUndefined = isUndefined;
-              function isRegExp(re2) {
-                return isObject(re2) && objectToString(re2) === "[object RegExp]";
+              function isRegExp(re) {
+                return isObject(re) && objectToString(re) === "[object RegExp]";
               }
               exports3.isRegExp = isRegExp;
               exports3.types.isRegExp = isRegExp;
@@ -29471,7 +29466,7 @@ var require_aliyun_oss_sdk = __commonJS({
               var gOPD = require2("gopd");
               var $toString = callBound("Object.prototype.toString");
               var hasToStringTag = require2("has-tostringtag/shams")();
-              var g2 = typeof globalThis === "undefined" ? global2 : globalThis;
+              var g = typeof globalThis === "undefined" ? global2 : globalThis;
               var typedArrays = availableTypedArrays();
               var $slice = callBound("String.prototype.slice");
               var getPrototypeOf = Object.getPrototypeOf;
@@ -29486,7 +29481,7 @@ var require_aliyun_oss_sdk = __commonJS({
               var cache = { __proto__: null };
               if (hasToStringTag && gOPD && getPrototypeOf) {
                 forEach(typedArrays, function(typedArray) {
-                  var arr = new g2[typedArray]();
+                  var arr = new g[typedArray]();
                   if (Symbol.toStringTag in arr) {
                     var proto = getPrototypeOf(arr);
                     var descriptor = gOPD(proto, Symbol.toStringTag);
@@ -29499,7 +29494,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 });
               } else {
                 forEach(typedArrays, function(typedArray) {
-                  var arr = new g2[typedArray]();
+                  var arr = new g[typedArray]();
                   var fn = arr.slice || arr.set;
                   if (fn) {
                     cache["$" + typedArray] = callBind(fn);
@@ -30121,11 +30116,11 @@ var require_aliyun_oss_sdk = __commonJS({
               };
               return Parser;
             }(events);
-            exports3.parseString = function(str, a, b2) {
+            exports3.parseString = function(str, a, b) {
               var cb, options, parser;
-              if (b2 != null) {
-                if (typeof b2 === "function") {
-                  cb = b2;
+              if (b != null) {
+                if (typeof b === "function") {
+                  cb = b;
                 }
                 if (typeof a === "object") {
                   options = a;
@@ -30785,7 +30780,7 @@ var require_aliyun_oss_sdk = __commonJS({
             NodeType = require2("./NodeType");
             module4.exports = XMLDTDEntity = function(superClass) {
               extend(XMLDTDEntity2, superClass);
-              function XMLDTDEntity2(parent, pe2, name, value) {
+              function XMLDTDEntity2(parent, pe, name, value) {
                 XMLDTDEntity2.__super__.constructor.call(this, parent);
                 if (name == null) {
                   throw new Error("Missing DTD entity name. " + this.debugInfo(name));
@@ -30793,7 +30788,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (value == null) {
                   throw new Error("Missing DTD entity value. " + this.debugInfo(name));
                 }
-                this.pe = !!pe2;
+                this.pe = !!pe;
                 this.name = this.stringify.name(name);
                 this.type = NodeType.EntityDeclaration;
                 if (!isObject(value)) {
@@ -31841,7 +31836,7 @@ var require_aliyun_oss_sdk = __commonJS({
             module4.exports = XMLElement = function(superClass) {
               extend(XMLElement2, superClass);
               function XMLElement2(parent, name, attributes) {
-                var child, j2, len, ref1;
+                var child, j, len, ref1;
                 XMLElement2.__super__.constructor.call(this, parent);
                 if (name == null) {
                   throw new Error("Missing element name. " + this.debugInfo());
@@ -31859,8 +31854,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   parent.rootObject = this;
                   if (parent.children) {
                     ref1 = parent.children;
-                    for (j2 = 0, len = ref1.length; j2 < len; j2++) {
-                      child = ref1[j2];
+                    for (j = 0, len = ref1.length; j < len; j++) {
+                      child = ref1[j];
                       if (child.type === NodeType.DocType) {
                         child.name = this.name;
                         break;
@@ -31960,14 +31955,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this;
               };
               XMLElement2.prototype.removeAttribute = function(name) {
-                var attName, j2, len;
+                var attName, j, len;
                 if (name == null) {
                   throw new Error("Missing attribute name. " + this.debugInfo());
                 }
                 name = getValue(name);
                 if (Array.isArray(name)) {
-                  for (j2 = 0, len = name.length; j2 < len; j2++) {
-                    attName = name[j2];
+                  for (j = 0, len = name.length; j < len; j++) {
+                    attName = name[j];
                     delete this.attribs[attName];
                   }
                 } else {
@@ -32057,7 +32052,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 throw new Error("This DOM method is not implemented." + this.debugInfo());
               };
               XMLElement2.prototype.isEqualNode = function(node) {
-                var i, j2, ref1;
+                var i, j, ref1;
                 if (!XMLElement2.__super__.isEqualNode.apply(this, arguments).isEqualNode(node)) {
                   return false;
                 }
@@ -32073,7 +32068,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (node.attribs.length !== this.attribs.length) {
                   return false;
                 }
-                for (i = j2 = 0, ref1 = this.attribs.length - 1; 0 <= ref1 ? j2 <= ref1 : j2 >= ref1; i = 0 <= ref1 ? ++j2 : --j2) {
+                for (i = j = 0, ref1 = this.attribs.length - 1; 0 <= ref1 ? j <= ref1 : j >= ref1; i = 0 <= ref1 ? ++j : --j) {
                   if (!this.attribs[i].isEqualNode(node.attribs[i])) {
                     return false;
                   }
@@ -32230,12 +32225,12 @@ var require_aliyun_oss_sdk = __commonJS({
               });
               Object.defineProperty(XMLNode2.prototype, "textContent", {
                 get: function() {
-                  var child, j2, len, ref2, str;
+                  var child, j, len, ref2, str;
                   if (this.nodeType === NodeType.Element || this.nodeType === NodeType.DocumentFragment) {
                     str = "";
                     ref2 = this.children;
-                    for (j2 = 0, len = ref2.length; j2 < len; j2++) {
-                      child = ref2[j2];
+                    for (j = 0, len = ref2.length; j < len; j++) {
+                      child = ref2[j];
                       if (child.textContent) {
                         str += child.textContent;
                       }
@@ -32250,7 +32245,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               });
               XMLNode2.prototype.setParent = function(parent) {
-                var child, j2, len, ref2, results;
+                var child, j, len, ref2, results;
                 this.parent = parent;
                 if (parent) {
                   this.options = parent.options;
@@ -32258,14 +32253,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 ref2 = this.children;
                 results = [];
-                for (j2 = 0, len = ref2.length; j2 < len; j2++) {
-                  child = ref2[j2];
+                for (j = 0, len = ref2.length; j < len; j++) {
+                  child = ref2[j];
                   results.push(child.setParent(this));
                 }
                 return results;
               };
               XMLNode2.prototype.element = function(name, attributes, text) {
-                var childNode, item, j2, k2, key, lastChild, len, len1, ref2, ref3, val;
+                var childNode, item, j, k, key, lastChild, len, len1, ref2, ref3, val;
                 lastChild = null;
                 if (attributes === null && text == null) {
                   ref2 = [{}, null], attributes = ref2[0], text = ref2[1];
@@ -32281,8 +32276,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   name = getValue(name);
                 }
                 if (Array.isArray(name)) {
-                  for (j2 = 0, len = name.length; j2 < len; j2++) {
-                    item = name[j2];
+                  for (j = 0, len = name.length; j < len; j++) {
+                    item = name[j];
                     lastChild = this.element(item);
                   }
                 } else if (isFunction(name)) {
@@ -32304,8 +32299,8 @@ var require_aliyun_oss_sdk = __commonJS({
                     } else if (!this.options.keepNullNodes && val == null) {
                       lastChild = this.dummy();
                     } else if (!this.options.separateArrayItems && Array.isArray(val)) {
-                      for (k2 = 0, len1 = val.length; k2 < len1; k2++) {
-                        item = val[k2];
+                      for (k = 0, len1 = val.length; k < len1; k++) {
+                        item = val[k];
                         childNode = {};
                         childNode[key] = item;
                         lastChild = this.element(childNode);
@@ -32455,7 +32450,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return child;
               };
               XMLNode2.prototype.instruction = function(target, value) {
-                var insTarget, insValue, instruction, j2, len;
+                var insTarget, insValue, instruction, j, len;
                 if (target != null) {
                   target = getValue(target);
                 }
@@ -32463,8 +32458,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   value = getValue(value);
                 }
                 if (Array.isArray(target)) {
-                  for (j2 = 0, len = target.length; j2 < len; j2++) {
-                    insTarget = target[j2];
+                  for (j = 0, len = target.length; j < len; j++) {
+                    insTarget = target[j];
                     this.instruction(insTarget);
                   }
                 } else if (isObject(target)) {
@@ -32513,11 +32508,11 @@ var require_aliyun_oss_sdk = __commonJS({
                 return doc.root() || doc;
               };
               XMLNode2.prototype.dtd = function(pubID, sysID) {
-                var child, doc, doctype, i, j2, k2, len, len1, ref2, ref3;
+                var child, doc, doctype, i, j, k, len, len1, ref2, ref3;
                 doc = this.document();
                 doctype = new XMLDocType(doc, pubID, sysID);
                 ref2 = doc.children;
-                for (i = j2 = 0, len = ref2.length; j2 < len; i = ++j2) {
+                for (i = j = 0, len = ref2.length; j < len; i = ++j) {
                   child = ref2[i];
                   if (child.type === NodeType.DocType) {
                     doc.children[i] = doctype;
@@ -32525,7 +32520,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   }
                 }
                 ref3 = doc.children;
-                for (i = k2 = 0, len1 = ref3.length; k2 < len1; i = ++k2) {
+                for (i = k = 0, len1 = ref3.length; k < len1; i = ++k) {
                   child = ref3[i];
                   if (child.isRoot) {
                     doc.children.splice(i, 0, doctype);
@@ -32716,14 +32711,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 throw new Error("This DOM method is not implemented." + this.debugInfo());
               };
               XMLNode2.prototype.isEqualNode = function(node) {
-                var i, j2, ref2;
+                var i, j, ref2;
                 if (node.nodeType !== this.nodeType) {
                   return false;
                 }
                 if (node.children.length !== this.children.length) {
                   return false;
                 }
-                for (i = j2 = 0, ref2 = this.children.length - 1; 0 <= ref2 ? j2 <= ref2 : j2 >= ref2; i = 0 <= ref2 ? ++j2 : --j2) {
+                for (i = j = 0, ref2 = this.children.length - 1; 0 <= ref2 ? j <= ref2 : j >= ref2; i = 0 <= ref2 ? ++j : --j) {
                   if (!this.children[i].isEqualNode(node.children[i])) {
                     return false;
                   }
@@ -32746,10 +32741,10 @@ var require_aliyun_oss_sdk = __commonJS({
                 return other === this || this.isDescendant(other);
               };
               XMLNode2.prototype.isDescendant = function(node) {
-                var child, isDescendantChild, j2, len, ref2;
+                var child, isDescendantChild, j, len, ref2;
                 ref2 = this.children;
-                for (j2 = 0, len = ref2.length; j2 < len; j2++) {
-                  child = ref2[j2];
+                for (j = 0, len = ref2.length; j < len; j++) {
+                  child = ref2[j];
                   if (node === child) {
                     return true;
                   }
@@ -32800,11 +32795,11 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               };
               XMLNode2.prototype.foreachTreeNode = function(node, func) {
-                var child, j2, len, ref2, res;
+                var child, j, len, ref2, res;
                 node || (node = this.document());
                 ref2 = node.children;
-                for (j2 = 0, len = ref2.length; j2 < len; j2++) {
-                  child = ref2[j2];
+                for (j = 0, len = ref2.length; j < len; j++) {
+                  child = ref2[j];
                   if (res = func(child)) {
                     return res;
                   } else {
@@ -32956,17 +32951,17 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               };
               XMLStreamWriter2.prototype.document = function(doc, options) {
-                var child, i, j2, k2, len, len1, ref, ref1, results;
+                var child, i, j, k, len, len1, ref, ref1, results;
                 ref = doc.children;
-                for (i = j2 = 0, len = ref.length; j2 < len; i = ++j2) {
+                for (i = j = 0, len = ref.length; j < len; i = ++j) {
                   child = ref[i];
                   child.isLastRootNode = i === doc.children.length - 1;
                 }
                 options = this.filterOptions(options);
                 ref1 = doc.children;
                 results = [];
-                for (k2 = 0, len1 = ref1.length; k2 < len1; k2++) {
-                  child = ref1[k2];
+                for (k = 0, len1 = ref1.length; k < len1; k++) {
+                  child = ref1[k];
                   results.push(this.writeChildNode(child, options, 0));
                 }
                 return results;
@@ -32984,7 +32979,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.stream.write(XMLStreamWriter2.__super__.declaration.call(this, node, options, level));
               };
               XMLStreamWriter2.prototype.docType = function(node, options, level) {
-                var child, j2, len, ref;
+                var child, j, len, ref;
                 level || (level = 0);
                 this.openNode(node, options, level);
                 options.state = WriterState.OpenTag;
@@ -33000,8 +32995,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   this.stream.write(this.endline(node, options, level));
                   options.state = WriterState.InsideTag;
                   ref = node.children;
-                  for (j2 = 0, len = ref.length; j2 < len; j2++) {
-                    child = ref[j2];
+                  for (j = 0, len = ref.length; j < len; j++) {
+                    child = ref[j];
                     this.writeChildNode(child, options, level + 1);
                   }
                   options.state = WriterState.CloseTag;
@@ -33014,7 +33009,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.closeNode(node, options, level);
               };
               XMLStreamWriter2.prototype.element = function(node, options, level) {
-                var att, child, childNodeCount, firstChildNode, j2, len, name, prettySuppressed, ref, ref1;
+                var att, child, childNodeCount, firstChildNode, j, len, name, prettySuppressed, ref, ref1;
                 level || (level = 0);
                 this.openNode(node, options, level);
                 options.state = WriterState.OpenTag;
@@ -33053,8 +33048,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   this.stream.write(">" + this.endline(node, options, level));
                   options.state = WriterState.InsideTag;
                   ref1 = node.children;
-                  for (j2 = 0, len = ref1.length; j2 < len; j2++) {
-                    child = ref1[j2];
+                  for (j = 0, len = ref1.length; j < len; j++) {
+                    child = ref1[j];
                     this.writeChildNode(child, options, level + 1);
                   }
                   options.state = WriterState.CloseTag;
@@ -33562,7 +33557,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return r;
               };
               XMLWriterBase2.prototype.element = function(node, options, level) {
-                var att, child, childNodeCount, firstChildNode, i, j2, len, len1, name, prettySuppressed, r, ref, ref1, ref2;
+                var att, child, childNodeCount, firstChildNode, i, j, len, len1, name, prettySuppressed, r, ref, ref1, ref2;
                 level || (level = 0);
                 prettySuppressed = false;
                 r = "";
@@ -33614,8 +33609,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   r += ">" + this.endline(node, options, level);
                   options.state = WriterState.InsideTag;
                   ref2 = node.children;
-                  for (j2 = 0, len1 = ref2.length; j2 < len1; j2++) {
-                    child = ref2[j2];
+                  for (j = 0, len1 = ref2.length; j < len1; j++) {
+                    child = ref2[j];
                     r += this.writeChildNode(child, options, level + 1);
                   }
                   options.state = WriterState.CloseTag;
@@ -33921,8 +33916,8 @@ var require_aliyun_oss_sdk = __commonJS({
             };
           }
           function error() {
-            var m2 = [].slice.call(arguments).join(" ");
-            throw new Error([m2, "we accept pull requests", "http://github.com/dominictarr/crypto-browserify"].join("\n"));
+            var m = [].slice.call(arguments).join(" ");
+            throw new Error([m, "we accept pull requests", "http://github.com/dominictarr/crypto-browserify"].join("\n"));
           }
           exports3.createHash = function(alg) {
             return hash(alg);
@@ -34001,107 +33996,107 @@ var require_aliyun_oss_sdk = __commonJS({
           function md5_vm_test() {
             return hex_md5("abc") == "900150983cd24fb0d6963f7d28e17f72";
           }
-          function core_md5(x2, len) {
-            x2[len >> 5] |= 128 << len % 32;
-            x2[(len + 64 >>> 9 << 4) + 14] = len;
+          function core_md5(x, len) {
+            x[len >> 5] |= 128 << len % 32;
+            x[(len + 64 >>> 9 << 4) + 14] = len;
             var a = 1732584193;
-            var b2 = -271733879;
+            var b = -271733879;
             var c = -1732584194;
             var d = 271733878;
-            for (var i = 0; i < x2.length; i += 16) {
+            for (var i = 0; i < x.length; i += 16) {
               var olda = a;
-              var oldb = b2;
+              var oldb = b;
               var oldc = c;
               var oldd = d;
-              a = md5_ff(a, b2, c, d, x2[i + 0], 7, -680876936);
-              d = md5_ff(d, a, b2, c, x2[i + 1], 12, -389564586);
-              c = md5_ff(c, d, a, b2, x2[i + 2], 17, 606105819);
-              b2 = md5_ff(b2, c, d, a, x2[i + 3], 22, -1044525330);
-              a = md5_ff(a, b2, c, d, x2[i + 4], 7, -176418897);
-              d = md5_ff(d, a, b2, c, x2[i + 5], 12, 1200080426);
-              c = md5_ff(c, d, a, b2, x2[i + 6], 17, -1473231341);
-              b2 = md5_ff(b2, c, d, a, x2[i + 7], 22, -45705983);
-              a = md5_ff(a, b2, c, d, x2[i + 8], 7, 1770035416);
-              d = md5_ff(d, a, b2, c, x2[i + 9], 12, -1958414417);
-              c = md5_ff(c, d, a, b2, x2[i + 10], 17, -42063);
-              b2 = md5_ff(b2, c, d, a, x2[i + 11], 22, -1990404162);
-              a = md5_ff(a, b2, c, d, x2[i + 12], 7, 1804603682);
-              d = md5_ff(d, a, b2, c, x2[i + 13], 12, -40341101);
-              c = md5_ff(c, d, a, b2, x2[i + 14], 17, -1502002290);
-              b2 = md5_ff(b2, c, d, a, x2[i + 15], 22, 1236535329);
-              a = md5_gg(a, b2, c, d, x2[i + 1], 5, -165796510);
-              d = md5_gg(d, a, b2, c, x2[i + 6], 9, -1069501632);
-              c = md5_gg(c, d, a, b2, x2[i + 11], 14, 643717713);
-              b2 = md5_gg(b2, c, d, a, x2[i + 0], 20, -373897302);
-              a = md5_gg(a, b2, c, d, x2[i + 5], 5, -701558691);
-              d = md5_gg(d, a, b2, c, x2[i + 10], 9, 38016083);
-              c = md5_gg(c, d, a, b2, x2[i + 15], 14, -660478335);
-              b2 = md5_gg(b2, c, d, a, x2[i + 4], 20, -405537848);
-              a = md5_gg(a, b2, c, d, x2[i + 9], 5, 568446438);
-              d = md5_gg(d, a, b2, c, x2[i + 14], 9, -1019803690);
-              c = md5_gg(c, d, a, b2, x2[i + 3], 14, -187363961);
-              b2 = md5_gg(b2, c, d, a, x2[i + 8], 20, 1163531501);
-              a = md5_gg(a, b2, c, d, x2[i + 13], 5, -1444681467);
-              d = md5_gg(d, a, b2, c, x2[i + 2], 9, -51403784);
-              c = md5_gg(c, d, a, b2, x2[i + 7], 14, 1735328473);
-              b2 = md5_gg(b2, c, d, a, x2[i + 12], 20, -1926607734);
-              a = md5_hh(a, b2, c, d, x2[i + 5], 4, -378558);
-              d = md5_hh(d, a, b2, c, x2[i + 8], 11, -2022574463);
-              c = md5_hh(c, d, a, b2, x2[i + 11], 16, 1839030562);
-              b2 = md5_hh(b2, c, d, a, x2[i + 14], 23, -35309556);
-              a = md5_hh(a, b2, c, d, x2[i + 1], 4, -1530992060);
-              d = md5_hh(d, a, b2, c, x2[i + 4], 11, 1272893353);
-              c = md5_hh(c, d, a, b2, x2[i + 7], 16, -155497632);
-              b2 = md5_hh(b2, c, d, a, x2[i + 10], 23, -1094730640);
-              a = md5_hh(a, b2, c, d, x2[i + 13], 4, 681279174);
-              d = md5_hh(d, a, b2, c, x2[i + 0], 11, -358537222);
-              c = md5_hh(c, d, a, b2, x2[i + 3], 16, -722521979);
-              b2 = md5_hh(b2, c, d, a, x2[i + 6], 23, 76029189);
-              a = md5_hh(a, b2, c, d, x2[i + 9], 4, -640364487);
-              d = md5_hh(d, a, b2, c, x2[i + 12], 11, -421815835);
-              c = md5_hh(c, d, a, b2, x2[i + 15], 16, 530742520);
-              b2 = md5_hh(b2, c, d, a, x2[i + 2], 23, -995338651);
-              a = md5_ii(a, b2, c, d, x2[i + 0], 6, -198630844);
-              d = md5_ii(d, a, b2, c, x2[i + 7], 10, 1126891415);
-              c = md5_ii(c, d, a, b2, x2[i + 14], 15, -1416354905);
-              b2 = md5_ii(b2, c, d, a, x2[i + 5], 21, -57434055);
-              a = md5_ii(a, b2, c, d, x2[i + 12], 6, 1700485571);
-              d = md5_ii(d, a, b2, c, x2[i + 3], 10, -1894986606);
-              c = md5_ii(c, d, a, b2, x2[i + 10], 15, -1051523);
-              b2 = md5_ii(b2, c, d, a, x2[i + 1], 21, -2054922799);
-              a = md5_ii(a, b2, c, d, x2[i + 8], 6, 1873313359);
-              d = md5_ii(d, a, b2, c, x2[i + 15], 10, -30611744);
-              c = md5_ii(c, d, a, b2, x2[i + 6], 15, -1560198380);
-              b2 = md5_ii(b2, c, d, a, x2[i + 13], 21, 1309151649);
-              a = md5_ii(a, b2, c, d, x2[i + 4], 6, -145523070);
-              d = md5_ii(d, a, b2, c, x2[i + 11], 10, -1120210379);
-              c = md5_ii(c, d, a, b2, x2[i + 2], 15, 718787259);
-              b2 = md5_ii(b2, c, d, a, x2[i + 9], 21, -343485551);
+              a = md5_ff(a, b, c, d, x[i + 0], 7, -680876936);
+              d = md5_ff(d, a, b, c, x[i + 1], 12, -389564586);
+              c = md5_ff(c, d, a, b, x[i + 2], 17, 606105819);
+              b = md5_ff(b, c, d, a, x[i + 3], 22, -1044525330);
+              a = md5_ff(a, b, c, d, x[i + 4], 7, -176418897);
+              d = md5_ff(d, a, b, c, x[i + 5], 12, 1200080426);
+              c = md5_ff(c, d, a, b, x[i + 6], 17, -1473231341);
+              b = md5_ff(b, c, d, a, x[i + 7], 22, -45705983);
+              a = md5_ff(a, b, c, d, x[i + 8], 7, 1770035416);
+              d = md5_ff(d, a, b, c, x[i + 9], 12, -1958414417);
+              c = md5_ff(c, d, a, b, x[i + 10], 17, -42063);
+              b = md5_ff(b, c, d, a, x[i + 11], 22, -1990404162);
+              a = md5_ff(a, b, c, d, x[i + 12], 7, 1804603682);
+              d = md5_ff(d, a, b, c, x[i + 13], 12, -40341101);
+              c = md5_ff(c, d, a, b, x[i + 14], 17, -1502002290);
+              b = md5_ff(b, c, d, a, x[i + 15], 22, 1236535329);
+              a = md5_gg(a, b, c, d, x[i + 1], 5, -165796510);
+              d = md5_gg(d, a, b, c, x[i + 6], 9, -1069501632);
+              c = md5_gg(c, d, a, b, x[i + 11], 14, 643717713);
+              b = md5_gg(b, c, d, a, x[i + 0], 20, -373897302);
+              a = md5_gg(a, b, c, d, x[i + 5], 5, -701558691);
+              d = md5_gg(d, a, b, c, x[i + 10], 9, 38016083);
+              c = md5_gg(c, d, a, b, x[i + 15], 14, -660478335);
+              b = md5_gg(b, c, d, a, x[i + 4], 20, -405537848);
+              a = md5_gg(a, b, c, d, x[i + 9], 5, 568446438);
+              d = md5_gg(d, a, b, c, x[i + 14], 9, -1019803690);
+              c = md5_gg(c, d, a, b, x[i + 3], 14, -187363961);
+              b = md5_gg(b, c, d, a, x[i + 8], 20, 1163531501);
+              a = md5_gg(a, b, c, d, x[i + 13], 5, -1444681467);
+              d = md5_gg(d, a, b, c, x[i + 2], 9, -51403784);
+              c = md5_gg(c, d, a, b, x[i + 7], 14, 1735328473);
+              b = md5_gg(b, c, d, a, x[i + 12], 20, -1926607734);
+              a = md5_hh(a, b, c, d, x[i + 5], 4, -378558);
+              d = md5_hh(d, a, b, c, x[i + 8], 11, -2022574463);
+              c = md5_hh(c, d, a, b, x[i + 11], 16, 1839030562);
+              b = md5_hh(b, c, d, a, x[i + 14], 23, -35309556);
+              a = md5_hh(a, b, c, d, x[i + 1], 4, -1530992060);
+              d = md5_hh(d, a, b, c, x[i + 4], 11, 1272893353);
+              c = md5_hh(c, d, a, b, x[i + 7], 16, -155497632);
+              b = md5_hh(b, c, d, a, x[i + 10], 23, -1094730640);
+              a = md5_hh(a, b, c, d, x[i + 13], 4, 681279174);
+              d = md5_hh(d, a, b, c, x[i + 0], 11, -358537222);
+              c = md5_hh(c, d, a, b, x[i + 3], 16, -722521979);
+              b = md5_hh(b, c, d, a, x[i + 6], 23, 76029189);
+              a = md5_hh(a, b, c, d, x[i + 9], 4, -640364487);
+              d = md5_hh(d, a, b, c, x[i + 12], 11, -421815835);
+              c = md5_hh(c, d, a, b, x[i + 15], 16, 530742520);
+              b = md5_hh(b, c, d, a, x[i + 2], 23, -995338651);
+              a = md5_ii(a, b, c, d, x[i + 0], 6, -198630844);
+              d = md5_ii(d, a, b, c, x[i + 7], 10, 1126891415);
+              c = md5_ii(c, d, a, b, x[i + 14], 15, -1416354905);
+              b = md5_ii(b, c, d, a, x[i + 5], 21, -57434055);
+              a = md5_ii(a, b, c, d, x[i + 12], 6, 1700485571);
+              d = md5_ii(d, a, b, c, x[i + 3], 10, -1894986606);
+              c = md5_ii(c, d, a, b, x[i + 10], 15, -1051523);
+              b = md5_ii(b, c, d, a, x[i + 1], 21, -2054922799);
+              a = md5_ii(a, b, c, d, x[i + 8], 6, 1873313359);
+              d = md5_ii(d, a, b, c, x[i + 15], 10, -30611744);
+              c = md5_ii(c, d, a, b, x[i + 6], 15, -1560198380);
+              b = md5_ii(b, c, d, a, x[i + 13], 21, 1309151649);
+              a = md5_ii(a, b, c, d, x[i + 4], 6, -145523070);
+              d = md5_ii(d, a, b, c, x[i + 11], 10, -1120210379);
+              c = md5_ii(c, d, a, b, x[i + 2], 15, 718787259);
+              b = md5_ii(b, c, d, a, x[i + 9], 21, -343485551);
               a = safe_add(a, olda);
-              b2 = safe_add(b2, oldb);
+              b = safe_add(b, oldb);
               c = safe_add(c, oldc);
               d = safe_add(d, oldd);
             }
-            return Array(a, b2, c, d);
+            return Array(a, b, c, d);
           }
-          function md5_cmn(q2, a, b2, x2, s, t) {
-            return safe_add(bit_rol(safe_add(safe_add(a, q2), safe_add(x2, t)), s), b2);
+          function md5_cmn(q, a, b, x, s, t) {
+            return safe_add(bit_rol(safe_add(safe_add(a, q), safe_add(x, t)), s), b);
           }
-          function md5_ff(a, b2, c, d, x2, s, t) {
-            return md5_cmn(b2 & c | ~b2 & d, a, b2, x2, s, t);
+          function md5_ff(a, b, c, d, x, s, t) {
+            return md5_cmn(b & c | ~b & d, a, b, x, s, t);
           }
-          function md5_gg(a, b2, c, d, x2, s, t) {
-            return md5_cmn(b2 & d | c & ~d, a, b2, x2, s, t);
+          function md5_gg(a, b, c, d, x, s, t) {
+            return md5_cmn(b & d | c & ~d, a, b, x, s, t);
           }
-          function md5_hh(a, b2, c, d, x2, s, t) {
-            return md5_cmn(b2 ^ c ^ d, a, b2, x2, s, t);
+          function md5_hh(a, b, c, d, x, s, t) {
+            return md5_cmn(b ^ c ^ d, a, b, x, s, t);
           }
-          function md5_ii(a, b2, c, d, x2, s, t) {
-            return md5_cmn(c ^ (b2 | ~d), a, b2, x2, s, t);
+          function md5_ii(a, b, c, d, x, s, t) {
+            return md5_cmn(c ^ (b | ~d), a, b, x, s, t);
           }
-          function safe_add(x2, y2) {
-            var lsw = (x2 & 65535) + (y2 & 65535);
-            var msw = (x2 >> 16) + (y2 >> 16) + (lsw >> 16);
+          function safe_add(x, y) {
+            var lsw = (x & 65535) + (y & 65535);
+            var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
             return msw << 16 | lsw & 65535;
           }
           function bit_rol(num, cnt) {
@@ -34113,56 +34108,56 @@ var require_aliyun_oss_sdk = __commonJS({
         }, { "./helpers": 532 }], 534: [function(require2, module4, exports3) {
           "use strict";
           var helpers = require2("./helpers");
-          function core_sha1(x2, len) {
-            x2[len >> 5] |= 128 << 24 - len % 32;
-            x2[(len + 64 >> 9 << 4) + 15] = len;
-            var w2 = Array(80);
+          function core_sha1(x, len) {
+            x[len >> 5] |= 128 << 24 - len % 32;
+            x[(len + 64 >> 9 << 4) + 15] = len;
+            var w = Array(80);
             var a = 1732584193;
-            var b2 = -271733879;
+            var b = -271733879;
             var c = -1732584194;
             var d = 271733878;
             var e = -1009589776;
-            for (var i = 0; i < x2.length; i += 16) {
+            for (var i = 0; i < x.length; i += 16) {
               var olda = a;
-              var oldb = b2;
+              var oldb = b;
               var oldc = c;
               var oldd = d;
               var olde = e;
-              for (var j2 = 0; j2 < 80; j2++) {
-                if (j2 < 16)
-                  w2[j2] = x2[i + j2];
+              for (var j = 0; j < 80; j++) {
+                if (j < 16)
+                  w[j] = x[i + j];
                 else
-                  w2[j2] = rol(w2[j2 - 3] ^ w2[j2 - 8] ^ w2[j2 - 14] ^ w2[j2 - 16], 1);
-                var t = safe_add(safe_add(rol(a, 5), sha1_ft(j2, b2, c, d)), safe_add(safe_add(e, w2[j2]), sha1_kt(j2)));
+                  w[j] = rol(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
+                var t = safe_add(safe_add(rol(a, 5), sha1_ft(j, b, c, d)), safe_add(safe_add(e, w[j]), sha1_kt(j)));
                 e = d;
                 d = c;
-                c = rol(b2, 30);
-                b2 = a;
+                c = rol(b, 30);
+                b = a;
                 a = t;
               }
               a = safe_add(a, olda);
-              b2 = safe_add(b2, oldb);
+              b = safe_add(b, oldb);
               c = safe_add(c, oldc);
               d = safe_add(d, oldd);
               e = safe_add(e, olde);
             }
-            return Array(a, b2, c, d, e);
+            return Array(a, b, c, d, e);
           }
-          function sha1_ft(t, b2, c, d) {
+          function sha1_ft(t, b, c, d) {
             if (t < 20)
-              return b2 & c | ~b2 & d;
+              return b & c | ~b & d;
             if (t < 40)
-              return b2 ^ c ^ d;
+              return b ^ c ^ d;
             if (t < 60)
-              return b2 & c | b2 & d | c & d;
-            return b2 ^ c ^ d;
+              return b & c | b & d | c & d;
+            return b ^ c ^ d;
           }
           function sha1_kt(t) {
             return t < 20 ? 1518500249 : t < 40 ? 1859775393 : t < 60 ? -1894007588 : -899497514;
           }
-          function safe_add(x2, y2) {
-            var lsw = (x2 & 65535) + (y2 & 65535);
-            var msw = (x2 >> 16) + (y2 >> 16) + (lsw >> 16);
+          function safe_add(x, y) {
+            var lsw = (x & 65535) + (y & 65535);
+            var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
             return msw << 16 | lsw & 65535;
           }
           function rol(num, cnt) {
@@ -34174,76 +34169,76 @@ var require_aliyun_oss_sdk = __commonJS({
         }, { "./helpers": 532 }], 535: [function(require2, module4, exports3) {
           "use strict";
           var helpers = require2("./helpers");
-          var safe_add = function safe_add2(x2, y2) {
-            var lsw = (x2 & 65535) + (y2 & 65535);
-            var msw = (x2 >> 16) + (y2 >> 16) + (lsw >> 16);
+          var safe_add = function safe_add2(x, y) {
+            var lsw = (x & 65535) + (y & 65535);
+            var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
             return msw << 16 | lsw & 65535;
           };
-          var S = function S2(X2, n) {
-            return X2 >>> n | X2 << 32 - n;
+          var S = function S2(X, n) {
+            return X >>> n | X << 32 - n;
           };
-          var R = function R2(X2, n) {
-            return X2 >>> n;
+          var R = function R2(X, n) {
+            return X >>> n;
           };
-          var Ch = function Ch2(x2, y2, z2) {
-            return x2 & y2 ^ ~x2 & z2;
+          var Ch = function Ch2(x, y, z) {
+            return x & y ^ ~x & z;
           };
-          var Maj = function Maj2(x2, y2, z2) {
-            return x2 & y2 ^ x2 & z2 ^ y2 & z2;
+          var Maj = function Maj2(x, y, z) {
+            return x & y ^ x & z ^ y & z;
           };
-          var Sigma0256 = function Sigma02562(x2) {
-            return S(x2, 2) ^ S(x2, 13) ^ S(x2, 22);
+          var Sigma0256 = function Sigma02562(x) {
+            return S(x, 2) ^ S(x, 13) ^ S(x, 22);
           };
-          var Sigma1256 = function Sigma12562(x2) {
-            return S(x2, 6) ^ S(x2, 11) ^ S(x2, 25);
+          var Sigma1256 = function Sigma12562(x) {
+            return S(x, 6) ^ S(x, 11) ^ S(x, 25);
           };
-          var Gamma0256 = function Gamma02562(x2) {
-            return S(x2, 7) ^ S(x2, 18) ^ R(x2, 3);
+          var Gamma0256 = function Gamma02562(x) {
+            return S(x, 7) ^ S(x, 18) ^ R(x, 3);
           };
-          var Gamma1256 = function Gamma12562(x2) {
-            return S(x2, 17) ^ S(x2, 19) ^ R(x2, 10);
+          var Gamma1256 = function Gamma12562(x) {
+            return S(x, 17) ^ S(x, 19) ^ R(x, 10);
           };
-          var core_sha256 = function core_sha2562(m2, l) {
-            var K2 = new Array(1116352408, 1899447441, 3049323471, 3921009573, 961987163, 1508970993, 2453635748, 2870763221, 3624381080, 310598401, 607225278, 1426881987, 1925078388, 2162078206, 2614888103, 3248222580, 3835390401, 4022224774, 264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986, 2554220882, 2821834349, 2952996808, 3210313671, 3336571891, 3584528711, 113926993, 338241895, 666307205, 773529912, 1294757372, 1396182291, 1695183700, 1986661051, 2177026350, 2456956037, 2730485921, 2820302411, 3259730800, 3345764771, 3516065817, 3600352804, 4094571909, 275423344, 430227734, 506948616, 659060556, 883997877, 958139571, 1322822218, 1537002063, 1747873779, 1955562222, 2024104815, 2227730452, 2361852424, 2428436474, 2756734187, 3204031479, 3329325298);
+          var core_sha256 = function core_sha2562(m, l) {
+            var K = new Array(1116352408, 1899447441, 3049323471, 3921009573, 961987163, 1508970993, 2453635748, 2870763221, 3624381080, 310598401, 607225278, 1426881987, 1925078388, 2162078206, 2614888103, 3248222580, 3835390401, 4022224774, 264347078, 604807628, 770255983, 1249150122, 1555081692, 1996064986, 2554220882, 2821834349, 2952996808, 3210313671, 3336571891, 3584528711, 113926993, 338241895, 666307205, 773529912, 1294757372, 1396182291, 1695183700, 1986661051, 2177026350, 2456956037, 2730485921, 2820302411, 3259730800, 3345764771, 3516065817, 3600352804, 4094571909, 275423344, 430227734, 506948616, 659060556, 883997877, 958139571, 1322822218, 1537002063, 1747873779, 1955562222, 2024104815, 2227730452, 2361852424, 2428436474, 2756734187, 3204031479, 3329325298);
             var HASH = new Array(1779033703, 3144134277, 1013904242, 2773480762, 1359893119, 2600822924, 528734635, 1541459225);
-            var W2 = new Array(64);
-            var a, b2, c, d, e, f, g2, h, i, j2;
+            var W = new Array(64);
+            var a, b, c, d, e, f, g, h, i, j;
             var T1, T2;
-            m2[l >> 5] |= 128 << 24 - l % 32;
-            m2[(l + 64 >> 9 << 4) + 15] = l;
-            for (var i = 0; i < m2.length; i += 16) {
+            m[l >> 5] |= 128 << 24 - l % 32;
+            m[(l + 64 >> 9 << 4) + 15] = l;
+            for (var i = 0; i < m.length; i += 16) {
               a = HASH[0];
-              b2 = HASH[1];
+              b = HASH[1];
               c = HASH[2];
               d = HASH[3];
               e = HASH[4];
               f = HASH[5];
-              g2 = HASH[6];
+              g = HASH[6];
               h = HASH[7];
-              for (var j2 = 0; j2 < 64; j2++) {
-                if (j2 < 16) {
-                  W2[j2] = m2[j2 + i];
+              for (var j = 0; j < 64; j++) {
+                if (j < 16) {
+                  W[j] = m[j + i];
                 } else {
-                  W2[j2] = safe_add(safe_add(safe_add(Gamma1256(W2[j2 - 2]), W2[j2 - 7]), Gamma0256(W2[j2 - 15])), W2[j2 - 16]);
+                  W[j] = safe_add(safe_add(safe_add(Gamma1256(W[j - 2]), W[j - 7]), Gamma0256(W[j - 15])), W[j - 16]);
                 }
-                T1 = safe_add(safe_add(safe_add(safe_add(h, Sigma1256(e)), Ch(e, f, g2)), K2[j2]), W2[j2]);
-                T2 = safe_add(Sigma0256(a), Maj(a, b2, c));
-                h = g2;
-                g2 = f;
+                T1 = safe_add(safe_add(safe_add(safe_add(h, Sigma1256(e)), Ch(e, f, g)), K[j]), W[j]);
+                T2 = safe_add(Sigma0256(a), Maj(a, b, c));
+                h = g;
+                g = f;
                 f = e;
                 e = safe_add(d, T1);
                 d = c;
-                c = b2;
-                b2 = a;
+                c = b;
+                b = a;
                 a = safe_add(T1, T2);
               }
               HASH[0] = safe_add(a, HASH[0]);
-              HASH[1] = safe_add(b2, HASH[1]);
+              HASH[1] = safe_add(b, HASH[1]);
               HASH[2] = safe_add(c, HASH[2]);
               HASH[3] = safe_add(d, HASH[3]);
               HASH[4] = safe_add(e, HASH[4]);
               HASH[5] = safe_add(f, HASH[5]);
-              HASH[6] = safe_add(g2, HASH[6]);
+              HASH[6] = safe_add(g, HASH[6]);
               HASH[7] = safe_add(h, HASH[7]);
             }
             return HASH;
@@ -34531,8 +34526,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   var name = headersObj[keyName].name;
                   var value = headersObj[keyName].value;
                   if (Array.isArray(value)) {
-                    value.forEach(function(v2) {
-                      headersList.push([name, v2]);
+                    value.forEach(function(v) {
+                      headersList.push([name, v]);
                     });
                   } else {
                     headersList.push([name, value]);
@@ -34979,9 +34974,9 @@ var require_aliyun_oss_sdk = __commonJS({
           function urlParse(url, parseQueryString, slashesDenoteHost) {
             if (url && util.isObject(url) && url instanceof Url)
               return url;
-            var u3 = new Url();
-            u3.parse(url, parseQueryString, slashesDenoteHost);
-            return u3;
+            var u = new Url();
+            u.parse(url, parseQueryString, slashesDenoteHost);
+            return u;
           }
           Url.prototype.parse = function(url, parseQueryString, slashesDenoteHost) {
             if (!util.isString(url)) {
@@ -35065,11 +35060,11 @@ var require_aliyun_oss_sdk = __commonJS({
                     continue;
                   if (!part.match(hostnamePartPattern)) {
                     var newpart = "";
-                    for (var j2 = 0, k2 = part.length; j2 < k2; j2++) {
-                      if (part.charCodeAt(j2) > 127) {
+                    for (var j = 0, k = part.length; j < k; j++) {
+                      if (part.charCodeAt(j) > 127) {
                         newpart += "x";
                       } else {
-                        newpart += part[j2];
+                        newpart += part[j];
                       }
                     }
                     if (!newpart.match(hostnamePartPattern)) {
@@ -35110,14 +35105,14 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             if (!unsafeProtocol[lowerProto]) {
               for (var i = 0, l = autoEscape.length; i < l; i++) {
-                var ae2 = autoEscape[i];
-                if (rest.indexOf(ae2) === -1)
+                var ae = autoEscape[i];
+                if (rest.indexOf(ae) === -1)
                   continue;
-                var esc = encodeURIComponent(ae2);
-                if (esc === ae2) {
-                  esc = escape(ae2);
+                var esc = encodeURIComponent(ae);
+                if (esc === ae) {
+                  esc = escape(ae);
                 }
-                rest = rest.split(ae2).join(esc);
+                rest = rest.split(ae).join(esc);
               }
             }
             var hash = rest.indexOf("#");
@@ -35240,9 +35235,9 @@ var require_aliyun_oss_sdk = __commonJS({
             if (relative.protocol && relative.protocol !== result.protocol) {
               if (!slashedProtocol[relative.protocol]) {
                 var keys = Object.keys(relative);
-                for (var v2 = 0; v2 < keys.length; v2++) {
-                  var k2 = keys[v2];
-                  result[k2] = relative[k2];
+                for (var v = 0; v < keys.length; v++) {
+                  var k = keys[v];
+                  result[k] = relative[k];
                 }
                 result.href = result.format();
                 return result;
@@ -35440,14 +35435,14 @@ var require_aliyun_oss_sdk = __commonJS({
           exports3.escape = require2("escape-html");
           exports3.timestamp = function timestamp(t) {
             if (t) {
-              var v2 = t;
-              if (typeof v2 === "string") {
-                v2 = Number(v2);
+              var v = t;
+              if (typeof v === "string") {
+                v = Number(v);
               }
               if (String(t).length === 10) {
-                v2 *= 1e3;
+                v *= 1e3;
               }
-              return new Date(v2);
+              return new Date(v);
             }
             return Math.round(Date.now() / 1e3);
           };
@@ -36026,7 +36021,7 @@ __export(main_exports, {
   default: () => ShareOnlinePlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian4 = require("obsidian");
+var import_obsidian5 = require("obsidian");
 
 // src/settings.ts
 var import_obsidian = require("obsidian");
@@ -36099,1323 +36094,28 @@ var ShareOnlineSettingTab = class extends import_obsidian.PluginSettingTab {
 };
 
 // src/exporter.ts
-var import_obsidian2 = require("obsidian");
+var import_obsidian3 = require("obsidian");
 var fs = __toESM(require("fs"));
 var path2 = __toESM(require("path"));
 
-// node_modules/marked/lib/marked.esm.js
-function M() {
-  return { async: false, breaks: false, extensions: null, gfm: true, hooks: null, pedantic: false, renderer: null, silent: false, tokenizer: null, walkTokens: null };
-}
-var T = M();
-function G(u3) {
-  T = u3;
-}
-var _ = { exec: () => null };
-function k(u3, e = "") {
-  let t = typeof u3 == "string" ? u3 : u3.source, n = { replace: (r, i) => {
-    let s = typeof i == "string" ? i : i.source;
-    return s = s.replace(m.caret, "$1"), t = t.replace(r, s), n;
-  }, getRegex: () => new RegExp(t, e) };
-  return n;
-}
-var be = (() => {
-  try {
-    return !!new RegExp("(?<=1)(?<!1)");
-  } catch (e) {
-    return false;
-  }
-})();
-var m = { codeRemoveIndent: /^(?: {1,4}| {0,3}\t)/gm, outputLinkReplace: /\\([\[\]])/g, indentCodeCompensation: /^(\s+)(?:```)/, beginningSpace: /^\s+/, endingHash: /#$/, startingSpaceChar: /^ /, endingSpaceChar: / $/, nonSpaceChar: /[^ ]/, newLineCharGlobal: /\n/g, tabCharGlobal: /\t/g, multipleSpaceGlobal: /\s+/g, blankLine: /^[ \t]*$/, doubleBlankLine: /\n[ \t]*\n[ \t]*$/, blockquoteStart: /^ {0,3}>/, blockquoteSetextReplace: /\n {0,3}((?:=+|-+) *)(?=\n|$)/g, blockquoteSetextReplace2: /^ {0,3}>[ \t]?/gm, listReplaceNesting: /^ {1,4}(?=( {4})*[^ ])/g, listIsTask: /^\[[ xX]\] +\S/, listReplaceTask: /^\[[ xX]\] +/, listTaskCheckbox: /\[[ xX]\]/, anyLine: /\n.*\n/, hrefBrackets: /^<(.*)>$/, tableDelimiter: /[:|]/, tableAlignChars: /^\||\| *$/g, tableRowBlankLine: /\n[ \t]*$/, tableAlignRight: /^ *-+: *$/, tableAlignCenter: /^ *:-+: *$/, tableAlignLeft: /^ *:-+ *$/, startATag: /^<a /i, endATag: /^<\/a>/i, startPreScriptTag: /^<(pre|code|kbd|script)(\s|>)/i, endPreScriptTag: /^<\/(pre|code|kbd|script)(\s|>)/i, startAngleBracket: /^</, endAngleBracket: />$/, pedanticHrefTitle: /^([^'"]*[^\s])\s+(['"])(.*)\2/, unicodeAlphaNumeric: /[\p{L}\p{N}]/u, escapeTest: /[&<>"']/, escapeReplace: /[&<>"']/g, escapeTestNoEncode: /[<>"']|&(?!(#\d{1,7}|#[Xx][a-fA-F0-9]{1,6}|\w+);)/, escapeReplaceNoEncode: /[<>"']|&(?!(#\d{1,7}|#[Xx][a-fA-F0-9]{1,6}|\w+);)/g, caret: /(^|[^\[])\^/g, percentDecode: /%25/g, findPipe: /\|/g, splitPipe: / \|/, slashPipe: /\\\|/g, carriageReturn: /\r\n|\r/g, spaceLine: /^ +$/gm, notSpaceStart: /^\S*/, endingNewline: /\n$/, listItemRegex: (u3) => new RegExp(`^( {0,3}${u3})((?:[	 ][^\\n]*)?(?:\\n|$))`), nextBulletRegex: (u3) => new RegExp(`^ {0,${Math.min(3, u3 - 1)}}(?:[*+-]|\\d{1,9}[.)])((?:[ 	][^\\n]*)?(?:\\n|$))`), hrRegex: (u3) => new RegExp(`^ {0,${Math.min(3, u3 - 1)}}((?:- *){3,}|(?:_ *){3,}|(?:\\* *){3,})(?:\\n+|$)`), fencesBeginRegex: (u3) => new RegExp(`^ {0,${Math.min(3, u3 - 1)}}(?:\`\`\`|~~~)`), headingBeginRegex: (u3) => new RegExp(`^ {0,${Math.min(3, u3 - 1)}}#`), htmlBeginRegex: (u3) => new RegExp(`^ {0,${Math.min(3, u3 - 1)}}<(?:[a-z].*>|!--)`, "i"), blockquoteBeginRegex: (u3) => new RegExp(`^ {0,${Math.min(3, u3 - 1)}}>`) };
-var Re = /^(?:[ \t]*(?:\n|$))+/;
-var Te = /^((?: {4}| {0,3}\t)[^\n]+(?:\n(?:[ \t]*(?:\n|$))*)?)+/;
-var Oe = /^ {0,3}(`{3,}(?=[^`\n]*(?:\n|$))|~{3,})([^\n]*)(?:\n|$)(?:|([\s\S]*?)(?:\n|$))(?: {0,3}\1[~`]* *(?=\n|$)|$)/;
-var C = /^ {0,3}((?:-[\t ]*){3,}|(?:_[ \t]*){3,}|(?:\*[ \t]*){3,})(?:\n+|$)/;
-var we = /^ {0,3}(#{1,6})(?=\s|$)(.*)(?:\n+|$)/;
-var Q = / {0,3}(?:[*+-]|\d{1,9}[.)])/;
-var se = /^(?!bull |blockCode|fences|blockquote|heading|html|table)((?:.|\n(?!\s*?\n|bull |blockCode|fences|blockquote|heading|html|table))+?)\n {0,3}(=+|-+) *(?:\n+|$)/;
-var ie = k(se).replace(/bull/g, Q).replace(/blockCode/g, /(?: {4}| {0,3}\t)/).replace(/fences/g, / {0,3}(?:`{3,}|~{3,})/).replace(/blockquote/g, / {0,3}>/).replace(/heading/g, / {0,3}#{1,6}/).replace(/html/g, / {0,3}<[^\n>]+>\n/).replace(/\|table/g, "").getRegex();
-var ye = k(se).replace(/bull/g, Q).replace(/blockCode/g, /(?: {4}| {0,3}\t)/).replace(/fences/g, / {0,3}(?:`{3,}|~{3,})/).replace(/blockquote/g, / {0,3}>/).replace(/heading/g, / {0,3}#{1,6}/).replace(/html/g, / {0,3}<[^\n>]+>\n/).replace(/table/g, / {0,3}\|?(?:[:\- ]*\|)+[\:\- ]*\n/).getRegex();
-var j = /^([^\n]+(?:\n(?!hr|heading|lheading|blockquote|fences|list|html|table| +\n)[^\n]+)*)/;
-var Pe = /^[^\n]+/;
-var F = /(?!\s*\])(?:\\[\s\S]|[^\[\]\\])+/;
-var Se = k(/^ {0,3}\[(label)\]: *(?:\n[ \t]*)?([^<\s][^\s]*|<.*?>)(?:(?: +(?:\n[ \t]*)?| *\n[ \t]*)(title))? *(?:\n+|$)/).replace("label", F).replace("title", /(?:"(?:\\"?|[^"\\])*"|'[^'\n]*(?:\n[^'\n]+)*\n?'|\([^()]*\))/).getRegex();
-var $e = k(/^(bull)([ \t][^\n]+?)?(?:\n|$)/).replace(/bull/g, Q).getRegex();
-var v = "address|article|aside|base|basefont|blockquote|body|caption|center|col|colgroup|dd|details|dialog|dir|div|dl|dt|fieldset|figcaption|figure|footer|form|frame|frameset|h[1-6]|head|header|hr|html|iframe|legend|li|link|main|menu|menuitem|meta|nav|noframes|ol|optgroup|option|p|param|search|section|summary|table|tbody|td|tfoot|th|thead|title|tr|track|ul";
-var U = /<!--(?:-?>|[\s\S]*?(?:-->|$))/;
-var _e = k("^ {0,3}(?:<(script|pre|style|textarea)[\\s>][\\s\\S]*?(?:</\\1>[^\\n]*\\n+|$)|comment[^\\n]*(\\n+|$)|<\\?[\\s\\S]*?(?:\\?>\\n*|$)|<![A-Z][\\s\\S]*?(?:>\\n*|$)|<!\\[CDATA\\[[\\s\\S]*?(?:\\]\\]>\\n*|$)|</?(tag)(?: +|\\n|/?>)[\\s\\S]*?(?:(?:\\n[ 	]*)+\\n|$)|<(?!script|pre|style|textarea)([a-z][\\w-]*)(?:attribute)*? */?>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n[ 	]*)+\\n|$)|</(?!script|pre|style|textarea)[a-z][\\w-]*\\s*>(?=[ \\t]*(?:\\n|$))[\\s\\S]*?(?:(?:\\n[ 	]*)+\\n|$))", "i").replace("comment", U).replace("tag", v).replace("attribute", / +[a-zA-Z:_][\w.:-]*(?: *= *"[^"\n]*"| *= *'[^'\n]*'| *= *[^\s"'=<>`]+)?/).getRegex();
-var oe = k(j).replace("hr", C).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("|lheading", "").replace("|table", "").replace("blockquote", " {0,3}>").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)])[ \\t]").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", v).getRegex();
-var Le = k(/^( {0,3}> ?(paragraph|[^\n]*)(?:\n|$))+/).replace("paragraph", oe).getRegex();
-var K = { blockquote: Le, code: Te, def: Se, fences: Oe, heading: we, hr: C, html: _e, lheading: ie, list: $e, newline: Re, paragraph: oe, table: _, text: Pe };
-var ne = k("^ *([^\\n ].*)\\n {0,3}((?:\\| *)?:?-+:? *(?:\\| *:?-+:? *)*(?:\\| *)?)(?:\\n((?:(?! *\\n|hr|heading|blockquote|code|fences|list|html).*(?:\\n|$))*)\\n*|$)").replace("hr", C).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("blockquote", " {0,3}>").replace("code", "(?: {4}| {0,3}	)[^\\n]").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)])[ \\t]").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", v).getRegex();
-var Me = { ...K, lheading: ye, table: ne, paragraph: k(j).replace("hr", C).replace("heading", " {0,3}#{1,6}(?:\\s|$)").replace("|lheading", "").replace("table", ne).replace("blockquote", " {0,3}>").replace("fences", " {0,3}(?:`{3,}(?=[^`\\n]*\\n)|~{3,})[^\\n]*\\n").replace("list", " {0,3}(?:[*+-]|1[.)])[ \\t]").replace("html", "</?(?:tag)(?: +|\\n|/?>)|<(?:script|pre|style|textarea|!--)").replace("tag", v).getRegex() };
-var ze = { ...K, html: k(`^ *(?:comment *(?:\\n|\\s*$)|<(tag)[\\s\\S]+?</\\1> *(?:\\n{2,}|\\s*$)|<tag(?:"[^"]*"|'[^']*'|\\s[^'"/>\\s]*)*?/?> *(?:\\n{2,}|\\s*$))`).replace("comment", U).replace(/tag/g, "(?!(?:a|em|strong|small|s|cite|q|dfn|abbr|data|time|code|var|samp|kbd|sub|sup|i|b|u|mark|ruby|rt|rp|bdi|bdo|span|br|wbr|ins|del|img)\\b)\\w+(?!:|[^\\w\\s@]*@)\\b").getRegex(), def: /^ *\[([^\]]+)\]: *<?([^\s>]+)>?(?: +(["(][^\n]+[")]))? *(?:\n+|$)/, heading: /^(#{1,6})(.*)(?:\n+|$)/, fences: _, lheading: /^(.+?)\n {0,3}(=+|-+) *(?:\n+|$)/, paragraph: k(j).replace("hr", C).replace("heading", ` *#{1,6} *[^
-]`).replace("lheading", ie).replace("|table", "").replace("blockquote", " {0,3}>").replace("|fences", "").replace("|list", "").replace("|html", "").replace("|tag", "").getRegex() };
-var Ee = /^\\([!"#$%&'()*+,\-./:;<=>?@\[\]\\^_`{|}~])/;
-var Ie = /^(`+)([^`]|[^`][\s\S]*?[^`])\1(?!`)/;
-var ae = /^( {2,}|\\)\n(?!\s*$)/;
-var Ae = /^(`+|[^`])(?:(?= {2,}\n)|[\s\S]*?(?:(?=[\\<!\[`*_]|\b_|$)|[^ ](?= {2,}\n)))/;
-var z = /[\p{P}\p{S}]/u;
-var H = /[\s\p{P}\p{S}]/u;
-var W = /[^\s\p{P}\p{S}]/u;
-var Ce = k(/^((?![*_])punctSpace)/, "u").replace(/punctSpace/g, H).getRegex();
-var le = /(?!~)[\p{P}\p{S}]/u;
-var Be = /(?!~)[\s\p{P}\p{S}]/u;
-var De = /(?:[^\s\p{P}\p{S}]|~)/u;
-var qe = k(/link|precode-code|html/, "g").replace("link", /\[(?:[^\[\]`]|(?<a>`+)[^`]+\k<a>(?!`))*?\]\((?:\\[\s\S]|[^\\\(\)]|\((?:\\[\s\S]|[^\\\(\)])*\))*\)/).replace("precode-", be ? "(?<!`)()" : "(^^|[^`])").replace("code", /(?<b>`+)[^`]+\k<b>(?!`)/).replace("html", /<(?! )[^<>]*?>/).getRegex();
-var ue = /^(?:\*+(?:((?!\*)punct)|([^\s*]))?)|^_+(?:((?!_)punct)|([^\s_]))?/;
-var ve = k(ue, "u").replace(/punct/g, z).getRegex();
-var He = k(ue, "u").replace(/punct/g, le).getRegex();
-var pe = "^[^_*]*?__[^_*]*?\\*[^_*]*?(?=__)|[^*]+(?=[^*])|(?!\\*)punct(\\*+)(?=[\\s]|$)|notPunctSpace(\\*+)(?!\\*)(?=punctSpace|$)|(?!\\*)punctSpace(\\*+)(?=notPunctSpace)|[\\s](\\*+)(?!\\*)(?=punct)|(?!\\*)punct(\\*+)(?!\\*)(?=punct)|notPunctSpace(\\*+)(?=notPunctSpace)";
-var Ze = k(pe, "gu").replace(/notPunctSpace/g, W).replace(/punctSpace/g, H).replace(/punct/g, z).getRegex();
-var Ge = k(pe, "gu").replace(/notPunctSpace/g, De).replace(/punctSpace/g, Be).replace(/punct/g, le).getRegex();
-var Ne = k("^[^_*]*?\\*\\*[^_*]*?_[^_*]*?(?=\\*\\*)|[^_]+(?=[^_])|(?!_)punct(_+)(?=[\\s]|$)|notPunctSpace(_+)(?!_)(?=punctSpace|$)|(?!_)punctSpace(_+)(?=notPunctSpace)|[\\s](_+)(?!_)(?=punct)|(?!_)punct(_+)(?!_)(?=punct)", "gu").replace(/notPunctSpace/g, W).replace(/punctSpace/g, H).replace(/punct/g, z).getRegex();
-var Qe = k(/^~~?(?:((?!~)punct)|[^\s~])/, "u").replace(/punct/g, z).getRegex();
-var je = "^[^~]+(?=[^~])|(?!~)punct(~~?)(?=[\\s]|$)|notPunctSpace(~~?)(?!~)(?=punctSpace|$)|(?!~)punctSpace(~~?)(?=notPunctSpace)|[\\s](~~?)(?!~)(?=punct)|(?!~)punct(~~?)(?!~)(?=punct)|notPunctSpace(~~?)(?=notPunctSpace)";
-var Fe = k(je, "gu").replace(/notPunctSpace/g, W).replace(/punctSpace/g, H).replace(/punct/g, z).getRegex();
-var Ue = k(/\\(punct)/, "gu").replace(/punct/g, z).getRegex();
-var Ke = k(/^<(scheme:[^\s\x00-\x1f<>]*|email)>/).replace("scheme", /[a-zA-Z][a-zA-Z0-9+.-]{1,31}/).replace("email", /[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+(@)[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)+(?![-_])/).getRegex();
-var We = k(U).replace("(?:-->|$)", "-->").getRegex();
-var Xe = k("^comment|^</[a-zA-Z][\\w:-]*\\s*>|^<[a-zA-Z][\\w-]*(?:attribute)*?\\s*/?>|^<\\?[\\s\\S]*?\\?>|^<![a-zA-Z]+\\s[\\s\\S]*?>|^<!\\[CDATA\\[[\\s\\S]*?\\]\\]>").replace("comment", We).replace("attribute", /\s+[a-zA-Z:_][\w.:-]*(?:\s*=\s*"[^"]*"|\s*=\s*'[^']*'|\s*=\s*[^\s"'=<>`]+)?/).getRegex();
-var q = /(?:\[(?:\\[\s\S]|[^\[\]\\])*\]|\\[\s\S]|`+(?!`)[^`]*?`+(?!`)|``+(?=\])|[^\[\]\\`])*?/;
-var Je = k(/^!?\[(label)\]\(\s*(href)(?:(?:[ \t]+(?:\n[ \t]*)?|\n[ \t]*)(title))?\s*\)/).replace("label", q).replace("href", /<(?:\\.|[^\n<>\\])+>|[^ \t\n\x00-\x1f]*/).replace("title", /"(?:\\"?|[^"\\])*"|'(?:\\'?|[^'\\])*'|\((?:\\\)?|[^)\\])*\)/).getRegex();
-var ce = k(/^!?\[(label)\]\[(ref)\]/).replace("label", q).replace("ref", F).getRegex();
-var he = k(/^!?\[(ref)\](?:\[\])?/).replace("ref", F).getRegex();
-var Ve = k("reflink|nolink(?!\\()", "g").replace("reflink", ce).replace("nolink", he).getRegex();
-var re = /[hH][tT][tT][pP][sS]?|[fF][tT][pP]/;
-var X = { _backpedal: _, anyPunctuation: Ue, autolink: Ke, blockSkip: qe, br: ae, code: Ie, del: _, delLDelim: _, delRDelim: _, emStrongLDelim: ve, emStrongRDelimAst: Ze, emStrongRDelimUnd: Ne, escape: Ee, link: Je, nolink: he, punctuation: Ce, reflink: ce, reflinkSearch: Ve, tag: Xe, text: Ae, url: _ };
-var Ye = { ...X, link: k(/^!?\[(label)\]\((.*?)\)/).replace("label", q).getRegex(), reflink: k(/^!?\[(label)\]\s*\[([^\]]*)\]/).replace("label", q).getRegex() };
-var N = { ...X, emStrongRDelimAst: Ge, emStrongLDelim: He, delLDelim: Qe, delRDelim: Fe, url: k(/^((?:protocol):\/\/|www\.)(?:[a-zA-Z0-9\-]+\.?)+[^\s<]*|^email/).replace("protocol", re).replace("email", /[A-Za-z0-9._+-]+(@)[a-zA-Z0-9-_]+(?:\.[a-zA-Z0-9-_]*[a-zA-Z0-9])+(?![-_])/).getRegex(), _backpedal: /(?:[^?!.,:;*_'"~()&]+|\([^)]*\)|&(?![a-zA-Z0-9]+;$)|[?!.,:;*_'"~)]+(?!$))+/, del: /^(~~?)(?=[^\s~])((?:\\[\s\S]|[^\\])*?(?:\\[\s\S]|[^\s~\\]))\1(?=[^~]|$)/, text: k(/^([`~]+|[^`~])(?:(?= {2,}\n)|(?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)|[\s\S]*?(?:(?=[\\<!\[`*~_]|\b_|protocol:\/\/|www\.|$)|[^ ](?= {2,}\n)|[^a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-](?=[a-zA-Z0-9.!#$%&'*+\/=?_`{\|}~-]+@)))/).replace("protocol", re).getRegex() };
-var et = { ...N, br: k(ae).replace("{2,}", "*").getRegex(), text: k(N.text).replace("\\b_", "\\b_| {2,}\\n").replace(/\{2,\}/g, "*").getRegex() };
-var B = { normal: K, gfm: Me, pedantic: ze };
-var E = { normal: X, gfm: N, breaks: et, pedantic: Ye };
-var tt = { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" };
-var ke = (u3) => tt[u3];
-function O(u3, e) {
-  if (e) {
-    if (m.escapeTest.test(u3))
-      return u3.replace(m.escapeReplace, ke);
-  } else if (m.escapeTestNoEncode.test(u3))
-    return u3.replace(m.escapeReplaceNoEncode, ke);
-  return u3;
-}
-function J(u3) {
-  try {
-    u3 = encodeURI(u3).replace(m.percentDecode, "%");
-  } catch (e) {
-    return null;
-  }
-  return u3;
-}
-function V(u3, e) {
-  var _a2;
-  let t = u3.replace(m.findPipe, (i, s, a) => {
-    let o = false, l = s;
-    for (; --l >= 0 && a[l] === "\\"; )
-      o = !o;
-    return o ? "|" : " |";
-  }), n = t.split(m.splitPipe), r = 0;
-  if (n[0].trim() || n.shift(), n.length > 0 && !((_a2 = n.at(-1)) == null ? void 0 : _a2.trim()) && n.pop(), e)
-    if (n.length > e)
-      n.splice(e);
-    else
-      for (; n.length < e; )
-        n.push("");
-  for (; r < n.length; r++)
-    n[r] = n[r].trim().replace(m.slashPipe, "|");
-  return n;
-}
-function I(u3, e, t) {
-  let n = u3.length;
-  if (n === 0)
-    return "";
-  let r = 0;
-  for (; r < n; ) {
-    let i = u3.charAt(n - r - 1);
-    if (i === e && !t)
-      r++;
-    else if (i !== e && t)
-      r++;
-    else
-      break;
-  }
-  return u3.slice(0, n - r);
-}
-function de(u3, e) {
-  if (u3.indexOf(e[1]) === -1)
-    return -1;
-  let t = 0;
-  for (let n = 0; n < u3.length; n++)
-    if (u3[n] === "\\")
-      n++;
-    else if (u3[n] === e[0])
-      t++;
-    else if (u3[n] === e[1] && (t--, t < 0))
-      return n;
-  return t > 0 ? -2 : -1;
-}
-function ge(u3, e = 0) {
-  let t = e, n = "";
-  for (let r of u3)
-    if (r === "	") {
-      let i = 4 - t % 4;
-      n += " ".repeat(i), t += i;
-    } else
-      n += r, t++;
-  return n;
-}
-function fe(u3, e, t, n, r) {
-  let i = e.href, s = e.title || null, a = u3[1].replace(r.other.outputLinkReplace, "$1");
-  n.state.inLink = true;
-  let o = { type: u3[0].charAt(0) === "!" ? "image" : "link", raw: t, href: i, title: s, text: a, tokens: n.inlineTokens(a) };
-  return n.state.inLink = false, o;
-}
-function nt(u3, e, t) {
-  let n = u3.match(t.other.indentCodeCompensation);
-  if (n === null)
-    return e;
-  let r = n[1];
-  return e.split(`
-`).map((i) => {
-    let s = i.match(t.other.beginningSpace);
-    if (s === null)
-      return i;
-    let [a] = s;
-    return a.length >= r.length ? i.slice(r.length) : i;
-  }).join(`
-`);
-}
-var w = class {
-  constructor(e) {
-    __publicField(this, "options");
-    __publicField(this, "rules");
-    __publicField(this, "lexer");
-    this.options = e || T;
-  }
-  space(e) {
-    let t = this.rules.block.newline.exec(e);
-    if (t && t[0].length > 0)
-      return { type: "space", raw: t[0] };
-  }
-  code(e) {
-    let t = this.rules.block.code.exec(e);
-    if (t) {
-      let n = t[0].replace(this.rules.other.codeRemoveIndent, "");
-      return { type: "code", raw: t[0], codeBlockStyle: "indented", text: this.options.pedantic ? n : I(n, `
-`) };
-    }
-  }
-  fences(e) {
-    let t = this.rules.block.fences.exec(e);
-    if (t) {
-      let n = t[0], r = nt(n, t[3] || "", this.rules);
-      return { type: "code", raw: n, lang: t[2] ? t[2].trim().replace(this.rules.inline.anyPunctuation, "$1") : t[2], text: r };
-    }
-  }
-  heading(e) {
-    let t = this.rules.block.heading.exec(e);
-    if (t) {
-      let n = t[2].trim();
-      if (this.rules.other.endingHash.test(n)) {
-        let r = I(n, "#");
-        (this.options.pedantic || !r || this.rules.other.endingSpaceChar.test(r)) && (n = r.trim());
-      }
-      return { type: "heading", raw: t[0], depth: t[1].length, text: n, tokens: this.lexer.inline(n) };
-    }
-  }
-  hr(e) {
-    let t = this.rules.block.hr.exec(e);
-    if (t)
-      return { type: "hr", raw: I(t[0], `
-`) };
-  }
-  blockquote(e) {
-    let t = this.rules.block.blockquote.exec(e);
-    if (t) {
-      let n = I(t[0], `
-`).split(`
-`), r = "", i = "", s = [];
-      for (; n.length > 0; ) {
-        let a = false, o = [], l;
-        for (l = 0; l < n.length; l++)
-          if (this.rules.other.blockquoteStart.test(n[l]))
-            o.push(n[l]), a = true;
-          else if (!a)
-            o.push(n[l]);
-          else
-            break;
-        n = n.slice(l);
-        let p = o.join(`
-`), c = p.replace(this.rules.other.blockquoteSetextReplace, `
-    $1`).replace(this.rules.other.blockquoteSetextReplace2, "");
-        r = r ? `${r}
-${p}` : p, i = i ? `${i}
-${c}` : c;
-        let d = this.lexer.state.top;
-        if (this.lexer.state.top = true, this.lexer.blockTokens(c, s, true), this.lexer.state.top = d, n.length === 0)
-          break;
-        let h = s.at(-1);
-        if ((h == null ? void 0 : h.type) === "code")
-          break;
-        if ((h == null ? void 0 : h.type) === "blockquote") {
-          let R = h, f = R.raw + `
-` + n.join(`
-`), S = this.blockquote(f);
-          s[s.length - 1] = S, r = r.substring(0, r.length - R.raw.length) + S.raw, i = i.substring(0, i.length - R.text.length) + S.text;
-          break;
-        } else if ((h == null ? void 0 : h.type) === "list") {
-          let R = h, f = R.raw + `
-` + n.join(`
-`), S = this.list(f);
-          s[s.length - 1] = S, r = r.substring(0, r.length - h.raw.length) + S.raw, i = i.substring(0, i.length - R.raw.length) + S.raw, n = f.substring(s.at(-1).raw.length).split(`
-`);
-          continue;
-        }
-      }
-      return { type: "blockquote", raw: r, tokens: s, text: i };
-    }
-  }
-  list(e) {
-    var _a2, _b;
-    let t = this.rules.block.list.exec(e);
-    if (t) {
-      let n = t[1].trim(), r = n.length > 1, i = { type: "list", raw: "", ordered: r, start: r ? +n.slice(0, -1) : "", loose: false, items: [] };
-      n = r ? `\\d{1,9}\\${n.slice(-1)}` : `\\${n}`, this.options.pedantic && (n = r ? n : "[*+-]");
-      let s = this.rules.other.listItemRegex(n), a = false;
-      for (; e; ) {
-        let l = false, p = "", c = "";
-        if (!(t = s.exec(e)) || this.rules.block.hr.test(e))
-          break;
-        p = t[0], e = e.substring(p.length);
-        let d = ge(t[2].split(`
-`, 1)[0], t[1].length), h = e.split(`
-`, 1)[0], R = !d.trim(), f = 0;
-        if (this.options.pedantic ? (f = 2, c = d.trimStart()) : R ? f = t[1].length + 1 : (f = d.search(this.rules.other.nonSpaceChar), f = f > 4 ? 1 : f, c = d.slice(f), f += t[1].length), R && this.rules.other.blankLine.test(h) && (p += h + `
-`, e = e.substring(h.length + 1), l = true), !l) {
-          let S = this.rules.other.nextBulletRegex(f), Y = this.rules.other.hrRegex(f), ee = this.rules.other.fencesBeginRegex(f), te = this.rules.other.headingBeginRegex(f), me = this.rules.other.htmlBeginRegex(f), xe = this.rules.other.blockquoteBeginRegex(f);
-          for (; e; ) {
-            let Z = e.split(`
-`, 1)[0], A;
-            if (h = Z, this.options.pedantic ? (h = h.replace(this.rules.other.listReplaceNesting, "  "), A = h) : A = h.replace(this.rules.other.tabCharGlobal, "    "), ee.test(h) || te.test(h) || me.test(h) || xe.test(h) || S.test(h) || Y.test(h))
-              break;
-            if (A.search(this.rules.other.nonSpaceChar) >= f || !h.trim())
-              c += `
-` + A.slice(f);
-            else {
-              if (R || d.replace(this.rules.other.tabCharGlobal, "    ").search(this.rules.other.nonSpaceChar) >= 4 || ee.test(d) || te.test(d) || Y.test(d))
-                break;
-              c += `
-` + h;
-            }
-            R = !h.trim(), p += Z + `
-`, e = e.substring(Z.length + 1), d = A.slice(f);
-          }
-        }
-        i.loose || (a ? i.loose = true : this.rules.other.doubleBlankLine.test(p) && (a = true)), i.items.push({ type: "list_item", raw: p, task: !!this.options.gfm && this.rules.other.listIsTask.test(c), loose: false, text: c, tokens: [] }), i.raw += p;
-      }
-      let o = i.items.at(-1);
-      if (o)
-        o.raw = o.raw.trimEnd(), o.text = o.text.trimEnd();
-      else
-        return;
-      i.raw = i.raw.trimEnd();
-      for (let l of i.items) {
-        if (this.lexer.state.top = false, l.tokens = this.lexer.blockTokens(l.text, []), l.task) {
-          if (l.text = l.text.replace(this.rules.other.listReplaceTask, ""), ((_a2 = l.tokens[0]) == null ? void 0 : _a2.type) === "text" || ((_b = l.tokens[0]) == null ? void 0 : _b.type) === "paragraph") {
-            l.tokens[0].raw = l.tokens[0].raw.replace(this.rules.other.listReplaceTask, ""), l.tokens[0].text = l.tokens[0].text.replace(this.rules.other.listReplaceTask, "");
-            for (let c = this.lexer.inlineQueue.length - 1; c >= 0; c--)
-              if (this.rules.other.listIsTask.test(this.lexer.inlineQueue[c].src)) {
-                this.lexer.inlineQueue[c].src = this.lexer.inlineQueue[c].src.replace(this.rules.other.listReplaceTask, "");
-                break;
-              }
-          }
-          let p = this.rules.other.listTaskCheckbox.exec(l.raw);
-          if (p) {
-            let c = { type: "checkbox", raw: p[0] + " ", checked: p[0] !== "[ ]" };
-            l.checked = c.checked, i.loose ? l.tokens[0] && ["paragraph", "text"].includes(l.tokens[0].type) && "tokens" in l.tokens[0] && l.tokens[0].tokens ? (l.tokens[0].raw = c.raw + l.tokens[0].raw, l.tokens[0].text = c.raw + l.tokens[0].text, l.tokens[0].tokens.unshift(c)) : l.tokens.unshift({ type: "paragraph", raw: c.raw, text: c.raw, tokens: [c] }) : l.tokens.unshift(c);
-          }
-        }
-        if (!i.loose) {
-          let p = l.tokens.filter((d) => d.type === "space"), c = p.length > 0 && p.some((d) => this.rules.other.anyLine.test(d.raw));
-          i.loose = c;
-        }
-      }
-      if (i.loose)
-        for (let l of i.items) {
-          l.loose = true;
-          for (let p of l.tokens)
-            p.type === "text" && (p.type = "paragraph");
-        }
-      return i;
-    }
-  }
-  html(e) {
-    let t = this.rules.block.html.exec(e);
-    if (t)
-      return { type: "html", block: true, raw: t[0], pre: t[1] === "pre" || t[1] === "script" || t[1] === "style", text: t[0] };
-  }
-  def(e) {
-    let t = this.rules.block.def.exec(e);
-    if (t) {
-      let n = t[1].toLowerCase().replace(this.rules.other.multipleSpaceGlobal, " "), r = t[2] ? t[2].replace(this.rules.other.hrefBrackets, "$1").replace(this.rules.inline.anyPunctuation, "$1") : "", i = t[3] ? t[3].substring(1, t[3].length - 1).replace(this.rules.inline.anyPunctuation, "$1") : t[3];
-      return { type: "def", tag: n, raw: t[0], href: r, title: i };
-    }
-  }
-  table(e) {
-    var _a2;
-    let t = this.rules.block.table.exec(e);
-    if (!t || !this.rules.other.tableDelimiter.test(t[2]))
-      return;
-    let n = V(t[1]), r = t[2].replace(this.rules.other.tableAlignChars, "").split("|"), i = ((_a2 = t[3]) == null ? void 0 : _a2.trim()) ? t[3].replace(this.rules.other.tableRowBlankLine, "").split(`
-`) : [], s = { type: "table", raw: t[0], header: [], align: [], rows: [] };
-    if (n.length === r.length) {
-      for (let a of r)
-        this.rules.other.tableAlignRight.test(a) ? s.align.push("right") : this.rules.other.tableAlignCenter.test(a) ? s.align.push("center") : this.rules.other.tableAlignLeft.test(a) ? s.align.push("left") : s.align.push(null);
-      for (let a = 0; a < n.length; a++)
-        s.header.push({ text: n[a], tokens: this.lexer.inline(n[a]), header: true, align: s.align[a] });
-      for (let a of i)
-        s.rows.push(V(a, s.header.length).map((o, l) => ({ text: o, tokens: this.lexer.inline(o), header: false, align: s.align[l] })));
-      return s;
-    }
-  }
-  lheading(e) {
-    let t = this.rules.block.lheading.exec(e);
-    if (t) {
-      let n = t[1].trim();
-      return { type: "heading", raw: t[0], depth: t[2].charAt(0) === "=" ? 1 : 2, text: n, tokens: this.lexer.inline(n) };
-    }
-  }
-  paragraph(e) {
-    let t = this.rules.block.paragraph.exec(e);
-    if (t) {
-      let n = t[1].charAt(t[1].length - 1) === `
-` ? t[1].slice(0, -1) : t[1];
-      return { type: "paragraph", raw: t[0], text: n, tokens: this.lexer.inline(n) };
-    }
-  }
-  text(e) {
-    let t = this.rules.block.text.exec(e);
-    if (t)
-      return { type: "text", raw: t[0], text: t[0], tokens: this.lexer.inline(t[0]) };
-  }
-  escape(e) {
-    let t = this.rules.inline.escape.exec(e);
-    if (t)
-      return { type: "escape", raw: t[0], text: t[1] };
-  }
-  tag(e) {
-    let t = this.rules.inline.tag.exec(e);
-    if (t)
-      return !this.lexer.state.inLink && this.rules.other.startATag.test(t[0]) ? this.lexer.state.inLink = true : this.lexer.state.inLink && this.rules.other.endATag.test(t[0]) && (this.lexer.state.inLink = false), !this.lexer.state.inRawBlock && this.rules.other.startPreScriptTag.test(t[0]) ? this.lexer.state.inRawBlock = true : this.lexer.state.inRawBlock && this.rules.other.endPreScriptTag.test(t[0]) && (this.lexer.state.inRawBlock = false), { type: "html", raw: t[0], inLink: this.lexer.state.inLink, inRawBlock: this.lexer.state.inRawBlock, block: false, text: t[0] };
-  }
-  link(e) {
-    let t = this.rules.inline.link.exec(e);
-    if (t) {
-      let n = t[2].trim();
-      if (!this.options.pedantic && this.rules.other.startAngleBracket.test(n)) {
-        if (!this.rules.other.endAngleBracket.test(n))
-          return;
-        let s = I(n.slice(0, -1), "\\");
-        if ((n.length - s.length) % 2 === 0)
-          return;
-      } else {
-        let s = de(t[2], "()");
-        if (s === -2)
-          return;
-        if (s > -1) {
-          let o = (t[0].indexOf("!") === 0 ? 5 : 4) + t[1].length + s;
-          t[2] = t[2].substring(0, s), t[0] = t[0].substring(0, o).trim(), t[3] = "";
-        }
-      }
-      let r = t[2], i = "";
-      if (this.options.pedantic) {
-        let s = this.rules.other.pedanticHrefTitle.exec(r);
-        s && (r = s[1], i = s[3]);
-      } else
-        i = t[3] ? t[3].slice(1, -1) : "";
-      return r = r.trim(), this.rules.other.startAngleBracket.test(r) && (this.options.pedantic && !this.rules.other.endAngleBracket.test(n) ? r = r.slice(1) : r = r.slice(1, -1)), fe(t, { href: r && r.replace(this.rules.inline.anyPunctuation, "$1"), title: i && i.replace(this.rules.inline.anyPunctuation, "$1") }, t[0], this.lexer, this.rules);
-    }
-  }
-  reflink(e, t) {
-    let n;
-    if ((n = this.rules.inline.reflink.exec(e)) || (n = this.rules.inline.nolink.exec(e))) {
-      let r = (n[2] || n[1]).replace(this.rules.other.multipleSpaceGlobal, " "), i = t[r.toLowerCase()];
-      if (!i) {
-        let s = n[0].charAt(0);
-        return { type: "text", raw: s, text: s };
-      }
-      return fe(n, i, n[0], this.lexer, this.rules);
-    }
-  }
-  emStrong(e, t, n = "") {
-    let r = this.rules.inline.emStrongLDelim.exec(e);
-    if (!r || !r[1] && !r[2] && !r[3] && !r[4] || r[4] && n.match(this.rules.other.unicodeAlphaNumeric))
-      return;
-    if (!(r[1] || r[3] || "") || !n || this.rules.inline.punctuation.exec(n)) {
-      let s = [...r[0]].length - 1, a, o, l = s, p = 0, c = r[0][0] === "*" ? this.rules.inline.emStrongRDelimAst : this.rules.inline.emStrongRDelimUnd;
-      for (c.lastIndex = 0, t = t.slice(-1 * e.length + s); (r = c.exec(t)) != null; ) {
-        if (a = r[1] || r[2] || r[3] || r[4] || r[5] || r[6], !a)
-          continue;
-        if (o = [...a].length, r[3] || r[4]) {
-          l += o;
-          continue;
-        } else if ((r[5] || r[6]) && s % 3 && !((s + o) % 3)) {
-          p += o;
-          continue;
-        }
-        if (l -= o, l > 0)
-          continue;
-        o = Math.min(o, o + l + p);
-        let d = [...r[0]][0].length, h = e.slice(0, s + r.index + d + o);
-        if (Math.min(s, o) % 2) {
-          let f = h.slice(1, -1);
-          return { type: "em", raw: h, text: f, tokens: this.lexer.inlineTokens(f) };
-        }
-        let R = h.slice(2, -2);
-        return { type: "strong", raw: h, text: R, tokens: this.lexer.inlineTokens(R) };
-      }
-    }
-  }
-  codespan(e) {
-    let t = this.rules.inline.code.exec(e);
-    if (t) {
-      let n = t[2].replace(this.rules.other.newLineCharGlobal, " "), r = this.rules.other.nonSpaceChar.test(n), i = this.rules.other.startingSpaceChar.test(n) && this.rules.other.endingSpaceChar.test(n);
-      return r && i && (n = n.substring(1, n.length - 1)), { type: "codespan", raw: t[0], text: n };
-    }
-  }
-  br(e) {
-    let t = this.rules.inline.br.exec(e);
-    if (t)
-      return { type: "br", raw: t[0] };
-  }
-  del(e, t, n = "") {
-    let r = this.rules.inline.delLDelim.exec(e);
-    if (!r)
-      return;
-    if (!(r[1] || "") || !n || this.rules.inline.punctuation.exec(n)) {
-      let s = [...r[0]].length - 1, a, o, l = s, p = this.rules.inline.delRDelim;
-      for (p.lastIndex = 0, t = t.slice(-1 * e.length + s); (r = p.exec(t)) != null; ) {
-        if (a = r[1] || r[2] || r[3] || r[4] || r[5] || r[6], !a || (o = [...a].length, o !== s))
-          continue;
-        if (r[3] || r[4]) {
-          l += o;
-          continue;
-        }
-        if (l -= o, l > 0)
-          continue;
-        o = Math.min(o, o + l);
-        let c = [...r[0]][0].length, d = e.slice(0, s + r.index + c + o), h = d.slice(s, -s);
-        return { type: "del", raw: d, text: h, tokens: this.lexer.inlineTokens(h) };
-      }
-    }
-  }
-  autolink(e) {
-    let t = this.rules.inline.autolink.exec(e);
-    if (t) {
-      let n, r;
-      return t[2] === "@" ? (n = t[1], r = "mailto:" + n) : (n = t[1], r = n), { type: "link", raw: t[0], text: n, href: r, tokens: [{ type: "text", raw: n, text: n }] };
-    }
-  }
-  url(e) {
-    var _a2, _b;
-    let t;
-    if (t = this.rules.inline.url.exec(e)) {
-      let n, r;
-      if (t[2] === "@")
-        n = t[0], r = "mailto:" + n;
-      else {
-        let i;
-        do
-          i = t[0], t[0] = (_b = (_a2 = this.rules.inline._backpedal.exec(t[0])) == null ? void 0 : _a2[0]) != null ? _b : "";
-        while (i !== t[0]);
-        n = t[0], t[1] === "www." ? r = "http://" + t[0] : r = t[0];
-      }
-      return { type: "link", raw: t[0], text: n, href: r, tokens: [{ type: "text", raw: n, text: n }] };
-    }
-  }
-  inlineText(e) {
-    let t = this.rules.inline.text.exec(e);
-    if (t) {
-      let n = this.lexer.state.inRawBlock;
-      return { type: "text", raw: t[0], text: t[0], escaped: n };
-    }
-  }
-};
-var x = class u {
-  constructor(e) {
-    __publicField(this, "tokens");
-    __publicField(this, "options");
-    __publicField(this, "state");
-    __publicField(this, "inlineQueue");
-    __publicField(this, "tokenizer");
-    this.tokens = [], this.tokens.links = /* @__PURE__ */ Object.create(null), this.options = e || T, this.options.tokenizer = this.options.tokenizer || new w(), this.tokenizer = this.options.tokenizer, this.tokenizer.options = this.options, this.tokenizer.lexer = this, this.inlineQueue = [], this.state = { inLink: false, inRawBlock: false, top: true };
-    let t = { other: m, block: B.normal, inline: E.normal };
-    this.options.pedantic ? (t.block = B.pedantic, t.inline = E.pedantic) : this.options.gfm && (t.block = B.gfm, this.options.breaks ? t.inline = E.breaks : t.inline = E.gfm), this.tokenizer.rules = t;
-  }
-  static get rules() {
-    return { block: B, inline: E };
-  }
-  static lex(e, t) {
-    return new u(t).lex(e);
-  }
-  static lexInline(e, t) {
-    return new u(t).inlineTokens(e);
-  }
-  lex(e) {
-    e = e.replace(m.carriageReturn, `
-`), this.blockTokens(e, this.tokens);
-    for (let t = 0; t < this.inlineQueue.length; t++) {
-      let n = this.inlineQueue[t];
-      this.inlineTokens(n.src, n.tokens);
-    }
-    return this.inlineQueue = [], this.tokens;
-  }
-  blockTokens(e, t = [], n = false) {
-    var _a2, _b, _c;
-    for (this.tokenizer.lexer = this, this.options.pedantic && (e = e.replace(m.tabCharGlobal, "    ").replace(m.spaceLine, "")); e; ) {
-      let r;
-      if ((_b = (_a2 = this.options.extensions) == null ? void 0 : _a2.block) == null ? void 0 : _b.some((s) => (r = s.call({ lexer: this }, e, t)) ? (e = e.substring(r.raw.length), t.push(r), true) : false))
-        continue;
-      if (r = this.tokenizer.space(e)) {
-        e = e.substring(r.raw.length);
-        let s = t.at(-1);
-        r.raw.length === 1 && s !== void 0 ? s.raw += `
-` : t.push(r);
-        continue;
-      }
-      if (r = this.tokenizer.code(e)) {
-        e = e.substring(r.raw.length);
-        let s = t.at(-1);
-        (s == null ? void 0 : s.type) === "paragraph" || (s == null ? void 0 : s.type) === "text" ? (s.raw += (s.raw.endsWith(`
-`) ? "" : `
-`) + r.raw, s.text += `
-` + r.text, this.inlineQueue.at(-1).src = s.text) : t.push(r);
-        continue;
-      }
-      if (r = this.tokenizer.fences(e)) {
-        e = e.substring(r.raw.length), t.push(r);
-        continue;
-      }
-      if (r = this.tokenizer.heading(e)) {
-        e = e.substring(r.raw.length), t.push(r);
-        continue;
-      }
-      if (r = this.tokenizer.hr(e)) {
-        e = e.substring(r.raw.length), t.push(r);
-        continue;
-      }
-      if (r = this.tokenizer.blockquote(e)) {
-        e = e.substring(r.raw.length), t.push(r);
-        continue;
-      }
-      if (r = this.tokenizer.list(e)) {
-        e = e.substring(r.raw.length), t.push(r);
-        continue;
-      }
-      if (r = this.tokenizer.html(e)) {
-        e = e.substring(r.raw.length), t.push(r);
-        continue;
-      }
-      if (r = this.tokenizer.def(e)) {
-        e = e.substring(r.raw.length);
-        let s = t.at(-1);
-        (s == null ? void 0 : s.type) === "paragraph" || (s == null ? void 0 : s.type) === "text" ? (s.raw += (s.raw.endsWith(`
-`) ? "" : `
-`) + r.raw, s.text += `
-` + r.raw, this.inlineQueue.at(-1).src = s.text) : this.tokens.links[r.tag] || (this.tokens.links[r.tag] = { href: r.href, title: r.title }, t.push(r));
-        continue;
-      }
-      if (r = this.tokenizer.table(e)) {
-        e = e.substring(r.raw.length), t.push(r);
-        continue;
-      }
-      if (r = this.tokenizer.lheading(e)) {
-        e = e.substring(r.raw.length), t.push(r);
-        continue;
-      }
-      let i = e;
-      if ((_c = this.options.extensions) == null ? void 0 : _c.startBlock) {
-        let s = 1 / 0, a = e.slice(1), o;
-        this.options.extensions.startBlock.forEach((l) => {
-          o = l.call({ lexer: this }, a), typeof o == "number" && o >= 0 && (s = Math.min(s, o));
-        }), s < 1 / 0 && s >= 0 && (i = e.substring(0, s + 1));
-      }
-      if (this.state.top && (r = this.tokenizer.paragraph(i))) {
-        let s = t.at(-1);
-        n && (s == null ? void 0 : s.type) === "paragraph" ? (s.raw += (s.raw.endsWith(`
-`) ? "" : `
-`) + r.raw, s.text += `
-` + r.text, this.inlineQueue.pop(), this.inlineQueue.at(-1).src = s.text) : t.push(r), n = i.length !== e.length, e = e.substring(r.raw.length);
-        continue;
-      }
-      if (r = this.tokenizer.text(e)) {
-        e = e.substring(r.raw.length);
-        let s = t.at(-1);
-        (s == null ? void 0 : s.type) === "text" ? (s.raw += (s.raw.endsWith(`
-`) ? "" : `
-`) + r.raw, s.text += `
-` + r.text, this.inlineQueue.pop(), this.inlineQueue.at(-1).src = s.text) : t.push(r);
-        continue;
-      }
-      if (e) {
-        let s = "Infinite loop on byte: " + e.charCodeAt(0);
-        if (this.options.silent) {
-          console.error(s);
-          break;
-        } else
-          throw new Error(s);
-      }
-    }
-    return this.state.top = true, t;
-  }
-  inline(e, t = []) {
-    return this.inlineQueue.push({ src: e, tokens: t }), t;
-  }
-  inlineTokens(e, t = []) {
-    var _a2, _b, _c, _d, _e2, _f;
-    this.tokenizer.lexer = this;
-    let n = e, r = null;
-    if (this.tokens.links) {
-      let o = Object.keys(this.tokens.links);
-      if (o.length > 0)
-        for (; (r = this.tokenizer.rules.inline.reflinkSearch.exec(n)) != null; )
-          o.includes(r[0].slice(r[0].lastIndexOf("[") + 1, -1)) && (n = n.slice(0, r.index) + "[" + "a".repeat(r[0].length - 2) + "]" + n.slice(this.tokenizer.rules.inline.reflinkSearch.lastIndex));
-    }
-    for (; (r = this.tokenizer.rules.inline.anyPunctuation.exec(n)) != null; )
-      n = n.slice(0, r.index) + "++" + n.slice(this.tokenizer.rules.inline.anyPunctuation.lastIndex);
-    let i;
-    for (; (r = this.tokenizer.rules.inline.blockSkip.exec(n)) != null; )
-      i = r[2] ? r[2].length : 0, n = n.slice(0, r.index + i) + "[" + "a".repeat(r[0].length - i - 2) + "]" + n.slice(this.tokenizer.rules.inline.blockSkip.lastIndex);
-    n = (_c = (_b = (_a2 = this.options.hooks) == null ? void 0 : _a2.emStrongMask) == null ? void 0 : _b.call({ lexer: this }, n)) != null ? _c : n;
-    let s = false, a = "";
-    for (; e; ) {
-      s || (a = ""), s = false;
-      let o;
-      if ((_e2 = (_d = this.options.extensions) == null ? void 0 : _d.inline) == null ? void 0 : _e2.some((p) => (o = p.call({ lexer: this }, e, t)) ? (e = e.substring(o.raw.length), t.push(o), true) : false))
-        continue;
-      if (o = this.tokenizer.escape(e)) {
-        e = e.substring(o.raw.length), t.push(o);
-        continue;
-      }
-      if (o = this.tokenizer.tag(e)) {
-        e = e.substring(o.raw.length), t.push(o);
-        continue;
-      }
-      if (o = this.tokenizer.link(e)) {
-        e = e.substring(o.raw.length), t.push(o);
-        continue;
-      }
-      if (o = this.tokenizer.reflink(e, this.tokens.links)) {
-        e = e.substring(o.raw.length);
-        let p = t.at(-1);
-        o.type === "text" && (p == null ? void 0 : p.type) === "text" ? (p.raw += o.raw, p.text += o.text) : t.push(o);
-        continue;
-      }
-      if (o = this.tokenizer.emStrong(e, n, a)) {
-        e = e.substring(o.raw.length), t.push(o);
-        continue;
-      }
-      if (o = this.tokenizer.codespan(e)) {
-        e = e.substring(o.raw.length), t.push(o);
-        continue;
-      }
-      if (o = this.tokenizer.br(e)) {
-        e = e.substring(o.raw.length), t.push(o);
-        continue;
-      }
-      if (o = this.tokenizer.del(e, n, a)) {
-        e = e.substring(o.raw.length), t.push(o);
-        continue;
-      }
-      if (o = this.tokenizer.autolink(e)) {
-        e = e.substring(o.raw.length), t.push(o);
-        continue;
-      }
-      if (!this.state.inLink && (o = this.tokenizer.url(e))) {
-        e = e.substring(o.raw.length), t.push(o);
-        continue;
-      }
-      let l = e;
-      if ((_f = this.options.extensions) == null ? void 0 : _f.startInline) {
-        let p = 1 / 0, c = e.slice(1), d;
-        this.options.extensions.startInline.forEach((h) => {
-          d = h.call({ lexer: this }, c), typeof d == "number" && d >= 0 && (p = Math.min(p, d));
-        }), p < 1 / 0 && p >= 0 && (l = e.substring(0, p + 1));
-      }
-      if (o = this.tokenizer.inlineText(l)) {
-        e = e.substring(o.raw.length), o.raw.slice(-1) !== "_" && (a = o.raw.slice(-1)), s = true;
-        let p = t.at(-1);
-        (p == null ? void 0 : p.type) === "text" ? (p.raw += o.raw, p.text += o.text) : t.push(o);
-        continue;
-      }
-      if (e) {
-        let p = "Infinite loop on byte: " + e.charCodeAt(0);
-        if (this.options.silent) {
-          console.error(p);
-          break;
-        } else
-          throw new Error(p);
-      }
-    }
-    return t;
-  }
-};
-var y = class {
-  constructor(e) {
-    __publicField(this, "options");
-    __publicField(this, "parser");
-    this.options = e || T;
-  }
-  space(e) {
-    return "";
-  }
-  code({ text: e, lang: t, escaped: n }) {
-    var _a2;
-    let r = (_a2 = (t || "").match(m.notSpaceStart)) == null ? void 0 : _a2[0], i = e.replace(m.endingNewline, "") + `
-`;
-    return r ? '<pre><code class="language-' + O(r) + '">' + (n ? i : O(i, true)) + `</code></pre>
-` : "<pre><code>" + (n ? i : O(i, true)) + `</code></pre>
-`;
-  }
-  blockquote({ tokens: e }) {
-    return `<blockquote>
-${this.parser.parse(e)}</blockquote>
-`;
-  }
-  html({ text: e }) {
-    return e;
-  }
-  def(e) {
-    return "";
-  }
-  heading({ tokens: e, depth: t }) {
-    return `<h${t}>${this.parser.parseInline(e)}</h${t}>
-`;
-  }
-  hr(e) {
-    return `<hr>
-`;
-  }
-  list(e) {
-    let t = e.ordered, n = e.start, r = "";
-    for (let a = 0; a < e.items.length; a++) {
-      let o = e.items[a];
-      r += this.listitem(o);
-    }
-    let i = t ? "ol" : "ul", s = t && n !== 1 ? ' start="' + n + '"' : "";
-    return "<" + i + s + `>
-` + r + "</" + i + `>
-`;
-  }
-  listitem(e) {
-    return `<li>${this.parser.parse(e.tokens)}</li>
-`;
-  }
-  checkbox({ checked: e }) {
-    return "<input " + (e ? 'checked="" ' : "") + 'disabled="" type="checkbox"> ';
-  }
-  paragraph({ tokens: e }) {
-    return `<p>${this.parser.parseInline(e)}</p>
-`;
-  }
-  table(e) {
-    let t = "", n = "";
-    for (let i = 0; i < e.header.length; i++)
-      n += this.tablecell(e.header[i]);
-    t += this.tablerow({ text: n });
-    let r = "";
-    for (let i = 0; i < e.rows.length; i++) {
-      let s = e.rows[i];
-      n = "";
-      for (let a = 0; a < s.length; a++)
-        n += this.tablecell(s[a]);
-      r += this.tablerow({ text: n });
-    }
-    return r && (r = `<tbody>${r}</tbody>`), `<table>
-<thead>
-` + t + `</thead>
-` + r + `</table>
-`;
-  }
-  tablerow({ text: e }) {
-    return `<tr>
-${e}</tr>
-`;
-  }
-  tablecell(e) {
-    let t = this.parser.parseInline(e.tokens), n = e.header ? "th" : "td";
-    return (e.align ? `<${n} align="${e.align}">` : `<${n}>`) + t + `</${n}>
-`;
-  }
-  strong({ tokens: e }) {
-    return `<strong>${this.parser.parseInline(e)}</strong>`;
-  }
-  em({ tokens: e }) {
-    return `<em>${this.parser.parseInline(e)}</em>`;
-  }
-  codespan({ text: e }) {
-    return `<code>${O(e, true)}</code>`;
-  }
-  br(e) {
-    return "<br>";
-  }
-  del({ tokens: e }) {
-    return `<del>${this.parser.parseInline(e)}</del>`;
-  }
-  link({ href: e, title: t, tokens: n }) {
-    let r = this.parser.parseInline(n), i = J(e);
-    if (i === null)
-      return r;
-    e = i;
-    let s = '<a href="' + e + '"';
-    return t && (s += ' title="' + O(t) + '"'), s += ">" + r + "</a>", s;
-  }
-  image({ href: e, title: t, text: n, tokens: r }) {
-    r && (n = this.parser.parseInline(r, this.parser.textRenderer));
-    let i = J(e);
-    if (i === null)
-      return O(n);
-    e = i;
-    let s = `<img src="${e}" alt="${O(n)}"`;
-    return t && (s += ` title="${O(t)}"`), s += ">", s;
-  }
-  text(e) {
-    return "tokens" in e && e.tokens ? this.parser.parseInline(e.tokens) : "escaped" in e && e.escaped ? e.text : O(e.text);
-  }
-};
-var $ = class {
-  strong({ text: e }) {
-    return e;
-  }
-  em({ text: e }) {
-    return e;
-  }
-  codespan({ text: e }) {
-    return e;
-  }
-  del({ text: e }) {
-    return e;
-  }
-  html({ text: e }) {
-    return e;
-  }
-  text({ text: e }) {
-    return e;
-  }
-  link({ text: e }) {
-    return "" + e;
-  }
-  image({ text: e }) {
-    return "" + e;
-  }
-  br() {
-    return "";
-  }
-  checkbox({ raw: e }) {
-    return e;
-  }
-};
-var b = class u2 {
-  constructor(e) {
-    __publicField(this, "options");
-    __publicField(this, "renderer");
-    __publicField(this, "textRenderer");
-    this.options = e || T, this.options.renderer = this.options.renderer || new y(), this.renderer = this.options.renderer, this.renderer.options = this.options, this.renderer.parser = this, this.textRenderer = new $();
-  }
-  static parse(e, t) {
-    return new u2(t).parse(e);
-  }
-  static parseInline(e, t) {
-    return new u2(t).parseInline(e);
-  }
-  parse(e) {
-    var _a2, _b;
-    this.renderer.parser = this;
-    let t = "";
-    for (let n = 0; n < e.length; n++) {
-      let r = e[n];
-      if ((_b = (_a2 = this.options.extensions) == null ? void 0 : _a2.renderers) == null ? void 0 : _b[r.type]) {
-        let s = r, a = this.options.extensions.renderers[s.type].call({ parser: this }, s);
-        if (a !== false || !["space", "hr", "heading", "code", "table", "blockquote", "list", "html", "def", "paragraph", "text"].includes(s.type)) {
-          t += a || "";
-          continue;
-        }
-      }
-      let i = r;
-      switch (i.type) {
-        case "space": {
-          t += this.renderer.space(i);
-          break;
-        }
-        case "hr": {
-          t += this.renderer.hr(i);
-          break;
-        }
-        case "heading": {
-          t += this.renderer.heading(i);
-          break;
-        }
-        case "code": {
-          t += this.renderer.code(i);
-          break;
-        }
-        case "table": {
-          t += this.renderer.table(i);
-          break;
-        }
-        case "blockquote": {
-          t += this.renderer.blockquote(i);
-          break;
-        }
-        case "list": {
-          t += this.renderer.list(i);
-          break;
-        }
-        case "checkbox": {
-          t += this.renderer.checkbox(i);
-          break;
-        }
-        case "html": {
-          t += this.renderer.html(i);
-          break;
-        }
-        case "def": {
-          t += this.renderer.def(i);
-          break;
-        }
-        case "paragraph": {
-          t += this.renderer.paragraph(i);
-          break;
-        }
-        case "text": {
-          t += this.renderer.text(i);
-          break;
-        }
-        default: {
-          let s = 'Token with "' + i.type + '" type was not found.';
-          if (this.options.silent)
-            return console.error(s), "";
-          throw new Error(s);
-        }
-      }
-    }
-    return t;
-  }
-  parseInline(e, t = this.renderer) {
-    var _a2, _b;
-    this.renderer.parser = this;
-    let n = "";
-    for (let r = 0; r < e.length; r++) {
-      let i = e[r];
-      if ((_b = (_a2 = this.options.extensions) == null ? void 0 : _a2.renderers) == null ? void 0 : _b[i.type]) {
-        let a = this.options.extensions.renderers[i.type].call({ parser: this }, i);
-        if (a !== false || !["escape", "html", "link", "image", "strong", "em", "codespan", "br", "del", "text"].includes(i.type)) {
-          n += a || "";
-          continue;
-        }
-      }
-      let s = i;
-      switch (s.type) {
-        case "escape": {
-          n += t.text(s);
-          break;
-        }
-        case "html": {
-          n += t.html(s);
-          break;
-        }
-        case "link": {
-          n += t.link(s);
-          break;
-        }
-        case "image": {
-          n += t.image(s);
-          break;
-        }
-        case "checkbox": {
-          n += t.checkbox(s);
-          break;
-        }
-        case "strong": {
-          n += t.strong(s);
-          break;
-        }
-        case "em": {
-          n += t.em(s);
-          break;
-        }
-        case "codespan": {
-          n += t.codespan(s);
-          break;
-        }
-        case "br": {
-          n += t.br(s);
-          break;
-        }
-        case "del": {
-          n += t.del(s);
-          break;
-        }
-        case "text": {
-          n += t.text(s);
-          break;
-        }
-        default: {
-          let a = 'Token with "' + s.type + '" type was not found.';
-          if (this.options.silent)
-            return console.error(a), "";
-          throw new Error(a);
-        }
-      }
-    }
-    return n;
-  }
-};
-var _a;
-var P = (_a = class {
-  constructor(e) {
-    __publicField(this, "options");
-    __publicField(this, "block");
-    this.options = e || T;
-  }
-  preprocess(e) {
-    return e;
-  }
-  postprocess(e) {
-    return e;
-  }
-  processAllTokens(e) {
-    return e;
-  }
-  emStrongMask(e) {
-    return e;
-  }
-  provideLexer() {
-    return this.block ? x.lex : x.lexInline;
-  }
-  provideParser() {
-    return this.block ? b.parse : b.parseInline;
-  }
-}, __publicField(_a, "passThroughHooks", /* @__PURE__ */ new Set(["preprocess", "postprocess", "processAllTokens", "emStrongMask"])), __publicField(_a, "passThroughHooksRespectAsync", /* @__PURE__ */ new Set(["preprocess", "postprocess", "processAllTokens"])), _a);
-var D = class {
-  constructor(...e) {
-    __publicField(this, "defaults", M());
-    __publicField(this, "options", this.setOptions);
-    __publicField(this, "parse", this.parseMarkdown(true));
-    __publicField(this, "parseInline", this.parseMarkdown(false));
-    __publicField(this, "Parser", b);
-    __publicField(this, "Renderer", y);
-    __publicField(this, "TextRenderer", $);
-    __publicField(this, "Lexer", x);
-    __publicField(this, "Tokenizer", w);
-    __publicField(this, "Hooks", P);
-    this.use(...e);
-  }
-  walkTokens(e, t) {
-    var _a2, _b;
-    let n = [];
-    for (let r of e)
-      switch (n = n.concat(t.call(this, r)), r.type) {
-        case "table": {
-          let i = r;
-          for (let s of i.header)
-            n = n.concat(this.walkTokens(s.tokens, t));
-          for (let s of i.rows)
-            for (let a of s)
-              n = n.concat(this.walkTokens(a.tokens, t));
-          break;
-        }
-        case "list": {
-          let i = r;
-          n = n.concat(this.walkTokens(i.items, t));
-          break;
-        }
-        default: {
-          let i = r;
-          ((_b = (_a2 = this.defaults.extensions) == null ? void 0 : _a2.childTokens) == null ? void 0 : _b[i.type]) ? this.defaults.extensions.childTokens[i.type].forEach((s) => {
-            let a = i[s].flat(1 / 0);
-            n = n.concat(this.walkTokens(a, t));
-          }) : i.tokens && (n = n.concat(this.walkTokens(i.tokens, t)));
-        }
-      }
-    return n;
-  }
-  use(...e) {
-    let t = this.defaults.extensions || { renderers: {}, childTokens: {} };
-    return e.forEach((n) => {
-      let r = { ...n };
-      if (r.async = this.defaults.async || r.async || false, n.extensions && (n.extensions.forEach((i) => {
-        if (!i.name)
-          throw new Error("extension name required");
-        if ("renderer" in i) {
-          let s = t.renderers[i.name];
-          s ? t.renderers[i.name] = function(...a) {
-            let o = i.renderer.apply(this, a);
-            return o === false && (o = s.apply(this, a)), o;
-          } : t.renderers[i.name] = i.renderer;
-        }
-        if ("tokenizer" in i) {
-          if (!i.level || i.level !== "block" && i.level !== "inline")
-            throw new Error("extension level must be 'block' or 'inline'");
-          let s = t[i.level];
-          s ? s.unshift(i.tokenizer) : t[i.level] = [i.tokenizer], i.start && (i.level === "block" ? t.startBlock ? t.startBlock.push(i.start) : t.startBlock = [i.start] : i.level === "inline" && (t.startInline ? t.startInline.push(i.start) : t.startInline = [i.start]));
-        }
-        "childTokens" in i && i.childTokens && (t.childTokens[i.name] = i.childTokens);
-      }), r.extensions = t), n.renderer) {
-        let i = this.defaults.renderer || new y(this.defaults);
-        for (let s in n.renderer) {
-          if (!(s in i))
-            throw new Error(`renderer '${s}' does not exist`);
-          if (["options", "parser"].includes(s))
-            continue;
-          let a = s, o = n.renderer[a], l = i[a];
-          i[a] = (...p) => {
-            let c = o.apply(i, p);
-            return c === false && (c = l.apply(i, p)), c || "";
-          };
-        }
-        r.renderer = i;
-      }
-      if (n.tokenizer) {
-        let i = this.defaults.tokenizer || new w(this.defaults);
-        for (let s in n.tokenizer) {
-          if (!(s in i))
-            throw new Error(`tokenizer '${s}' does not exist`);
-          if (["options", "rules", "lexer"].includes(s))
-            continue;
-          let a = s, o = n.tokenizer[a], l = i[a];
-          i[a] = (...p) => {
-            let c = o.apply(i, p);
-            return c === false && (c = l.apply(i, p)), c;
-          };
-        }
-        r.tokenizer = i;
-      }
-      if (n.hooks) {
-        let i = this.defaults.hooks || new P();
-        for (let s in n.hooks) {
-          if (!(s in i))
-            throw new Error(`hook '${s}' does not exist`);
-          if (["options", "block"].includes(s))
-            continue;
-          let a = s, o = n.hooks[a], l = i[a];
-          P.passThroughHooks.has(s) ? i[a] = (p) => {
-            if (this.defaults.async && P.passThroughHooksRespectAsync.has(s))
-              return (async () => {
-                let d = await o.call(i, p);
-                return l.call(i, d);
-              })();
-            let c = o.call(i, p);
-            return l.call(i, c);
-          } : i[a] = (...p) => {
-            if (this.defaults.async)
-              return (async () => {
-                let d = await o.apply(i, p);
-                return d === false && (d = await l.apply(i, p)), d;
-              })();
-            let c = o.apply(i, p);
-            return c === false && (c = l.apply(i, p)), c;
-          };
-        }
-        r.hooks = i;
-      }
-      if (n.walkTokens) {
-        let i = this.defaults.walkTokens, s = n.walkTokens;
-        r.walkTokens = function(a) {
-          let o = [];
-          return o.push(s.call(this, a)), i && (o = o.concat(i.call(this, a))), o;
-        };
-      }
-      this.defaults = { ...this.defaults, ...r };
-    }), this;
-  }
-  setOptions(e) {
-    return this.defaults = { ...this.defaults, ...e }, this;
-  }
-  lexer(e, t) {
-    return x.lex(e, t != null ? t : this.defaults);
-  }
-  parser(e, t) {
-    return b.parse(e, t != null ? t : this.defaults);
-  }
-  parseMarkdown(e) {
-    return (n, r) => {
-      let i = { ...r }, s = { ...this.defaults, ...i }, a = this.onError(!!s.silent, !!s.async);
-      if (this.defaults.async === true && i.async === false)
-        return a(new Error("marked(): The async option was set to true by an extension. Remove async: false from the parse options object to return a Promise."));
-      if (typeof n > "u" || n === null)
-        return a(new Error("marked(): input parameter is undefined or null"));
-      if (typeof n != "string")
-        return a(new Error("marked(): input parameter is of type " + Object.prototype.toString.call(n) + ", string expected"));
-      if (s.hooks && (s.hooks.options = s, s.hooks.block = e), s.async)
-        return (async () => {
-          let o = s.hooks ? await s.hooks.preprocess(n) : n, p = await (s.hooks ? await s.hooks.provideLexer() : e ? x.lex : x.lexInline)(o, s), c = s.hooks ? await s.hooks.processAllTokens(p) : p;
-          s.walkTokens && await Promise.all(this.walkTokens(c, s.walkTokens));
-          let h = await (s.hooks ? await s.hooks.provideParser() : e ? b.parse : b.parseInline)(c, s);
-          return s.hooks ? await s.hooks.postprocess(h) : h;
-        })().catch(a);
-      try {
-        s.hooks && (n = s.hooks.preprocess(n));
-        let l = (s.hooks ? s.hooks.provideLexer() : e ? x.lex : x.lexInline)(n, s);
-        s.hooks && (l = s.hooks.processAllTokens(l)), s.walkTokens && this.walkTokens(l, s.walkTokens);
-        let c = (s.hooks ? s.hooks.provideParser() : e ? b.parse : b.parseInline)(l, s);
-        return s.hooks && (c = s.hooks.postprocess(c)), c;
-      } catch (o) {
-        return a(o);
-      }
-    };
-  }
-  onError(e, t) {
-    return (n) => {
-      if (n.message += `
-Please report this to https://github.com/markedjs/marked.`, e) {
-        let r = "<p>An error occurred:</p><pre>" + O(n.message + "", true) + "</pre>";
-        return t ? Promise.resolve(r) : r;
-      }
-      if (t)
-        return Promise.reject(n);
-      throw n;
-    };
-  }
-};
-var L = new D();
-function g(u3, e) {
-  return L.parse(u3, e);
-}
-g.options = g.setOptions = function(u3) {
-  return L.setOptions(u3), g.defaults = L.defaults, G(g.defaults), g;
-};
-g.getDefaults = M;
-g.defaults = T;
-g.use = function(...u3) {
-  return L.use(...u3), g.defaults = L.defaults, G(g.defaults), g;
-};
-g.walkTokens = function(u3, e) {
-  return L.walkTokens(u3, e);
-};
-g.parseInline = L.parseInline;
-g.Parser = b;
-g.parser = b.parse;
-g.Renderer = y;
-g.TextRenderer = $;
-g.Lexer = x;
-g.lexer = x.lex;
-g.Tokenizer = w;
-g.Hooks = P;
-g.parse = g;
-var Qt = g.options;
-var jt = g.setOptions;
-var Ft = g.use;
-var Ut = g.walkTokens;
-var Kt = g.parseInline;
-var Xt = b.parse;
-var Jt = x.lex;
-
 // src/renderer.ts
-async function renderNote(rawContent) {
+var import_obsidian2 = require("obsidian");
+async function renderNote(app, file, rawContent) {
   const content = rawContent.replace(/^---[\s\S]*?---\n?/, "");
-  const htmlBody = await g(content);
-  return { html: htmlBody, css: buildCss() };
+  const el = document.createElement("div");
+  el.className = "markdown-preview-view markdown-rendered";
+  const component = new import_obsidian2.Component();
+  component.load();
+  await import_obsidian2.MarkdownRenderer.render(app, content, el, file.path, component);
+  component.unload();
+  el.querySelectorAll("table").forEach((table) => {
+    var _a;
+    const wrapper = document.createElement("div");
+    wrapper.className = "table-wrapper";
+    (_a = table.parentNode) == null ? void 0 : _a.insertBefore(wrapper, table);
+    wrapper.appendChild(table);
+  });
+  return { html: el.innerHTML, css: buildCss() };
 }
 function buildHtml(title, htmlBody) {
   return `<!DOCTYPE html>
@@ -37427,141 +36127,211 @@ function buildHtml(title, htmlBody) {
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <article class="markdown-body">
-${htmlBody}  </article>
+  <div class="markdown-preview-view">
+${htmlBody}
+  </div>
+  <script>
+    document.querySelectorAll('pre').forEach(function(pre) {
+      var btn = document.createElement('button');
+      btn.className = 'copy-btn';
+      btn.textContent = '\u590D\u5236';
+      pre.appendChild(btn);
+      btn.addEventListener('click', function() {
+        var code = pre.querySelector('code');
+        navigator.clipboard.writeText(code ? code.innerText : pre.innerText).then(function() {
+          btn.textContent = '\u5DF2\u590D\u5236';
+          setTimeout(function() { btn.textContent = '\u590D\u5236'; }, 2000);
+        });
+      });
+    });
+  <\/script>
 </body>
 </html>`;
 }
 function buildCss() {
-  return `/* Base */
+  return `/* \u2500\u2500 Reset \u2500\u2500 */
 *, *::before, *::after { box-sizing: border-box; }
 
+/* \u2500\u2500 Page \u2500\u2500 */
 body {
   margin: 0;
   padding: 2rem 1rem;
-  background: #f6f8fa;
-  color: #24292e;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  background: #fff;
+  font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
-  line-height: 1.7;
+  line-height: 1.6;
+  color: #24292e;
 }
 
-.markdown-body {
+/* \u2500\u2500 Content container \u2500\u2500 */
+.markdown-preview-view {
   max-width: 780px;
   margin: 0 auto;
-  background: #fff;
   padding: 2.5rem 3rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
 
-/* Headings */
+/* \u2500\u2500 Headings \u2500\u2500 */
 h1, h2, h3, h4, h5, h6 {
-  margin: 1.5em 0 0.5em;
   font-weight: 600;
   line-height: 1.3;
+  margin: 1.5em 0 0.5em;
 }
-h1 { font-size: 2em; border-bottom: 2px solid #eaecef; padding-bottom: 0.3em; }
-h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: 0.2em; }
-h3 { font-size: 1.25em; }
+h1 { font-size: 1.75em; }
+h2 { font-size: 1.4em; }
+h3 { font-size: 1.15em; }
+h4, h5, h6 { font-size: 1em; }
 
-/* Paragraph & inline */
+/* \u2500\u2500 Paragraph \u2500\u2500 */
 p { margin: 0.8em 0; }
-a { color: #0366d6; text-decoration: none; }
-a:hover { text-decoration: underline; }
-strong { font-weight: 600; }
-em { font-style: italic; }
 
-/* Code */
-code {
-  background: #f0f2f4;
+/* \u2500\u2500 Links \u2500\u2500 */
+a { color: #007AFF; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* \u2500\u2500 Inline code \u2500\u2500 */
+:not(pre) > code {
+  font-family: "SF Mono", "Fira Code", Menlo, Courier, monospace;
+  font-size: 0.8em;
+  color: #347698;
+  background: #F3F3F3;
   padding: 0.15em 0.4em;
   border-radius: 4px;
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 0.9em;
 }
+
+/* \u2500\u2500 Code block \u2500\u2500 */
 pre {
-  background: #f6f8fa;
-  border: 1px solid #e1e4e8;
-  border-radius: 6px;
+  position: relative;
+  background: #f8f8f8;
+  border: 1px solid #DADCDE;
+  border-radius: 5px;
   padding: 1rem 1.2rem;
   overflow: auto;
+  font-size: 13px;
   line-height: 1.5;
 }
+.copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 2px 10px;
+  font-size: 12px;
+  color: #555;
+  background: #fff;
+  border: 1px solid #DADCDE;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+pre:hover .copy-btn { opacity: 1; }
+.copy-btn:hover { background: #f0f0f0; }
 pre code {
+  font-family: "SF Mono", "Fira Code", Menlo, Courier, monospace;
   background: none;
   padding: 0;
-  font-size: 0.875em;
+  color: inherit;
+  font-size: inherit;
+  border-radius: 0;
 }
 
-/* Blockquote */
+/* \u2500\u2500 Blockquote \u2500\u2500 */
 blockquote {
+  position: relative;
   margin: 1em 0;
-  padding: 0.5em 1em;
-  color: #6a737d;
-  border-left: 4px solid #dfe2e5;
+  padding: 0.8rem 1rem 0.8rem 1.3rem;
+  background: rgba(0, 153, 123, 0.05);
+  border-radius: 6px;
+  border: none;
 }
-blockquote p { margin: 0; }
+blockquote::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: 0.3rem;
+  background: #00997B;
+  border-radius: 6px 0 0 6px;
+}
+blockquote p {
+  color: #81888D;
+  font-size: 14px;
+  margin: 0;
+}
 
-/* Lists */
+/* \u2500\u2500 Lists \u2500\u2500 */
 ul, ol { padding-left: 1.5em; margin: 0.8em 0; }
 li { margin: 0.3em 0; }
 
-/* Table */
+/* \u2500\u2500 Table \u2500\u2500 */
+.el-table, .table-wrapper {
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid #DADCDE;
+  margin: 1em 0;
+}
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 1em 0;
-  font-size: 0.95em;
+  font-size: 13px;
 }
+thead { background: rgba(0, 153, 123, 0.03); font-weight: 700; }
 th, td {
-  border: 1px solid #dfe2e5;
-  padding: 0.5em 0.8em;
+  color: rgb(107, 107, 107);
+  padding: 10px 13px;
+  border-left: 1px solid #DADCDE;
   text-align: left;
 }
-th { background: #f6f8fa; font-weight: 600; }
-tr:nth-child(even) { background: #fafbfc; }
+th:first-child, td:first-child { border-left: none; }
+tbody tr { border-bottom: 1px solid #DADCDE; }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:nth-child(even) { background: rgba(0, 153, 123, 0.03); }
 
-/* HR */
-hr {
-  border: none;
-  border-top: 1px solid #eaecef;
-  margin: 1.5em 0;
-}
+/* \u2500\u2500 HR \u2500\u2500 */
+hr { border: none; border-top: 1px dashed #DADCDE; margin: 1.5em 0; }
 
-/* Image */
+/* \u2500\u2500 Image \u2500\u2500 */
 img { max-width: 100%; border-radius: 4px; }
+
+/* \u2500\u2500 Misc \u2500\u2500 */
+strong { font-weight: 600; }
+em { font-style: italic; }
+
+/* \u2500\u2500 Scrollbar \u2500\u2500 */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-thumb { background: transparent; border-radius: 999px; transition: background 0.3s; }
+body:hover ::-webkit-scrollbar-thumb { background: rgba(128, 128, 128, 0.4); }
+::-webkit-scrollbar-track { background: transparent; }
 `;
 }
 
 // src/exporter.ts
-async function prepareExport(vault, file) {
+async function prepareExport(app, vault, file) {
   const raw = await vault.read(file);
-  const { html: htmlBody, css } = await renderNote(raw);
+  const { html: htmlBody, css } = await renderNote(app, file, raw);
   const html = buildHtml(file.basename, htmlBody);
   const folderName = Date.now().toString(36);
   return { noteName: folderName, html, css };
 }
-async function exportToLocal(vault, file, exportRoot) {
-  const result = await prepareExport(vault, file);
+async function exportToLocal(app, vault, file, exportRoot) {
+  const result = await prepareExport(app, vault, file);
   const folderPath = path2.join(exportRoot, result.noteName);
   fs.mkdirSync(folderPath, { recursive: true });
   fs.writeFileSync(path2.join(folderPath, "index.html"), result.html, "utf8");
   fs.writeFileSync(path2.join(folderPath, "style.css"), result.css, "utf8");
-  new import_obsidian2.Notice(`\u5DF2\u5BFC\u51FA\u5230\u672C\u5730\uFF1A${folderPath}`);
+  new import_obsidian3.Notice(`\u5DF2\u5BFC\u51FA\u5230\u672C\u5730\uFF1A${folderPath}`);
   return result;
 }
 
 // src/oss.ts
-var import_obsidian3 = require("obsidian");
+var import_obsidian4 = require("obsidian");
 var OSS = require_aliyun_oss_sdk();
 async function uploadToOss(settings, noteName, html, css) {
   const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret, ossPrefix } = settings;
   if (!ossRegion || !ossBucket || !ossAccessKeyId || !ossAccessKeySecret) {
-    new import_obsidian3.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
+    new import_obsidian4.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
     return;
   }
-  new import_obsidian3.Notice("\u6B63\u5728\u4E0A\u4F20\u5230 OSS...");
+  new import_obsidian4.Notice("\u6B63\u5728\u4E0A\u4F20\u5230 OSS...");
   const client = new OSS({
     region: ossRegion,
     accessKeyId: ossAccessKeyId,
@@ -37578,12 +36348,12 @@ async function uploadToOss(settings, noteName, html, css) {
   const base = ossDomain || `https://${ossBucket}.${ossRegion}.aliyuncs.com`;
   const url = `${base}/${htmlKey}`;
   await navigator.clipboard.writeText(url);
-  new import_obsidian3.Notice(`\u4E0A\u4F20\u6210\u529F\uFF01\u94FE\u63A5\u5DF2\u590D\u5236\u5230\u526A\u8D34\u677F
+  new import_obsidian4.Notice(`\u4E0A\u4F20\u6210\u529F\uFF01\u94FE\u63A5\u5DF2\u590D\u5236\u5230\u526A\u8D34\u677F
 ${url}`);
 }
 
 // main.ts
-var ShareOnlinePlugin = class extends import_obsidian4.Plugin {
+var ShareOnlinePlugin = class extends import_obsidian5.Plugin {
   async onload() {
     await this.loadSettings();
     this.addSettingTab(new ShareOnlineSettingTab(this.app, this));
@@ -37607,7 +36377,7 @@ var ShareOnlinePlugin = class extends import_obsidian4.Plugin {
   async exportCurrentNote(toOss = false) {
     const file = this.app.workspace.getActiveFile();
     if (!file) {
-      new import_obsidian4.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
+      new import_obsidian5.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
       return;
     }
     await this.exportFile(file, toOss);
@@ -37615,17 +36385,18 @@ var ShareOnlinePlugin = class extends import_obsidian4.Plugin {
   async exportFile(file, toOss = false) {
     try {
       if (toOss) {
-        const result = await prepareExport(this.app.vault, file);
+        const result = await prepareExport(this.app, this.app.vault, file);
         await uploadToOss(this.settings, result.noteName, result.html, result.css);
       } else {
         await exportToLocal(
+          this.app,
           this.app.vault,
           file,
           this.settings.exportPath || DEFAULT_SETTINGS.exportPath
         );
       }
     } catch (err) {
-      new import_obsidian4.Notice(`\u5BFC\u51FA\u5931\u8D25\uFF1A${err.message}`);
+      new import_obsidian5.Notice(`\u5BFC\u51FA\u5931\u8D25\uFF1A${err.message}`);
       console.error(err);
     }
   }

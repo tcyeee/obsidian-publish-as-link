@@ -43,10 +43,11 @@ export default class ShareOnlinePlugin extends Plugin {
 	private async exportFile(file: TFile, toOss = false) {
 		try {
 			if (toOss) {
-				const result = await prepareExport(this.app.vault, file);
+				const result = await prepareExport(this.app, this.app.vault, file);
 				await uploadToOss(this.settings, result.noteName, result.html, result.css);
 			} else {
 				await exportToLocal(
+					this.app,
 					this.app.vault,
 					file,
 					this.settings.exportPath || DEFAULT_SETTINGS.exportPath

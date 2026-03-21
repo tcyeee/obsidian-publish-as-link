@@ -1,4 +1,4 @@
-import { Notice, Vault, TFile } from "obsidian";
+import { App, Notice, Vault, TFile } from "obsidian";
 import * as fs from "fs";
 import * as path from "path";
 import { renderNote, buildHtml } from "./renderer";
@@ -9,20 +9,21 @@ export interface ExportResult {
 	css: string;
 }
 
-export async function prepareExport(vault: Vault, file: TFile): Promise<ExportResult> {
+export async function prepareExport(app: App, vault: Vault, file: TFile): Promise<ExportResult> {
 	const raw = await vault.read(file);
-	const { html: htmlBody, css } = await renderNote(raw);
+	const { html: htmlBody, css } = await renderNote(app, file, raw);
 	const html = buildHtml(file.basename, htmlBody);
 	const folderName = Date.now().toString(36);
 	return { noteName: folderName, html, css };
 }
 
 export async function exportToLocal(
+	app: App,
 	vault: Vault,
 	file: TFile,
 	exportRoot: string
 ): Promise<ExportResult> {
-	const result = await prepareExport(vault, file);
+	const result = await prepareExport(app, vault, file);
 
 	const folderPath = path.join(exportRoot, result.noteName);
 	fs.mkdirSync(folderPath, { recursive: true });
