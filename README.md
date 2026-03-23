@@ -1,6 +1,6 @@
-# Obsidian Share Online
+# Publish as Link
 
-An [Obsidian](https://obsidian.md) plugin that lets you export and share notes as polished, standalone web pages — either locally or published to the cloud via Alibaba Cloud OSS.
+An [Obsidian](https://obsidian.md) plugin that publishes your notes to Alibaba Cloud OSS and shares them as a link with one click — or exports them as polished, standalone web pages locally.
 
 ## Features
 
@@ -23,7 +23,7 @@ An [Obsidian](https://obsidian.md) plugin that lets you export and share notes a
 > Currently not listed in the Obsidian community plugins registry. Install manually:
 
 1. Download the latest release files (`main.js`, `manifest.json`, `styles.css`) from the [Releases](../../releases) page.
-2. Copy them to your vault's plugin folder: `<vault>/.obsidian/plugins/obsidian-share-online/`
+2. Copy them to your vault's plugin folder: `<vault>/.obsidian/plugins/publish-as-link/`
 3. Reload Obsidian and enable the plugin under **Settings → Community plugins**.
 
 ## Usage
@@ -50,27 +50,27 @@ Open `index.html` in any browser.
 
 Once published, clicking the status bar icon gives you:
 
-| Action | Description |
-|--------|-------------|
-| Open Link | Open the published page in your browser |
-| Update Content | Re-upload after edits (link stays the same) |
-| Stop Sharing | Delete from cloud; link becomes invalid |
-| Export to Local | Save a local copy |
+| Action          | Description                                 |
+| --------------- | ------------------------------------------- |
+| Open Link       | Open the published page in your browser     |
+| Update Content  | Re-upload after edits (link stays the same) |
+| Stop Sharing    | Delete from cloud; link becomes invalid     |
+| Export to Local | Save a local copy                           |
 
 ## Configuration
 
-Open **Settings → Share Online**:
+Open **Settings → Publish as Link**:
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| Include Linked Notes | Export all directly linked markdown notes together | Off |
-| Export Path | Destination folder for local exports | `~/Desktop` |
-| OSS Region | Alibaba Cloud OSS region (e.g. `oss-cn-hangzhou`) | — |
-| OSS Bucket | Your OSS bucket name | — |
-| Access Key ID | OSS access key ID | — |
-| Access Key Secret | OSS access key secret | — |
-| Upload Prefix Path | Path prefix inside the bucket | `notes` |
-| Custom Domain | Custom domain or CDN URL to replace the default OSS endpoint | — |
+| Setting              | Description                                                  | Default     |
+| -------------------- | ------------------------------------------------------------ | ----------- |
+| Include Linked Notes | Export all directly linked markdown notes together           | Off         |
+| Export Path          | Destination folder for local exports                         | `~/Desktop` |
+| OSS Region           | Alibaba Cloud OSS region (e.g. `oss-cn-hangzhou`)            | —           |
+| OSS Bucket           | Your OSS bucket name                                         | —           |
+| Access Key ID        | OSS access key ID                                            | —           |
+| Access Key Secret    | OSS access key secret                                        | —           |
+| Upload Prefix Path   | Path prefix inside the bucket                                | `notes`     |
+| Custom Domain        | Custom domain or CDN URL to replace the default OSS endpoint | —           |
 
 > **Security:** Never commit `data.json` (where settings are stored) to version control. It is already included in `.gitignore`.
 
