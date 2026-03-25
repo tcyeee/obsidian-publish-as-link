@@ -491,14 +491,22 @@ export function buildCss(): string {
 *, *::before, *::after { box-sizing: border-box; }
 
 /* ── Page ── */
+*, *::before, *::after { box-sizing: border-box; }
 body {
   margin: 0;
   padding: 2rem 1rem;
   background: #fff;
-  font-family: -apple-system, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  color: #24292e;
+  font-family: "Chinese Quote", "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.74;
+  color: #262626;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  letter-spacing: 0.008em;
+  word-break: break-word;
+  word-wrap: break-word;
+  font-variant-ligatures: none;
+  text-indent: 0;
 }
 
 /* ── TOC sidebar (desktop: fixed to viewport left) ── */
@@ -858,10 +866,10 @@ tbody tr:nth-child(even) { background: rgba(101, 166, 146, 0.03); }
 .callout-content {
   padding: 10px 14px;
   font-size: 0.9rem;
-  color: rgba(0, 0, 0, 0.9);
+  color: #888;
   overflow: hidden;
   max-height: 4000px;
-  opacity: 1;
+  opacity: 0.1;
   transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.3s ease;
 }
 .callout.is-collapsed .callout-content {
