@@ -36624,10 +36624,24 @@ async function renderNote(app, file, rawContent) {
   const { processed, entries } = extractMath(content);
   const el = document.createElement("div");
   el.className = "markdown-preview-view markdown-rendered";
+  el.style.cssText = "position:absolute;left:-9999px;visibility:hidden;";
+  document.body.appendChild(el);
   const component = new import_obsidian3.Component();
   component.load();
   await import_obsidian3.MarkdownRenderer.render(app, processed, el, file.path, component);
-  await new Promise((r) => setTimeout(r, 300));
+  await new Promise((resolve) => {
+    const start = Date.now();
+    const check = () => {
+      const elapsed = Date.now() - start;
+      const pendingMermaid = el.querySelectorAll("pre code.language-mermaid").length;
+      if (pendingMermaid === 0 && elapsed >= 300 || elapsed >= 1500) {
+        resolve();
+      } else {
+        setTimeout(check, 100);
+      }
+    };
+    setTimeout(check, 300);
+  });
   component.unload();
   el.querySelectorAll("[data-mi]").forEach((placeholder) => {
     var _a2;
@@ -36681,7 +36695,9 @@ async function renderNote(app, file, rawContent) {
   });
   processImgsBlocks(app, file, el, images);
   collectImages(app, file, el, images);
-  return { html: el.innerHTML, css: buildCss(), images };
+  const html = el.innerHTML;
+  document.body.removeChild(el);
+  return { html, css: buildCss(), images };
 }
 function buildHtml(title, htmlBody) {
   const svgCopy = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>`;
@@ -37422,6 +37438,17 @@ img { max-width: 100%; border-radius: 4px; }
   border-radius: 6px;
   cursor: default;
   box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+
+/* \u2500\u2500 Mermaid \u2500\u2500 */
+.block-language-mermaid {
+  text-align: center;
+  margin: 1.2em 0;
+  overflow-x: auto;
+}
+.block-language-mermaid svg {
+  max-width: 100%;
+  height: auto;
 }
 
 /* \u2500\u2500 Misc \u2500\u2500 */

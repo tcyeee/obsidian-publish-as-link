@@ -149,13 +149,29 @@ export async function renderNote(
 
   const el = document.createElement("div");
   el.className = "markdown-preview-view markdown-rendered";
+  // Attach off-screen so mermaid (and other renderers) can use DOM layout APIs.
+  el.style.cssText = "position:absolute;left:-9999px;visibility:hidden;";
+  document.body.appendChild(el);
 
   const component = new Component();
   component.load();
   await MarkdownRenderer.render(app, processed, el, file.path, component);
 
-  // Wait for async post-processors (callout icons, etc.)
-  await new Promise((r) => setTimeout(r, 300));
+  // Wait for async post-processors (callout icons, mermaid, etc.)
+  // Poll until all mermaid blocks have been converted to SVG, or 1500 ms max.
+  await new Promise<void>((resolve) => {
+    const start = Date.now();
+    const check = () => {
+      const elapsed = Date.now() - start;
+      const pendingMermaid = el.querySelectorAll("pre code.language-mermaid").length;
+      if ((pendingMermaid === 0 && elapsed >= 300) || elapsed >= 1500) {
+        resolve();
+      } else {
+        setTimeout(check, 100);
+      }
+    };
+    setTimeout(check, 300);
+  });
   component.unload();
 
   // Restore math content for KaTeX
@@ -222,7 +238,9 @@ export async function renderNote(
   processImgsBlocks(app, file, el, images);
   collectImages(app, file, el, images);
 
-  return { html: el.innerHTML, css: buildCss(), images };
+  const html = el.innerHTML;
+  document.body.removeChild(el);
+  return { html, css: buildCss(), images };
 }
 
 /* ── HTML builder ──────────────────────────────────────────────────────── */
@@ -963,6 +981,17 @@ img { max-width: 100%; border-radius: 4px; }
   border-radius: 6px;
   cursor: default;
   box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+}
+
+/* ── Mermaid ── */
+.block-language-mermaid {
+  text-align: center;
+  margin: 1.2em 0;
+  overflow-x: auto;
+}
+.block-language-mermaid svg {
+  max-width: 100%;
+  height: auto;
 }
 
 /* ── Misc ── */
