@@ -36937,6 +36937,58 @@ ${htmlBody}
       });
     })();
 
+    /* \u2500\u2500 Mermaid zoom toggle \u2500\u2500 */
+    (function() {
+      document.querySelectorAll('.mermaid').forEach(function(block) {
+        var svg = block.querySelector('svg');
+        if (!svg) return;
+
+        // \u4FEE\u6B63 viewBox \u53F3\u4FA7\u88C1\u65AD\uFF1Amermaid \u7528 canvas \u6D4B\u91CF\u6587\u5B57\u5BBD\u5EA6\uFF0C\u5B9E\u9645\u6E32\u67D3\u53EF\u80FD\u7A0D\u5BBD\uFF0C
+        // \u5BFC\u81F4\u6700\u540E\u4E00\u4E2A\u5B57\u7B26\u88AB viewBox \u8FB9\u754C\u88C1\u65AD\u3002\u7ED9 viewBox \u53F3\u4FA7\u8865 8px \u4F59\u91CF\uFF0C\u540C\u6B65\u6269\u5927
+        // width \u5C5E\u6027\u4EE5\u4FDD\u6301\u7B49\u6BD4\u4F8B\uFF0C\u907F\u514D\u7F29\u653E\u3002
+        (function() {
+          var vbStr = svg.getAttribute('viewBox');
+          if (!vbStr) return;
+          var parts = vbStr.trim().split(/[\s,]+/).map(parseFloat);
+          if (parts.length < 4 || isNaN(parts[2]) || isNaN(parts[3])) return;
+          var pad = 8;
+          parts[2] += pad;
+          svg.setAttribute('viewBox', parts.join(' '));
+          var wAttr = parseFloat(svg.getAttribute('width') || '0');
+          if (wAttr > 0) svg.setAttribute('width', String(wAttr + pad));
+        })();
+
+        // \u8BFB\u53D6 SVG \u81EA\u7136\u50CF\u7D20\u5BBD\u5EA6\uFF0C\u6309\u4F18\u5148\u7EA7\u4F9D\u6B21\u5C1D\u8BD5\u4E09\u79CD\u6765\u6E90
+        var naturalWidth = parseFloat(svg.getAttribute('width') || '0');
+        if (!naturalWidth) {
+          var vb = svg.getAttribute('viewBox');
+          if (vb) {
+            var parts = vb.trim().split(/[s,]+/);
+            if (parts.length >= 3) naturalWidth = parseFloat(parts[2]);
+          }
+        }
+        if (!naturalWidth) {
+          var mw = svg.style.maxWidth;
+          if (mw) naturalWidth = parseFloat(mw);
+        }
+        var containerWidth = block.clientWidth;
+        if (!naturalWidth || naturalWidth <= containerWidth + 2) return;
+        // \u8D85\u5BBD\uFF1A\u9ED8\u8BA4\u8FDB\u5165 fit-view\uFF08\u7F29\u653E\u9002\u914D\uFF09\uFF0CCSS \u8D1F\u8D23 width:100%
+        block.classList.add('mermaid-overflows', 'mermaid-fit-view');
+        block.addEventListener('click', function() {
+          if (block.classList.contains('mermaid-fit-view')) {
+            // \u5C55\u5F00\uFF1A\u5FC5\u987B\u663E\u5F0F\u8BBE\u50CF\u7D20\u5BBD\uFF0C\u5426\u5219 SVG \u9ED8\u8BA4\u4ECD\u662F 100% \u5BB9\u5668\u5BBD\uFF0C\u65E0\u6CD5\u6EDA\u52A8
+            block.classList.remove('mermaid-fit-view');
+            svg.style.setProperty('width', naturalWidth + 'px', 'important');
+          } else {
+            // \u6536\u8D77\uFF1A\u79FB\u9664\u5185\u8054 width\uFF0C\u8BA9 CSS .mermaid-fit-view svg { width:100% } \u63A5\u7BA1
+            block.classList.add('mermaid-fit-view');
+            svg.style.removeProperty('width');
+          }
+        });
+      });
+    })();
+
     /* \u2500\u2500 TOC mobile toggle \u2500\u2500 */
     (function() {
       var toggle   = document.getElementById('toc-toggle');
@@ -37441,14 +37493,37 @@ img { max-width: 100%; border-radius: 4px; }
 }
 
 /* \u2500\u2500 Mermaid \u2500\u2500 */
-.block-language-mermaid {
+.mermaid {
   text-align: center;
   margin: 1.2em 0;
-  overflow-x: auto;
 }
-.block-language-mermaid svg {
-  max-width: 100%;
-  height: auto;
+/* \u6240\u6709 mermaid SVG \u5141\u8BB8 viewBox \u5916\u7684\u6587\u5B57\u6807\u7B7E\u53EF\u89C1\uFF0C\u9632\u6B62\u8282\u70B9\u8FB9\u7F18\u6587\u5B57\u88AB\u88C1\u65AD */
+.mermaid svg {
+  overflow: visible;
+}
+/* \u6EA2\u51FA\u5757\u4E24\u79CD\u72B6\u6001\u5171\u7528\uFF1A\u6A2A\u5411\u6EDA\u52A8\u5BB9\u5668\uFF0C\u6EDA\u52A8\u6761\u5B8C\u5168\u9690\u85CF */
+.mermaid.mermaid-overflows {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.mermaid.mermaid-overflows::-webkit-scrollbar {
+  display: none;
+}
+/* fit-view \u9ED8\u8BA4\u6001\uFF1ASVG \u7F29\u653E\u81F3\u5BB9\u5668\u5BBD\u5EA6
+   - \u4E0D\u52A0 overflow-x:hidden\uFF0CSVG width:100% \u5DF2\u4E0D\u4F1A\u6EA2\u51FA\uFF0C\u52A0\u4E86\u53CD\u800C\u88C1\u65AD\u8FB9\u7F18\u6587\u5B57
+   - overflow:visible \u8BA9 SVG viewport \u4E0D\u88C1\u65AD viewBox \u5916\u4FA7\u7684\u6587\u5B57\u6807\u7B7E */
+.mermaid.mermaid-fit-view {
+  cursor: zoom-in;
+}
+.mermaid.mermaid-fit-view svg {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+/* \u5C55\u5F00\u6001\uFF1Acursor \u63D0\u793A\u53EF\u6536\u56DE */
+.mermaid.mermaid-overflows:not(.mermaid-fit-view) {
+  cursor: zoom-out;
 }
 
 /* \u2500\u2500 Misc \u2500\u2500 */

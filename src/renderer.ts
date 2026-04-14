@@ -478,6 +478,59 @@ ${htmlBody}
       });
     })();
 
+    /* ── Mermaid zoom toggle ── */
+    (function() {
+      document.querySelectorAll('.mermaid').forEach(function(block) {
+        var svg = block.querySelector('svg');
+        if (!svg) return;
+
+        // 修正 viewBox 右侧裁断：mermaid 用 canvas 测量文字宽度，实际渲染可能稍宽，
+        // 导致最后一个字符被 viewBox 边界裁断。给 viewBox 右侧补 8px 余量，同步扩大
+        // width 属性以保持等比例，避免缩放。
+        (function() {
+          var vbStr = svg.getAttribute('viewBox');
+          if (!vbStr) return;
+          var parts = vbStr.trim().split(/[\s,]+/).map(parseFloat);
+          if (parts.length < 4 || isNaN(parts[2]) || isNaN(parts[3])) return;
+          var pad = 8;
+          parts[2] += pad; // 扩宽 viewBox
+          svg.setAttribute('viewBox', parts.join(' '));
+          // 同步扩大 width 属性（若存在），保持 1:1 比例
+          var wAttr = parseFloat(svg.getAttribute('width') || '0');
+          if (wAttr > 0) svg.setAttribute('width', String(wAttr + pad));
+        })();
+
+        // 读取 SVG 自然像素宽度，按优先级依次尝试三种来源
+        var naturalWidth = parseFloat(svg.getAttribute('width') || '0');
+        if (!naturalWidth) {
+          var vb = svg.getAttribute('viewBox');
+          if (vb) {
+            var parts = vb.trim().split(/[\s,]+/);
+            if (parts.length >= 3) naturalWidth = parseFloat(parts[2]);
+          }
+        }
+        if (!naturalWidth) {
+          var mw = svg.style.maxWidth;
+          if (mw) naturalWidth = parseFloat(mw);
+        }
+        var containerWidth = block.clientWidth;
+        if (!naturalWidth || naturalWidth <= containerWidth + 2) return;
+        // 超宽：默认进入 fit-view（缩放适配），CSS 负责 width:100%
+        block.classList.add('mermaid-overflows', 'mermaid-fit-view');
+        block.addEventListener('click', function() {
+          if (block.classList.contains('mermaid-fit-view')) {
+            // 展开：必须显式设像素宽，否则 SVG 默认仍是 100% 容器宽，无法滚动
+            block.classList.remove('mermaid-fit-view');
+            svg.style.setProperty('width', naturalWidth + 'px', 'important');
+          } else {
+            // 收起：移除内联 width，让 CSS .mermaid-fit-view svg { width:100% } 接管
+            block.classList.add('mermaid-fit-view');
+            svg.style.removeProperty('width');
+          }
+        });
+      });
+    })();
+
     /* ── TOC mobile toggle ── */
     (function() {
       var toggle   = document.getElementById('toc-toggle');
@@ -984,14 +1037,37 @@ img { max-width: 100%; border-radius: 4px; }
 }
 
 /* ── Mermaid ── */
-.block-language-mermaid {
+.mermaid {
   text-align: center;
   margin: 1.2em 0;
-  overflow-x: auto;
 }
-.block-language-mermaid svg {
-  max-width: 100%;
-  height: auto;
+/* 所有 mermaid SVG 允许 viewBox 外的文字标签可见，防止节点边缘文字被裁断 */
+.mermaid svg {
+  overflow: visible;
+}
+/* 溢出块两种状态共用：横向滚动容器，滚动条完全隐藏 */
+.mermaid.mermaid-overflows {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.mermaid.mermaid-overflows::-webkit-scrollbar {
+  display: none;
+}
+/* fit-view 默认态：SVG 缩放至容器宽度
+   - 不加 overflow-x:hidden，SVG width:100% 已不会溢出，加了反而裁断边缘文字
+   - overflow:visible 让 SVG viewport 不裁断 viewBox 外侧的文字标签 */
+.mermaid.mermaid-fit-view {
+  cursor: zoom-in;
+}
+.mermaid.mermaid-fit-view svg {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  overflow: visible !important;
+}
+/* 展开态：cursor 提示可收回 */
+.mermaid.mermaid-overflows:not(.mermaid-fit-view) {
+  cursor: zoom-out;
 }
 
 /* ── Misc ── */
