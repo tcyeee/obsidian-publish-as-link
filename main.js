@@ -36943,19 +36943,78 @@ ${htmlBody}
         var svg = block.querySelector('svg');
         if (!svg) return;
 
-        // \u4FEE\u6B63 viewBox \u53F3\u4FA7\u88C1\u65AD\uFF1Amermaid \u7528 canvas \u6D4B\u91CF\u6587\u5B57\u5BBD\u5EA6\uFF0C\u5B9E\u9645\u6E32\u67D3\u53EF\u80FD\u7A0D\u5BBD\uFF0C
-        // \u5BFC\u81F4\u6700\u540E\u4E00\u4E2A\u5B57\u7B26\u88AB viewBox \u8FB9\u754C\u88C1\u65AD\u3002\u7ED9 viewBox \u53F3\u4FA7\u8865 8px \u4F59\u91CF\uFF0C\u540C\u6B65\u6269\u5927
-        // width \u5C5E\u6027\u4EE5\u4FDD\u6301\u7B49\u6BD4\u4F8B\uFF0C\u907F\u514D\u7F29\u653E\u3002
+        // \u4FEE\u6B63\u8282\u70B9\u5BBD\u5EA6\u4E0D\u8DB3\uFF1Amermaid \u5728\u8BA1\u7B97\u8282\u70B9\u5C3A\u5BF8\u65F6\u6F0F\u6389\u4E86\u7EA6 20px \u7684 padding\uFF0C
+        // \u5BFC\u81F4 rect\uFF08\u8282\u70B9\u6846\uFF09\u548C foreignObject\uFF08\u6587\u5B57\u5BB9\u5668\uFF09\u90FD\u504F\u7A84 20px\u3002
+        // foreignObject \u4F1A\u88C1\u65AD\u8D85\u51FA\u5176\u5BBD\u5EA6\u7684 HTML \u5185\u5BB9\uFF08\u4E0E SVG overflow:visible \u65E0\u5173\uFF09\uFF0C
+        // \u5FC5\u987B\u76F4\u63A5\u4FEE\u6B63 width\u3002\u540C\u65F6\u5C06 label \u7EC4\u5DE6\u79FB 10px \u4EE5\u4FDD\u6301\u5C45\u4E2D\uFF0Crect \u4E5F\u540C\u6B65\u6269\u5BBD\u3002
+        (function() {
+          var EXTRA = 20;
+          svg.querySelectorAll('foreignObject').forEach(function(fo) {
+            var fw = parseFloat(fo.getAttribute('width') || '0');
+            if (fw <= 0) return;
+            fo.setAttribute('width', String(fw + EXTRA));
+            // \u5C06 label \u7236\u7EC4\u5DE6\u79FB EXTRA/2\uFF0C\u4FDD\u6301\u6587\u5B57\u5728\u8282\u70B9\u5185\u5C45\u4E2D
+            var labelG = fo.parentElement;
+            if (labelG && labelG !== svg && labelG.getAttribute) {
+              var tr = labelG.getAttribute('transform') || '';
+              var ti = tr.indexOf('translate(');
+              if (ti >= 0) {
+                var te = tr.indexOf(')', ti);
+                if (te > ti) {
+                  var coords = tr.slice(ti + 10, te).split(',');
+                  if (coords.length >= 2) {
+                    labelG.setAttribute('transform',
+                      tr.slice(0, ti) + 'translate(' +
+                      (parseFloat(coords[0]) - EXTRA / 2) + ',' +
+                      parseFloat(coords[1]) + ')' +
+                      tr.slice(te + 1));
+                  }
+                }
+              }
+            }
+          });
+          svg.querySelectorAll('rect.label-container').forEach(function(rect) {
+            var rw = parseFloat(rect.getAttribute('width') || '0');
+            var rx = parseFloat(rect.getAttribute('x') || '0');
+            if (rw <= 0) return;
+            rect.setAttribute('width', String(rw + EXTRA));
+            rect.setAttribute('x', String(rx - EXTRA / 2));
+          });
+        })();
+
+        // \u4FEE\u6B63 viewBox \u88C1\u65AD\uFF1Amermaid \u7528 canvas \u6D4B\u91CF\u6587\u5B57\u5BBD\u5EA6\uFF0C\u5B9E\u9645\u6E32\u67D3\u53EF\u80FD\u7A0D\u5BBD\uFF0C
+        // \u5BFC\u81F4\u6700\u540E\u4E00\u4E2A\u5B57\u7B26\u88AB viewBox \u8FB9\u754C\u88C1\u65AD\u3002\u7528 getBBox() \u6D4B\u91CF\u5B9E\u9645\u5185\u5BB9\u8FB9\u754C\uFF0C
+        // \u6309\u9700\u6269\u5C55 viewBox\uFF0C\u5E76\u540C\u6B65\u66F4\u65B0 width/max-width\uFF0C\u4FDD\u6301 1:1 \u6BD4\u4F8B\u3002
         (function() {
           var vbStr = svg.getAttribute('viewBox');
           if (!vbStr) return;
-          var parts = vbStr.trim().split(/[\s,]+/).map(parseFloat);
+          var parts = vbStr.trim().replace(/,/g, ' ').split(' ').filter(Boolean).map(parseFloat);
           if (parts.length < 4 || isNaN(parts[2]) || isNaN(parts[3])) return;
-          var pad = 8;
-          parts[2] += pad;
-          svg.setAttribute('viewBox', parts.join(' '));
-          var wAttr = parseFloat(svg.getAttribute('width') || '0');
-          if (wAttr > 0) svg.setAttribute('width', String(wAttr + pad));
+          var minPadW = 8, minPadH = 4;
+          var extraW = minPadW, extraH = 0;
+          try {
+            var bbox = svg.getBBox();
+            var vbRight  = parts[0] + parts[2];
+            var vbBottom = parts[1] + parts[3];
+            var overflowW = Math.ceil(bbox.x + bbox.width  + minPadW - vbRight);
+            var overflowH = Math.ceil(bbox.y + bbox.height + minPadH - vbBottom);
+            if (overflowW > extraW) extraW = overflowW;
+            if (overflowH > 0)      extraH = overflowH;
+          } catch(e) {}
+          if (extraW > 0) {
+            parts[2] += extraW;
+            var wAttr = parseFloat(svg.getAttribute('width') || '0');
+            if (wAttr > 0) svg.setAttribute('width', String(wAttr + extraW));
+            // \u73B0\u4EE3 mermaid \u7528 style.maxWidth \u800C\u975E width \u5C5E\u6027
+            var mwStyle = parseFloat(svg.style.maxWidth || '0');
+            if (mwStyle > 0) svg.style.maxWidth = (mwStyle + extraW) + 'px';
+          }
+          if (extraH > 0) {
+            parts[3] += extraH;
+            var hAttr = parseFloat(svg.getAttribute('height') || '0');
+            if (hAttr > 0) svg.setAttribute('height', String(hAttr + extraH));
+          }
+          if (extraW > 0 || extraH > 0) svg.setAttribute('viewBox', parts.join(' '));
         })();
 
         // \u8BFB\u53D6 SVG \u81EA\u7136\u50CF\u7D20\u5BBD\u5EA6\uFF0C\u6309\u4F18\u5148\u7EA7\u4F9D\u6B21\u5C1D\u8BD5\u4E09\u79CD\u6765\u6E90
@@ -36963,7 +37022,7 @@ ${htmlBody}
         if (!naturalWidth) {
           var vb = svg.getAttribute('viewBox');
           if (vb) {
-            var parts = vb.trim().split(/[s,]+/);
+            var parts = vb.trim().replace(/,/g, ' ').split(' ').filter(Boolean);
             if (parts.length >= 3) naturalWidth = parseFloat(parts[2]);
           }
         }

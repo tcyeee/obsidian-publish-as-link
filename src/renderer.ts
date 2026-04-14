@@ -484,20 +484,78 @@ ${htmlBody}
         var svg = block.querySelector('svg');
         if (!svg) return;
 
-        // 修正 viewBox 右侧裁断：mermaid 用 canvas 测量文字宽度，实际渲染可能稍宽，
-        // 导致最后一个字符被 viewBox 边界裁断。给 viewBox 右侧补 8px 余量，同步扩大
-        // width 属性以保持等比例，避免缩放。
+        // 修正节点宽度不足：mermaid 在计算节点尺寸时漏掉了约 20px 的 padding，
+        // 导致 rect（节点框）和 foreignObject（文字容器）都偏窄 20px。
+        // foreignObject 会裁断超出其宽度的 HTML 内容（与 SVG overflow:visible 无关），
+        // 必须直接修正 width。同时将 label 组左移 10px 以保持居中，rect 也同步扩宽。
+        (function() {
+          var EXTRA = 20;
+          svg.querySelectorAll('foreignObject').forEach(function(fo) {
+            var fw = parseFloat(fo.getAttribute('width') || '0');
+            if (fw <= 0) return;
+            fo.setAttribute('width', String(fw + EXTRA));
+            // 将 label 父组左移 EXTRA/2，保持文字在节点内居中
+            var labelG = fo.parentElement;
+            if (labelG && labelG !== svg && labelG.getAttribute) {
+              var tr = labelG.getAttribute('transform') || '';
+              var ti = tr.indexOf('translate(');
+              if (ti >= 0) {
+                var te = tr.indexOf(')', ti);
+                if (te > ti) {
+                  var coords = tr.slice(ti + 10, te).split(',');
+                  if (coords.length >= 2) {
+                    labelG.setAttribute('transform',
+                      tr.slice(0, ti) + 'translate(' +
+                      (parseFloat(coords[0]) - EXTRA / 2) + ',' +
+                      parseFloat(coords[1]) + ')' +
+                      tr.slice(te + 1));
+                  }
+                }
+              }
+            }
+          });
+          svg.querySelectorAll('rect.label-container').forEach(function(rect) {
+            var rw = parseFloat(rect.getAttribute('width') || '0');
+            var rx = parseFloat(rect.getAttribute('x') || '0');
+            if (rw <= 0) return;
+            rect.setAttribute('width', String(rw + EXTRA));
+            rect.setAttribute('x', String(rx - EXTRA / 2));
+          });
+        })();
+
+        // 修正 viewBox 裁断：mermaid 用 canvas 测量文字宽度，实际渲染可能稍宽，
+        // 导致最后一个字符被 viewBox 边界裁断。用 getBBox() 测量实际内容边界，
+        // 按需扩展 viewBox，并同步更新 width/max-width，保持 1:1 比例。
         (function() {
           var vbStr = svg.getAttribute('viewBox');
           if (!vbStr) return;
-          var parts = vbStr.trim().split(/[\s,]+/).map(parseFloat);
+          var parts = vbStr.trim().replace(/,/g, ' ').split(' ').filter(Boolean).map(parseFloat);
           if (parts.length < 4 || isNaN(parts[2]) || isNaN(parts[3])) return;
-          var pad = 8;
-          parts[2] += pad; // 扩宽 viewBox
-          svg.setAttribute('viewBox', parts.join(' '));
-          // 同步扩大 width 属性（若存在），保持 1:1 比例
-          var wAttr = parseFloat(svg.getAttribute('width') || '0');
-          if (wAttr > 0) svg.setAttribute('width', String(wAttr + pad));
+          var minPadW = 8, minPadH = 4;
+          var extraW = minPadW, extraH = 0;
+          try {
+            var bbox = svg.getBBox();
+            var vbRight  = parts[0] + parts[2];
+            var vbBottom = parts[1] + parts[3];
+            var overflowW = Math.ceil(bbox.x + bbox.width  + minPadW - vbRight);
+            var overflowH = Math.ceil(bbox.y + bbox.height + minPadH - vbBottom);
+            if (overflowW > extraW) extraW = overflowW;
+            if (overflowH > 0)      extraH = overflowH;
+          } catch(e) {}
+          if (extraW > 0) {
+            parts[2] += extraW;
+            var wAttr = parseFloat(svg.getAttribute('width') || '0');
+            if (wAttr > 0) svg.setAttribute('width', String(wAttr + extraW));
+            // 现代 mermaid 用 style.maxWidth 而非 width 属性
+            var mwStyle = parseFloat(svg.style.maxWidth || '0');
+            if (mwStyle > 0) svg.style.maxWidth = (mwStyle + extraW) + 'px';
+          }
+          if (extraH > 0) {
+            parts[3] += extraH;
+            var hAttr = parseFloat(svg.getAttribute('height') || '0');
+            if (hAttr > 0) svg.setAttribute('height', String(hAttr + extraH));
+          }
+          if (extraW > 0 || extraH > 0) svg.setAttribute('viewBox', parts.join(' '));
         })();
 
         // 读取 SVG 自然像素宽度，按优先级依次尝试三种来源
@@ -505,7 +563,7 @@ ${htmlBody}
         if (!naturalWidth) {
           var vb = svg.getAttribute('viewBox');
           if (vb) {
-            var parts = vb.trim().split(/[\s,]+/);
+            var parts = vb.trim().replace(/,/g, ' ').split(' ').filter(Boolean);
             if (parts.length >= 3) naturalWidth = parseFloat(parts[2]);
           }
         }
