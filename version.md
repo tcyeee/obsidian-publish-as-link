@@ -5,7 +5,63 @@
 
 ---
 
+## Version 1.0.2
+
+### Installation
+
+1. Download `main.js` and `manifest.json` from the [Releases](../../releases) page
+2. Create a folder `.obsidian/plugins/publish-as-link/` in your vault
+3. Place both files inside that folder
+4. In Obsidian: **Settings → Community Plugins → enable Publish Single Note as Webpage**
+
+
+### 安装
+
+1. 在 [Releases](../../releases) 页面下载 `main.js` 和 `manifest.json`
+2. 在库的 `.obsidian/plugins/` 目录中新建文件夹 `publish-as-link/`
+3. 将两个文件放入该文件夹
+4. 在 Obsidian 中：**设置 → 第三方插件 → 启用 Publish Single Note as Webpage**
+
+---
+
+### What's New / 新增功能
+
+- Added zoom toggle for Mermaid diagrams
+
+- 新增 Mermaid 图表缩放切换功能
+
+### Bug Fixes / 问题修复
+
+- Fixed Mermaid diagram content being clipped; improved rendering reliability
+- Fixed internal links between co-exported linked notes
+- Improved export and upload feedback with toast notifications
+
+- 修复 Mermaid 图表内容被截断的问题，提升渲染稳定性
+- 修复联动导出时关联笔记之间的内部链接
+- 优化导出和上传的反馈提示，改用 Toast 通知
+
+---
+
 ## Version 1.0.1
+
+### Installation
+
+1. Download `main.js` and `manifest.json` from the [Releases](../../releases) page
+2. Create a folder `.obsidian/plugins/publish-as-link/` in your vault
+3. Place both files inside that folder
+4. In Obsidian: **Settings → Community Plugins → enable Publish Single Note as Webpage**
+
+
+### 安装
+
+1. 在 [Releases](../../releases) 页面下载 `main.js` 和 `manifest.json`
+2. 在库的 `.obsidian/plugins/` 目录中新建文件夹 `publish-as-link/`
+3. 将两个文件放入该文件夹
+4. 在 Obsidian 中：**设置 → 第三方插件 → 启用 Publish Single Note as Webpage**
+
+---
+
+### What's New / 更新内容
 
 - Renamed plugin to "Publish Single Note as Webpage"
 - Fixed callout text nearly invisible
@@ -21,6 +77,24 @@
 
 ## Version 1.0.0
 
+### Installation
+
+1. Download `main.js` and `manifest.json` from the [Releases](../../releases) page
+2. Create a folder `.obsidian/plugins/publish-as-link/` in your vault
+3. Place both files inside that folder
+4. In Obsidian: **Settings → Community Plugins → enable Publish Single Note as Webpage**
+
+
+### 安装
+
+1. 在 [Releases](../../releases) 页面下载 `main.js` 和 `manifest.json`
+2. 在库的 `.obsidian/plugins/` 目录中新建文件夹 `publish-as-link/`
+3. 将两个文件放入该文件夹
+4. 在 Obsidian 中：**设置 → 第三方插件 → 启用 Publish Single Note as Webpage**
+
+---
+
+### What's New / 更新内容
 
 - One-click publish current note as a shareable webpage link
 - Export note as local HTML folder
