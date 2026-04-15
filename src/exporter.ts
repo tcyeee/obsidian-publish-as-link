@@ -1,4 +1,4 @@
-import { App, Notice, Vault, TFile } from "obsidian";
+import { App, Vault, TFile } from "obsidian";
 import * as fs from "fs";
 import * as path from "path";
 import { renderNote, buildHtml } from "./renderer";
@@ -33,7 +33,9 @@ export function rewriteInternalLinks(html: string, subFolderMap: Map<string, str
 			subFolderMap.get(dataHref.split("/").pop() ?? "");
 		if (!subFolder) return match;
 		// Use negative lookbehind to avoid matching the `href` inside `data-href="..."`
-		const newAttrs = attrs.replace(/(?<![a-zA-Z-])href="[^"]*"/, `href="./${subFolder}/index.html"`);
+		let newAttrs = attrs.replace(/(?<![a-zA-Z-])href="[^"]*"/, `href="./${subFolder}/index.html"`);
+		// Remove target="_blank" so the link opens in the current page
+		newAttrs = newAttrs.replace(/\s*target="_blank"/, "");
 		return `<a${newAttrs}>`;
 	});
 }
@@ -109,6 +111,5 @@ export async function exportToLocal(
 		}
 	}
 
-	new Notice(`已导出到本地：${folderPath}`);
 	return result;
 }

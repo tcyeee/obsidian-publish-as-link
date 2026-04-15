@@ -7,13 +7,96 @@ const THEME_COLOR = "#65A692";
 
 const SVG_SHARE = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`;
 
+/* ── Export Toast ──────────────────────────────────────────────────────── */
+
+const TOAST_CSS = `
+.opal-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
+  background: var(--background-modifier-message);
+  border-radius: 5px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  font-size: 13.5px;
+  color: var(--text-on-accent);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.opal-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.opal-spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-top-color: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  animation: opal-spin 0.65s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes opal-spin { to { transform: rotate(360deg); } }
+`;
+
+class ExportToast {
+	private el: HTMLElement;
+	private state: "loading" | "done" = "loading";
+	private timer = 0;
+
+	private static SVG_CHECK = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+	private static SVG_ERROR = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+
+	constructor(loadingText = "上传中...") {
+		this.el = document.createElement("div");
+		this.el.className = "opal-toast";
+		this.el.innerHTML = `<div class="opal-spinner"></div><span>${loadingText}</span>`;
+		document.body.appendChild(this.el);
+		requestAnimationFrame(() => this.el.classList.add("is-visible"));
+	}
+
+	setSuccess(text = "上传成功") {
+		if (this.state === "done") return;
+		this.state = "done";
+		clearTimeout(this.timer);
+		this.el.innerHTML = `${ExportToast.SVG_CHECK}<span>${text}</span>`;
+		this.timer = window.setTimeout(() => this.dismiss(), 2800);
+	}
+
+	setError(text: string) {
+		if (this.state === "done") return;
+		this.state = "done";
+		clearTimeout(this.timer);
+		this.el.innerHTML = `${ExportToast.SVG_ERROR}<span>${text}</span>`;
+		this.timer = window.setTimeout(() => this.dismiss(), 4000);
+	}
+
+	dismiss() {
+		clearTimeout(this.timer);
+		this.el.classList.remove("is-visible");
+		setTimeout(() => this.el.remove(), 250);
+	}
+}
+
 export default class ShareOnlinePlugin extends Plugin {
 	settings: ShareOnlineSettings;
 	private statusBarEl: HTMLElement;
+	private currentToast: ExportToast | null = null;
+	private toastStyleEl: HTMLStyleElement | null = null;
 
 	async onload() {
 		await this.loadSettings();
 		this.addSettingTab(new ShareOnlineSettingTab(this.app, this));
+
+		this.toastStyleEl = document.createElement("style");
+		this.toastStyleEl.textContent = TOAST_CSS;
+		document.head.appendChild(this.toastStyleEl);
 
 		this.addCommand({
 			id: "export-current-note-to-desktop",
@@ -105,7 +188,10 @@ export default class ShareOnlinePlugin extends Plugin {
 				item
 					.setTitle("导出到本地")
 					.setIcon("download")
-					.onClick(() => this.exportFile(file, false))
+					.onClick(async () => {
+						await this.exportFile(file, false);
+						this.currentToast?.setSuccess("导出成功");
+					})
 			);
 		} else {
 			menu.addItem((item) =>
@@ -134,7 +220,10 @@ export default class ShareOnlinePlugin extends Plugin {
 				item
 					.setTitle("导出到本地")
 					.setIcon("download")
-					.onClick(() => this.exportFile(file, false))
+					.onClick(async () => {
+						await this.exportFile(file, false);
+						this.currentToast?.setSuccess("导出成功");
+					})
 			);
 		}
 
@@ -149,7 +238,7 @@ export default class ShareOnlinePlugin extends Plugin {
 			await this.setShareLink(file, url);
 			this.updateStatusBar();
 			await navigator.clipboard.writeText(url);
-			new Notice("发布成功！链接已复制到剪贴板");
+			this.currentToast?.setSuccess("发布成功，链接已复制到剪贴板");
 		}
 	}
 
@@ -161,7 +250,7 @@ export default class ShareOnlinePlugin extends Plugin {
 		if (url) {
 			await this.setShareLink(file, url);
 			this.updateStatusBar();
-			new Notice("更新成功！");
+			this.currentToast?.setSuccess("更新成功");
 		}
 	}
 
@@ -187,9 +276,12 @@ export default class ShareOnlinePlugin extends Plugin {
 			return;
 		}
 		await this.exportFile(file, toOss);
+		this.currentToast?.setSuccess(toOss ? "上传成功" : "导出成功");
 	}
 
 	private async exportFile(file: TFile, toOss = false, existingName?: string): Promise<string> {
+		this.currentToast?.dismiss();
+		this.currentToast = new ExportToast(toOss ? "上传中..." : "导出中...");
 		try {
 			if (toOss) {
 				const result = await prepareExport(this.app, this.app.vault, file, existingName);
@@ -230,11 +322,14 @@ export default class ShareOnlinePlugin extends Plugin {
 				return "";
 			}
 		} catch (err) {
-			new Notice(`导出失败：${(err as Error).message}`);
+			this.currentToast?.setError(`导出失败：${(err as Error).message}`);
 			console.error(err);
 			return "";
 		}
 	}
 
-	onunload() { }
+	onunload() {
+		this.toastStyleEl?.remove();
+		this.currentToast?.dismiss();
+	}
 }

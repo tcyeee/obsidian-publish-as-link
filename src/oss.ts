@@ -1,4 +1,4 @@
-import { Notice, Vault, TFile } from "obsidian";
+import { Vault, TFile } from "obsidian";
 import type { ShareOnlineSettings } from "./settings";
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -40,11 +40,8 @@ export async function uploadToOss(
 	const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret, ossPrefix } = settings;
 
 	if (!ossRegion || !ossBucket || !ossAccessKeyId || !ossAccessKeySecret) {
-		new Notice("请先在设置中填写 OSS 配置信息");
-		return "";
+		throw new Error("请先在设置中填写 OSS 配置信息");
 	}
-
-	new Notice("正在上传到 OSS...");
 
 	const client = makeClient(settings);
 	const prefix = ossPrefix.replace(/\/$/, "");
@@ -69,9 +66,7 @@ export async function uploadToOss(
 	}
 
 	const base = settings.ossDomain || `https://${ossBucket}.${ossRegion}.aliyuncs.com`;
-	const url = `${base}/${prefix}/${noteName}/index.html`;
-	new Notice(`上传成功\n${url}`);
-	return url;
+	return `${base}/${prefix}/${noteName}/index.html`;
 }
 
 export async function uploadSubNoteToOss(
@@ -106,8 +101,7 @@ export async function deleteFromOss(
 	const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret, ossPrefix } = settings;
 
 	if (!ossRegion || !ossBucket || !ossAccessKeyId || !ossAccessKeySecret) {
-		new Notice("请先在设置中填写 OSS 配置信息");
-		return;
+		throw new Error("请先在设置中填写 OSS 配置信息");
 	}
 
 	const client = makeClient(settings);

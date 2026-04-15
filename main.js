@@ -36021,7 +36021,7 @@ __export(main_exports, {
   default: () => ShareOnlinePlugin
 });
 module.exports = __toCommonJS(main_exports);
-var import_obsidian6 = require("obsidian");
+var import_obsidian4 = require("obsidian");
 
 // src/settings.ts
 var import_obsidian = require("obsidian");
@@ -36102,7 +36102,6 @@ var ShareOnlineSettingTab = class extends import_obsidian.PluginSettingTab {
 };
 
 // src/exporter.ts
-var import_obsidian4 = require("obsidian");
 var fs = __toESM(require("fs"));
 var path2 = __toESM(require("path"));
 
@@ -37670,7 +37669,8 @@ function rewriteInternalLinks(html, subFolderMap) {
     const subFolder = (_b = subFolderMap.get(dataHref)) != null ? _b : subFolderMap.get((_a = dataHref.split("/").pop()) != null ? _a : "");
     if (!subFolder)
       return match;
-    const newAttrs = attrs.replace(/(?<![a-zA-Z-])href="[^"]*"/, `href="./${subFolder}/index.html"`);
+    let newAttrs = attrs.replace(/(?<![a-zA-Z-])href="[^"]*"/, `href="./${subFolder}/index.html"`);
+    newAttrs = newAttrs.replace(/\s*target="_blank"/, "");
     return `<a${newAttrs}>`;
   });
 }
@@ -37718,12 +37718,10 @@ async function exportToLocal(app, vault, file, exportRoot, includeLinkedNotes = 
       fs.writeFileSync(path2.join(imagesDir, exportName), Buffer.from(data));
     }
   }
-  new import_obsidian4.Notice(`\u5DF2\u5BFC\u51FA\u5230\u672C\u5730\uFF1A${folderPath}`);
   return result;
 }
 
 // src/oss.ts
-var import_obsidian5 = require("obsidian");
 var OSS = require_aliyun_oss_sdk();
 function getMimeType(ext) {
   var _a;
@@ -37752,10 +37750,8 @@ function makeClient(settings) {
 async function uploadToOss(settings, vault, noteName, html, css, images) {
   const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret, ossPrefix } = settings;
   if (!ossRegion || !ossBucket || !ossAccessKeyId || !ossAccessKeySecret) {
-    new import_obsidian5.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
-    return "";
+    throw new Error("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
   }
-  new import_obsidian5.Notice("\u6B63\u5728\u4E0A\u4F20\u5230 OSS...");
   const client = makeClient(settings);
   const prefix = ossPrefix.replace(/\/$/, "");
   await client.put(
@@ -37774,10 +37770,7 @@ async function uploadToOss(settings, vault, noteName, html, css, images) {
     );
   }
   const base = settings.ossDomain || `https://${ossBucket}.${ossRegion}.aliyuncs.com`;
-  const url = `${base}/${prefix}/${noteName}/index.html`;
-  new import_obsidian5.Notice(`\u4E0A\u4F20\u6210\u529F
-${url}`);
-  return url;
+  return `${base}/${prefix}/${noteName}/index.html`;
 }
 async function uploadSubNoteToOss(settings, vault, parentNoteName, subFolderName, html, css, images) {
   const client = makeClient(settings);
@@ -37797,8 +37790,7 @@ async function deleteFromOss(settings, noteName) {
   var _a;
   const { ossRegion, ossBucket, ossAccessKeyId, ossAccessKeySecret, ossPrefix } = settings;
   if (!ossRegion || !ossBucket || !ossAccessKeyId || !ossAccessKeySecret) {
-    new import_obsidian5.Notice("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
-    return;
+    throw new Error("\u8BF7\u5148\u5728\u8BBE\u7F6E\u4E2D\u586B\u5199 OSS \u914D\u7F6E\u4FE1\u606F");
   }
   const client = makeClient(settings);
   const prefix = ossPrefix.replace(/\/$/, "");
@@ -37820,10 +37812,88 @@ async function deleteFromOss(settings, noteName) {
 // main.ts
 var THEME_COLOR = "#65A692";
 var SVG_SHARE = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>`;
-var ShareOnlinePlugin = class extends import_obsidian6.Plugin {
+var TOAST_CSS = `
+.opal-toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 99999;
+  background: var(--background-modifier-message);
+  border-radius: 5px;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+  font-size: 13.5px;
+  color: var(--text-on-accent);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.opal-toast.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.opal-spinner {
+  width: 13px;
+  height: 13px;
+  border: 2px solid rgba(255,255,255,0.25);
+  border-top-color: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  animation: opal-spin 0.65s linear infinite;
+  flex-shrink: 0;
+}
+@keyframes opal-spin { to { transform: rotate(360deg); } }
+`;
+var _ExportToast = class {
+  constructor(loadingText = "\u4E0A\u4F20\u4E2D...") {
+    this.state = "loading";
+    this.timer = 0;
+    this.el = document.createElement("div");
+    this.el.className = "opal-toast";
+    this.el.innerHTML = `<div class="opal-spinner"></div><span>${loadingText}</span>`;
+    document.body.appendChild(this.el);
+    requestAnimationFrame(() => this.el.classList.add("is-visible"));
+  }
+  setSuccess(text = "\u4E0A\u4F20\u6210\u529F") {
+    if (this.state === "done")
+      return;
+    this.state = "done";
+    clearTimeout(this.timer);
+    this.el.innerHTML = `${_ExportToast.SVG_CHECK}<span>${text}</span>`;
+    this.timer = window.setTimeout(() => this.dismiss(), 2800);
+  }
+  setError(text) {
+    if (this.state === "done")
+      return;
+    this.state = "done";
+    clearTimeout(this.timer);
+    this.el.innerHTML = `${_ExportToast.SVG_ERROR}<span>${text}</span>`;
+    this.timer = window.setTimeout(() => this.dismiss(), 4e3);
+  }
+  dismiss() {
+    clearTimeout(this.timer);
+    this.el.classList.remove("is-visible");
+    setTimeout(() => this.el.remove(), 250);
+  }
+};
+var ExportToast = _ExportToast;
+ExportToast.SVG_CHECK = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+ExportToast.SVG_ERROR = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+var ShareOnlinePlugin = class extends import_obsidian4.Plugin {
+  constructor() {
+    super(...arguments);
+    this.currentToast = null;
+    this.toastStyleEl = null;
+  }
   async onload() {
     await this.loadSettings();
     this.addSettingTab(new ShareOnlineSettingTab(this.app, this));
+    this.toastStyleEl = document.createElement("style");
+    this.toastStyleEl.textContent = TOAST_CSS;
+    document.head.appendChild(this.toastStyleEl);
     this.addCommand({
       id: "export-current-note-to-desktop",
       name: "\u5BFC\u51FA\u5230\u672C\u5730",
@@ -37884,17 +37954,21 @@ var ShareOnlinePlugin = class extends import_obsidian6.Plugin {
   showShareMenu(event) {
     const file = this.app.workspace.getActiveFile();
     if (!file) {
-      new import_obsidian6.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
+      new import_obsidian4.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
       return;
     }
     const published = !!this.getShareLink(file);
-    const menu = new import_obsidian6.Menu();
+    const menu = new import_obsidian4.Menu();
     if (!published) {
       menu.addItem(
         (item) => item.setTitle("\u53D1\u5E03\u5230\u7EBF\u4E0A").setIcon("upload-cloud").onClick(() => this.publishNote(file))
       );
       menu.addItem(
-        (item) => item.setTitle("\u5BFC\u51FA\u5230\u672C\u5730").setIcon("download").onClick(() => this.exportFile(file, false))
+        (item) => item.setTitle("\u5BFC\u51FA\u5230\u672C\u5730").setIcon("download").onClick(async () => {
+          var _a;
+          await this.exportFile(file, false);
+          (_a = this.currentToast) == null ? void 0 : _a.setSuccess("\u5BFC\u51FA\u6210\u529F");
+        })
       );
     } else {
       menu.addItem(
@@ -37911,29 +37985,35 @@ var ShareOnlinePlugin = class extends import_obsidian6.Plugin {
       );
       menu.addSeparator();
       menu.addItem(
-        (item) => item.setTitle("\u5BFC\u51FA\u5230\u672C\u5730").setIcon("download").onClick(() => this.exportFile(file, false))
+        (item) => item.setTitle("\u5BFC\u51FA\u5230\u672C\u5730").setIcon("download").onClick(async () => {
+          var _a;
+          await this.exportFile(file, false);
+          (_a = this.currentToast) == null ? void 0 : _a.setSuccess("\u5BFC\u51FA\u6210\u529F");
+        })
       );
     }
     menu.showAtMouseEvent(event);
   }
   // ── Actions ──────────────────────────────────────────────────────────
   async publishNote(file) {
+    var _a;
     const url = await this.exportFile(file, true);
     if (url) {
       await this.setShareLink(file, url);
       this.updateStatusBar();
       await navigator.clipboard.writeText(url);
-      new import_obsidian6.Notice("\u53D1\u5E03\u6210\u529F\uFF01\u94FE\u63A5\u5DF2\u590D\u5236\u5230\u526A\u8D34\u677F");
+      (_a = this.currentToast) == null ? void 0 : _a.setSuccess("\u53D1\u5E03\u6210\u529F\uFF0C\u94FE\u63A5\u5DF2\u590D\u5236\u5230\u526A\u8D34\u677F");
     }
   }
   async updateNote(file) {
+    var _a;
     const existingUrl = this.getShareLink(file);
     const existingName = existingUrl ? existingUrl.split("/").slice(-2, -1)[0] : void 0;
     const url = await this.exportFile(file, true, existingName);
     if (url) {
       await this.setShareLink(file, url);
       this.updateStatusBar();
-      new import_obsidian6.Notice("\u66F4\u65B0\u6210\u529F\uFF01");
+      (_a = this.currentToast) == null ? void 0 : _a.setSuccess("\u66F4\u65B0\u6210\u529F");
     }
   }
   async unpublishNote(file) {
@@ -37948,17 +38028,22 @@ var ShareOnlinePlugin = class extends import_obsidian6.Plugin {
     }
     await this.removeShareLink(file);
     this.updateStatusBar();
-    new import_obsidian6.Notice("\u5DF2\u505C\u6B62\u5206\u4EAB");
+    new import_obsidian4.Notice("\u5DF2\u505C\u6B62\u5206\u4EAB");
   }
   async exportCurrentNote(toOss = false) {
+    var _a;
     const file = this.app.workspace.getActiveFile();
     if (!file) {
-      new import_obsidian6.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
+      new import_obsidian4.Notice("\u6CA1\u6709\u6253\u5F00\u7684\u7B14\u8BB0");
       return;
     }
     await this.exportFile(file, toOss);
+    (_a = this.currentToast) == null ? void 0 : _a.setSuccess(toOss ? "\u4E0A\u4F20\u6210\u529F" : "\u5BFC\u51FA\u6210\u529F");
   }
   async exportFile(file, toOss = false, existingName) {
+    var _a, _b;
+    (_a = this.currentToast) == null ? void 0 : _a.dismiss();
+    this.currentToast = new ExportToast(toOss ? "\u4E0A\u4F20\u4E2D..." : "\u5BFC\u51FA\u4E2D...");
     try {
       if (toOss) {
         const result = await prepareExport(this.app, this.app.vault, file, existingName);
@@ -37994,12 +38079,15 @@ var ShareOnlinePlugin = class extends import_obsidian6.Plugin {
         return "";
       }
     } catch (err) {
-      new import_obsidian6.Notice(`\u5BFC\u51FA\u5931\u8D25\uFF1A${err.message}`);
+      (_b = this.currentToast) == null ? void 0 : _b.setError(`\u5BFC\u51FA\u5931\u8D25\uFF1A${err.message}`);
       console.error(err);
       return "";
     }
   }
   onunload() {
+    var _a, _b;
+    (_a = this.toastStyleEl) == null ? void 0 : _a.remove();
+    (_b = this.currentToast) == null ? void 0 : _b.dismiss();
   }
 };
 /*! Bundled license information:
