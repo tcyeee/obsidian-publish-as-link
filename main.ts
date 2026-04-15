@@ -285,11 +285,11 @@ export default class ShareOnlinePlugin extends Plugin {
 		try {
 			if (toOss) {
 				const result = await prepareExport(this.app, this.app.vault, file, existingName);
+				const subFolderMap = new Map<string, string>();
 				let mainHtml = result.html;
 
 				if (this.settings.includeLinkedNotes) {
 					const linkedFiles = collectLinkedNotes(this.app, file);
-					const subFolderMap = new Map<string, string>();
 
 					for (const linkedFile of linkedFiles) {
 						const subResult = await prepareExport(this.app, this.app.vault, linkedFile);
@@ -306,9 +306,11 @@ export default class ShareOnlinePlugin extends Plugin {
 							subResult.images
 						);
 					}
-
-					mainHtml = rewriteInternalLinks(mainHtml, subFolderMap);
 				}
+
+				// Always rewrite internal links: exported targets get proper hrefs,
+				// non-exported targets have their href removed so they are not clickable.
+				mainHtml = rewriteInternalLinks(mainHtml, subFolderMap);
 
 				return await uploadToOss(this.settings, this.app.vault, result.noteName, mainHtml, result.css, result.images);
 			} else {

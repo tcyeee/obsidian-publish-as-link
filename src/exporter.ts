@@ -31,7 +31,16 @@ export function rewriteInternalLinks(html: string, subFolderMap: Map<string, str
 		const subFolder =
 			subFolderMap.get(dataHref) ??
 			subFolderMap.get(dataHref.split("/").pop() ?? "");
-		if (!subFolder) return match;
+		if (!subFolder) {
+			// Link target was not exported — point href to "#" so it stays on the page
+			let newAttrs = attrs.replace(/(?<![a-zA-Z-])href="[^"]*"/, 'href="#"');
+			// If there was no href attribute at all, add one
+			if (!/(?<![a-zA-Z-])href="/.test(newAttrs)) {
+				newAttrs += ' href="#"';
+			}
+			newAttrs = newAttrs.replace(/\s*target="_blank"/, "");
+			return `<a${newAttrs}>`;
+		}
 		// Use negative lookbehind to avoid matching the `href` inside `data-href="..."`
 		let newAttrs = attrs.replace(/(?<![a-zA-Z-])href="[^"]*"/, `href="./${subFolder}/index.html"`);
 		// Remove target="_blank" so the link opens in the current page
@@ -67,11 +76,11 @@ export async function exportToLocal(
 	const folderPath = path.join(exportRoot, result.noteName);
 	fs.mkdirSync(folderPath, { recursive: true });
 
+	const subFolderMap = new Map<string, string>();
 	let mainHtml = result.html;
 
 	if (includeLinkedNotes) {
 		const linkedFiles = collectLinkedNotes(app, file);
-		const subFolderMap = new Map<string, string>();
 
 		for (const linkedFile of linkedFiles) {
 			const subResult = await prepareExport(app, vault, linkedFile);
@@ -94,9 +103,11 @@ export async function exportToLocal(
 				}
 			}
 		}
-
-		mainHtml = rewriteInternalLinks(mainHtml, subFolderMap);
 	}
+
+	// Always rewrite internal links: exported targets get proper hrefs,
+	// non-exported targets have their href removed so they are not clickable.
+	mainHtml = rewriteInternalLinks(mainHtml, subFolderMap);
 
 	fs.writeFileSync(path.join(folderPath, "index.html"), mainHtml, "utf8");
 	fs.writeFileSync(path.join(folderPath, "style.css"), result.css, "utf8");

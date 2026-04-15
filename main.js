@@ -37667,8 +37667,14 @@ function rewriteInternalLinks(html, subFolderMap) {
       return match;
     const dataHref = dataHrefMatch[1].split("#")[0].replace(/\.md$/i, "");
     const subFolder = (_b = subFolderMap.get(dataHref)) != null ? _b : subFolderMap.get((_a = dataHref.split("/").pop()) != null ? _a : "");
-    if (!subFolder)
-      return match;
+    if (!subFolder) {
+      let newAttrs2 = attrs.replace(/(?<![a-zA-Z-])href="[^"]*"/, 'href="#"');
+      if (!/(?<![a-zA-Z-])href="/.test(newAttrs2)) {
+        newAttrs2 += ' href="#"';
+      }
+      newAttrs2 = newAttrs2.replace(/\s*target="_blank"/, "");
+      return `<a${newAttrs2}>`;
+    }
     let newAttrs = attrs.replace(/(?<![a-zA-Z-])href="[^"]*"/, `href="./${subFolder}/index.html"`);
     newAttrs = newAttrs.replace(/\s*target="_blank"/, "");
     return `<a${newAttrs}>`;
@@ -37685,10 +37691,10 @@ async function exportToLocal(app, vault, file, exportRoot, includeLinkedNotes = 
   const result = await prepareExport(app, vault, file);
   const folderPath = path2.join(exportRoot, result.noteName);
   fs.mkdirSync(folderPath, { recursive: true });
+  const subFolderMap = /* @__PURE__ */ new Map();
   let mainHtml = result.html;
   if (includeLinkedNotes) {
     const linkedFiles = collectLinkedNotes(app, file);
-    const subFolderMap = /* @__PURE__ */ new Map();
     for (const linkedFile of linkedFiles) {
       const subResult = await prepareExport(app, vault, linkedFile);
       subFolderMap.set(linkedFile.basename, subResult.noteName);
@@ -37706,8 +37712,8 @@ async function exportToLocal(app, vault, file, exportRoot, includeLinkedNotes = 
         }
       }
     }
-    mainHtml = rewriteInternalLinks(mainHtml, subFolderMap);
   }
+  mainHtml = rewriteInternalLinks(mainHtml, subFolderMap);
   fs.writeFileSync(path2.join(folderPath, "index.html"), mainHtml, "utf8");
   fs.writeFileSync(path2.join(folderPath, "style.css"), result.css, "utf8");
   if (result.images.size > 0) {
@@ -38047,10 +38053,10 @@ var ShareOnlinePlugin = class extends import_obsidian4.Plugin {
     try {
       if (toOss) {
         const result = await prepareExport(this.app, this.app.vault, file, existingName);
+        const subFolderMap = /* @__PURE__ */ new Map();
         let mainHtml = result.html;
         if (this.settings.includeLinkedNotes) {
           const linkedFiles = collectLinkedNotes(this.app, file);
-          const subFolderMap = /* @__PURE__ */ new Map();
           for (const linkedFile of linkedFiles) {
             const subResult = await prepareExport(this.app, this.app.vault, linkedFile);
             subFolderMap.set(linkedFile.basename, subResult.noteName);
@@ -38065,8 +38071,8 @@ var ShareOnlinePlugin = class extends import_obsidian4.Plugin {
               subResult.images
             );
           }
-          mainHtml = rewriteInternalLinks(mainHtml, subFolderMap);
         }
+        mainHtml = rewriteInternalLinks(mainHtml, subFolderMap);
         return await uploadToOss(this.settings, this.app.vault, result.noteName, mainHtml, result.css, result.images);
       } else {
         await exportToLocal(
