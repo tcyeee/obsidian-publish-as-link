@@ -37696,13 +37696,22 @@ async function exportToLocal(app, vault, file, exportRoot, includeLinkedNotes = 
   let mainHtml = result.html;
   if (includeLinkedNotes) {
     const linkedFiles = collectLinkedNotes(app, file);
+    const subResults = [];
     for (const linkedFile of linkedFiles) {
       const subResult = await prepareExport(app, vault, linkedFile);
       subFolderMap.set(linkedFile.basename, subResult.noteName);
       subFolderMap.set(linkedFile.path.replace(/\.md$/i, ""), subResult.noteName);
+      subResults.push({ linkedFile, subResult });
+    }
+    const subNoteSubFolderMap = /* @__PURE__ */ new Map();
+    for (const [key, value] of subFolderMap) {
+      subNoteSubFolderMap.set(key, `../${value}`);
+    }
+    for (const { subResult } of subResults) {
       const subFolderPath = path2.join(folderPath, subResult.noteName);
       fs.mkdirSync(subFolderPath, { recursive: true });
-      fs.writeFileSync(path2.join(subFolderPath, "index.html"), subResult.html, "utf8");
+      const rewrittenSubHtml = rewriteInternalLinks(subResult.html, subNoteSubFolderMap);
+      fs.writeFileSync(path2.join(subFolderPath, "index.html"), rewrittenSubHtml, "utf8");
       fs.writeFileSync(path2.join(subFolderPath, "style.css"), subResult.css, "utf8");
       if (subResult.images.size > 0) {
         const subImagesDir = path2.join(subFolderPath, "images");
@@ -38058,16 +38067,25 @@ var ShareOnlinePlugin = class extends import_obsidian4.Plugin {
         let mainHtml = result.html;
         if (this.settings.includeLinkedNotes) {
           const linkedFiles = collectLinkedNotes(this.app, file);
+          const subResults = [];
           for (const linkedFile of linkedFiles) {
             const subResult = await prepareExport(this.app, this.app.vault, linkedFile);
             subFolderMap.set(linkedFile.basename, subResult.noteName);
             subFolderMap.set(linkedFile.path.replace(/\.md$/i, ""), subResult.noteName);
+            subResults.push({ linkedFile, subResult });
+          }
+          const subNoteSubFolderMap = /* @__PURE__ */ new Map();
+          for (const [key, value] of subFolderMap) {
+            subNoteSubFolderMap.set(key, `../${value}`);
+          }
+          for (const { subResult } of subResults) {
+            const rewrittenSubHtml = rewriteInternalLinks(subResult.html, subNoteSubFolderMap);
             await uploadSubNoteToOss(
               this.settings,
               this.app.vault,
               result.noteName,
               subResult.noteName,
-              subResult.html,
+              rewrittenSubHtml,
               subResult.css,
               subResult.images
             );

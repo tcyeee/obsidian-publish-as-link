@@ -81,17 +81,30 @@ export async function exportToLocal(
 
 	if (includeLinkedNotes) {
 		const linkedFiles = collectLinkedNotes(app, file);
+		const subResults: { linkedFile: TFile; subResult: ExportResult }[] = [];
 
+		// First pass: render all sub-notes and build the full map before writing anything.
 		for (const linkedFile of linkedFiles) {
 			const subResult = await prepareExport(app, vault, linkedFile);
-			// subResult.noteName is the generated folder name (timestamp-based)
 			// Map both basename and path-without-extension so the rewriter finds it
 			subFolderMap.set(linkedFile.basename, subResult.noteName);
 			subFolderMap.set(linkedFile.path.replace(/\.md$/i, ""), subResult.noteName);
+			subResults.push({ linkedFile, subResult });
+		}
 
+		// Sub-notes live one level deeper than the main note, so links between
+		// sibling sub-notes need a "../" prefix instead of "./".
+		const subNoteSubFolderMap = new Map<string, string>();
+		for (const [key, value] of subFolderMap) {
+			subNoteSubFolderMap.set(key, `../${value}`);
+		}
+
+		// Second pass: rewrite sub-note links then write to disk.
+		for (const { subResult } of subResults) {
 			const subFolderPath = path.join(folderPath, subResult.noteName);
 			fs.mkdirSync(subFolderPath, { recursive: true });
-			fs.writeFileSync(path.join(subFolderPath, "index.html"), subResult.html, "utf8");
+			const rewrittenSubHtml = rewriteInternalLinks(subResult.html, subNoteSubFolderMap);
+			fs.writeFileSync(path.join(subFolderPath, "index.html"), rewrittenSubHtml, "utf8");
 			fs.writeFileSync(path.join(subFolderPath, "style.css"), subResult.css, "utf8");
 
 			if (subResult.images.size > 0) {
