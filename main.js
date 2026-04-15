@@ -37383,6 +37383,7 @@ blockquote p { color: #81888D; font-size: 14px; margin: 0; }
   border-radius: 3px;
   background: #fff;
   cursor: default;
+  pointer-events: none;
   translate: 0 1px;
 }
 .task-list-item-checkbox:checked {
