@@ -1,5 +1,6 @@
 {
   "name": "obsidian-share-online",
+  "packageManager": "pnpm@11.2.2",
   "version": "0.1.0",
   "description": "Export and share notes",
   "main": "main.js",

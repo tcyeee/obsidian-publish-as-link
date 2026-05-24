@@ -16,6 +16,7 @@ const context = await esbuild.context({
   external: [
     "obsidian",
     "electron",
+    "proxy-agent",
     "@codemirror/autocomplete",
     "@codemirror/collab",
     "@codemirror/commands",
@@ -29,6 +30,7 @@ const context = await esbuild.context({
     "@lezer/lr",
     ...builtinModules,
   ],
+  platform: "node",
   format: "cjs",
   target: "es2018",
   logLevel: "info",
