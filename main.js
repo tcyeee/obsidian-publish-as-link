@@ -33,9 +33,9 @@ var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__ge
 ));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
-// node_modules/ali-oss/dist/aliyun-oss-sdk.js
+// node_modules/.pnpm/ali-oss@6.23.0/node_modules/ali-oss/dist/aliyun-oss-sdk.js
 var require_aliyun_oss_sdk = __commonJS({
-  "node_modules/ali-oss/dist/aliyun-oss-sdk.js"(exports, module2) {
+  "node_modules/.pnpm/ali-oss@6.23.0/node_modules/ali-oss/dist/aliyun-oss-sdk.js"(exports, module2) {
     (function(global) {
       (function(f) {
         if (typeof exports === "object" && typeof module2 !== "undefined") {
@@ -57,16 +57,14 @@ var require_aliyun_oss_sdk = __commonJS({
         }
       })(function() {
         var define2, module3, exports2;
-        return function() {
+        return (/* @__PURE__ */ (function() {
           function r(e, n, t) {
             function o(i2, f) {
               if (!n[i2]) {
                 if (!e[i2]) {
                   var c = "function" == typeof require && require;
-                  if (!f && c)
-                    return c(i2, true);
-                  if (u)
-                    return u(i2, true);
+                  if (!f && c) return c(i2, true);
+                  if (u) return u(i2, true);
                   var a = new Error("Cannot find module '" + i2 + "'");
                   throw a.code = "MODULE_NOT_FOUND", a;
                 }
@@ -78,12 +76,11 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               return n[i2].exports;
             }
-            for (var u = "function" == typeof require && require, i = 0; i < t.length; i++)
-              o(t[i]);
+            for (var u = "function" == typeof require && require, i = 0; i < t.length; i++) o(t[i]);
             return o;
           }
           return r;
-        }()({ 1: [function(require2, module4, exports3) {
+        })())({ 1: [function(require2, module4, exports3) {
           "use strict";
           var OSS2 = require2("./browser/client");
           OSS2.Buffer = require2("buffer").Buffer;
@@ -104,15 +101,12 @@ var require_aliyun_oss_sdk = __commonJS({
           var _require = require2("../common/utils/checkBucketName"), _checkBucketName = _require.checkBucketName;
           var proto = exports3;
           function isArray(arr) {
-            if (Array.isArray)
-              return Array.isArray(arr);
+            if (Array.isArray) return Array.isArray(arr);
             return Object.prototype.toString.call(arr) === "[object Array]";
           }
           function toArray(obj) {
-            if (!obj)
-              return [];
-            if (isArray(obj))
-              return obj;
+            if (!obj) return [];
+            if (isArray(obj)) return obj;
             return [obj];
           }
           proto.useBucket = function useBucket(name) {
@@ -128,425 +122,412 @@ var require_aliyun_oss_sdk = __commonJS({
           proto.getBucket = function getBucket() {
             return this.options.bucket;
           };
-          proto.deleteBucket = /* @__PURE__ */ function() {
+          proto.deleteBucket = /* @__PURE__ */ (function() {
             var _deleteBucket = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      params = this._bucketRequestParams("DELETE", name, "", options);
-                      _context.next = 3;
-                      return this.request(params);
-                    case 3:
-                      result = _context.sent;
-                      if (!(result.status === 200 || result.status === 204)) {
-                        _context.next = 6;
-                        break;
-                      }
-                      return _context.abrupt("return", {
-                        res: result.res
-                      });
-                    case 6:
-                      _context.next = 8;
-                      return this.requestError(result);
-                    case 8:
-                      throw _context.sent;
-                    case 9:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    params = this._bucketRequestParams("DELETE", name, "", options);
+                    _context.next = 3;
+                    return this.request(params);
+                  case 3:
+                    result = _context.sent;
+                    if (!(result.status === 200 || result.status === 204)) {
+                      _context.next = 6;
+                      break;
+                    }
+                    return _context.abrupt("return", {
+                      res: result.res
+                    });
+                  case 6:
+                    _context.next = 8;
+                    return this.requestError(result);
+                  case 8:
+                    throw _context.sent;
+                  case 9:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function deleteBucket(_x, _x2) {
               return _deleteBucket.apply(this, arguments);
             }
             return deleteBucket;
-          }();
-          proto.putBucketACL = /* @__PURE__ */ function() {
+          })();
+          proto.putBucketACL = /* @__PURE__ */ (function() {
             var _putBucketACL = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee2(name, acl, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee2$(_context2) {
-                while (1)
-                  switch (_context2.prev = _context2.next) {
-                    case 0:
-                      params = this._bucketRequestParams("PUT", name, "acl", options);
-                      params.headers = {
-                        "x-oss-acl": acl
-                      };
-                      params.successStatuses = [200];
-                      _context2.next = 5;
-                      return this.request(params);
-                    case 5:
-                      result = _context2.sent;
-                      return _context2.abrupt("return", {
-                        bucket: result.headers.location && result.headers.location.substring(1) || null,
-                        res: result.res
-                      });
-                    case 7:
-                    case "end":
-                      return _context2.stop();
-                  }
+                while (1) switch (_context2.prev = _context2.next) {
+                  case 0:
+                    params = this._bucketRequestParams("PUT", name, "acl", options);
+                    params.headers = {
+                      "x-oss-acl": acl
+                    };
+                    params.successStatuses = [200];
+                    _context2.next = 5;
+                    return this.request(params);
+                  case 5:
+                    result = _context2.sent;
+                    return _context2.abrupt("return", {
+                      bucket: result.headers.location && result.headers.location.substring(1) || null,
+                      res: result.res
+                    });
+                  case 7:
+                  case "end":
+                    return _context2.stop();
+                }
               }, _callee2, this);
             }));
             function putBucketACL(_x3, _x4, _x5) {
               return _putBucketACL.apply(this, arguments);
             }
             return putBucketACL;
-          }();
-          proto.getBucketACL = /* @__PURE__ */ function() {
+          })();
+          proto.getBucketACL = /* @__PURE__ */ (function() {
             var _getBucketACL = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee3(name, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee3$(_context3) {
-                while (1)
-                  switch (_context3.prev = _context3.next) {
-                    case 0:
-                      params = this._bucketRequestParams("GET", name, "acl", options);
-                      params.successStatuses = [200];
-                      params.xmlResponse = true;
-                      _context3.next = 5;
-                      return this.request(params);
-                    case 5:
-                      result = _context3.sent;
-                      return _context3.abrupt("return", {
-                        acl: result.data.AccessControlList.Grant,
-                        owner: {
-                          id: result.data.Owner.ID,
-                          displayName: result.data.Owner.DisplayName
-                        },
-                        res: result.res
-                      });
-                    case 7:
-                    case "end":
-                      return _context3.stop();
-                  }
+                while (1) switch (_context3.prev = _context3.next) {
+                  case 0:
+                    params = this._bucketRequestParams("GET", name, "acl", options);
+                    params.successStatuses = [200];
+                    params.xmlResponse = true;
+                    _context3.next = 5;
+                    return this.request(params);
+                  case 5:
+                    result = _context3.sent;
+                    return _context3.abrupt("return", {
+                      acl: result.data.AccessControlList.Grant,
+                      owner: {
+                        id: result.data.Owner.ID,
+                        displayName: result.data.Owner.DisplayName
+                      },
+                      res: result.res
+                    });
+                  case 7:
+                  case "end":
+                    return _context3.stop();
+                }
               }, _callee3, this);
             }));
             function getBucketACL(_x6, _x7) {
               return _getBucketACL.apply(this, arguments);
             }
             return getBucketACL;
-          }();
-          proto.putBucketLogging = /* @__PURE__ */ function() {
+          })();
+          proto.putBucketLogging = /* @__PURE__ */ (function() {
             var _putBucketLogging = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee4(name, prefix, options) {
               var params, xml, result;
               return _regenerator.default.wrap(function _callee4$(_context4) {
-                while (1)
-                  switch (_context4.prev = _context4.next) {
-                    case 0:
-                      params = this._bucketRequestParams("PUT", name, "logging", options);
-                      xml = '<?xml version="1.0" encoding="UTF-8"?>\n<BucketLoggingStatus>\n<LoggingEnabled>\n<TargetBucket>'.concat(name, "</TargetBucket>\n");
-                      if (prefix) {
-                        xml += "<TargetPrefix>".concat(prefix, "</TargetPrefix>\n");
-                      }
-                      xml += "</LoggingEnabled>\n</BucketLoggingStatus>";
-                      params.content = xml;
-                      params.mime = "xml";
-                      params.successStatuses = [200];
-                      _context4.next = 9;
-                      return this.request(params);
-                    case 9:
-                      result = _context4.sent;
-                      return _context4.abrupt("return", {
-                        res: result.res
-                      });
-                    case 11:
-                    case "end":
-                      return _context4.stop();
-                  }
+                while (1) switch (_context4.prev = _context4.next) {
+                  case 0:
+                    params = this._bucketRequestParams("PUT", name, "logging", options);
+                    xml = '<?xml version="1.0" encoding="UTF-8"?>\n<BucketLoggingStatus>\n<LoggingEnabled>\n<TargetBucket>'.concat(name, "</TargetBucket>\n");
+                    if (prefix) {
+                      xml += "<TargetPrefix>".concat(prefix, "</TargetPrefix>\n");
+                    }
+                    xml += "</LoggingEnabled>\n</BucketLoggingStatus>";
+                    params.content = xml;
+                    params.mime = "xml";
+                    params.successStatuses = [200];
+                    _context4.next = 9;
+                    return this.request(params);
+                  case 9:
+                    result = _context4.sent;
+                    return _context4.abrupt("return", {
+                      res: result.res
+                    });
+                  case 11:
+                  case "end":
+                    return _context4.stop();
+                }
               }, _callee4, this);
             }));
             function putBucketLogging(_x8, _x9, _x10) {
               return _putBucketLogging.apply(this, arguments);
             }
             return putBucketLogging;
-          }();
-          proto.getBucketLogging = /* @__PURE__ */ function() {
+          })();
+          proto.getBucketLogging = /* @__PURE__ */ (function() {
             var _getBucketLogging = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee5(name, options) {
               var params, result, enable;
               return _regenerator.default.wrap(function _callee5$(_context5) {
-                while (1)
-                  switch (_context5.prev = _context5.next) {
-                    case 0:
-                      params = this._bucketRequestParams("GET", name, "logging", options);
-                      params.successStatuses = [200];
-                      params.xmlResponse = true;
-                      _context5.next = 5;
-                      return this.request(params);
-                    case 5:
-                      result = _context5.sent;
-                      enable = result.data.LoggingEnabled;
-                      return _context5.abrupt("return", {
-                        enable: !!enable,
-                        prefix: enable && enable.TargetPrefix || null,
-                        res: result.res
-                      });
-                    case 8:
-                    case "end":
-                      return _context5.stop();
-                  }
+                while (1) switch (_context5.prev = _context5.next) {
+                  case 0:
+                    params = this._bucketRequestParams("GET", name, "logging", options);
+                    params.successStatuses = [200];
+                    params.xmlResponse = true;
+                    _context5.next = 5;
+                    return this.request(params);
+                  case 5:
+                    result = _context5.sent;
+                    enable = result.data.LoggingEnabled;
+                    return _context5.abrupt("return", {
+                      enable: !!enable,
+                      prefix: enable && enable.TargetPrefix || null,
+                      res: result.res
+                    });
+                  case 8:
+                  case "end":
+                    return _context5.stop();
+                }
               }, _callee5, this);
             }));
             function getBucketLogging(_x11, _x12) {
               return _getBucketLogging.apply(this, arguments);
             }
             return getBucketLogging;
-          }();
-          proto.deleteBucketLogging = /* @__PURE__ */ function() {
+          })();
+          proto.deleteBucketLogging = /* @__PURE__ */ (function() {
             var _deleteBucketLogging = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee6(name, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee6$(_context6) {
-                while (1)
-                  switch (_context6.prev = _context6.next) {
-                    case 0:
-                      params = this._bucketRequestParams("DELETE", name, "logging", options);
-                      params.successStatuses = [204, 200];
-                      _context6.next = 4;
-                      return this.request(params);
-                    case 4:
-                      result = _context6.sent;
-                      return _context6.abrupt("return", {
-                        res: result.res
-                      });
-                    case 6:
-                    case "end":
-                      return _context6.stop();
-                  }
+                while (1) switch (_context6.prev = _context6.next) {
+                  case 0:
+                    params = this._bucketRequestParams("DELETE", name, "logging", options);
+                    params.successStatuses = [204, 200];
+                    _context6.next = 4;
+                    return this.request(params);
+                  case 4:
+                    result = _context6.sent;
+                    return _context6.abrupt("return", {
+                      res: result.res
+                    });
+                  case 6:
+                  case "end":
+                    return _context6.stop();
+                }
               }, _callee6, this);
             }));
             function deleteBucketLogging(_x13, _x14) {
               return _deleteBucketLogging.apply(this, arguments);
             }
             return deleteBucketLogging;
-          }();
-          proto.putBucketCORS = /* @__PURE__ */ function() {
+          })();
+          proto.putBucketCORS = /* @__PURE__ */ (function() {
             var _putBucketCORS = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee7(name, rules, options) {
               var params, xml, parseOrigin, parseMethod, parseHeader, parseExposeHeader, i, l, rule, result;
               return _regenerator.default.wrap(function _callee7$(_context7) {
-                while (1)
-                  switch (_context7.prev = _context7.next) {
-                    case 0:
-                      rules = rules || [];
-                      assert(rules.length, "rules is required");
-                      rules.forEach(function(rule2) {
-                        assert(rule2.allowedOrigin, "allowedOrigin is required");
-                        assert(rule2.allowedMethod, "allowedMethod is required");
-                      });
-                      params = this._bucketRequestParams("PUT", name, "cors", options);
-                      xml = '<?xml version="1.0" encoding="UTF-8"?>\n<CORSConfiguration>';
-                      parseOrigin = function parseOrigin2(val) {
-                        xml += "<AllowedOrigin>".concat(val, "</AllowedOrigin>");
-                      };
-                      parseMethod = function parseMethod2(val) {
-                        xml += "<AllowedMethod>".concat(val, "</AllowedMethod>");
-                      };
-                      parseHeader = function parseHeader2(val) {
-                        xml += "<AllowedHeader>".concat(val, "</AllowedHeader>");
-                      };
-                      parseExposeHeader = function parseExposeHeader2(val) {
-                        xml += "<ExposeHeader>".concat(val, "</ExposeHeader>");
-                      };
-                      for (i = 0, l = rules.length; i < l; i++) {
-                        rule = rules[i];
-                        xml += "<CORSRule>";
-                        toArray(rule.allowedOrigin).forEach(parseOrigin);
-                        toArray(rule.allowedMethod).forEach(parseMethod);
-                        toArray(rule.allowedHeader).forEach(parseHeader);
-                        toArray(rule.exposeHeader).forEach(parseExposeHeader);
-                        if (rule.maxAgeSeconds) {
-                          xml += "<MaxAgeSeconds>".concat(rule.maxAgeSeconds, "</MaxAgeSeconds>");
-                        }
-                        xml += "</CORSRule>";
+                while (1) switch (_context7.prev = _context7.next) {
+                  case 0:
+                    rules = rules || [];
+                    assert(rules.length, "rules is required");
+                    rules.forEach(function(rule2) {
+                      assert(rule2.allowedOrigin, "allowedOrigin is required");
+                      assert(rule2.allowedMethod, "allowedMethod is required");
+                    });
+                    params = this._bucketRequestParams("PUT", name, "cors", options);
+                    xml = '<?xml version="1.0" encoding="UTF-8"?>\n<CORSConfiguration>';
+                    parseOrigin = function parseOrigin2(val) {
+                      xml += "<AllowedOrigin>".concat(val, "</AllowedOrigin>");
+                    };
+                    parseMethod = function parseMethod2(val) {
+                      xml += "<AllowedMethod>".concat(val, "</AllowedMethod>");
+                    };
+                    parseHeader = function parseHeader2(val) {
+                      xml += "<AllowedHeader>".concat(val, "</AllowedHeader>");
+                    };
+                    parseExposeHeader = function parseExposeHeader2(val) {
+                      xml += "<ExposeHeader>".concat(val, "</ExposeHeader>");
+                    };
+                    for (i = 0, l = rules.length; i < l; i++) {
+                      rule = rules[i];
+                      xml += "<CORSRule>";
+                      toArray(rule.allowedOrigin).forEach(parseOrigin);
+                      toArray(rule.allowedMethod).forEach(parseMethod);
+                      toArray(rule.allowedHeader).forEach(parseHeader);
+                      toArray(rule.exposeHeader).forEach(parseExposeHeader);
+                      if (rule.maxAgeSeconds) {
+                        xml += "<MaxAgeSeconds>".concat(rule.maxAgeSeconds, "</MaxAgeSeconds>");
                       }
-                      xml += "</CORSConfiguration>";
-                      params.content = xml;
-                      params.mime = "xml";
-                      params.successStatuses = [200];
-                      _context7.next = 16;
-                      return this.request(params);
-                    case 16:
-                      result = _context7.sent;
-                      return _context7.abrupt("return", {
-                        res: result.res
-                      });
-                    case 18:
-                    case "end":
-                      return _context7.stop();
-                  }
+                      xml += "</CORSRule>";
+                    }
+                    xml += "</CORSConfiguration>";
+                    params.content = xml;
+                    params.mime = "xml";
+                    params.successStatuses = [200];
+                    _context7.next = 16;
+                    return this.request(params);
+                  case 16:
+                    result = _context7.sent;
+                    return _context7.abrupt("return", {
+                      res: result.res
+                    });
+                  case 18:
+                  case "end":
+                    return _context7.stop();
+                }
               }, _callee7, this);
             }));
             function putBucketCORS(_x15, _x16, _x17) {
               return _putBucketCORS.apply(this, arguments);
             }
             return putBucketCORS;
-          }();
-          proto.getBucketCORS = /* @__PURE__ */ function() {
+          })();
+          proto.getBucketCORS = /* @__PURE__ */ (function() {
             var _getBucketCORS = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee8(name, options) {
               var params, result, rules, CORSRule;
               return _regenerator.default.wrap(function _callee8$(_context8) {
-                while (1)
-                  switch (_context8.prev = _context8.next) {
-                    case 0:
-                      params = this._bucketRequestParams("GET", name, "cors", options);
-                      params.successStatuses = [200];
-                      params.xmlResponse = true;
-                      _context8.next = 5;
-                      return this.request(params);
-                    case 5:
-                      result = _context8.sent;
-                      rules = [];
-                      if (result.data && result.data.CORSRule) {
-                        CORSRule = result.data.CORSRule;
-                        if (!isArray(CORSRule))
-                          CORSRule = [CORSRule];
-                        CORSRule.forEach(function(rule) {
-                          var r = {};
-                          Object.keys(rule).forEach(function(key) {
-                            r[key.slice(0, 1).toLowerCase() + key.slice(1, key.length)] = rule[key];
-                          });
-                          rules.push(r);
+                while (1) switch (_context8.prev = _context8.next) {
+                  case 0:
+                    params = this._bucketRequestParams("GET", name, "cors", options);
+                    params.successStatuses = [200];
+                    params.xmlResponse = true;
+                    _context8.next = 5;
+                    return this.request(params);
+                  case 5:
+                    result = _context8.sent;
+                    rules = [];
+                    if (result.data && result.data.CORSRule) {
+                      CORSRule = result.data.CORSRule;
+                      if (!isArray(CORSRule)) CORSRule = [CORSRule];
+                      CORSRule.forEach(function(rule) {
+                        var r = {};
+                        Object.keys(rule).forEach(function(key) {
+                          r[key.slice(0, 1).toLowerCase() + key.slice(1, key.length)] = rule[key];
                         });
-                      }
-                      return _context8.abrupt("return", {
-                        rules,
-                        res: result.res
+                        rules.push(r);
                       });
-                    case 9:
-                    case "end":
-                      return _context8.stop();
-                  }
+                    }
+                    return _context8.abrupt("return", {
+                      rules,
+                      res: result.res
+                    });
+                  case 9:
+                  case "end":
+                    return _context8.stop();
+                }
               }, _callee8, this);
             }));
             function getBucketCORS(_x18, _x19) {
               return _getBucketCORS.apply(this, arguments);
             }
             return getBucketCORS;
-          }();
-          proto.deleteBucketCORS = /* @__PURE__ */ function() {
+          })();
+          proto.deleteBucketCORS = /* @__PURE__ */ (function() {
             var _deleteBucketCORS = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee9(name, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee9$(_context9) {
-                while (1)
-                  switch (_context9.prev = _context9.next) {
-                    case 0:
-                      params = this._bucketRequestParams("DELETE", name, "cors", options);
-                      params.successStatuses = [204];
-                      _context9.next = 4;
-                      return this.request(params);
-                    case 4:
-                      result = _context9.sent;
-                      return _context9.abrupt("return", {
-                        res: result.res
-                      });
-                    case 6:
-                    case "end":
-                      return _context9.stop();
-                  }
+                while (1) switch (_context9.prev = _context9.next) {
+                  case 0:
+                    params = this._bucketRequestParams("DELETE", name, "cors", options);
+                    params.successStatuses = [204];
+                    _context9.next = 4;
+                    return this.request(params);
+                  case 4:
+                    result = _context9.sent;
+                    return _context9.abrupt("return", {
+                      res: result.res
+                    });
+                  case 6:
+                  case "end":
+                    return _context9.stop();
+                }
               }, _callee9, this);
             }));
             function deleteBucketCORS(_x20, _x21) {
               return _deleteBucketCORS.apply(this, arguments);
             }
             return deleteBucketCORS;
-          }();
-          proto.putBucketReferer = /* @__PURE__ */ function() {
+          })();
+          proto.putBucketReferer = /* @__PURE__ */ (function() {
             var _putBucketReferer = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee10(name, allowEmpty, referers, options) {
               var params, xml, i, result;
               return _regenerator.default.wrap(function _callee10$(_context10) {
-                while (1)
-                  switch (_context10.prev = _context10.next) {
-                    case 0:
-                      params = this._bucketRequestParams("PUT", name, "referer", options);
-                      xml = '<?xml version="1.0" encoding="UTF-8"?>\n<RefererConfiguration>\n';
-                      xml += "  <AllowEmptyReferer>".concat(allowEmpty ? "true" : "false", "</AllowEmptyReferer>\n");
-                      if (referers && referers.length > 0) {
-                        xml += "  <RefererList>\n";
-                        for (i = 0; i < referers.length; i++) {
-                          xml += "    <Referer>".concat(referers[i], "</Referer>\n");
-                        }
-                        xml += "  </RefererList>\n";
-                      } else {
-                        xml += "  <RefererList />\n";
+                while (1) switch (_context10.prev = _context10.next) {
+                  case 0:
+                    params = this._bucketRequestParams("PUT", name, "referer", options);
+                    xml = '<?xml version="1.0" encoding="UTF-8"?>\n<RefererConfiguration>\n';
+                    xml += "  <AllowEmptyReferer>".concat(allowEmpty ? "true" : "false", "</AllowEmptyReferer>\n");
+                    if (referers && referers.length > 0) {
+                      xml += "  <RefererList>\n";
+                      for (i = 0; i < referers.length; i++) {
+                        xml += "    <Referer>".concat(referers[i], "</Referer>\n");
                       }
-                      xml += "</RefererConfiguration>";
-                      params.content = xml;
-                      params.mime = "xml";
-                      params.successStatuses = [200];
-                      _context10.next = 10;
-                      return this.request(params);
-                    case 10:
-                      result = _context10.sent;
-                      return _context10.abrupt("return", {
-                        res: result.res
-                      });
-                    case 12:
-                    case "end":
-                      return _context10.stop();
-                  }
+                      xml += "  </RefererList>\n";
+                    } else {
+                      xml += "  <RefererList />\n";
+                    }
+                    xml += "</RefererConfiguration>";
+                    params.content = xml;
+                    params.mime = "xml";
+                    params.successStatuses = [200];
+                    _context10.next = 10;
+                    return this.request(params);
+                  case 10:
+                    result = _context10.sent;
+                    return _context10.abrupt("return", {
+                      res: result.res
+                    });
+                  case 12:
+                  case "end":
+                    return _context10.stop();
+                }
               }, _callee10, this);
             }));
             function putBucketReferer(_x22, _x23, _x24, _x25) {
               return _putBucketReferer.apply(this, arguments);
             }
             return putBucketReferer;
-          }();
-          proto.getBucketReferer = /* @__PURE__ */ function() {
+          })();
+          proto.getBucketReferer = /* @__PURE__ */ (function() {
             var _getBucketReferer = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee11(name, options) {
               var params, result, referers;
               return _regenerator.default.wrap(function _callee11$(_context11) {
-                while (1)
-                  switch (_context11.prev = _context11.next) {
-                    case 0:
-                      params = this._bucketRequestParams("GET", name, "referer", options);
-                      params.successStatuses = [200];
-                      params.xmlResponse = true;
-                      _context11.next = 5;
-                      return this.request(params);
-                    case 5:
-                      result = _context11.sent;
-                      referers = result.data.RefererList.Referer || null;
-                      if (referers) {
-                        if (!isArray(referers)) {
-                          referers = [referers];
-                        }
+                while (1) switch (_context11.prev = _context11.next) {
+                  case 0:
+                    params = this._bucketRequestParams("GET", name, "referer", options);
+                    params.successStatuses = [200];
+                    params.xmlResponse = true;
+                    _context11.next = 5;
+                    return this.request(params);
+                  case 5:
+                    result = _context11.sent;
+                    referers = result.data.RefererList.Referer || null;
+                    if (referers) {
+                      if (!isArray(referers)) {
+                        referers = [referers];
                       }
-                      return _context11.abrupt("return", {
-                        allowEmpty: result.data.AllowEmptyReferer === "true",
-                        referers,
-                        res: result.res
-                      });
-                    case 9:
-                    case "end":
-                      return _context11.stop();
-                  }
+                    }
+                    return _context11.abrupt("return", {
+                      allowEmpty: result.data.AllowEmptyReferer === "true",
+                      referers,
+                      res: result.res
+                    });
+                  case 9:
+                  case "end":
+                    return _context11.stop();
+                }
               }, _callee11, this);
             }));
             function getBucketReferer(_x26, _x27) {
               return _getBucketReferer.apply(this, arguments);
             }
             return getBucketReferer;
-          }();
-          proto.deleteBucketReferer = /* @__PURE__ */ function() {
+          })();
+          proto.deleteBucketReferer = /* @__PURE__ */ (function() {
             var _deleteBucketReferer = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee12(name, options) {
               return _regenerator.default.wrap(function _callee12$(_context12) {
-                while (1)
-                  switch (_context12.prev = _context12.next) {
-                    case 0:
-                      _context12.next = 2;
-                      return this.putBucketReferer(name, true, null, options);
-                    case 2:
-                      return _context12.abrupt("return", _context12.sent);
-                    case 3:
-                    case "end":
-                      return _context12.stop();
-                  }
+                while (1) switch (_context12.prev = _context12.next) {
+                  case 0:
+                    _context12.next = 2;
+                    return this.putBucketReferer(name, true, null, options);
+                  case 2:
+                    return _context12.abrupt("return", _context12.sent);
+                  case 3:
+                  case "end":
+                    return _context12.stop();
+                }
               }, _callee12, this);
             }));
             function deleteBucketReferer(_x28, _x29) {
               return _deleteBucketReferer.apply(this, arguments);
             }
             return deleteBucketReferer;
-          }();
+          })();
           proto._bucketRequestParams = function _bucketRequestParams(method, bucket, subres, options) {
             return {
               method,
@@ -623,7 +604,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 this.ctx = ctx;
                 this.userAgent = this._getUserAgent();
-                this.stsTokenFreshTime = new Date();
+                this.stsTokenFreshTime = /* @__PURE__ */ new Date();
                 this.options.amendTimeSkewed = 0;
               }
               module4.exports = Client;
@@ -678,48 +659,45 @@ var require_aliyun_oss_sdk = __commonJS({
               proto.authorizationV4 = function authorizationV4(method, requestParams, bucketName, objectName, additionalHeaders) {
                 return signUtils.authorizationV4(this.options.accessKeyId, this.options.accessKeySecret, getStandardRegion(this.options.region), method, requestParams, bucketName, objectName, additionalHeaders, this.options.headerEncoding);
               };
-              proto.request = /* @__PURE__ */ function() {
+              proto.request = /* @__PURE__ */ (function() {
                 var _ref = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(params) {
                   var _this = this;
                   return _regenerator.default.wrap(function _callee$(_context) {
-                    while (1)
-                      switch (_context.prev = _context.next) {
-                        case 0:
-                          if (!this.options.retryMax) {
-                            _context.next = 6;
-                            break;
-                          }
-                          _context.next = 3;
-                          return retry(request.bind(this), this.options.retryMax, {
-                            errorHandler: function errorHandler(err) {
-                              var _errHandle = function _errHandle2(_err) {
-                                if (params.stream)
-                                  return false;
-                                var statusErr = [-1, -2].includes(_err.status);
-                                var requestErrorRetryHandle = _this.options.requestErrorRetryHandle || function() {
-                                  return true;
-                                };
-                                return statusErr && requestErrorRetryHandle(_err);
-                              };
-                              if (_errHandle(err))
+                    while (1) switch (_context.prev = _context.next) {
+                      case 0:
+                        if (!this.options.retryMax) {
+                          _context.next = 6;
+                          break;
+                        }
+                        _context.next = 3;
+                        return retry(request.bind(this), this.options.retryMax, {
+                          errorHandler: function errorHandler(err) {
+                            var _errHandle = function _errHandle2(_err) {
+                              if (params.stream) return false;
+                              var statusErr = [-1, -2].includes(_err.status);
+                              var requestErrorRetryHandle = _this.options.requestErrorRetryHandle || function() {
                                 return true;
-                              return false;
-                            }
-                          })(params);
-                        case 3:
-                          return _context.abrupt("return", _context.sent);
-                        case 6:
-                          return _context.abrupt("return", request.call(this, params));
-                        case 7:
-                        case "end":
-                          return _context.stop();
-                      }
+                              };
+                              return statusErr && requestErrorRetryHandle(_err);
+                            };
+                            if (_errHandle(err)) return true;
+                            return false;
+                          }
+                        })(params);
+                      case 3:
+                        return _context.abrupt("return", _context.sent);
+                      case 6:
+                        return _context.abrupt("return", request.call(this, params));
+                      case 7:
+                      case "end":
+                        return _context.stop();
+                    }
                   }, _callee, this);
                 }));
                 return function(_x) {
                   return _ref.apply(this, arguments);
                 };
-              }();
+              })();
               function request(_x2) {
                 return _request.apply(this, arguments);
               }
@@ -727,96 +705,93 @@ var require_aliyun_oss_sdk = __commonJS({
                 _request = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee4(params) {
                   var reqParams, result, reqErr, useStream, err, parseData;
                   return _regenerator.default.wrap(function _callee4$(_context4) {
-                    while (1)
-                      switch (_context4.prev = _context4.next) {
-                        case 0:
-                          if (!(this.options.stsToken && isFunction(this.options.refreshSTSToken))) {
-                            _context4.next = 3;
-                            break;
-                          }
+                    while (1) switch (_context4.prev = _context4.next) {
+                      case 0:
+                        if (!(this.options.stsToken && isFunction(this.options.refreshSTSToken))) {
                           _context4.next = 3;
-                          return setSTSToken.call(this);
-                        case 3:
-                          reqParams = createRequest.call(this, params);
-                          if (!this.options.useFetch) {
-                            reqParams.params.mode = "disable-fetch";
-                          }
-                          useStream = !!params.stream;
-                          _context4.prev = 6;
-                          _context4.next = 9;
-                          return this.urllib.request(reqParams.url, reqParams.params);
-                        case 9:
-                          result = _context4.sent;
-                          this.debug("response %s %s, got %s, headers: %j", params.method, reqParams.url, result.status, result.headers, "info");
-                          _context4.next = 16;
                           break;
-                        case 13:
-                          _context4.prev = 13;
-                          _context4.t0 = _context4["catch"](6);
-                          reqErr = _context4.t0;
-                        case 16:
-                          if (!(result && params.successStatuses && params.successStatuses.indexOf(result.status) === -1)) {
-                            _context4.next = 28;
-                            break;
-                          }
-                          _context4.next = 19;
-                          return this.requestError(result);
-                        case 19:
-                          err = _context4.sent;
-                          if (!(err.code === "RequestTimeTooSkewed" && !useStream)) {
-                            _context4.next = 25;
-                            break;
-                          }
-                          this.options.amendTimeSkewed = +new Date(err.serverTime) - new Date();
-                          _context4.next = 24;
-                          return this.request(params);
-                        case 24:
-                          return _context4.abrupt("return", _context4.sent);
-                        case 25:
-                          err.params = params;
+                        }
+                        _context4.next = 3;
+                        return setSTSToken.call(this);
+                      case 3:
+                        reqParams = createRequest.call(this, params);
+                        if (!this.options.useFetch) {
+                          reqParams.params.mode = "disable-fetch";
+                        }
+                        useStream = !!params.stream;
+                        _context4.prev = 6;
+                        _context4.next = 9;
+                        return this.urllib.request(reqParams.url, reqParams.params);
+                      case 9:
+                        result = _context4.sent;
+                        this.debug("response %s %s, got %s, headers: %j", params.method, reqParams.url, result.status, result.headers, "info");
+                        _context4.next = 16;
+                        break;
+                      case 13:
+                        _context4.prev = 13;
+                        _context4.t0 = _context4["catch"](6);
+                        reqErr = _context4.t0;
+                      case 16:
+                        if (!(result && params.successStatuses && params.successStatuses.indexOf(result.status) === -1)) {
+                          _context4.next = 28;
+                          break;
+                        }
+                        _context4.next = 19;
+                        return this.requestError(result);
+                      case 19:
+                        err = _context4.sent;
+                        if (!(err.code === "RequestTimeTooSkewed" && !useStream)) {
+                          _context4.next = 25;
+                          break;
+                        }
+                        this.options.amendTimeSkewed = +new Date(err.serverTime) - /* @__PURE__ */ new Date();
+                        _context4.next = 24;
+                        return this.request(params);
+                      case 24:
+                        return _context4.abrupt("return", _context4.sent);
+                      case 25:
+                        err.params = params;
+                        _context4.next = 32;
+                        break;
+                      case 28:
+                        if (!reqErr) {
                           _context4.next = 32;
                           break;
-                        case 28:
-                          if (!reqErr) {
-                            _context4.next = 32;
-                            break;
-                          }
-                          _context4.next = 31;
-                          return this.requestError(reqErr);
-                        case 31:
-                          err = _context4.sent;
-                        case 32:
-                          if (!err) {
-                            _context4.next = 34;
-                            break;
-                          }
-                          throw err;
-                        case 34:
-                          if (!params.xmlResponse) {
-                            _context4.next = 39;
-                            break;
-                          }
-                          _context4.next = 37;
-                          return this.parseXML(result.data);
-                        case 37:
-                          parseData = _context4.sent;
-                          result.data = parseData;
-                        case 39:
-                          return _context4.abrupt("return", result);
-                        case 40:
-                        case "end":
-                          return _context4.stop();
-                      }
+                        }
+                        _context4.next = 31;
+                        return this.requestError(reqErr);
+                      case 31:
+                        err = _context4.sent;
+                      case 32:
+                        if (!err) {
+                          _context4.next = 34;
+                          break;
+                        }
+                        throw err;
+                      case 34:
+                        if (!params.xmlResponse) {
+                          _context4.next = 39;
+                          break;
+                        }
+                        _context4.next = 37;
+                        return this.parseXML(result.data);
+                      case 37:
+                        parseData = _context4.sent;
+                        result.data = parseData;
+                      case 39:
+                        return _context4.abrupt("return", result);
+                      case 40:
+                      case "end":
+                        return _context4.stop();
+                    }
                   }, _callee4, this, [[6, 13]]);
                 }));
                 return _request.apply(this, arguments);
               }
               proto._getResource = function _getResource(params) {
                 var resource = "/";
-                if (params.bucket)
-                  resource += "".concat(params.bucket, "/");
-                if (params.object)
-                  resource += encoder(params.object, this.options.headerEncoding);
+                if (params.bucket) resource += "".concat(params.bucket, "/");
+                if (params.object) resource += encoder(params.object, this.options.headerEncoding);
                 return resource;
               };
               proto._escape = function _escape(name) {
@@ -855,146 +830,144 @@ var require_aliyun_oss_sdk = __commonJS({
                   });
                 });
               };
-              proto.requestError = /* @__PURE__ */ function() {
+              proto.requestError = /* @__PURE__ */ (function() {
                 var _requestError = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee3(result) {
                   var _this2 = this;
                   var err, setError, ossErr, message, _message;
                   return _regenerator.default.wrap(function _callee3$(_context3) {
-                    while (1)
-                      switch (_context3.prev = _context3.next) {
-                        case 0:
-                          err = null;
-                          setError = /* @__PURE__ */ function() {
-                            var _ref2 = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee2(message2) {
-                              var info, msg;
-                              return _regenerator.default.wrap(function _callee2$(_context2) {
-                                while (1)
-                                  switch (_context2.prev = _context2.next) {
-                                    case 0:
-                                      _context2.prev = 0;
-                                      _context2.next = 3;
-                                      return _this2.parseXML(message2);
-                                    case 3:
-                                      _context2.t0 = _context2.sent;
-                                      if (_context2.t0) {
-                                        _context2.next = 6;
-                                        break;
-                                      }
-                                      _context2.t0 = {};
-                                    case 6:
-                                      info = _context2.t0;
-                                      _context2.next = 16;
-                                      break;
-                                    case 9:
-                                      _context2.prev = 9;
-                                      _context2.t1 = _context2["catch"](0);
-                                      _this2.debug(message2, "error");
-                                      _context2.t1.message += "\nraw xml: ".concat(message2);
-                                      _context2.t1.status = result.status;
-                                      _context2.t1.requestId = result.headers && result.headers["x-oss-request-id"];
-                                      return _context2.abrupt("return", _context2.t1);
-                                    case 16:
-                                      msg = info.Message || "unknow request error, status: ".concat(result.status);
-                                      if (info.Condition) {
-                                        msg += " (condition: ".concat(info.Condition, ")");
-                                      }
-                                      err = new Error(msg);
-                                      err.name = info.Code ? "".concat(info.Code, "Error") : "UnknownError";
-                                      err.status = result.status;
-                                      err.code = info.Code;
-                                      err.ecCode = info.EC;
-                                      err.requestId = info.RequestId;
-                                      err.hostId = info.HostId;
-                                      err.serverTime = info.ServerTime;
-                                      return _context2.abrupt("return", err);
-                                    case 27:
-                                    case "end":
-                                      return _context2.stop();
+                    while (1) switch (_context3.prev = _context3.next) {
+                      case 0:
+                        err = null;
+                        setError = /* @__PURE__ */ (function() {
+                          var _ref2 = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee2(message2) {
+                            var info, msg;
+                            return _regenerator.default.wrap(function _callee2$(_context2) {
+                              while (1) switch (_context2.prev = _context2.next) {
+                                case 0:
+                                  _context2.prev = 0;
+                                  _context2.next = 3;
+                                  return _this2.parseXML(message2);
+                                case 3:
+                                  _context2.t0 = _context2.sent;
+                                  if (_context2.t0) {
+                                    _context2.next = 6;
+                                    break;
                                   }
-                              }, _callee2, null, [[0, 9]]);
-                            }));
-                            return function setError2(_x4) {
-                              return _ref2.apply(this, arguments);
-                            };
-                          }();
-                          if (!(!result.data || !result.data.length)) {
-                            _context3.next = 38;
-                            break;
-                          }
-                          if (!(result.status === -1 || result.status === -2)) {
-                            _context3.next = 10;
-                            break;
-                          }
-                          err = new Error(result.message);
-                          err.name = result.name;
-                          err.status = result.status;
-                          err.code = result.name;
-                          _context3.next = 36;
+                                  _context2.t0 = {};
+                                case 6:
+                                  info = _context2.t0;
+                                  _context2.next = 16;
+                                  break;
+                                case 9:
+                                  _context2.prev = 9;
+                                  _context2.t1 = _context2["catch"](0);
+                                  _this2.debug(message2, "error");
+                                  _context2.t1.message += "\nraw xml: ".concat(message2);
+                                  _context2.t1.status = result.status;
+                                  _context2.t1.requestId = result.headers && result.headers["x-oss-request-id"];
+                                  return _context2.abrupt("return", _context2.t1);
+                                case 16:
+                                  msg = info.Message || "unknow request error, status: ".concat(result.status);
+                                  if (info.Condition) {
+                                    msg += " (condition: ".concat(info.Condition, ")");
+                                  }
+                                  err = new Error(msg);
+                                  err.name = info.Code ? "".concat(info.Code, "Error") : "UnknownError";
+                                  err.status = result.status;
+                                  err.code = info.Code;
+                                  err.ecCode = info.EC;
+                                  err.requestId = info.RequestId;
+                                  err.hostId = info.HostId;
+                                  err.serverTime = info.ServerTime;
+                                  return _context2.abrupt("return", err);
+                                case 27:
+                                case "end":
+                                  return _context2.stop();
+                              }
+                            }, _callee2, null, [[0, 9]]);
+                          }));
+                          return function setError2(_x4) {
+                            return _ref2.apply(this, arguments);
+                          };
+                        })();
+                        if (!(!result.data || !result.data.length)) {
+                          _context3.next = 38;
                           break;
-                        case 10:
-                          if (!(result.status === 404)) {
-                            _context3.next = 17;
-                            break;
-                          }
-                          err = new Error("Object not exists");
-                          err.name = "NoSuchKeyError";
-                          err.status = 404;
-                          err.code = "NoSuchKey";
+                        }
+                        if (!(result.status === -1 || result.status === -2)) {
+                          _context3.next = 10;
+                          break;
+                        }
+                        err = new Error(result.message);
+                        err.name = result.name;
+                        err.status = result.status;
+                        err.code = result.name;
+                        _context3.next = 36;
+                        break;
+                      case 10:
+                        if (!(result.status === 404)) {
+                          _context3.next = 17;
+                          break;
+                        }
+                        err = new Error("Object not exists");
+                        err.name = "NoSuchKeyError";
+                        err.status = 404;
+                        err.code = "NoSuchKey";
+                        _context3.next = 34;
+                        break;
+                      case 17:
+                        if (!(result.status === 412)) {
+                          _context3.next = 24;
+                          break;
+                        }
+                        err = new Error("Pre condition failed");
+                        err.name = "PreconditionFailedError";
+                        err.status = 412;
+                        err.code = "PreconditionFailed";
+                        _context3.next = 34;
+                        break;
+                      case 24:
+                        err = new Error("Unknow error, status: ".concat(result.status));
+                        err.name = "UnknownError";
+                        err.status = result.status;
+                        err.res = result;
+                        ossErr = result.headers && result.headers["x-oss-err"];
+                        if (!ossErr) {
                           _context3.next = 34;
                           break;
-                        case 17:
-                          if (!(result.status === 412)) {
-                            _context3.next = 24;
-                            break;
-                          }
-                          err = new Error("Pre condition failed");
-                          err.name = "PreconditionFailedError";
-                          err.status = 412;
-                          err.code = "PreconditionFailed";
-                          _context3.next = 34;
-                          break;
-                        case 24:
-                          err = new Error("Unknow error, status: ".concat(result.status));
-                          err.name = "UnknownError";
-                          err.status = result.status;
-                          err.res = result;
-                          ossErr = result.headers && result.headers["x-oss-err"];
-                          if (!ossErr) {
-                            _context3.next = 34;
-                            break;
-                          }
-                          message = atob(ossErr);
-                          _context3.next = 33;
-                          return setError(message);
-                        case 33:
-                          err = _context3.sent;
-                        case 34:
-                          err.requestId = result.headers && result.headers["x-oss-request-id"];
-                          err.host = "";
-                        case 36:
-                          _context3.next = 43;
-                          break;
-                        case 38:
-                          _message = String(result.data);
-                          this.debug("request response error data: %s", _message, "error");
-                          _context3.next = 42;
-                          return setError(_message);
-                        case 42:
-                          err = _context3.sent;
-                        case 43:
-                          this.debug("generate error %j", err, "error");
-                          return _context3.abrupt("return", err);
-                        case 45:
-                        case "end":
-                          return _context3.stop();
-                      }
+                        }
+                        message = atob(ossErr);
+                        _context3.next = 33;
+                        return setError(message);
+                      case 33:
+                        err = _context3.sent;
+                      case 34:
+                        err.requestId = result.headers && result.headers["x-oss-request-id"];
+                        err.host = "";
+                      case 36:
+                        _context3.next = 43;
+                        break;
+                      case 38:
+                        _message = String(result.data);
+                        this.debug("request response error data: %s", _message, "error");
+                        _context3.next = 42;
+                        return setError(_message);
+                      case 42:
+                        err = _context3.sent;
+                      case 43:
+                        this.debug("generate error %j", err, "error");
+                        return _context3.abrupt("return", err);
+                      case 45:
+                      case "end":
+                        return _context3.stop();
+                    }
                   }, _callee3, this);
                 }));
                 function requestError(_x3) {
                   return _requestError.apply(this, arguments);
                 }
                 return requestError;
-              }();
+              })();
             }).call(this);
           }).call(this, { "isBuffer": require2("../../node_modules/is-buffer/index.js") }, require2("_process"));
         }, { "../../node_modules/is-buffer/index.js": 409, "../common/bucket/abortBucketWorm": 7, "../common/bucket/completeBucketWorm": 8, "../common/bucket/deleteBucketInventory": 9, "../common/bucket/deleteBucketLifecycle": 10, "../common/bucket/deleteBucketWebsite": 11, "../common/bucket/extendBucketWorm": 12, "../common/bucket/getBucketInventory": 13, "../common/bucket/getBucketLifecycle": 14, "../common/bucket/getBucketVersioning": 15, "../common/bucket/getBucketWebsite": 16, "../common/bucket/getBucketWorm": 17, "../common/bucket/initiateBucketWorm": 18, "../common/bucket/listBucketInventory": 19, "../common/bucket/putBucketInventory": 20, "../common/bucket/putBucketLifecycle": 21, "../common/bucket/putBucketVersioning": 22, "../common/bucket/putBucketWebsite": 23, "../common/client/getReqUrl": 25, "../common/client/initOptions": 26, "../common/multipart": 30, "../common/multipart-copy": 29, "../common/parallel": 51, "../common/signUtils": 52, "../common/utils/createRequest": 58, "../common/utils/encoder": 62, "../common/utils/getStandardRegion": 65, "../common/utils/isFunction": 72, "../common/utils/retry": 80, "../common/utils/setSTSToken": 82, "./bucket": 2, "./managed-upload": 4, "./object": 5, "./version": 6, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "_process": 538, "agentkeepalive": 94, "bowser": 101, "core-js/modules/es.array.concat.js": 310, "core-js/modules/es.array.includes.js": 315, "core-js/modules/es.array.slice.js": 319, "core-js/modules/es.function.name.js": 322, "core-js/modules/es.object.assign.js": 325, "core-js/modules/es.object.to-string.js": 329, "core-js/modules/es.promise.js": 333, "core-js/modules/es.regexp.exec.js": 338, "core-js/modules/es.regexp.to-string.js": 339, "core-js/modules/es.string.replace.js": 345, "core-js/modules/es.symbol.description.js": 351, "core-js/modules/es.symbol.js": 354, "debug": 536, "merge-descriptors": 428, "platform": 440, "urllib": 546, "utility": 545, "xml2js": 496 }], 4: [function(require2, module4, exports3) {
@@ -1049,329 +1022,324 @@ var require_aliyun_oss_sdk = __commonJS({
               var _require2 = require2("../common/utils/isFile"), isFile = _require2.isFile;
               var _require3 = require2("../common/utils/isBuffer"), isBuffer = _require3.isBuffer;
               var proto = exports3;
-              proto.multipartUpload = /* @__PURE__ */ function() {
+              proto.multipartUpload = /* @__PURE__ */ (function() {
                 var _multipartUpload = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, file) {
                   var options, minPartSize, fileSize, result, ret, initResult, uploadId, partSize, checkpoint, _args = arguments;
                   return _regenerator.default.wrap(function _callee$(_context) {
-                    while (1)
-                      switch (_context.prev = _context.next) {
-                        case 0:
-                          options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
-                          this.resetCancelFlag();
-                          options.disabledMD5 = options.disabledMD5 === void 0 ? true : !!options.disabledMD5;
-                          if (!(options.checkpoint && options.checkpoint.uploadId)) {
-                            _context.next = 8;
-                            break;
+                    while (1) switch (_context.prev = _context.next) {
+                      case 0:
+                        options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
+                        this.resetCancelFlag();
+                        options.disabledMD5 = options.disabledMD5 === void 0 ? true : !!options.disabledMD5;
+                        if (!(options.checkpoint && options.checkpoint.uploadId)) {
+                          _context.next = 8;
+                          break;
+                        }
+                        if (file && isFile(file)) options.checkpoint.file = file;
+                        _context.next = 7;
+                        return this._resumeMultipart(options.checkpoint, options);
+                      case 7:
+                        return _context.abrupt("return", _context.sent);
+                      case 8:
+                        minPartSize = 100 * 1024;
+                        if (!options.mime) {
+                          if (isFile(file)) {
+                            options.mime = mime.getType(path3.extname(file.name));
+                          } else if (isBlob(file)) {
+                            options.mime = file.type;
+                          } else if (isBuffer(file)) {
+                            options.mime = "";
+                          } else {
+                            options.mime = mime.getType(path3.extname(file));
                           }
-                          if (file && isFile(file))
-                            options.checkpoint.file = file;
-                          _context.next = 7;
-                          return this._resumeMultipart(options.checkpoint, options);
-                        case 7:
-                          return _context.abrupt("return", _context.sent);
-                        case 8:
-                          minPartSize = 100 * 1024;
-                          if (!options.mime) {
-                            if (isFile(file)) {
-                              options.mime = mime.getType(path3.extname(file.name));
-                            } else if (isBlob(file)) {
-                              options.mime = file.type;
-                            } else if (isBuffer(file)) {
-                              options.mime = "";
-                            } else {
-                              options.mime = mime.getType(path3.extname(file));
-                            }
-                          }
-                          options.headers = options.headers || {};
-                          this._convertMetaToHeaders(options.meta, options.headers);
-                          _context.next = 14;
-                          return this._getFileSize(file);
-                        case 14:
-                          fileSize = _context.sent;
-                          if (!(fileSize < minPartSize)) {
-                            _context.next = 26;
-                            break;
-                          }
-                          options.contentLength = fileSize;
-                          _context.next = 19;
-                          return this.put(name, file, options);
-                        case 19:
-                          result = _context.sent;
-                          if (!(options && options.progress)) {
-                            _context.next = 23;
-                            break;
-                          }
+                        }
+                        options.headers = options.headers || {};
+                        this._convertMetaToHeaders(options.meta, options.headers);
+                        _context.next = 14;
+                        return this._getFileSize(file);
+                      case 14:
+                        fileSize = _context.sent;
+                        if (!(fileSize < minPartSize)) {
+                          _context.next = 26;
+                          break;
+                        }
+                        options.contentLength = fileSize;
+                        _context.next = 19;
+                        return this.put(name, file, options);
+                      case 19:
+                        result = _context.sent;
+                        if (!(options && options.progress)) {
                           _context.next = 23;
-                          return options.progress(1);
-                        case 23:
-                          ret = {
-                            res: result.res,
-                            bucket: this.options.bucket,
-                            name,
-                            etag: result.res.headers.etag
-                          };
-                          if (options.headers && options.headers["x-oss-callback"] || options.callback) {
-                            ret.data = result.data;
-                          }
-                          return _context.abrupt("return", ret);
-                        case 26:
-                          if (!(options.partSize && !(parseInt(options.partSize, 10) === options.partSize))) {
-                            _context.next = 28;
-                            break;
-                          }
-                          throw new Error("partSize must be int number");
-                        case 28:
-                          if (!(options.partSize && options.partSize < minPartSize)) {
-                            _context.next = 30;
-                            break;
-                          }
-                          throw new Error("partSize must not be smaller than ".concat(minPartSize));
-                        case 30:
-                          _context.next = 32;
-                          return this.initMultipartUpload(name, options);
-                        case 32:
-                          initResult = _context.sent;
-                          uploadId = initResult.uploadId;
-                          partSize = this._getPartSize(fileSize, options.partSize);
-                          checkpoint = {
-                            file,
-                            name,
-                            fileSize,
-                            partSize,
-                            uploadId,
-                            doneParts: []
-                          };
-                          if (!(options && options.progress)) {
-                            _context.next = 39;
-                            break;
-                          }
+                          break;
+                        }
+                        _context.next = 23;
+                        return options.progress(1);
+                      case 23:
+                        ret = {
+                          res: result.res,
+                          bucket: this.options.bucket,
+                          name,
+                          etag: result.res.headers.etag
+                        };
+                        if (options.headers && options.headers["x-oss-callback"] || options.callback) {
+                          ret.data = result.data;
+                        }
+                        return _context.abrupt("return", ret);
+                      case 26:
+                        if (!(options.partSize && !(parseInt(options.partSize, 10) === options.partSize))) {
+                          _context.next = 28;
+                          break;
+                        }
+                        throw new Error("partSize must be int number");
+                      case 28:
+                        if (!(options.partSize && options.partSize < minPartSize)) {
+                          _context.next = 30;
+                          break;
+                        }
+                        throw new Error("partSize must not be smaller than ".concat(minPartSize));
+                      case 30:
+                        _context.next = 32;
+                        return this.initMultipartUpload(name, options);
+                      case 32:
+                        initResult = _context.sent;
+                        uploadId = initResult.uploadId;
+                        partSize = this._getPartSize(fileSize, options.partSize);
+                        checkpoint = {
+                          file,
+                          name,
+                          fileSize,
+                          partSize,
+                          uploadId,
+                          doneParts: []
+                        };
+                        if (!(options && options.progress)) {
                           _context.next = 39;
-                          return options.progress(0, checkpoint, initResult.res);
-                        case 39:
-                          _context.next = 41;
-                          return this._resumeMultipart(checkpoint, options);
-                        case 41:
-                          return _context.abrupt("return", _context.sent);
-                        case 42:
-                        case "end":
-                          return _context.stop();
-                      }
+                          break;
+                        }
+                        _context.next = 39;
+                        return options.progress(0, checkpoint, initResult.res);
+                      case 39:
+                        _context.next = 41;
+                        return this._resumeMultipart(checkpoint, options);
+                      case 41:
+                        return _context.abrupt("return", _context.sent);
+                      case 42:
+                      case "end":
+                        return _context.stop();
+                    }
                   }, _callee, this);
                 }));
                 function multipartUpload(_x, _x2) {
                   return _multipartUpload.apply(this, arguments);
                 }
                 return multipartUpload;
-              }();
-              proto._resumeMultipart = /* @__PURE__ */ function() {
+              })();
+              proto._resumeMultipart = /* @__PURE__ */ (function() {
                 var _resumeMultipart2 = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee3(checkpoint, options) {
                   var that, file, fileSize, partSize, uploadId, doneParts, name, internalDoneParts, partOffs, numParts, multipartFinish, uploadPartJob, all, done, todo, defaultParallel, parallel, jobErr, abortEvent;
                   return _regenerator.default.wrap(function _callee3$(_context3) {
-                    while (1)
-                      switch (_context3.prev = _context3.next) {
-                        case 0:
-                          that = this;
-                          if (!this.isCancel()) {
-                            _context3.next = 3;
-                            break;
-                          }
-                          throw this._makeCancelEvent();
-                        case 3:
-                          file = checkpoint.file, fileSize = checkpoint.fileSize, partSize = checkpoint.partSize, uploadId = checkpoint.uploadId, doneParts = checkpoint.doneParts, name = checkpoint.name;
-                          internalDoneParts = [];
-                          if (doneParts.length > 0) {
-                            copy(doneParts).to(internalDoneParts);
-                          }
-                          partOffs = this._divideParts(fileSize, partSize);
-                          numParts = partOffs.length;
-                          multipartFinish = false;
-                          uploadPartJob = function uploadPartJob2(self2, partNo) {
-                            return new Promise(/* @__PURE__ */ function() {
-                              var _ref = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee2(resolve, reject) {
-                                var pi, content, data, result, tempErr;
-                                return _regenerator.default.wrap(function _callee2$(_context2) {
-                                  while (1)
-                                    switch (_context2.prev = _context2.next) {
-                                      case 0:
-                                        _context2.prev = 0;
-                                        if (self2.isCancel()) {
-                                          _context2.next = 29;
-                                          break;
-                                        }
-                                        pi = partOffs[partNo - 1];
-                                        _context2.next = 5;
-                                        return self2._createBuffer(file, pi.start, pi.end);
-                                      case 5:
-                                        content = _context2.sent;
-                                        data = {
-                                          content,
-                                          size: pi.end - pi.start
-                                        };
-                                        _context2.prev = 7;
-                                        _context2.next = 10;
-                                        return self2._uploadPart(name, uploadId, partNo, data, options);
-                                      case 10:
-                                        result = _context2.sent;
-                                        _context2.next = 18;
-                                        break;
-                                      case 13:
-                                        _context2.prev = 13;
-                                        _context2.t0 = _context2["catch"](7);
-                                        if (!(_context2.t0.status === 404)) {
-                                          _context2.next = 17;
-                                          break;
-                                        }
-                                        throw self2._makeAbortEvent();
-                                      case 17:
-                                        throw _context2.t0;
-                                      case 18:
-                                        if (!(!self2.isCancel() && !multipartFinish)) {
-                                          _context2.next = 26;
-                                          break;
-                                        }
-                                        checkpoint.doneParts.push({
-                                          number: partNo,
-                                          etag: result.res.headers.etag
-                                        });
-                                        if (!options.progress) {
-                                          _context2.next = 23;
-                                          break;
-                                        }
-                                        _context2.next = 23;
-                                        return options.progress(doneParts.length / (numParts + 1), checkpoint, result.res);
-                                      case 23:
-                                        resolve({
-                                          number: partNo,
-                                          etag: result.res.headers.etag
-                                        });
-                                        _context2.next = 27;
-                                        break;
-                                      case 26:
-                                        resolve();
-                                      case 27:
-                                        _context2.next = 30;
-                                        break;
-                                      case 29:
-                                        resolve();
-                                      case 30:
-                                        _context2.next = 41;
-                                        break;
-                                      case 32:
-                                        _context2.prev = 32;
-                                        _context2.t1 = _context2["catch"](0);
-                                        tempErr = new Error();
-                                        tempErr.name = _context2.t1.name;
-                                        tempErr.message = _context2.t1.message;
-                                        tempErr.stack = _context2.t1.stack;
-                                        tempErr.partNum = partNo;
-                                        copy(_context2.t1).to(tempErr);
-                                        reject(tempErr);
-                                      case 41:
-                                      case "end":
-                                        return _context2.stop();
+                    while (1) switch (_context3.prev = _context3.next) {
+                      case 0:
+                        that = this;
+                        if (!this.isCancel()) {
+                          _context3.next = 3;
+                          break;
+                        }
+                        throw this._makeCancelEvent();
+                      case 3:
+                        file = checkpoint.file, fileSize = checkpoint.fileSize, partSize = checkpoint.partSize, uploadId = checkpoint.uploadId, doneParts = checkpoint.doneParts, name = checkpoint.name;
+                        internalDoneParts = [];
+                        if (doneParts.length > 0) {
+                          copy(doneParts).to(internalDoneParts);
+                        }
+                        partOffs = this._divideParts(fileSize, partSize);
+                        numParts = partOffs.length;
+                        multipartFinish = false;
+                        uploadPartJob = function uploadPartJob2(self2, partNo) {
+                          return new Promise(/* @__PURE__ */ (function() {
+                            var _ref = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee2(resolve, reject) {
+                              var pi, content, data, result, tempErr;
+                              return _regenerator.default.wrap(function _callee2$(_context2) {
+                                while (1) switch (_context2.prev = _context2.next) {
+                                  case 0:
+                                    _context2.prev = 0;
+                                    if (self2.isCancel()) {
+                                      _context2.next = 29;
+                                      break;
                                     }
-                                }, _callee2, null, [[0, 32], [7, 13]]);
-                              }));
-                              return function(_x5, _x6) {
-                                return _ref.apply(this, arguments);
-                              };
-                            }());
-                          };
-                          all = Array.from(new Array(numParts), function(x, i) {
-                            return i + 1;
-                          });
-                          done = internalDoneParts.map(function(p) {
-                            return p.number;
-                          });
-                          todo = all.filter(function(p) {
-                            return done.indexOf(p) < 0;
-                          });
-                          defaultParallel = 5;
-                          parallel = options.parallel || defaultParallel;
-                          _context3.next = 17;
-                          return this._parallel(todo, parallel, function(value) {
-                            return new Promise(function(resolve, reject) {
-                              uploadPartJob(that, value).then(function(result) {
-                                if (result) {
-                                  internalDoneParts.push(result);
+                                    pi = partOffs[partNo - 1];
+                                    _context2.next = 5;
+                                    return self2._createBuffer(file, pi.start, pi.end);
+                                  case 5:
+                                    content = _context2.sent;
+                                    data = {
+                                      content,
+                                      size: pi.end - pi.start
+                                    };
+                                    _context2.prev = 7;
+                                    _context2.next = 10;
+                                    return self2._uploadPart(name, uploadId, partNo, data, options);
+                                  case 10:
+                                    result = _context2.sent;
+                                    _context2.next = 18;
+                                    break;
+                                  case 13:
+                                    _context2.prev = 13;
+                                    _context2.t0 = _context2["catch"](7);
+                                    if (!(_context2.t0.status === 404)) {
+                                      _context2.next = 17;
+                                      break;
+                                    }
+                                    throw self2._makeAbortEvent();
+                                  case 17:
+                                    throw _context2.t0;
+                                  case 18:
+                                    if (!(!self2.isCancel() && !multipartFinish)) {
+                                      _context2.next = 26;
+                                      break;
+                                    }
+                                    checkpoint.doneParts.push({
+                                      number: partNo,
+                                      etag: result.res.headers.etag
+                                    });
+                                    if (!options.progress) {
+                                      _context2.next = 23;
+                                      break;
+                                    }
+                                    _context2.next = 23;
+                                    return options.progress(doneParts.length / (numParts + 1), checkpoint, result.res);
+                                  case 23:
+                                    resolve({
+                                      number: partNo,
+                                      etag: result.res.headers.etag
+                                    });
+                                    _context2.next = 27;
+                                    break;
+                                  case 26:
+                                    resolve();
+                                  case 27:
+                                    _context2.next = 30;
+                                    break;
+                                  case 29:
+                                    resolve();
+                                  case 30:
+                                    _context2.next = 41;
+                                    break;
+                                  case 32:
+                                    _context2.prev = 32;
+                                    _context2.t1 = _context2["catch"](0);
+                                    tempErr = new Error();
+                                    tempErr.name = _context2.t1.name;
+                                    tempErr.message = _context2.t1.message;
+                                    tempErr.stack = _context2.t1.stack;
+                                    tempErr.partNum = partNo;
+                                    copy(_context2.t1).to(tempErr);
+                                    reject(tempErr);
+                                  case 41:
+                                  case "end":
+                                    return _context2.stop();
                                 }
-                                resolve();
-                              }).catch(function(err) {
-                                reject(err);
-                              });
+                              }, _callee2, null, [[0, 32], [7, 13]]);
+                            }));
+                            return function(_x5, _x6) {
+                              return _ref.apply(this, arguments);
+                            };
+                          })());
+                        };
+                        all = Array.from(new Array(numParts), function(x, i) {
+                          return i + 1;
+                        });
+                        done = internalDoneParts.map(function(p) {
+                          return p.number;
+                        });
+                        todo = all.filter(function(p) {
+                          return done.indexOf(p) < 0;
+                        });
+                        defaultParallel = 5;
+                        parallel = options.parallel || defaultParallel;
+                        _context3.next = 17;
+                        return this._parallel(todo, parallel, function(value) {
+                          return new Promise(function(resolve, reject) {
+                            uploadPartJob(that, value).then(function(result) {
+                              if (result) {
+                                internalDoneParts.push(result);
+                              }
+                              resolve();
+                            }).catch(function(err) {
+                              reject(err);
                             });
                           });
-                        case 17:
-                          jobErr = _context3.sent;
-                          multipartFinish = true;
-                          abortEvent = jobErr.find(function(err) {
-                            return err.name === "abort";
-                          });
-                          if (!abortEvent) {
-                            _context3.next = 22;
-                            break;
-                          }
-                          throw abortEvent;
-                        case 22:
-                          if (!this.isCancel()) {
-                            _context3.next = 25;
-                            break;
-                          }
-                          uploadPartJob = null;
-                          throw this._makeCancelEvent();
-                        case 25:
-                          if (!(jobErr && jobErr.length > 0)) {
-                            _context3.next = 28;
-                            break;
-                          }
-                          jobErr[0].message = "Failed to upload some parts with error: ".concat(jobErr[0].toString(), " part_num: ").concat(jobErr[0].partNum);
-                          throw jobErr[0];
-                        case 28:
-                          _context3.next = 30;
-                          return this.completeMultipartUpload(name, uploadId, internalDoneParts, options);
-                        case 30:
-                          return _context3.abrupt("return", _context3.sent);
-                        case 31:
-                        case "end":
-                          return _context3.stop();
-                      }
+                        });
+                      case 17:
+                        jobErr = _context3.sent;
+                        multipartFinish = true;
+                        abortEvent = jobErr.find(function(err) {
+                          return err.name === "abort";
+                        });
+                        if (!abortEvent) {
+                          _context3.next = 22;
+                          break;
+                        }
+                        throw abortEvent;
+                      case 22:
+                        if (!this.isCancel()) {
+                          _context3.next = 25;
+                          break;
+                        }
+                        uploadPartJob = null;
+                        throw this._makeCancelEvent();
+                      case 25:
+                        if (!(jobErr && jobErr.length > 0)) {
+                          _context3.next = 28;
+                          break;
+                        }
+                        jobErr[0].message = "Failed to upload some parts with error: ".concat(jobErr[0].toString(), " part_num: ").concat(jobErr[0].partNum);
+                        throw jobErr[0];
+                      case 28:
+                        _context3.next = 30;
+                        return this.completeMultipartUpload(name, uploadId, internalDoneParts, options);
+                      case 30:
+                        return _context3.abrupt("return", _context3.sent);
+                      case 31:
+                      case "end":
+                        return _context3.stop();
+                    }
                   }, _callee3, this);
                 }));
                 function _resumeMultipart(_x3, _x4) {
                   return _resumeMultipart2.apply(this, arguments);
                 }
                 return _resumeMultipart;
-              }();
-              proto._getFileSize = /* @__PURE__ */ function() {
+              })();
+              proto._getFileSize = /* @__PURE__ */ (function() {
                 var _getFileSize2 = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee4(file) {
                   return _regenerator.default.wrap(function _callee4$(_context4) {
-                    while (1)
-                      switch (_context4.prev = _context4.next) {
-                        case 0:
-                          if (!isBuffer(file)) {
-                            _context4.next = 4;
-                            break;
-                          }
-                          return _context4.abrupt("return", file.length);
-                        case 4:
-                          if (!(isBlob(file) || isFile(file))) {
-                            _context4.next = 6;
-                            break;
-                          }
-                          return _context4.abrupt("return", file.size);
-                        case 6:
-                          throw new Error("_getFileSize requires Buffer/File/Blob.");
-                        case 7:
-                        case "end":
-                          return _context4.stop();
-                      }
+                    while (1) switch (_context4.prev = _context4.next) {
+                      case 0:
+                        if (!isBuffer(file)) {
+                          _context4.next = 4;
+                          break;
+                        }
+                        return _context4.abrupt("return", file.length);
+                      case 4:
+                        if (!(isBlob(file) || isFile(file))) {
+                          _context4.next = 6;
+                          break;
+                        }
+                        return _context4.abrupt("return", file.size);
+                      case 6:
+                        throw new Error("_getFileSize requires Buffer/File/Blob.");
+                      case 7:
+                      case "end":
+                        return _context4.stop();
+                    }
                   }, _callee4);
                 }));
                 function _getFileSize(_x7) {
                   return _getFileSize2.apply(this, arguments);
                 }
                 return _getFileSize;
-              }();
+              })();
               var _require4 = require2("stream"), Readable = _require4.Readable;
               function WebFileReadStream(file, options) {
                 if (!(this instanceof WebFileReadStream)) {
@@ -1421,8 +1389,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               };
               function getBuffer(file) {
-                if (file.arrayBuffer)
-                  return file.arrayBuffer();
+                if (file.arrayBuffer) return file.arrayBuffer();
                 return new Promise(function(resolve, reject) {
                   var reader = new FileReader();
                   reader.onload = function(e) {
@@ -1434,47 +1401,45 @@ var require_aliyun_oss_sdk = __commonJS({
                   reader.readAsArrayBuffer(file);
                 });
               }
-              proto._createBuffer = /* @__PURE__ */ function() {
+              proto._createBuffer = /* @__PURE__ */ (function() {
                 var _createBuffer2 = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee5(file, start, end) {
                   var _file, fileContent;
                   return _regenerator.default.wrap(function _callee5$(_context5) {
-                    while (1)
-                      switch (_context5.prev = _context5.next) {
-                        case 0:
-                          if (!(isBlob(file) || isFile(file))) {
-                            _context5.next = 8;
-                            break;
-                          }
-                          _file = file.slice(start, end);
-                          _context5.next = 4;
-                          return getBuffer(_file);
-                        case 4:
-                          fileContent = _context5.sent;
-                          return _context5.abrupt("return", Buffer2.from(fileContent));
-                        case 8:
-                          if (!isBuffer(file)) {
-                            _context5.next = 12;
-                            break;
-                          }
-                          return _context5.abrupt("return", file.subarray(start, end));
-                        case 12:
-                          throw new Error("_createBuffer requires File/Blob/Buffer.");
-                        case 13:
-                        case "end":
-                          return _context5.stop();
-                      }
+                    while (1) switch (_context5.prev = _context5.next) {
+                      case 0:
+                        if (!(isBlob(file) || isFile(file))) {
+                          _context5.next = 8;
+                          break;
+                        }
+                        _file = file.slice(start, end);
+                        _context5.next = 4;
+                        return getBuffer(_file);
+                      case 4:
+                        fileContent = _context5.sent;
+                        return _context5.abrupt("return", Buffer2.from(fileContent));
+                      case 8:
+                        if (!isBuffer(file)) {
+                          _context5.next = 12;
+                          break;
+                        }
+                        return _context5.abrupt("return", file.subarray(start, end));
+                      case 12:
+                        throw new Error("_createBuffer requires File/Blob/Buffer.");
+                      case 13:
+                      case "end":
+                        return _context5.stop();
+                    }
                   }, _callee5);
                 }));
                 function _createBuffer(_x8, _x9, _x10) {
                   return _createBuffer2.apply(this, arguments);
                 }
                 return _createBuffer;
-              }();
+              })();
               proto._getPartSize = function _getPartSize(fileSize, partSize) {
                 var maxNumParts = 10 * 1e3;
                 var defaultPartSize = 1 * 1024 * 1024;
-                if (!partSize)
-                  partSize = defaultPartSize;
+                if (!partSize) partSize = defaultPartSize;
                 var safeSize = Math.ceil(fileSize / maxNumParts);
                 if (partSize < safeSize) {
                   partSize = safeSize;
@@ -1525,159 +1490,155 @@ var require_aliyun_oss_sdk = __commonJS({
           var _require4 = require2("../common/utils/obj2xml"), obj2xml = _require4.obj2xml;
           var _require5 = require2("../common/utils/parseRestoreInfo"), parseRestoreInfo = _require5.parseRestoreInfo;
           var proto = exports3;
-          proto.append = /* @__PURE__ */ function() {
+          proto.append = /* @__PURE__ */ (function() {
             var _append = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, file, options) {
               var result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = options || {};
-                      if (options.position === void 0)
-                        options.position = "0";
-                      options.subres = {
-                        append: "",
-                        position: options.position
-                      };
-                      options.method = "POST";
-                      _context.next = 6;
-                      return this.put(name, file, options);
-                    case 6:
-                      result = _context.sent;
-                      result.nextAppendPosition = result.res.headers["x-oss-next-append-position"];
-                      return _context.abrupt("return", result);
-                    case 9:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = options || {};
+                    if (options.position === void 0) options.position = "0";
+                    options.subres = {
+                      append: "",
+                      position: options.position
+                    };
+                    options.method = "POST";
+                    _context.next = 6;
+                    return this.put(name, file, options);
+                  case 6:
+                    result = _context.sent;
+                    result.nextAppendPosition = result.res.headers["x-oss-next-append-position"];
+                    return _context.abrupt("return", result);
+                  case 9:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function append(_x, _x2, _x3) {
               return _append.apply(this, arguments);
             }
             return append;
-          }();
-          proto.put = /* @__PURE__ */ function() {
+          })();
+          proto.put = /* @__PURE__ */ (function() {
             var _put = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee2(name, file, options) {
               var content, method, params, result, ret;
               return _regenerator.default.wrap(function _callee2$(_context2) {
-                while (1)
-                  switch (_context2.prev = _context2.next) {
-                    case 0:
-                      options = options || {};
-                      options.disabledMD5 = options.disabledMD5 === void 0 ? true : !!options.disabledMD5;
-                      options.headers = options.headers || {};
-                      name = this._objectName(name);
-                      if (!isBuffer(file)) {
-                        _context2.next = 8;
-                        break;
-                      }
-                      content = file;
-                      _context2.next = 19;
+                while (1) switch (_context2.prev = _context2.next) {
+                  case 0:
+                    options = options || {};
+                    options.disabledMD5 = options.disabledMD5 === void 0 ? true : !!options.disabledMD5;
+                    options.headers = options.headers || {};
+                    name = this._objectName(name);
+                    if (!isBuffer(file)) {
+                      _context2.next = 8;
                       break;
-                    case 8:
-                      if (!(isBlob(file) || isFile(file))) {
-                        _context2.next = 18;
-                        break;
-                      }
-                      if (!options.mime) {
-                        if (isFile(file)) {
-                          options.mime = mime.getType(path3.extname(file.name));
-                        } else {
-                          options.mime = file.type;
-                        }
-                      }
-                      _context2.next = 12;
-                      return this._createBuffer(file, 0, file.size);
-                    case 12:
-                      content = _context2.sent;
-                      _context2.next = 15;
-                      return this._getFileSize(file);
-                    case 15:
-                      options.contentLength = _context2.sent;
-                      _context2.next = 19;
+                    }
+                    content = file;
+                    _context2.next = 19;
+                    break;
+                  case 8:
+                    if (!(isBlob(file) || isFile(file))) {
+                      _context2.next = 18;
                       break;
-                    case 18:
-                      throw new TypeError("Must provide Buffer/Blob/File for put.");
-                    case 19:
-                      this._convertMetaToHeaders(options.meta, options.headers);
-                      method = options.method || "PUT";
-                      params = this._objectRequestParams(method, name, options);
-                      callback.encodeCallback(params, options);
-                      params.mime = options.mime;
-                      params.disabledMD5 = options.disabledMD5;
-                      params.content = content;
-                      params.successStatuses = [200];
-                      _context2.next = 29;
-                      return this.request(params);
-                    case 29:
-                      result = _context2.sent;
-                      ret = {
-                        name,
-                        url: this._objectUrl(name),
-                        res: result.res
-                      };
-                      if (params.headers && params.headers["x-oss-callback"]) {
-                        ret.data = JSON.parse(result.data.toString());
+                    }
+                    if (!options.mime) {
+                      if (isFile(file)) {
+                        options.mime = mime.getType(path3.extname(file.name));
+                      } else {
+                        options.mime = file.type;
                       }
-                      return _context2.abrupt("return", ret);
-                    case 33:
-                    case "end":
-                      return _context2.stop();
-                  }
+                    }
+                    _context2.next = 12;
+                    return this._createBuffer(file, 0, file.size);
+                  case 12:
+                    content = _context2.sent;
+                    _context2.next = 15;
+                    return this._getFileSize(file);
+                  case 15:
+                    options.contentLength = _context2.sent;
+                    _context2.next = 19;
+                    break;
+                  case 18:
+                    throw new TypeError("Must provide Buffer/Blob/File for put.");
+                  case 19:
+                    this._convertMetaToHeaders(options.meta, options.headers);
+                    method = options.method || "PUT";
+                    params = this._objectRequestParams(method, name, options);
+                    callback.encodeCallback(params, options);
+                    params.mime = options.mime;
+                    params.disabledMD5 = options.disabledMD5;
+                    params.content = content;
+                    params.successStatuses = [200];
+                    _context2.next = 29;
+                    return this.request(params);
+                  case 29:
+                    result = _context2.sent;
+                    ret = {
+                      name,
+                      url: this._objectUrl(name),
+                      res: result.res
+                    };
+                    if (params.headers && params.headers["x-oss-callback"]) {
+                      ret.data = JSON.parse(result.data.toString());
+                    }
+                    return _context2.abrupt("return", ret);
+                  case 33:
+                  case "end":
+                    return _context2.stop();
+                }
               }, _callee2, this);
             }));
             function put(_x4, _x5, _x6) {
               return _put.apply(this, arguments);
             }
             return put;
-          }();
-          proto.putStream = /* @__PURE__ */ function() {
+          })();
+          proto.putStream = /* @__PURE__ */ (function() {
             var _putStream = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee3(name, stream, options) {
               var method, params, result, ret;
               return _regenerator.default.wrap(function _callee3$(_context3) {
-                while (1)
-                  switch (_context3.prev = _context3.next) {
-                    case 0:
-                      options = options || {};
-                      options.headers = options.headers || {};
-                      name = this._objectName(name);
-                      if (options.contentLength) {
-                        options.headers["Content-Length"] = options.contentLength;
-                      } else {
-                        options.headers["Transfer-Encoding"] = "chunked";
-                      }
-                      this._convertMetaToHeaders(options.meta, options.headers);
-                      method = options.method || "PUT";
-                      params = this._objectRequestParams(method, name, options);
-                      callback.encodeCallback(params, options);
-                      params.mime = options.mime;
-                      params.stream = stream;
-                      params.successStatuses = [200];
-                      _context3.next = 13;
-                      return this.request(params);
-                    case 13:
-                      result = _context3.sent;
-                      ret = {
-                        name,
-                        url: this._objectUrl(name),
-                        res: result.res
-                      };
-                      if (params.headers && params.headers["x-oss-callback"]) {
-                        ret.data = JSON.parse(result.data.toString());
-                      }
-                      return _context3.abrupt("return", ret);
-                    case 17:
-                    case "end":
-                      return _context3.stop();
-                  }
+                while (1) switch (_context3.prev = _context3.next) {
+                  case 0:
+                    options = options || {};
+                    options.headers = options.headers || {};
+                    name = this._objectName(name);
+                    if (options.contentLength) {
+                      options.headers["Content-Length"] = options.contentLength;
+                    } else {
+                      options.headers["Transfer-Encoding"] = "chunked";
+                    }
+                    this._convertMetaToHeaders(options.meta, options.headers);
+                    method = options.method || "PUT";
+                    params = this._objectRequestParams(method, name, options);
+                    callback.encodeCallback(params, options);
+                    params.mime = options.mime;
+                    params.stream = stream;
+                    params.successStatuses = [200];
+                    _context3.next = 13;
+                    return this.request(params);
+                  case 13:
+                    result = _context3.sent;
+                    ret = {
+                      name,
+                      url: this._objectUrl(name),
+                      res: result.res
+                    };
+                    if (params.headers && params.headers["x-oss-callback"]) {
+                      ret.data = JSON.parse(result.data.toString());
+                    }
+                    return _context3.abrupt("return", ret);
+                  case 17:
+                  case "end":
+                    return _context3.stop();
+                }
               }, _callee3, this);
             }));
             function putStream(_x7, _x8, _x9) {
               return _putStream.apply(this, arguments);
             }
             return putStream;
-          }();
+          })();
           merge(proto, require2("../common/object/copyObject"));
           merge(proto, require2("../common/object/getObjectTagging"));
           merge(proto, require2("../common/object/putObjectTagging"));
@@ -1699,231 +1660,227 @@ var require_aliyun_oss_sdk = __commonJS({
           merge(proto, require2("../common/object/asyncSignatureUrl"));
           merge(proto, require2("../common/object/signatureUrlV4"));
           merge(proto, require2("../common/object/signPostObjectPolicyV4"));
-          proto.putMeta = /* @__PURE__ */ function() {
+          proto.putMeta = /* @__PURE__ */ (function() {
             var _putMeta = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee4(name, meta, options) {
               var copyResult;
               return _regenerator.default.wrap(function _callee4$(_context4) {
-                while (1)
-                  switch (_context4.prev = _context4.next) {
-                    case 0:
-                      _context4.next = 2;
-                      return this.copy(name, name, {
-                        meta: meta || {},
-                        timeout: options && options.timeout,
-                        ctx: options && options.ctx
-                      });
-                    case 2:
-                      copyResult = _context4.sent;
-                      return _context4.abrupt("return", copyResult);
-                    case 4:
-                    case "end":
-                      return _context4.stop();
-                  }
+                while (1) switch (_context4.prev = _context4.next) {
+                  case 0:
+                    _context4.next = 2;
+                    return this.copy(name, name, {
+                      meta: meta || {},
+                      timeout: options && options.timeout,
+                      ctx: options && options.ctx
+                    });
+                  case 2:
+                    copyResult = _context4.sent;
+                    return _context4.abrupt("return", copyResult);
+                  case 4:
+                  case "end":
+                    return _context4.stop();
+                }
               }, _callee4, this);
             }));
             function putMeta(_x10, _x11, _x12) {
               return _putMeta.apply(this, arguments);
             }
             return putMeta;
-          }();
-          proto.list = /* @__PURE__ */ function() {
+          })();
+          proto.list = /* @__PURE__ */ (function() {
             var _list = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee5(query, options) {
               var params, result, objects, that, prefixes;
               return _regenerator.default.wrap(function _callee5$(_context5) {
-                while (1)
-                  switch (_context5.prev = _context5.next) {
-                    case 0:
-                      params = this._objectRequestParams("GET", "", options);
-                      params.query = query;
-                      params.xmlResponse = true;
-                      params.successStatuses = [200];
-                      _context5.next = 6;
-                      return this.request(params);
-                    case 6:
-                      result = _context5.sent;
-                      objects = result.data.Contents || [];
-                      that = this;
-                      if (objects) {
-                        if (!Array.isArray(objects)) {
-                          objects = [objects];
-                        }
-                        objects = objects.map(function(obj) {
-                          return {
-                            name: obj.Key,
-                            url: that._objectUrl(obj.Key),
-                            lastModified: obj.LastModified,
-                            etag: obj.ETag,
-                            type: obj.Type,
-                            size: Number(obj.Size),
-                            storageClass: obj.StorageClass,
-                            owner: {
-                              id: obj.Owner.ID,
-                              displayName: obj.Owner.DisplayName
-                            },
-                            restoreInfo: parseRestoreInfo(obj.RestoreInfo)
-                          };
-                        });
+                while (1) switch (_context5.prev = _context5.next) {
+                  case 0:
+                    params = this._objectRequestParams("GET", "", options);
+                    params.query = query;
+                    params.xmlResponse = true;
+                    params.successStatuses = [200];
+                    _context5.next = 6;
+                    return this.request(params);
+                  case 6:
+                    result = _context5.sent;
+                    objects = result.data.Contents || [];
+                    that = this;
+                    if (objects) {
+                      if (!Array.isArray(objects)) {
+                        objects = [objects];
                       }
-                      prefixes = result.data.CommonPrefixes || null;
-                      if (prefixes) {
-                        if (!Array.isArray(prefixes)) {
-                          prefixes = [prefixes];
-                        }
-                        prefixes = prefixes.map(function(item) {
-                          return item.Prefix;
-                        });
-                      }
-                      return _context5.abrupt("return", {
-                        res: result.res,
-                        objects,
-                        prefixes,
-                        nextMarker: result.data.NextMarker || null,
-                        isTruncated: result.data.IsTruncated === "true"
+                      objects = objects.map(function(obj) {
+                        return {
+                          name: obj.Key,
+                          url: that._objectUrl(obj.Key),
+                          lastModified: obj.LastModified,
+                          etag: obj.ETag,
+                          type: obj.Type,
+                          size: Number(obj.Size),
+                          storageClass: obj.StorageClass,
+                          owner: {
+                            id: obj.Owner.ID,
+                            displayName: obj.Owner.DisplayName
+                          },
+                          restoreInfo: parseRestoreInfo(obj.RestoreInfo)
+                        };
                       });
-                    case 13:
-                    case "end":
-                      return _context5.stop();
-                  }
+                    }
+                    prefixes = result.data.CommonPrefixes || null;
+                    if (prefixes) {
+                      if (!Array.isArray(prefixes)) {
+                        prefixes = [prefixes];
+                      }
+                      prefixes = prefixes.map(function(item) {
+                        return item.Prefix;
+                      });
+                    }
+                    return _context5.abrupt("return", {
+                      res: result.res,
+                      objects,
+                      prefixes,
+                      nextMarker: result.data.NextMarker || null,
+                      isTruncated: result.data.IsTruncated === "true"
+                    });
+                  case 13:
+                  case "end":
+                    return _context5.stop();
+                }
               }, _callee5, this);
             }));
             function list(_x13, _x14) {
               return _list.apply(this, arguments);
             }
             return list;
-          }();
-          proto.listV2 = /* @__PURE__ */ function() {
+          })();
+          proto.listV2 = /* @__PURE__ */ (function() {
             var _listV = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee6(query) {
               var options, continuation_token, params, result, objects, that, prefixes, _args6 = arguments;
               return _regenerator.default.wrap(function _callee6$(_context6) {
-                while (1)
-                  switch (_context6.prev = _context6.next) {
-                    case 0:
-                      options = _args6.length > 1 && _args6[1] !== void 0 ? _args6[1] : {};
-                      continuation_token = query["continuation-token"] || query.continuationToken;
-                      if (continuation_token) {
-                        options.subres = Object.assign({
-                          "continuation-token": continuation_token
-                        }, options.subres);
+                while (1) switch (_context6.prev = _context6.next) {
+                  case 0:
+                    options = _args6.length > 1 && _args6[1] !== void 0 ? _args6[1] : {};
+                    continuation_token = query["continuation-token"] || query.continuationToken;
+                    if (continuation_token) {
+                      options.subres = Object.assign({
+                        "continuation-token": continuation_token
+                      }, options.subres);
+                    }
+                    params = this._objectRequestParams("GET", "", options);
+                    params.query = Object.assign({
+                      "list-type": 2
+                    }, query);
+                    delete params.query["continuation-token"];
+                    delete params.query.continuationToken;
+                    params.xmlResponse = true;
+                    params.successStatuses = [200];
+                    _context6.next = 11;
+                    return this.request(params);
+                  case 11:
+                    result = _context6.sent;
+                    objects = result.data.Contents || [];
+                    that = this;
+                    if (objects) {
+                      if (!Array.isArray(objects)) {
+                        objects = [objects];
                       }
-                      params = this._objectRequestParams("GET", "", options);
-                      params.query = Object.assign({
-                        "list-type": 2
-                      }, query);
-                      delete params.query["continuation-token"];
-                      delete params.query.continuationToken;
-                      params.xmlResponse = true;
-                      params.successStatuses = [200];
-                      _context6.next = 11;
-                      return this.request(params);
-                    case 11:
-                      result = _context6.sent;
-                      objects = result.data.Contents || [];
-                      that = this;
-                      if (objects) {
-                        if (!Array.isArray(objects)) {
-                          objects = [objects];
-                        }
-                        objects = objects.map(function(obj) {
-                          var owner = null;
-                          if (obj.Owner) {
-                            owner = {
-                              id: obj.Owner.ID,
-                              displayName: obj.Owner.DisplayName
-                            };
-                          }
-                          return {
-                            name: obj.Key,
-                            url: that._objectUrl(obj.Key),
-                            lastModified: obj.LastModified,
-                            etag: obj.ETag,
-                            type: obj.Type,
-                            size: Number(obj.Size),
-                            storageClass: obj.StorageClass,
-                            owner,
-                            restoreInfo: parseRestoreInfo(obj.RestoreInfo)
+                      objects = objects.map(function(obj) {
+                        var owner = null;
+                        if (obj.Owner) {
+                          owner = {
+                            id: obj.Owner.ID,
+                            displayName: obj.Owner.DisplayName
                           };
-                        });
-                      }
-                      prefixes = result.data.CommonPrefixes || null;
-                      if (prefixes) {
-                        if (!Array.isArray(prefixes)) {
-                          prefixes = [prefixes];
                         }
-                        prefixes = prefixes.map(function(item) {
-                          return item.Prefix;
-                        });
-                      }
-                      return _context6.abrupt("return", {
-                        res: result.res,
-                        objects,
-                        prefixes,
-                        isTruncated: result.data.IsTruncated === "true",
-                        keyCount: +result.data.KeyCount,
-                        continuationToken: result.data.ContinuationToken || null,
-                        nextContinuationToken: result.data.NextContinuationToken || null
+                        return {
+                          name: obj.Key,
+                          url: that._objectUrl(obj.Key),
+                          lastModified: obj.LastModified,
+                          etag: obj.ETag,
+                          type: obj.Type,
+                          size: Number(obj.Size),
+                          storageClass: obj.StorageClass,
+                          owner,
+                          restoreInfo: parseRestoreInfo(obj.RestoreInfo)
+                        };
                       });
-                    case 18:
-                    case "end":
-                      return _context6.stop();
-                  }
+                    }
+                    prefixes = result.data.CommonPrefixes || null;
+                    if (prefixes) {
+                      if (!Array.isArray(prefixes)) {
+                        prefixes = [prefixes];
+                      }
+                      prefixes = prefixes.map(function(item) {
+                        return item.Prefix;
+                      });
+                    }
+                    return _context6.abrupt("return", {
+                      res: result.res,
+                      objects,
+                      prefixes,
+                      isTruncated: result.data.IsTruncated === "true",
+                      keyCount: +result.data.KeyCount,
+                      continuationToken: result.data.ContinuationToken || null,
+                      nextContinuationToken: result.data.NextContinuationToken || null
+                    });
+                  case 18:
+                  case "end":
+                    return _context6.stop();
+                }
               }, _callee6, this);
             }));
             function listV2(_x15) {
               return _listV.apply(this, arguments);
             }
             return listV2;
-          }();
-          proto.restore = /* @__PURE__ */ function() {
+          })();
+          proto.restore = /* @__PURE__ */ (function() {
             var _restore = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee7(name) {
               var options, params, paramsXMLObj, result, _args7 = arguments;
               return _regenerator.default.wrap(function _callee7$(_context7) {
-                while (1)
-                  switch (_context7.prev = _context7.next) {
-                    case 0:
-                      options = _args7.length > 1 && _args7[1] !== void 0 ? _args7[1] : {
-                        type: "Archive"
-                      };
-                      options = options || {};
-                      options.subres = Object.assign({
-                        restore: ""
-                      }, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
+                while (1) switch (_context7.prev = _context7.next) {
+                  case 0:
+                    options = _args7.length > 1 && _args7[1] !== void 0 ? _args7[1] : {
+                      type: "Archive"
+                    };
+                    options = options || {};
+                    options.subres = Object.assign({
+                      restore: ""
+                    }, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    params = this._objectRequestParams("POST", name, options);
+                    paramsXMLObj = {
+                      RestoreRequest: {
+                        Days: options.Days ? options.Days : 2
                       }
-                      params = this._objectRequestParams("POST", name, options);
-                      paramsXMLObj = {
-                        RestoreRequest: {
-                          Days: options.Days ? options.Days : 2
-                        }
+                    };
+                    if (options.type === "ColdArchive" || options.type === "DeepColdArchive") {
+                      paramsXMLObj.RestoreRequest.JobParameters = {
+                        Tier: options.JobParameters ? options.JobParameters : "Standard"
                       };
-                      if (options.type === "ColdArchive" || options.type === "DeepColdArchive") {
-                        paramsXMLObj.RestoreRequest.JobParameters = {
-                          Tier: options.JobParameters ? options.JobParameters : "Standard"
-                        };
-                      }
-                      params.content = obj2xml(paramsXMLObj, {
-                        headers: true
-                      });
-                      params.mime = "xml";
-                      params.successStatuses = [202];
-                      _context7.next = 12;
-                      return this.request(params);
-                    case 12:
-                      result = _context7.sent;
-                      return _context7.abrupt("return", {
-                        res: result.res
-                      });
-                    case 14:
-                    case "end":
-                      return _context7.stop();
-                  }
+                    }
+                    params.content = obj2xml(paramsXMLObj, {
+                      headers: true
+                    });
+                    params.mime = "xml";
+                    params.successStatuses = [202];
+                    _context7.next = 12;
+                    return this.request(params);
+                  case 12:
+                    result = _context7.sent;
+                    return _context7.abrupt("return", {
+                      res: result.res
+                    });
+                  case 14:
+                  case "end":
+                    return _context7.stop();
+                }
               }, _callee7, this);
             }));
             function restore(_x16) {
               return _restore.apply(this, arguments);
             }
             return restore;
-          }();
+          })();
           proto._objectUrl = function _objectUrl(name) {
             return this._getReqUrl({
               bucket: this.options.bucket,
@@ -1999,23 +1956,22 @@ var require_aliyun_oss_sdk = __commonJS({
             _abortBucketWorm = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      checkBucketName_1.checkBucketName(name);
-                      params = this._bucketRequestParams("DELETE", name, "worm", options);
-                      _context.next = 4;
-                      return this.request(params);
-                    case 4:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res,
-                        status: result.status
-                      });
-                    case 6:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    checkBucketName_1.checkBucketName(name);
+                    params = this._bucketRequestParams("DELETE", name, "worm", options);
+                    _context.next = 4;
+                    return this.request(params);
+                  case 4:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res,
+                      status: result.status
+                    });
+                  case 6:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             return _abortBucketWorm.apply(this, arguments);
@@ -2038,25 +1994,24 @@ var require_aliyun_oss_sdk = __commonJS({
             _completeBucketWorm = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, wormId, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      checkBucketName_1.checkBucketName(name);
-                      params = this._bucketRequestParams("POST", name, {
-                        wormId
-                      }, options);
-                      _context.next = 4;
-                      return this.request(params);
-                    case 4:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res,
-                        status: result.status
-                      });
-                    case 6:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    checkBucketName_1.checkBucketName(name);
+                    params = this._bucketRequestParams("POST", name, {
+                      wormId
+                    }, options);
+                    _context.next = 4;
+                    return this.request(params);
+                  case 4:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res,
+                      status: result.status
+                    });
+                  case 6:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             return _completeBucketWorm.apply(this, arguments);
@@ -2080,29 +2035,28 @@ var require_aliyun_oss_sdk = __commonJS({
             _deleteBucketInventory = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(bucketName, inventoryId) {
               var options, subres, params, result, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
-                      subres = Object.assign({
-                        inventory: "",
-                        inventoryId
-                      }, options.subres);
-                      checkBucketName_1.checkBucketName(bucketName);
-                      params = this._bucketRequestParams("DELETE", bucketName, subres, options);
-                      params.successStatuses = [204];
-                      _context.next = 7;
-                      return this.request(params);
-                    case 7:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        status: result.status,
-                        res: result.res
-                      });
-                    case 9:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
+                    subres = Object.assign({
+                      inventory: "",
+                      inventoryId
+                    }, options.subres);
+                    checkBucketName_1.checkBucketName(bucketName);
+                    params = this._bucketRequestParams("DELETE", bucketName, subres, options);
+                    params.successStatuses = [204];
+                    _context.next = 7;
+                    return this.request(params);
+                  case 7:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      status: result.status,
+                      res: result.res
+                    });
+                  case 9:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             return _deleteBucketInventory.apply(this, arguments);
@@ -2115,34 +2069,33 @@ var require_aliyun_oss_sdk = __commonJS({
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var _require = require2("../utils/checkBucketName"), _checkBucketName = _require.checkBucketName;
           var proto = exports3;
-          proto.deleteBucketLifecycle = /* @__PURE__ */ function() {
+          proto.deleteBucketLifecycle = /* @__PURE__ */ (function() {
             var _deleteBucketLifecycle = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      _checkBucketName(name);
-                      params = this._bucketRequestParams("DELETE", name, "lifecycle", options);
-                      params.successStatuses = [204];
-                      _context.next = 5;
-                      return this.request(params);
-                    case 5:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res
-                      });
-                    case 7:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    _checkBucketName(name);
+                    params = this._bucketRequestParams("DELETE", name, "lifecycle", options);
+                    params.successStatuses = [204];
+                    _context.next = 5;
+                    return this.request(params);
+                  case 5:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res
+                    });
+                  case 7:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function deleteBucketLifecycle(_x, _x2) {
               return _deleteBucketLifecycle.apply(this, arguments);
             }
             return deleteBucketLifecycle;
-          }();
+          })();
         }, { "../utils/checkBucketName": 53, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93 }], 11: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -2150,34 +2103,33 @@ var require_aliyun_oss_sdk = __commonJS({
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var _require = require2("../utils/checkBucketName"), _checkBucketName = _require.checkBucketName;
           var proto = exports3;
-          proto.deleteBucketWebsite = /* @__PURE__ */ function() {
+          proto.deleteBucketWebsite = /* @__PURE__ */ (function() {
             var _deleteBucketWebsite = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      _checkBucketName(name);
-                      params = this._bucketRequestParams("DELETE", name, "website", options);
-                      params.successStatuses = [204];
-                      _context.next = 5;
-                      return this.request(params);
-                    case 5:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res
-                      });
-                    case 7:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    _checkBucketName(name);
+                    params = this._bucketRequestParams("DELETE", name, "website", options);
+                    params.successStatuses = [204];
+                    _context.next = 5;
+                    return this.request(params);
+                  case 5:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res
+                    });
+                  case 7:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function deleteBucketWebsite(_x, _x2) {
               return _deleteBucketWebsite.apply(this, arguments);
             }
             return deleteBucketWebsite;
-          }();
+          })();
         }, { "../utils/checkBucketName": 53, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93 }], 12: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -2196,36 +2148,35 @@ var require_aliyun_oss_sdk = __commonJS({
             _extendBucketWorm = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, wormId, days, options) {
               var params, paramlXMLObJ, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      checkBucketName_1.checkBucketName(name);
-                      params = this._bucketRequestParams("POST", name, {
-                        wormExtend: "",
-                        wormId
-                      }, options);
-                      paramlXMLObJ = {
-                        ExtendWormConfiguration: {
-                          RetentionPeriodInDays: days
-                        }
-                      };
-                      params.mime = "xml";
-                      params.content = obj2xml_1.obj2xml(paramlXMLObJ, {
-                        headers: true
-                      });
-                      params.successStatuses = [200];
-                      _context.next = 8;
-                      return this.request(params);
-                    case 8:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res,
-                        status: result.status
-                      });
-                    case 10:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    checkBucketName_1.checkBucketName(name);
+                    params = this._bucketRequestParams("POST", name, {
+                      wormExtend: "",
+                      wormId
+                    }, options);
+                    paramlXMLObJ = {
+                      ExtendWormConfiguration: {
+                        RetentionPeriodInDays: days
+                      }
+                    };
+                    params.mime = "xml";
+                    params.content = obj2xml_1.obj2xml(paramlXMLObJ, {
+                      headers: true
+                    });
+                    params.successStatuses = [200];
+                    _context.next = 8;
+                    return this.request(params);
+                  case 8:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res,
+                      status: result.status
+                    });
+                  case 10:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             return _extendBucketWorm.apply(this, arguments);
@@ -2250,31 +2201,30 @@ var require_aliyun_oss_sdk = __commonJS({
             _getBucketInventory = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(bucketName, inventoryId) {
               var options, subres, params, result, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
-                      subres = Object.assign({
-                        inventory: "",
-                        inventoryId
-                      }, options.subres);
-                      checkBucketName_1.checkBucketName(bucketName);
-                      params = this._bucketRequestParams("GET", bucketName, subres, options);
-                      params.successStatuses = [200];
-                      params.xmlResponse = true;
-                      _context.next = 8;
-                      return this.request(params);
-                    case 8:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        status: result.status,
-                        res: result.res,
-                        inventory: formatInventoryConfig_1.formatInventoryConfig(result.data)
-                      });
-                    case 10:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
+                    subres = Object.assign({
+                      inventory: "",
+                      inventoryId
+                    }, options.subres);
+                    checkBucketName_1.checkBucketName(bucketName);
+                    params = this._bucketRequestParams("GET", bucketName, subres, options);
+                    params.successStatuses = [200];
+                    params.xmlResponse = true;
+                    _context.next = 8;
+                    return this.request(params);
+                  case 8:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      status: result.status,
+                      res: result.res,
+                      inventory: formatInventoryConfig_1.formatInventoryConfig(result.data)
+                    });
+                  case 10:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             return _getBucketInventory.apply(this, arguments);
@@ -2290,52 +2240,51 @@ var require_aliyun_oss_sdk = __commonJS({
           var _require2 = require2("../utils/isArray"), isArray = _require2.isArray;
           var _require3 = require2("../utils/formatObjKey"), formatObjKey = _require3.formatObjKey;
           var proto = exports3;
-          proto.getBucketLifecycle = /* @__PURE__ */ function() {
+          proto.getBucketLifecycle = /* @__PURE__ */ (function() {
             var _getBucketLifecycle = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, options) {
               var params, result, rules;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      _checkBucketName(name);
-                      params = this._bucketRequestParams("GET", name, "lifecycle", options);
-                      params.successStatuses = [200];
-                      params.xmlResponse = true;
-                      _context.next = 6;
-                      return this.request(params);
-                    case 6:
-                      result = _context.sent;
-                      rules = result.data.Rule || null;
-                      if (rules) {
-                        if (!isArray(rules)) {
-                          rules = [rules];
-                        }
-                        rules = rules.map(function(_) {
-                          if (_.ID) {
-                            _.id = _.ID;
-                            delete _.ID;
-                          }
-                          if (_.Tag && !isArray(_.Tag)) {
-                            _.Tag = [_.Tag];
-                          }
-                          return formatObjKey(_, "firstLowerCase");
-                        });
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    _checkBucketName(name);
+                    params = this._bucketRequestParams("GET", name, "lifecycle", options);
+                    params.successStatuses = [200];
+                    params.xmlResponse = true;
+                    _context.next = 6;
+                    return this.request(params);
+                  case 6:
+                    result = _context.sent;
+                    rules = result.data.Rule || null;
+                    if (rules) {
+                      if (!isArray(rules)) {
+                        rules = [rules];
                       }
-                      return _context.abrupt("return", {
-                        rules,
-                        res: result.res
+                      rules = rules.map(function(_) {
+                        if (_.ID) {
+                          _.id = _.ID;
+                          delete _.ID;
+                        }
+                        if (_.Tag && !isArray(_.Tag)) {
+                          _.Tag = [_.Tag];
+                        }
+                        return formatObjKey(_, "firstLowerCase");
                       });
-                    case 10:
-                    case "end":
-                      return _context.stop();
-                  }
+                    }
+                    return _context.abrupt("return", {
+                      rules,
+                      res: result.res
+                    });
+                  case 10:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function getBucketLifecycle(_x, _x2) {
               return _getBucketLifecycle.apply(this, arguments);
             }
             return getBucketLifecycle;
-          }();
+          })();
         }, { "../utils/checkBucketName": 53, "../utils/formatObjKey": 64, "../utils/isArray": 67, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.array.map.js": 318 }], 15: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -2343,38 +2292,37 @@ var require_aliyun_oss_sdk = __commonJS({
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var _require = require2("../utils/checkBucketName"), _checkBucketName = _require.checkBucketName;
           var proto = exports3;
-          proto.getBucketVersioning = /* @__PURE__ */ function() {
+          proto.getBucketVersioning = /* @__PURE__ */ (function() {
             var _getBucketVersioning = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(bucketName, options) {
               var params, result, versionStatus;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      _checkBucketName(bucketName);
-                      params = this._bucketRequestParams("GET", bucketName, "versioning", options);
-                      params.xmlResponse = true;
-                      params.successStatuses = [200];
-                      _context.next = 6;
-                      return this.request(params);
-                    case 6:
-                      result = _context.sent;
-                      versionStatus = result.data.Status;
-                      return _context.abrupt("return", {
-                        status: result.status,
-                        versionStatus,
-                        res: result.res
-                      });
-                    case 9:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    _checkBucketName(bucketName);
+                    params = this._bucketRequestParams("GET", bucketName, "versioning", options);
+                    params.xmlResponse = true;
+                    params.successStatuses = [200];
+                    _context.next = 6;
+                    return this.request(params);
+                  case 6:
+                    result = _context.sent;
+                    versionStatus = result.data.Status;
+                    return _context.abrupt("return", {
+                      status: result.status,
+                      versionStatus,
+                      res: result.res
+                    });
+                  case 9:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function getBucketVersioning(_x, _x2) {
               return _getBucketVersioning.apply(this, arguments);
             }
             return getBucketVersioning;
-          }();
+          })();
         }, { "../utils/checkBucketName": 53, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93 }], 16: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -2383,48 +2331,47 @@ var require_aliyun_oss_sdk = __commonJS({
           var _require = require2("../utils/checkBucketName"), _checkBucketName = _require.checkBucketName;
           var _require2 = require2("../utils/isObject"), isObject = _require2.isObject;
           var proto = exports3;
-          proto.getBucketWebsite = /* @__PURE__ */ function() {
+          proto.getBucketWebsite = /* @__PURE__ */ (function() {
             var _getBucketWebsite = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, options) {
               var params, result, routingRules;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      _checkBucketName(name);
-                      params = this._bucketRequestParams("GET", name, "website", options);
-                      params.successStatuses = [200];
-                      params.xmlResponse = true;
-                      _context.next = 6;
-                      return this.request(params);
-                    case 6:
-                      result = _context.sent;
-                      routingRules = [];
-                      if (result.data.RoutingRules && result.data.RoutingRules.RoutingRule) {
-                        if (isObject(result.data.RoutingRules.RoutingRule)) {
-                          routingRules = [result.data.RoutingRules.RoutingRule];
-                        } else {
-                          routingRules = result.data.RoutingRules.RoutingRule;
-                        }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    _checkBucketName(name);
+                    params = this._bucketRequestParams("GET", name, "website", options);
+                    params.successStatuses = [200];
+                    params.xmlResponse = true;
+                    _context.next = 6;
+                    return this.request(params);
+                  case 6:
+                    result = _context.sent;
+                    routingRules = [];
+                    if (result.data.RoutingRules && result.data.RoutingRules.RoutingRule) {
+                      if (isObject(result.data.RoutingRules.RoutingRule)) {
+                        routingRules = [result.data.RoutingRules.RoutingRule];
+                      } else {
+                        routingRules = result.data.RoutingRules.RoutingRule;
                       }
-                      return _context.abrupt("return", {
-                        index: result.data.IndexDocument && result.data.IndexDocument.Suffix || "",
-                        supportSubDir: result.data.IndexDocument && result.data.IndexDocument.SupportSubDir || "false",
-                        type: result.data.IndexDocument && result.data.IndexDocument.Type,
-                        routingRules,
-                        error: result.data.ErrorDocument && result.data.ErrorDocument.Key || null,
-                        res: result.res
-                      });
-                    case 10:
-                    case "end":
-                      return _context.stop();
-                  }
+                    }
+                    return _context.abrupt("return", {
+                      index: result.data.IndexDocument && result.data.IndexDocument.Suffix || "",
+                      supportSubDir: result.data.IndexDocument && result.data.IndexDocument.SupportSubDir || "false",
+                      type: result.data.IndexDocument && result.data.IndexDocument.Type,
+                      routingRules,
+                      error: result.data.ErrorDocument && result.data.ErrorDocument.Key || null,
+                      res: result.res
+                    });
+                  case 10:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function getBucketWebsite(_x, _x2) {
               return _getBucketWebsite.apply(this, arguments);
             }
             return getBucketWebsite;
-          }();
+          })();
         }, { "../utils/checkBucketName": 53, "../utils/isObject": 74, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93 }], 17: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -2444,31 +2391,30 @@ var require_aliyun_oss_sdk = __commonJS({
             _getBucketWorm = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      checkBucketName_1.checkBucketName(name);
-                      params = this._bucketRequestParams("GET", name, "worm", options);
-                      params.successStatuses = [200];
-                      params.xmlResponse = true;
-                      _context.next = 6;
-                      return this.request(params);
-                    case 6:
-                      result = _context.sent;
-                      dataFix_1.dataFix(result.data, {
-                        lowerFirst: true,
-                        rename: {
-                          RetentionPeriodInDays: "days"
-                        }
-                      });
-                      return _context.abrupt("return", Object.assign(Object.assign({}, result.data), {
-                        res: result.res,
-                        status: result.status
-                      }));
-                    case 9:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    checkBucketName_1.checkBucketName(name);
+                    params = this._bucketRequestParams("GET", name, "worm", options);
+                    params.successStatuses = [200];
+                    params.xmlResponse = true;
+                    _context.next = 6;
+                    return this.request(params);
+                  case 6:
+                    result = _context.sent;
+                    dataFix_1.dataFix(result.data, {
+                      lowerFirst: true,
+                      rename: {
+                        RetentionPeriodInDays: "days"
+                      }
+                    });
+                    return _context.abrupt("return", Object.assign(Object.assign({}, result.data), {
+                      res: result.res,
+                      status: result.status
+                    }));
+                  case 9:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             return _getBucketWorm.apply(this, arguments);
@@ -2492,34 +2438,33 @@ var require_aliyun_oss_sdk = __commonJS({
             _initiateBucketWorm = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, days, options) {
               var params, paramlXMLObJ, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      checkBucketName_1.checkBucketName(name);
-                      params = this._bucketRequestParams("POST", name, "worm", options);
-                      paramlXMLObJ = {
-                        InitiateWormConfiguration: {
-                          RetentionPeriodInDays: days
-                        }
-                      };
-                      params.mime = "xml";
-                      params.content = obj2xml_1.obj2xml(paramlXMLObJ, {
-                        headers: true
-                      });
-                      params.successStatuses = [200];
-                      _context.next = 8;
-                      return this.request(params);
-                    case 8:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res,
-                        wormId: result.res.headers["x-oss-worm-id"],
-                        status: result.status
-                      });
-                    case 10:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    checkBucketName_1.checkBucketName(name);
+                    params = this._bucketRequestParams("POST", name, "worm", options);
+                    paramlXMLObJ = {
+                      InitiateWormConfiguration: {
+                        RetentionPeriodInDays: days
+                      }
+                    };
+                    params.mime = "xml";
+                    params.content = obj2xml_1.obj2xml(paramlXMLObJ, {
+                      headers: true
+                    });
+                    params.successStatuses = [200];
+                    _context.next = 8;
+                    return this.request(params);
+                  case 8:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res,
+                      wormId: result.res.headers["x-oss-worm-id"],
+                      status: result.status
+                    });
+                  case 10:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             return _initiateBucketWorm.apply(this, arguments);
@@ -2544,36 +2489,35 @@ var require_aliyun_oss_sdk = __commonJS({
             _listBucketInventory = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(bucketName) {
               var options, continuationToken, subres, params, result, data, res, status, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
-                      continuationToken = options.continuationToken;
-                      subres = Object.assign({
-                        inventory: ""
-                      }, continuationToken && {
-                        "continuation-token": continuationToken
-                      }, options.subres);
-                      checkBucketName_1.checkBucketName(bucketName);
-                      params = this._bucketRequestParams("GET", bucketName, subres, options);
-                      params.successStatuses = [200];
-                      params.xmlResponse = true;
-                      _context.next = 9;
-                      return this.request(params);
-                    case 9:
-                      result = _context.sent;
-                      data = result.data, res = result.res, status = result.status;
-                      return _context.abrupt("return", {
-                        isTruncated: data.IsTruncated === "true",
-                        nextContinuationToken: data.NextContinuationToken,
-                        inventoryList: formatInventoryConfig_1.formatInventoryConfig(data.InventoryConfiguration, true),
-                        status,
-                        res
-                      });
-                    case 12:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
+                    continuationToken = options.continuationToken;
+                    subres = Object.assign({
+                      inventory: ""
+                    }, continuationToken && {
+                      "continuation-token": continuationToken
+                    }, options.subres);
+                    checkBucketName_1.checkBucketName(bucketName);
+                    params = this._bucketRequestParams("GET", bucketName, subres, options);
+                    params.successStatuses = [200];
+                    params.xmlResponse = true;
+                    _context.next = 9;
+                    return this.request(params);
+                  case 9:
+                    result = _context.sent;
+                    data = result.data, res = result.res, status = result.status;
+                    return _context.abrupt("return", {
+                      isTruncated: data.IsTruncated === "true",
+                      nextContinuationToken: data.NextContinuationToken,
+                      inventoryList: formatInventoryConfig_1.formatInventoryConfig(data.InventoryConfiguration, true),
+                      status,
+                      res
+                    });
+                  case 12:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             return _listBucketInventory.apply(this, arguments);
@@ -2599,64 +2543,63 @@ var require_aliyun_oss_sdk = __commonJS({
             _putBucketInventory = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(bucketName, inventory) {
               var options, subres, OSSBucketDestination, optionalFields, includedObjectVersions, destinationBucketPrefix, rolePrefix, paramXMLObj, paramXML, params, result, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
-                      subres = Object.assign({
-                        inventory: "",
-                        inventoryId: inventory.id
-                      }, options.subres);
-                      checkBucketName_1.checkBucketName(bucketName);
-                      OSSBucketDestination = inventory.OSSBucketDestination, optionalFields = inventory.optionalFields, includedObjectVersions = inventory.includedObjectVersions;
-                      destinationBucketPrefix = "acs:oss:::";
-                      rolePrefix = "acs:ram::".concat(OSSBucketDestination.accountId, ":role/");
-                      paramXMLObj = {
-                        InventoryConfiguration: {
-                          Id: inventory.id,
-                          IsEnabled: inventory.isEnabled,
-                          Filter: {
-                            Prefix: inventory.prefix || ""
-                          },
-                          Destination: {
-                            OSSBucketDestination: {
-                              Format: OSSBucketDestination.format,
-                              AccountId: OSSBucketDestination.accountId,
-                              RoleArn: "".concat(rolePrefix).concat(OSSBucketDestination.rolename),
-                              Bucket: "".concat(destinationBucketPrefix).concat(OSSBucketDestination.bucket),
-                              Prefix: OSSBucketDestination.prefix || "",
-                              Encryption: OSSBucketDestination.encryption || ""
-                            }
-                          },
-                          Schedule: {
-                            Frequency: inventory.frequency
-                          },
-                          IncludedObjectVersions: includedObjectVersions,
-                          OptionalFields: {
-                            Field: (optionalFields === null || optionalFields === void 0 ? void 0 : optionalFields.field) || []
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
+                    subres = Object.assign({
+                      inventory: "",
+                      inventoryId: inventory.id
+                    }, options.subres);
+                    checkBucketName_1.checkBucketName(bucketName);
+                    OSSBucketDestination = inventory.OSSBucketDestination, optionalFields = inventory.optionalFields, includedObjectVersions = inventory.includedObjectVersions;
+                    destinationBucketPrefix = "acs:oss:::";
+                    rolePrefix = "acs:ram::".concat(OSSBucketDestination.accountId, ":role/");
+                    paramXMLObj = {
+                      InventoryConfiguration: {
+                        Id: inventory.id,
+                        IsEnabled: inventory.isEnabled,
+                        Filter: {
+                          Prefix: inventory.prefix || ""
+                        },
+                        Destination: {
+                          OSSBucketDestination: {
+                            Format: OSSBucketDestination.format,
+                            AccountId: OSSBucketDestination.accountId,
+                            RoleArn: "".concat(rolePrefix).concat(OSSBucketDestination.rolename),
+                            Bucket: "".concat(destinationBucketPrefix).concat(OSSBucketDestination.bucket),
+                            Prefix: OSSBucketDestination.prefix || "",
+                            Encryption: OSSBucketDestination.encryption || ""
                           }
+                        },
+                        Schedule: {
+                          Frequency: inventory.frequency
+                        },
+                        IncludedObjectVersions: includedObjectVersions,
+                        OptionalFields: {
+                          Field: (optionalFields === null || optionalFields === void 0 ? void 0 : optionalFields.field) || []
                         }
-                      };
-                      paramXML = obj2xml_1.obj2xml(paramXMLObj, {
-                        headers: true,
-                        firstUpperCase: true
-                      });
-                      params = this._bucketRequestParams("PUT", bucketName, subres, options);
-                      params.successStatuses = [200];
-                      params.mime = "xml";
-                      params.content = paramXML;
-                      _context.next = 14;
-                      return this.request(params);
-                    case 14:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        status: result.status,
-                        res: result.res
-                      });
-                    case 16:
-                    case "end":
-                      return _context.stop();
-                  }
+                      }
+                    };
+                    paramXML = obj2xml_1.obj2xml(paramXMLObj, {
+                      headers: true,
+                      firstUpperCase: true
+                    });
+                    params = this._bucketRequestParams("PUT", bucketName, subres, options);
+                    params.successStatuses = [200];
+                    params.mime = "xml";
+                    params.content = paramXML;
+                    _context.next = 14;
+                    return this.request(params);
+                  case 14:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      status: result.status,
+                      res: result.res
+                    });
+                  case 16:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             return _putBucketInventory.apply(this, arguments);
@@ -2679,61 +2622,60 @@ var require_aliyun_oss_sdk = __commonJS({
           var _require6 = require2("../utils/checkObjectTag"), checkObjectTag = _require6.checkObjectTag;
           var _require7 = require2("../utils/getStrBytesCount"), getStrBytesCount = _require7.getStrBytesCount;
           var proto = exports3;
-          proto.putBucketLifecycle = /* @__PURE__ */ function() {
+          proto.putBucketLifecycle = /* @__PURE__ */ (function() {
             var _putBucketLifecycle = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, rules, options) {
               var params, Rule, paramXMLObj, paramXML, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      _checkBucketName(name);
-                      if (isArray(rules)) {
-                        _context.next = 3;
-                        break;
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    _checkBucketName(name);
+                    if (isArray(rules)) {
+                      _context.next = 3;
+                      break;
+                    }
+                    throw new Error("rules must be Array");
+                  case 3:
+                    params = this._bucketRequestParams("PUT", name, "lifecycle", options);
+                    Rule = [];
+                    paramXMLObj = {
+                      LifecycleConfiguration: {
+                        Rule
                       }
-                      throw new Error("rules must be Array");
-                    case 3:
-                      params = this._bucketRequestParams("PUT", name, "lifecycle", options);
-                      Rule = [];
-                      paramXMLObj = {
-                        LifecycleConfiguration: {
-                          Rule
-                        }
-                      };
-                      rules.forEach(function(_) {
-                        defaultDaysAndDate2Expiration(_);
-                        checkRule(_);
-                        if (_.id) {
-                          _.ID = _.id;
-                          delete _.id;
-                        }
-                        Rule.push(_);
-                      });
-                      paramXML = obj2xml(paramXMLObj, {
-                        headers: true,
-                        firstUpperCase: true
-                      });
-                      params.content = paramXML;
-                      params.mime = "xml";
-                      params.successStatuses = [200];
-                      _context.next = 13;
-                      return this.request(params);
-                    case 13:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res
-                      });
-                    case 15:
-                    case "end":
-                      return _context.stop();
-                  }
+                    };
+                    rules.forEach(function(_) {
+                      defaultDaysAndDate2Expiration(_);
+                      checkRule(_);
+                      if (_.id) {
+                        _.ID = _.id;
+                        delete _.id;
+                      }
+                      Rule.push(_);
+                    });
+                    paramXML = obj2xml(paramXMLObj, {
+                      headers: true,
+                      firstUpperCase: true
+                    });
+                    params.content = paramXML;
+                    params.mime = "xml";
+                    params.successStatuses = [200];
+                    _context.next = 13;
+                    return this.request(params);
+                  case 13:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res
+                    });
+                  case 15:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function putBucketLifecycle(_x, _x2, _x3) {
               return _putBucketLifecycle.apply(this, arguments);
             }
             return putBucketLifecycle;
-          }();
+          })();
           function defaultDaysAndDate2Expiration(obj) {
             if (obj.days) {
               obj.expiration = {
@@ -2777,16 +2719,12 @@ var require_aliyun_oss_sdk = __commonJS({
             checkObjectTag(tagObj);
           }
           function checkStorageClass(storageClass) {
-            if (!["IA", "Archive", "ColdArchive", "DeepColdArchive"].includes(storageClass))
-              throw new Error("StorageClass must be IA or Archive or ColdArchive or DeepColdArchive");
+            if (!["IA", "Archive", "ColdArchive", "DeepColdArchive"].includes(storageClass)) throw new Error("StorageClass must be IA or Archive or ColdArchive or DeepColdArchive");
           }
           function checkRule(rule) {
-            if (rule.id && getStrBytesCount(rule.id) > 255)
-              throw new Error("ID is composed of 255 bytes at most");
-            if (rule.prefix === void 0)
-              throw new Error("Rule must includes prefix");
-            if (!["Enabled", "Disabled"].includes(rule.status))
-              throw new Error("Status must be Enabled or Disabled");
+            if (rule.id && getStrBytesCount(rule.id) > 255) throw new Error("ID is composed of 255 bytes at most");
+            if (rule.prefix === void 0) throw new Error("Rule must includes prefix");
+            if (!["Enabled", "Disabled"].includes(rule.status)) throw new Error("Status must be Enabled or Disabled");
             if (!rule.expiration && !rule.noncurrentVersionExpiration && !rule.abortMultipartUpload && !rule.transition && !rule.noncurrentVersionTransition) {
               throw new Error("Rule must includes expiration or noncurrentVersionExpiration or abortMultipartUpload or transition or noncurrentVersionTransition");
             }
@@ -2827,50 +2765,49 @@ var require_aliyun_oss_sdk = __commonJS({
           var _require = require2("../utils/checkBucketName"), _checkBucketName = _require.checkBucketName;
           var _require2 = require2("../utils/obj2xml"), obj2xml = _require2.obj2xml;
           var proto = exports3;
-          proto.putBucketVersioning = /* @__PURE__ */ function() {
+          proto.putBucketVersioning = /* @__PURE__ */ (function() {
             var _putBucketVersioning = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, status) {
               var options, params, paramXMLObj, result, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
-                      _checkBucketName(name);
-                      if (["Enabled", "Suspended"].includes(status)) {
-                        _context.next = 4;
-                        break;
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
+                    _checkBucketName(name);
+                    if (["Enabled", "Suspended"].includes(status)) {
+                      _context.next = 4;
+                      break;
+                    }
+                    throw new Error("status must be Enabled or Suspended");
+                  case 4:
+                    params = this._bucketRequestParams("PUT", name, "versioning", options);
+                    paramXMLObj = {
+                      VersioningConfiguration: {
+                        Status: status
                       }
-                      throw new Error("status must be Enabled or Suspended");
-                    case 4:
-                      params = this._bucketRequestParams("PUT", name, "versioning", options);
-                      paramXMLObj = {
-                        VersioningConfiguration: {
-                          Status: status
-                        }
-                      };
-                      params.mime = "xml";
-                      params.content = obj2xml(paramXMLObj, {
-                        headers: true
-                      });
-                      _context.next = 10;
-                      return this.request(params);
-                    case 10:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res,
-                        status: result.status
-                      });
-                    case 12:
-                    case "end":
-                      return _context.stop();
-                  }
+                    };
+                    params.mime = "xml";
+                    params.content = obj2xml(paramXMLObj, {
+                      headers: true
+                    });
+                    _context.next = 10;
+                    return this.request(params);
+                  case 10:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res,
+                      status: result.status
+                    });
+                  case 12:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function putBucketVersioning(_x, _x2) {
               return _putBucketVersioning.apply(this, arguments);
             }
             return putBucketVersioning;
-          }();
+          })();
         }, { "../utils/checkBucketName": 53, "../utils/obj2xml": 76, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.array.includes.js": 315 }], 23: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -2880,73 +2817,72 @@ var require_aliyun_oss_sdk = __commonJS({
           var _require2 = require2("../utils/obj2xml"), obj2xml = _require2.obj2xml;
           var _require3 = require2("../utils/isArray"), isArray = _require3.isArray;
           var proto = exports3;
-          proto.putBucketWebsite = /* @__PURE__ */ function() {
+          proto.putBucketWebsite = /* @__PURE__ */ (function() {
             var _putBucketWebsite = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name) {
               var config, options, params, IndexDocument, WebsiteConfiguration, website, result, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      config = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
-                      options = _args.length > 2 ? _args[2] : void 0;
-                      _checkBucketName(name);
-                      params = this._bucketRequestParams("PUT", name, "website", options);
-                      IndexDocument = {
-                        Suffix: config.index || "index.html"
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    config = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
+                    options = _args.length > 2 ? _args[2] : void 0;
+                    _checkBucketName(name);
+                    params = this._bucketRequestParams("PUT", name, "website", options);
+                    IndexDocument = {
+                      Suffix: config.index || "index.html"
+                    };
+                    WebsiteConfiguration = {
+                      IndexDocument
+                    };
+                    website = {
+                      WebsiteConfiguration
+                    };
+                    if (config.supportSubDir) {
+                      IndexDocument.SupportSubDir = config.supportSubDir;
+                    }
+                    if (config.type) {
+                      IndexDocument.Type = config.type;
+                    }
+                    if (config.error) {
+                      WebsiteConfiguration.ErrorDocument = {
+                        Key: config.error
                       };
-                      WebsiteConfiguration = {
-                        IndexDocument
-                      };
-                      website = {
-                        WebsiteConfiguration
-                      };
-                      if (config.supportSubDir) {
-                        IndexDocument.SupportSubDir = config.supportSubDir;
-                      }
-                      if (config.type) {
-                        IndexDocument.Type = config.type;
-                      }
-                      if (config.error) {
-                        WebsiteConfiguration.ErrorDocument = {
-                          Key: config.error
-                        };
-                      }
-                      if (!(config.routingRules !== void 0)) {
-                        _context.next = 14;
-                        break;
-                      }
-                      if (isArray(config.routingRules)) {
-                        _context.next = 13;
-                        break;
-                      }
-                      throw new Error("RoutingRules must be Array");
-                    case 13:
-                      WebsiteConfiguration.RoutingRules = {
-                        RoutingRule: config.routingRules
-                      };
-                    case 14:
-                      website = obj2xml(website);
-                      params.content = website;
-                      params.mime = "xml";
-                      params.successStatuses = [200];
-                      _context.next = 20;
-                      return this.request(params);
-                    case 20:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res
-                      });
-                    case 22:
-                    case "end":
-                      return _context.stop();
-                  }
+                    }
+                    if (!(config.routingRules !== void 0)) {
+                      _context.next = 14;
+                      break;
+                    }
+                    if (isArray(config.routingRules)) {
+                      _context.next = 13;
+                      break;
+                    }
+                    throw new Error("RoutingRules must be Array");
+                  case 13:
+                    WebsiteConfiguration.RoutingRules = {
+                      RoutingRule: config.routingRules
+                    };
+                  case 14:
+                    website = obj2xml(website);
+                    params.content = website;
+                    params.mime = "xml";
+                    params.successStatuses = [200];
+                    _context.next = 20;
+                    return this.request(params);
+                  case 20:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res
+                    });
+                  case 22:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function putBucketWebsite(_x) {
               return _putBucketWebsite.apply(this, arguments);
             }
             return putBucketWebsite;
-          }();
+          })();
         }, { "../utils/checkBucketName": 53, "../utils/isArray": 67, "../utils/obj2xml": 76, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93 }], 24: [function(require2, module4, exports3) {
           (function(Buffer2) {
             (function() {
@@ -3123,48 +3059,47 @@ var require_aliyun_oss_sdk = __commonJS({
           var querystring2 = require2("querystring");
           var _require2 = require2("js-base64"), str2Base64 = _require2.Base64.encode;
           var proto = exports3;
-          proto.processObjectSave = /* @__PURE__ */ function() {
+          proto.processObjectSave = /* @__PURE__ */ (function() {
             var _processObjectSave = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(sourceObject, targetObject, process, targetBucket) {
               var params, bucketParam, content, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      checkArgs(sourceObject, "sourceObject");
-                      checkArgs(targetObject, "targetObject");
-                      checkArgs(process, "process");
-                      targetObject = this._objectName(targetObject);
-                      if (targetBucket) {
-                        _checkBucketName(targetBucket);
-                      }
-                      params = this._objectRequestParams("POST", sourceObject, {
-                        subres: "x-oss-process"
-                      });
-                      bucketParam = targetBucket ? ",b_".concat(str2Base64(targetBucket)) : "";
-                      targetObject = str2Base64(targetObject);
-                      content = {
-                        "x-oss-process": "".concat(process, "|sys/saveas,o_").concat(targetObject).concat(bucketParam)
-                      };
-                      params.content = querystring2.stringify(content);
-                      _context.next = 12;
-                      return this.request(params);
-                    case 12:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res,
-                        status: result.res.status
-                      });
-                    case 14:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    checkArgs(sourceObject, "sourceObject");
+                    checkArgs(targetObject, "targetObject");
+                    checkArgs(process, "process");
+                    targetObject = this._objectName(targetObject);
+                    if (targetBucket) {
+                      _checkBucketName(targetBucket);
+                    }
+                    params = this._objectRequestParams("POST", sourceObject, {
+                      subres: "x-oss-process"
+                    });
+                    bucketParam = targetBucket ? ",b_".concat(str2Base64(targetBucket)) : "";
+                    targetObject = str2Base64(targetObject);
+                    content = {
+                      "x-oss-process": "".concat(process, "|sys/saveas,o_").concat(targetObject).concat(bucketParam)
+                    };
+                    params.content = querystring2.stringify(content);
+                    _context.next = 12;
+                    return this.request(params);
+                  case 12:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res,
+                      status: result.res.status
+                    });
+                  case 14:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function processObjectSave(_x, _x2, _x3, _x4) {
               return _processObjectSave.apply(this, arguments);
             }
             return processObjectSave;
-          }();
+          })();
           function checkArgs(name, key) {
             if (!name) {
               throw new Error("".concat(key, " is required"));
@@ -3191,307 +3126,303 @@ var require_aliyun_oss_sdk = __commonJS({
           var debug = require2("debug")("ali-oss:multipart-copy");
           var copy = require2("copy-to");
           var proto = exports3;
-          proto.uploadPartCopy = /* @__PURE__ */ function() {
+          proto.uploadPartCopy = /* @__PURE__ */ (function() {
             var _uploadPartCopy = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, uploadId, partNo, range, sourceData) {
               var options, versionId, copySource, params, result, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 5 && _args[5] !== void 0 ? _args[5] : {};
-                      options.headers = options.headers || {};
-                      versionId = options.versionId || options.subres && options.subres.versionId || null;
-                      if (versionId) {
-                        copySource = "/".concat(sourceData.sourceBucketName, "/").concat(encodeURIComponent(sourceData.sourceKey), "?versionId=").concat(versionId);
-                      } else {
-                        copySource = "/".concat(sourceData.sourceBucketName, "/").concat(encodeURIComponent(sourceData.sourceKey));
-                      }
-                      options.headers["x-oss-copy-source"] = copySource;
-                      if (range) {
-                        options.headers["x-oss-copy-source-range"] = "bytes=".concat(range);
-                      }
-                      options.subres = {
-                        partNumber: partNo,
-                        uploadId
-                      };
-                      params = this._objectRequestParams("PUT", name, options);
-                      params.mime = options.mime;
-                      params.successStatuses = [200];
-                      _context.next = 12;
-                      return this.request(params);
-                    case 12:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        name,
-                        etag: result.res.headers.etag,
-                        res: result.res
-                      });
-                    case 14:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 5 && _args[5] !== void 0 ? _args[5] : {};
+                    options.headers = options.headers || {};
+                    versionId = options.versionId || options.subres && options.subres.versionId || null;
+                    if (versionId) {
+                      copySource = "/".concat(sourceData.sourceBucketName, "/").concat(encodeURIComponent(sourceData.sourceKey), "?versionId=").concat(versionId);
+                    } else {
+                      copySource = "/".concat(sourceData.sourceBucketName, "/").concat(encodeURIComponent(sourceData.sourceKey));
+                    }
+                    options.headers["x-oss-copy-source"] = copySource;
+                    if (range) {
+                      options.headers["x-oss-copy-source-range"] = "bytes=".concat(range);
+                    }
+                    options.subres = {
+                      partNumber: partNo,
+                      uploadId
+                    };
+                    params = this._objectRequestParams("PUT", name, options);
+                    params.mime = options.mime;
+                    params.successStatuses = [200];
+                    _context.next = 12;
+                    return this.request(params);
+                  case 12:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      name,
+                      etag: result.res.headers.etag,
+                      res: result.res
+                    });
+                  case 14:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function uploadPartCopy(_x, _x2, _x3, _x4, _x5) {
               return _uploadPartCopy.apply(this, arguments);
             }
             return uploadPartCopy;
-          }();
-          proto.multipartUploadCopy = /* @__PURE__ */ function() {
+          })();
+          proto.multipartUploadCopy = /* @__PURE__ */ (function() {
             var _multipartUploadCopy = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee2(name, sourceData) {
               var options, _options$versionId, versionId, metaOpt, objectMeta, fileSize, minPartSize, copySize, init, uploadId, partSize, checkpoint, _args2 = arguments;
               return _regenerator.default.wrap(function _callee2$(_context2) {
-                while (1)
-                  switch (_context2.prev = _context2.next) {
-                    case 0:
-                      options = _args2.length > 2 && _args2[2] !== void 0 ? _args2[2] : {};
-                      this.resetCancelFlag();
-                      _options$versionId = options.versionId, versionId = _options$versionId === void 0 ? null : _options$versionId;
-                      metaOpt = {
-                        versionId
-                      };
-                      _context2.next = 6;
-                      return this._getObjectMeta(sourceData.sourceBucketName, sourceData.sourceKey, metaOpt);
-                    case 6:
-                      objectMeta = _context2.sent;
-                      fileSize = objectMeta.res.headers["content-length"];
-                      sourceData.startOffset = sourceData.startOffset || 0;
-                      sourceData.endOffset = sourceData.endOffset || fileSize;
-                      if (!(options.checkpoint && options.checkpoint.uploadId)) {
-                        _context2.next = 14;
-                        break;
-                      }
-                      _context2.next = 13;
-                      return this._resumeMultipartCopy(options.checkpoint, sourceData, options);
-                    case 13:
-                      return _context2.abrupt("return", _context2.sent);
-                    case 14:
-                      minPartSize = 100 * 1024;
-                      copySize = sourceData.endOffset - sourceData.startOffset;
-                      if (!(copySize < minPartSize)) {
-                        _context2.next = 18;
-                        break;
-                      }
-                      throw new Error("copySize must not be smaller than ".concat(minPartSize));
-                    case 18:
-                      if (!(options.partSize && options.partSize < minPartSize)) {
-                        _context2.next = 20;
-                        break;
-                      }
-                      throw new Error("partSize must not be smaller than ".concat(minPartSize));
-                    case 20:
-                      _context2.next = 22;
-                      return this.initMultipartUpload(name, options);
-                    case 22:
-                      init = _context2.sent;
-                      uploadId = init.uploadId;
-                      partSize = this._getPartSize(copySize, options.partSize);
-                      checkpoint = {
-                        name,
-                        copySize,
-                        partSize,
-                        uploadId,
-                        doneParts: []
-                      };
-                      if (!(options && options.progress)) {
-                        _context2.next = 29;
-                        break;
-                      }
+                while (1) switch (_context2.prev = _context2.next) {
+                  case 0:
+                    options = _args2.length > 2 && _args2[2] !== void 0 ? _args2[2] : {};
+                    this.resetCancelFlag();
+                    _options$versionId = options.versionId, versionId = _options$versionId === void 0 ? null : _options$versionId;
+                    metaOpt = {
+                      versionId
+                    };
+                    _context2.next = 6;
+                    return this._getObjectMeta(sourceData.sourceBucketName, sourceData.sourceKey, metaOpt);
+                  case 6:
+                    objectMeta = _context2.sent;
+                    fileSize = objectMeta.res.headers["content-length"];
+                    sourceData.startOffset = sourceData.startOffset || 0;
+                    sourceData.endOffset = sourceData.endOffset || fileSize;
+                    if (!(options.checkpoint && options.checkpoint.uploadId)) {
+                      _context2.next = 14;
+                      break;
+                    }
+                    _context2.next = 13;
+                    return this._resumeMultipartCopy(options.checkpoint, sourceData, options);
+                  case 13:
+                    return _context2.abrupt("return", _context2.sent);
+                  case 14:
+                    minPartSize = 100 * 1024;
+                    copySize = sourceData.endOffset - sourceData.startOffset;
+                    if (!(copySize < minPartSize)) {
+                      _context2.next = 18;
+                      break;
+                    }
+                    throw new Error("copySize must not be smaller than ".concat(minPartSize));
+                  case 18:
+                    if (!(options.partSize && options.partSize < minPartSize)) {
+                      _context2.next = 20;
+                      break;
+                    }
+                    throw new Error("partSize must not be smaller than ".concat(minPartSize));
+                  case 20:
+                    _context2.next = 22;
+                    return this.initMultipartUpload(name, options);
+                  case 22:
+                    init = _context2.sent;
+                    uploadId = init.uploadId;
+                    partSize = this._getPartSize(copySize, options.partSize);
+                    checkpoint = {
+                      name,
+                      copySize,
+                      partSize,
+                      uploadId,
+                      doneParts: []
+                    };
+                    if (!(options && options.progress)) {
                       _context2.next = 29;
-                      return options.progress(0, checkpoint, init.res);
-                    case 29:
-                      _context2.next = 31;
-                      return this._resumeMultipartCopy(checkpoint, sourceData, options);
-                    case 31:
-                      return _context2.abrupt("return", _context2.sent);
-                    case 32:
-                    case "end":
-                      return _context2.stop();
-                  }
+                      break;
+                    }
+                    _context2.next = 29;
+                    return options.progress(0, checkpoint, init.res);
+                  case 29:
+                    _context2.next = 31;
+                    return this._resumeMultipartCopy(checkpoint, sourceData, options);
+                  case 31:
+                    return _context2.abrupt("return", _context2.sent);
+                  case 32:
+                  case "end":
+                    return _context2.stop();
+                }
               }, _callee2, this);
             }));
             function multipartUploadCopy(_x6, _x7) {
               return _multipartUploadCopy.apply(this, arguments);
             }
             return multipartUploadCopy;
-          }();
-          proto._resumeMultipartCopy = /* @__PURE__ */ function() {
+          })();
+          proto._resumeMultipartCopy = /* @__PURE__ */ (function() {
             var _resumeMultipartCopy2 = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee4(checkpoint, sourceData, options) {
               var _options$versionId2, versionId, metaOpt, copySize, partSize, uploadId, doneParts, name, partOffs, numParts, uploadPartCopyOptions, uploadPartJob, all, done, todo, defaultParallel, parallel, i, errors, abortEvent, err;
               return _regenerator.default.wrap(function _callee4$(_context4) {
-                while (1)
-                  switch (_context4.prev = _context4.next) {
-                    case 0:
-                      if (!this.isCancel()) {
-                        _context4.next = 2;
-                        break;
-                      }
-                      throw this._makeCancelEvent();
-                    case 2:
-                      _options$versionId2 = options.versionId, versionId = _options$versionId2 === void 0 ? null : _options$versionId2;
-                      metaOpt = {
-                        versionId
-                      };
-                      copySize = checkpoint.copySize, partSize = checkpoint.partSize, uploadId = checkpoint.uploadId, doneParts = checkpoint.doneParts, name = checkpoint.name;
-                      partOffs = this._divideMultipartCopyParts(copySize, partSize, sourceData.startOffset);
-                      numParts = partOffs.length;
-                      uploadPartCopyOptions = {
-                        headers: {}
-                      };
-                      if (options.copyheaders) {
-                        copy(options.copyheaders).to(uploadPartCopyOptions.headers);
-                      }
-                      if (versionId) {
-                        copy(metaOpt).to(uploadPartCopyOptions);
-                      }
-                      uploadPartJob = function uploadPartJob2(self2, partNo, source) {
-                        return new Promise(/* @__PURE__ */ function() {
-                          var _ref = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee3(resolve, reject) {
-                            var pi, range, result;
-                            return _regenerator.default.wrap(function _callee3$(_context3) {
-                              while (1)
-                                switch (_context3.prev = _context3.next) {
-                                  case 0:
-                                    _context3.prev = 0;
-                                    if (self2.isCancel()) {
-                                      _context3.next = 22;
-                                      break;
-                                    }
-                                    pi = partOffs[partNo - 1];
-                                    range = "".concat(pi.start, "-").concat(pi.end - 1);
-                                    _context3.prev = 4;
-                                    _context3.next = 7;
-                                    return self2.uploadPartCopy(name, uploadId, partNo, range, source, uploadPartCopyOptions);
-                                  case 7:
-                                    result = _context3.sent;
-                                    _context3.next = 15;
-                                    break;
-                                  case 10:
-                                    _context3.prev = 10;
-                                    _context3.t0 = _context3["catch"](4);
-                                    if (!(_context3.t0.status === 404)) {
-                                      _context3.next = 14;
-                                      break;
-                                    }
-                                    throw self2._makeAbortEvent();
-                                  case 14:
-                                    throw _context3.t0;
-                                  case 15:
-                                    if (self2.isCancel()) {
-                                      _context3.next = 22;
-                                      break;
-                                    }
-                                    debug("content-range ".concat(result.res.headers["content-range"]));
-                                    doneParts.push({
-                                      number: partNo,
-                                      etag: result.res.headers.etag
-                                    });
-                                    checkpoint.doneParts = doneParts;
-                                    if (!(options && options.progress)) {
-                                      _context3.next = 22;
-                                      break;
-                                    }
-                                    _context3.next = 22;
-                                    return options.progress(doneParts.length / numParts, checkpoint, result.res);
-                                  case 22:
-                                    resolve();
-                                    _context3.next = 29;
-                                    break;
-                                  case 25:
-                                    _context3.prev = 25;
-                                    _context3.t1 = _context3["catch"](0);
-                                    _context3.t1.partNum = partNo;
-                                    reject(_context3.t1);
-                                  case 29:
-                                  case "end":
-                                    return _context3.stop();
-                                }
-                            }, _callee3, null, [[0, 25], [4, 10]]);
-                          }));
-                          return function(_x11, _x12) {
-                            return _ref.apply(this, arguments);
-                          };
-                        }());
-                      };
-                      all = Array.from(new Array(numParts), function(x, i2) {
-                        return i2 + 1;
-                      });
-                      done = doneParts.map(function(p) {
-                        return p.number;
-                      });
-                      todo = all.filter(function(p) {
-                        return done.indexOf(p) < 0;
-                      });
-                      defaultParallel = 5;
-                      parallel = options.parallel || defaultParallel;
-                      if (!(this.checkBrowserAndVersion("Internet Explorer", "10") || parallel === 1)) {
-                        _context4.next = 28;
-                        break;
-                      }
-                      i = 0;
-                    case 18:
-                      if (!(i < todo.length)) {
-                        _context4.next = 26;
-                        break;
-                      }
-                      if (!this.isCancel()) {
-                        _context4.next = 21;
-                        break;
-                      }
-                      throw this._makeCancelEvent();
-                    case 21:
-                      _context4.next = 23;
-                      return uploadPartJob(this, todo[i], sourceData);
-                    case 23:
-                      i++;
-                      _context4.next = 18;
+                while (1) switch (_context4.prev = _context4.next) {
+                  case 0:
+                    if (!this.isCancel()) {
+                      _context4.next = 2;
                       break;
-                    case 26:
+                    }
+                    throw this._makeCancelEvent();
+                  case 2:
+                    _options$versionId2 = options.versionId, versionId = _options$versionId2 === void 0 ? null : _options$versionId2;
+                    metaOpt = {
+                      versionId
+                    };
+                    copySize = checkpoint.copySize, partSize = checkpoint.partSize, uploadId = checkpoint.uploadId, doneParts = checkpoint.doneParts, name = checkpoint.name;
+                    partOffs = this._divideMultipartCopyParts(copySize, partSize, sourceData.startOffset);
+                    numParts = partOffs.length;
+                    uploadPartCopyOptions = {
+                      headers: {}
+                    };
+                    if (options.copyheaders) {
+                      copy(options.copyheaders).to(uploadPartCopyOptions.headers);
+                    }
+                    if (versionId) {
+                      copy(metaOpt).to(uploadPartCopyOptions);
+                    }
+                    uploadPartJob = function uploadPartJob2(self2, partNo, source) {
+                      return new Promise(/* @__PURE__ */ (function() {
+                        var _ref = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee3(resolve, reject) {
+                          var pi, range, result;
+                          return _regenerator.default.wrap(function _callee3$(_context3) {
+                            while (1) switch (_context3.prev = _context3.next) {
+                              case 0:
+                                _context3.prev = 0;
+                                if (self2.isCancel()) {
+                                  _context3.next = 22;
+                                  break;
+                                }
+                                pi = partOffs[partNo - 1];
+                                range = "".concat(pi.start, "-").concat(pi.end - 1);
+                                _context3.prev = 4;
+                                _context3.next = 7;
+                                return self2.uploadPartCopy(name, uploadId, partNo, range, source, uploadPartCopyOptions);
+                              case 7:
+                                result = _context3.sent;
+                                _context3.next = 15;
+                                break;
+                              case 10:
+                                _context3.prev = 10;
+                                _context3.t0 = _context3["catch"](4);
+                                if (!(_context3.t0.status === 404)) {
+                                  _context3.next = 14;
+                                  break;
+                                }
+                                throw self2._makeAbortEvent();
+                              case 14:
+                                throw _context3.t0;
+                              case 15:
+                                if (self2.isCancel()) {
+                                  _context3.next = 22;
+                                  break;
+                                }
+                                debug("content-range ".concat(result.res.headers["content-range"]));
+                                doneParts.push({
+                                  number: partNo,
+                                  etag: result.res.headers.etag
+                                });
+                                checkpoint.doneParts = doneParts;
+                                if (!(options && options.progress)) {
+                                  _context3.next = 22;
+                                  break;
+                                }
+                                _context3.next = 22;
+                                return options.progress(doneParts.length / numParts, checkpoint, result.res);
+                              case 22:
+                                resolve();
+                                _context3.next = 29;
+                                break;
+                              case 25:
+                                _context3.prev = 25;
+                                _context3.t1 = _context3["catch"](0);
+                                _context3.t1.partNum = partNo;
+                                reject(_context3.t1);
+                              case 29:
+                              case "end":
+                                return _context3.stop();
+                            }
+                          }, _callee3, null, [[0, 25], [4, 10]]);
+                        }));
+                        return function(_x11, _x12) {
+                          return _ref.apply(this, arguments);
+                        };
+                      })());
+                    };
+                    all = Array.from(new Array(numParts), function(x, i2) {
+                      return i2 + 1;
+                    });
+                    done = doneParts.map(function(p) {
+                      return p.number;
+                    });
+                    todo = all.filter(function(p) {
+                      return done.indexOf(p) < 0;
+                    });
+                    defaultParallel = 5;
+                    parallel = options.parallel || defaultParallel;
+                    if (!(this.checkBrowserAndVersion("Internet Explorer", "10") || parallel === 1)) {
+                      _context4.next = 28;
+                      break;
+                    }
+                    i = 0;
+                  case 18:
+                    if (!(i < todo.length)) {
+                      _context4.next = 26;
+                      break;
+                    }
+                    if (!this.isCancel()) {
+                      _context4.next = 21;
+                      break;
+                    }
+                    throw this._makeCancelEvent();
+                  case 21:
+                    _context4.next = 23;
+                    return uploadPartJob(this, todo[i], sourceData);
+                  case 23:
+                    i++;
+                    _context4.next = 18;
+                    break;
+                  case 26:
+                    _context4.next = 40;
+                    break;
+                  case 28:
+                    _context4.next = 30;
+                    return this._parallelNode(todo, parallel, uploadPartJob, sourceData);
+                  case 30:
+                    errors = _context4.sent;
+                    abortEvent = errors.find(function(err2) {
+                      return err2.name === "abort";
+                    });
+                    if (!abortEvent) {
+                      _context4.next = 34;
+                      break;
+                    }
+                    throw abortEvent;
+                  case 34:
+                    if (!this.isCancel()) {
+                      _context4.next = 36;
+                      break;
+                    }
+                    throw this._makeCancelEvent();
+                  case 36:
+                    if (!(errors && errors.length > 0)) {
                       _context4.next = 40;
                       break;
-                    case 28:
-                      _context4.next = 30;
-                      return this._parallelNode(todo, parallel, uploadPartJob, sourceData);
-                    case 30:
-                      errors = _context4.sent;
-                      abortEvent = errors.find(function(err2) {
-                        return err2.name === "abort";
-                      });
-                      if (!abortEvent) {
-                        _context4.next = 34;
-                        break;
-                      }
-                      throw abortEvent;
-                    case 34:
-                      if (!this.isCancel()) {
-                        _context4.next = 36;
-                        break;
-                      }
-                      throw this._makeCancelEvent();
-                    case 36:
-                      if (!(errors && errors.length > 0)) {
-                        _context4.next = 40;
-                        break;
-                      }
-                      err = errors[0];
-                      err.message = "Failed to copy some parts with error: ".concat(err.toString(), " part_num: ").concat(err.partNum);
-                      throw err;
-                    case 40:
-                      _context4.next = 42;
-                      return this.completeMultipartUpload(name, uploadId, doneParts, options);
-                    case 42:
-                      return _context4.abrupt("return", _context4.sent);
-                    case 43:
-                    case "end":
-                      return _context4.stop();
-                  }
+                    }
+                    err = errors[0];
+                    err.message = "Failed to copy some parts with error: ".concat(err.toString(), " part_num: ").concat(err.partNum);
+                    throw err;
+                  case 40:
+                    _context4.next = 42;
+                    return this.completeMultipartUpload(name, uploadId, doneParts, options);
+                  case 42:
+                    return _context4.abrupt("return", _context4.sent);
+                  case 43:
+                  case "end":
+                    return _context4.stop();
+                }
               }, _callee4, this);
             }));
             function _resumeMultipartCopy(_x8, _x9, _x10) {
               return _resumeMultipartCopy2.apply(this, arguments);
             }
             return _resumeMultipartCopy;
-          }();
+          })();
           proto._divideMultipartCopyParts = function _divideMultipartCopyParts(fileSize, partSize, startOffset) {
             var numParts = Math.ceil(fileSize / partSize);
             var partOffs = [];
@@ -3505,32 +3436,31 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             return partOffs;
           };
-          proto._getObjectMeta = /* @__PURE__ */ function() {
+          proto._getObjectMeta = /* @__PURE__ */ (function() {
             var _getObjectMeta2 = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee5(bucket, name, options) {
               var currentBucket, data;
               return _regenerator.default.wrap(function _callee5$(_context5) {
-                while (1)
-                  switch (_context5.prev = _context5.next) {
-                    case 0:
-                      currentBucket = this.getBucket();
-                      this.setBucket(bucket);
-                      _context5.next = 4;
-                      return this.head(name, options);
-                    case 4:
-                      data = _context5.sent;
-                      this.setBucket(currentBucket);
-                      return _context5.abrupt("return", data);
-                    case 7:
-                    case "end":
-                      return _context5.stop();
-                  }
+                while (1) switch (_context5.prev = _context5.next) {
+                  case 0:
+                    currentBucket = this.getBucket();
+                    this.setBucket(bucket);
+                    _context5.next = 4;
+                    return this.head(name, options);
+                  case 4:
+                    data = _context5.sent;
+                    this.setBucket(currentBucket);
+                    return _context5.abrupt("return", data);
+                  case 7:
+                  case "end":
+                    return _context5.stop();
+                }
               }, _callee5, this);
             }));
             function _getObjectMeta(_x13, _x14, _x15) {
               return _getObjectMeta2.apply(this, arguments);
             }
             return _getObjectMeta;
-          }();
+          })();
         }, { "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "copy-to": 107, "core-js/modules/es.array.concat.js": 310, "core-js/modules/es.array.filter.js": 312, "core-js/modules/es.array.find.js": 313, "core-js/modules/es.array.from.js": 314, "core-js/modules/es.array.map.js": 318, "core-js/modules/es.function.name.js": 322, "core-js/modules/es.object.to-string.js": 329, "core-js/modules/es.promise.js": 333, "core-js/modules/es.regexp.to-string.js": 339, "core-js/modules/es.string.iterator.js": 343, "debug": 536 }], 30: [function(require2, module4, exports3) {
           (function(process) {
             (function() {
@@ -3551,336 +3481,328 @@ var require_aliyun_oss_sdk = __commonJS({
               var _require2 = require2("./utils/isBuffer"), isBuffer = _require2.isBuffer;
               var _require3 = require2("./utils/omit"), omit = _require3.omit;
               var proto = exports3;
-              proto.listUploads = /* @__PURE__ */ function() {
+              proto.listUploads = /* @__PURE__ */ (function() {
                 var _listUploads = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(query, options) {
                   var opt, params, result, uploads;
                   return _regenerator.default.wrap(function _callee$(_context) {
-                    while (1)
-                      switch (_context.prev = _context.next) {
-                        case 0:
-                          options = options || {};
-                          opt = {};
-                          copy(options).to(opt);
-                          opt.subres = "uploads";
-                          params = this._objectRequestParams("GET", "", opt);
-                          params.query = query;
-                          params.xmlResponse = true;
-                          params.successStatuses = [200];
-                          _context.next = 10;
-                          return this.request(params);
-                        case 10:
-                          result = _context.sent;
-                          uploads = result.data.Upload || [];
-                          if (!Array.isArray(uploads)) {
-                            uploads = [uploads];
-                          }
-                          uploads = uploads.map(function(up) {
-                            return {
-                              name: up.Key,
-                              uploadId: up.UploadId,
-                              initiated: up.Initiated
-                            };
-                          });
-                          return _context.abrupt("return", {
-                            res: result.res,
-                            uploads,
-                            bucket: result.data.Bucket,
-                            nextKeyMarker: result.data.NextKeyMarker,
-                            nextUploadIdMarker: result.data.NextUploadIdMarker,
-                            isTruncated: result.data.IsTruncated === "true"
-                          });
-                        case 15:
-                        case "end":
-                          return _context.stop();
-                      }
+                    while (1) switch (_context.prev = _context.next) {
+                      case 0:
+                        options = options || {};
+                        opt = {};
+                        copy(options).to(opt);
+                        opt.subres = "uploads";
+                        params = this._objectRequestParams("GET", "", opt);
+                        params.query = query;
+                        params.xmlResponse = true;
+                        params.successStatuses = [200];
+                        _context.next = 10;
+                        return this.request(params);
+                      case 10:
+                        result = _context.sent;
+                        uploads = result.data.Upload || [];
+                        if (!Array.isArray(uploads)) {
+                          uploads = [uploads];
+                        }
+                        uploads = uploads.map(function(up) {
+                          return {
+                            name: up.Key,
+                            uploadId: up.UploadId,
+                            initiated: up.Initiated
+                          };
+                        });
+                        return _context.abrupt("return", {
+                          res: result.res,
+                          uploads,
+                          bucket: result.data.Bucket,
+                          nextKeyMarker: result.data.NextKeyMarker,
+                          nextUploadIdMarker: result.data.NextUploadIdMarker,
+                          isTruncated: result.data.IsTruncated === "true"
+                        });
+                      case 15:
+                      case "end":
+                        return _context.stop();
+                    }
                   }, _callee, this);
                 }));
                 function listUploads(_x, _x2) {
                   return _listUploads.apply(this, arguments);
                 }
                 return listUploads;
-              }();
-              proto.listParts = /* @__PURE__ */ function() {
+              })();
+              proto.listParts = /* @__PURE__ */ (function() {
                 var _listParts = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee2(name, uploadId, query, options) {
                   var opt, params, result;
                   return _regenerator.default.wrap(function _callee2$(_context2) {
-                    while (1)
-                      switch (_context2.prev = _context2.next) {
-                        case 0:
-                          options = options || {};
-                          opt = {};
-                          copy(options).to(opt);
-                          opt.subres = {
-                            uploadId
-                          };
-                          params = this._objectRequestParams("GET", name, opt);
-                          params.query = query;
-                          params.xmlResponse = true;
-                          params.successStatuses = [200];
-                          _context2.next = 10;
-                          return this.request(params);
-                        case 10:
-                          result = _context2.sent;
-                          return _context2.abrupt("return", {
-                            res: result.res,
-                            uploadId: result.data.UploadId,
-                            bucket: result.data.Bucket,
-                            name: result.data.Key,
-                            partNumberMarker: result.data.PartNumberMarker,
-                            nextPartNumberMarker: result.data.NextPartNumberMarker,
-                            maxParts: result.data.MaxParts,
-                            isTruncated: result.data.IsTruncated,
-                            parts: result.data.Part || []
-                          });
-                        case 12:
-                        case "end":
-                          return _context2.stop();
-                      }
+                    while (1) switch (_context2.prev = _context2.next) {
+                      case 0:
+                        options = options || {};
+                        opt = {};
+                        copy(options).to(opt);
+                        opt.subres = {
+                          uploadId
+                        };
+                        params = this._objectRequestParams("GET", name, opt);
+                        params.query = query;
+                        params.xmlResponse = true;
+                        params.successStatuses = [200];
+                        _context2.next = 10;
+                        return this.request(params);
+                      case 10:
+                        result = _context2.sent;
+                        return _context2.abrupt("return", {
+                          res: result.res,
+                          uploadId: result.data.UploadId,
+                          bucket: result.data.Bucket,
+                          name: result.data.Key,
+                          partNumberMarker: result.data.PartNumberMarker,
+                          nextPartNumberMarker: result.data.NextPartNumberMarker,
+                          maxParts: result.data.MaxParts,
+                          isTruncated: result.data.IsTruncated,
+                          parts: result.data.Part || []
+                        });
+                      case 12:
+                      case "end":
+                        return _context2.stop();
+                    }
                   }, _callee2, this);
                 }));
                 function listParts(_x3, _x4, _x5, _x6) {
                   return _listParts.apply(this, arguments);
                 }
                 return listParts;
-              }();
-              proto.abortMultipartUpload = /* @__PURE__ */ function() {
+              })();
+              proto.abortMultipartUpload = /* @__PURE__ */ (function() {
                 var _abortMultipartUpload = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee3(name, uploadId, options) {
                   var opt, params, result;
                   return _regenerator.default.wrap(function _callee3$(_context3) {
-                    while (1)
-                      switch (_context3.prev = _context3.next) {
-                        case 0:
-                          this._stop();
-                          options = options || {};
-                          opt = {};
-                          copy(options).to(opt);
-                          opt.subres = {
-                            uploadId
-                          };
-                          params = this._objectRequestParams("DELETE", name, opt);
-                          params.successStatuses = [204];
-                          _context3.next = 9;
-                          return this.request(params);
-                        case 9:
-                          result = _context3.sent;
-                          return _context3.abrupt("return", {
-                            res: result.res
-                          });
-                        case 11:
-                        case "end":
-                          return _context3.stop();
-                      }
+                    while (1) switch (_context3.prev = _context3.next) {
+                      case 0:
+                        this._stop();
+                        options = options || {};
+                        opt = {};
+                        copy(options).to(opt);
+                        opt.subres = {
+                          uploadId
+                        };
+                        params = this._objectRequestParams("DELETE", name, opt);
+                        params.successStatuses = [204];
+                        _context3.next = 9;
+                        return this.request(params);
+                      case 9:
+                        result = _context3.sent;
+                        return _context3.abrupt("return", {
+                          res: result.res
+                        });
+                      case 11:
+                      case "end":
+                        return _context3.stop();
+                    }
                   }, _callee3, this);
                 }));
                 function abortMultipartUpload(_x7, _x8, _x9) {
                   return _abortMultipartUpload.apply(this, arguments);
                 }
                 return abortMultipartUpload;
-              }();
-              proto.initMultipartUpload = /* @__PURE__ */ function() {
+              })();
+              proto.initMultipartUpload = /* @__PURE__ */ (function() {
                 var _initMultipartUpload = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee4(name, options) {
                   var opt, params, result;
                   return _regenerator.default.wrap(function _callee4$(_context4) {
-                    while (1)
-                      switch (_context4.prev = _context4.next) {
-                        case 0:
-                          options = options || {};
-                          opt = {};
-                          copy(options).to(opt);
-                          opt.headers = opt.headers || {};
-                          this._convertMetaToHeaders(options.meta, opt.headers);
-                          opt.subres = "uploads";
-                          params = this._objectRequestParams("POST", name, opt);
-                          params.mime = options.mime;
-                          params.xmlResponse = true;
-                          params.successStatuses = [200];
-                          _context4.next = 12;
-                          return this.request(params);
-                        case 12:
-                          result = _context4.sent;
-                          return _context4.abrupt("return", {
-                            res: result.res,
-                            bucket: result.data.Bucket,
-                            name: result.data.Key,
-                            uploadId: result.data.UploadId
-                          });
-                        case 14:
-                        case "end":
-                          return _context4.stop();
-                      }
+                    while (1) switch (_context4.prev = _context4.next) {
+                      case 0:
+                        options = options || {};
+                        opt = {};
+                        copy(options).to(opt);
+                        opt.headers = opt.headers || {};
+                        this._convertMetaToHeaders(options.meta, opt.headers);
+                        opt.subres = "uploads";
+                        params = this._objectRequestParams("POST", name, opt);
+                        params.mime = options.mime;
+                        params.xmlResponse = true;
+                        params.successStatuses = [200];
+                        _context4.next = 12;
+                        return this.request(params);
+                      case 12:
+                        result = _context4.sent;
+                        return _context4.abrupt("return", {
+                          res: result.res,
+                          bucket: result.data.Bucket,
+                          name: result.data.Key,
+                          uploadId: result.data.UploadId
+                        });
+                      case 14:
+                      case "end":
+                        return _context4.stop();
+                    }
                   }, _callee4, this);
                 }));
                 function initMultipartUpload(_x10, _x11) {
                   return _initMultipartUpload.apply(this, arguments);
                 }
                 return initMultipartUpload;
-              }();
-              proto.uploadPart = /* @__PURE__ */ function() {
+              })();
+              proto.uploadPart = /* @__PURE__ */ (function() {
                 var _uploadPart2 = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee5(name, uploadId, partNo, file, start, end, options) {
                   var data, isBrowserEnv;
                   return _regenerator.default.wrap(function _callee5$(_context5) {
-                    while (1)
-                      switch (_context5.prev = _context5.next) {
-                        case 0:
-                          data = {
-                            size: end - start
-                          };
-                          isBrowserEnv = process && process.browser;
-                          if (!isBrowserEnv) {
-                            _context5.next = 8;
-                            break;
-                          }
-                          _context5.next = 5;
-                          return this._createBuffer(file, start, end);
-                        case 5:
-                          data.content = _context5.sent;
-                          _context5.next = 11;
+                    while (1) switch (_context5.prev = _context5.next) {
+                      case 0:
+                        data = {
+                          size: end - start
+                        };
+                        isBrowserEnv = process && process.browser;
+                        if (!isBrowserEnv) {
+                          _context5.next = 8;
                           break;
-                        case 8:
-                          _context5.next = 10;
-                          return this._createStream(file, start, end);
-                        case 10:
-                          data.stream = _context5.sent;
-                        case 11:
-                          _context5.next = 13;
-                          return this._uploadPart(name, uploadId, partNo, data, options);
-                        case 13:
-                          return _context5.abrupt("return", _context5.sent);
-                        case 14:
-                        case "end":
-                          return _context5.stop();
-                      }
+                        }
+                        _context5.next = 5;
+                        return this._createBuffer(file, start, end);
+                      case 5:
+                        data.content = _context5.sent;
+                        _context5.next = 11;
+                        break;
+                      case 8:
+                        _context5.next = 10;
+                        return this._createStream(file, start, end);
+                      case 10:
+                        data.stream = _context5.sent;
+                      case 11:
+                        _context5.next = 13;
+                        return this._uploadPart(name, uploadId, partNo, data, options);
+                      case 13:
+                        return _context5.abrupt("return", _context5.sent);
+                      case 14:
+                      case "end":
+                        return _context5.stop();
+                    }
                   }, _callee5, this);
                 }));
                 function uploadPart(_x12, _x13, _x14, _x15, _x16, _x17, _x18) {
                   return _uploadPart2.apply(this, arguments);
                 }
                 return uploadPart;
-              }();
-              proto.completeMultipartUpload = /* @__PURE__ */ function() {
+              })();
+              proto.completeMultipartUpload = /* @__PURE__ */ (function() {
                 var _completeMultipartUpload = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee6(name, uploadId, parts, options) {
                   var completeParts, xml, i, p, opt, params, result, ret;
                   return _regenerator.default.wrap(function _callee6$(_context6) {
-                    while (1)
-                      switch (_context6.prev = _context6.next) {
-                        case 0:
-                          completeParts = parts.concat().sort(function(a, b) {
-                            return a.number - b.number;
-                          }).filter(function(item, index, arr) {
-                            return !index || item.number !== arr[index - 1].number;
-                          });
-                          xml = '<?xml version="1.0" encoding="UTF-8"?>\n<CompleteMultipartUpload>\n';
-                          for (i = 0; i < completeParts.length; i++) {
-                            p = completeParts[i];
-                            xml += "<Part>\n";
-                            xml += "<PartNumber>".concat(p.number, "</PartNumber>\n");
-                            xml += "<ETag>".concat(p.etag, "</ETag>\n");
-                            xml += "</Part>\n";
-                          }
-                          xml += "</CompleteMultipartUpload>";
-                          options = options || {};
-                          opt = {};
-                          opt = deepCopyWith(options, function(_) {
-                            if (isBuffer(_))
-                              return null;
-                          });
-                          opt.subres = {
-                            uploadId
-                          };
-                          opt.headers = omit(opt.headers, ["x-oss-server-side-encryption", "x-oss-storage-class"]);
-                          params = this._objectRequestParams("POST", name, opt);
-                          callback.encodeCallback(params, opt);
-                          params.mime = "xml";
-                          params.content = xml;
-                          if (!(params.headers && params.headers["x-oss-callback"])) {
-                            params.xmlResponse = true;
-                          }
-                          params.successStatuses = [200];
-                          _context6.next = 17;
-                          return this.request(params);
-                        case 17:
-                          result = _context6.sent;
-                          if (!options.progress) {
-                            _context6.next = 21;
-                            break;
-                          }
+                    while (1) switch (_context6.prev = _context6.next) {
+                      case 0:
+                        completeParts = parts.concat().sort(function(a, b) {
+                          return a.number - b.number;
+                        }).filter(function(item, index, arr) {
+                          return !index || item.number !== arr[index - 1].number;
+                        });
+                        xml = '<?xml version="1.0" encoding="UTF-8"?>\n<CompleteMultipartUpload>\n';
+                        for (i = 0; i < completeParts.length; i++) {
+                          p = completeParts[i];
+                          xml += "<Part>\n";
+                          xml += "<PartNumber>".concat(p.number, "</PartNumber>\n");
+                          xml += "<ETag>".concat(p.etag, "</ETag>\n");
+                          xml += "</Part>\n";
+                        }
+                        xml += "</CompleteMultipartUpload>";
+                        options = options || {};
+                        opt = {};
+                        opt = deepCopyWith(options, function(_) {
+                          if (isBuffer(_)) return null;
+                        });
+                        opt.subres = {
+                          uploadId
+                        };
+                        opt.headers = omit(opt.headers, ["x-oss-server-side-encryption", "x-oss-storage-class"]);
+                        params = this._objectRequestParams("POST", name, opt);
+                        callback.encodeCallback(params, opt);
+                        params.mime = "xml";
+                        params.content = xml;
+                        if (!(params.headers && params.headers["x-oss-callback"])) {
+                          params.xmlResponse = true;
+                        }
+                        params.successStatuses = [200];
+                        _context6.next = 17;
+                        return this.request(params);
+                      case 17:
+                        result = _context6.sent;
+                        if (!options.progress) {
                           _context6.next = 21;
-                          return options.progress(1, null, result.res);
-                        case 21:
-                          ret = {
-                            res: result.res,
-                            bucket: params.bucket,
-                            name,
-                            etag: result.res.headers.etag
-                          };
-                          if (params.headers && params.headers["x-oss-callback"]) {
-                            ret.data = JSON.parse(result.data.toString());
-                          }
-                          return _context6.abrupt("return", ret);
-                        case 24:
-                        case "end":
-                          return _context6.stop();
-                      }
+                          break;
+                        }
+                        _context6.next = 21;
+                        return options.progress(1, null, result.res);
+                      case 21:
+                        ret = {
+                          res: result.res,
+                          bucket: params.bucket,
+                          name,
+                          etag: result.res.headers.etag
+                        };
+                        if (params.headers && params.headers["x-oss-callback"]) {
+                          ret.data = JSON.parse(result.data.toString());
+                        }
+                        return _context6.abrupt("return", ret);
+                      case 24:
+                      case "end":
+                        return _context6.stop();
+                    }
                   }, _callee6, this);
                 }));
                 function completeMultipartUpload(_x19, _x20, _x21, _x22) {
                   return _completeMultipartUpload.apply(this, arguments);
                 }
                 return completeMultipartUpload;
-              }();
-              proto._uploadPart = /* @__PURE__ */ function() {
+              })();
+              proto._uploadPart = /* @__PURE__ */ (function() {
                 var _uploadPart3 = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee7(name, uploadId, partNo, data, options) {
                   var opt, params, isBrowserEnv, result;
                   return _regenerator.default.wrap(function _callee7$(_context7) {
-                    while (1)
-                      switch (_context7.prev = _context7.next) {
-                        case 0:
-                          options = options || {};
-                          opt = {};
-                          copy(options).to(opt);
-                          opt.headers = opt.headers || {};
-                          opt.headers["Content-Length"] = data.size;
-                          opt.headers = omit(opt.headers, ["x-oss-server-side-encryption", "x-oss-storage-class"]);
-                          opt.subres = {
-                            partNumber: partNo,
-                            uploadId
-                          };
-                          params = this._objectRequestParams("PUT", name, opt);
-                          params.mime = opt.mime;
-                          isBrowserEnv = process && process.browser;
-                          isBrowserEnv ? params.content = data.content : params.stream = data.stream;
-                          params.successStatuses = [200];
-                          params.disabledMD5 = options.disabledMD5;
-                          _context7.next = 15;
-                          return this.request(params);
-                        case 15:
-                          result = _context7.sent;
-                          if (result.res.headers.etag) {
-                            _context7.next = 18;
-                            break;
-                          }
-                          throw new Error("Please set the etag of expose-headers in OSS \n https://help.aliyun.com/document_detail/32069.html");
-                        case 18:
-                          if (data.stream) {
-                            data.stream = null;
-                            params.stream = null;
-                          }
-                          return _context7.abrupt("return", {
-                            name,
-                            etag: result.res.headers.etag,
-                            res: result.res
-                          });
-                        case 20:
-                        case "end":
-                          return _context7.stop();
-                      }
+                    while (1) switch (_context7.prev = _context7.next) {
+                      case 0:
+                        options = options || {};
+                        opt = {};
+                        copy(options).to(opt);
+                        opt.headers = opt.headers || {};
+                        opt.headers["Content-Length"] = data.size;
+                        opt.headers = omit(opt.headers, ["x-oss-server-side-encryption", "x-oss-storage-class"]);
+                        opt.subres = {
+                          partNumber: partNo,
+                          uploadId
+                        };
+                        params = this._objectRequestParams("PUT", name, opt);
+                        params.mime = opt.mime;
+                        isBrowserEnv = process && process.browser;
+                        isBrowserEnv ? params.content = data.content : params.stream = data.stream;
+                        params.successStatuses = [200];
+                        params.disabledMD5 = options.disabledMD5;
+                        _context7.next = 15;
+                        return this.request(params);
+                      case 15:
+                        result = _context7.sent;
+                        if (result.res.headers.etag) {
+                          _context7.next = 18;
+                          break;
+                        }
+                        throw new Error("Please set the etag of expose-headers in OSS \n https://help.aliyun.com/document_detail/32069.html");
+                      case 18:
+                        if (data.stream) {
+                          data.stream = null;
+                          params.stream = null;
+                        }
+                        return _context7.abrupt("return", {
+                          name,
+                          etag: result.res.headers.etag,
+                          res: result.res
+                        });
+                      case 20:
+                      case "end":
+                        return _context7.stop();
+                    }
                   }, _callee7, this);
                 }));
                 function _uploadPart(_x23, _x24, _x25, _x26, _x27) {
                   return _uploadPart3.apply(this, arguments);
                 }
                 return _uploadPart;
-              }();
+              })();
             }).call(this);
           }).call(this, require2("_process"));
         }, { "./callback": 24, "./utils/deepCopy": 60, "./utils/isBuffer": 69, "./utils/omit": 77, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "_process": 538, "copy-to": 107, "core-js/modules/es.array.concat.js": 310, "core-js/modules/es.array.filter.js": 312, "core-js/modules/es.array.map.js": 318, "core-js/modules/es.array.sort.js": 320, "core-js/modules/es.object.keys.js": 328, "core-js/modules/es.object.to-string.js": 329, "core-js/modules/es.regexp.to-string.js": 339 }], 31: [function(require2, module4, exports3) {
@@ -3897,65 +3819,64 @@ var require_aliyun_oss_sdk = __commonJS({
           var _require2 = require2("../utils/setSTSToken"), setSTSToken = _require2.setSTSToken;
           var _require3 = require2("../utils/isFunction"), isFunction = _require3.isFunction;
           var proto = exports3;
-          proto.asyncSignatureUrl = /* @__PURE__ */ function() {
+          proto.asyncSignatureUrl = /* @__PURE__ */ (function() {
             var _asyncSignatureUrl = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, options) {
               var strictObjectNameValidation, expires, params, resource, signRes, url, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      strictObjectNameValidation = _args.length > 2 && _args[2] !== void 0 ? _args[2] : true;
-                      if (!isIP(this.options.endpoint.hostname)) {
-                        _context.next = 3;
-                        break;
-                      }
-                      throw new Error("can not get the object URL when endpoint is IP");
-                    case 3:
-                      if (!(strictObjectNameValidation && /^\?/.test(name))) {
-                        _context.next = 5;
-                        break;
-                      }
-                      throw new Error("Invalid object name ".concat(name));
-                    case 5:
-                      options = options || {};
-                      name = this._objectName(name);
-                      options.method = options.method || "GET";
-                      expires = utility.timestamp() + (options.expires || 1800);
-                      params = {
-                        bucket: this.options.bucket,
-                        object: name
-                      };
-                      resource = this._getResource(params);
-                      if (!(this.options.stsToken && isFunction(this.options.refreshSTSToken))) {
-                        _context.next = 14;
-                        break;
-                      }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    strictObjectNameValidation = _args.length > 2 && _args[2] !== void 0 ? _args[2] : true;
+                    if (!isIP(this.options.endpoint.hostname)) {
+                      _context.next = 3;
+                      break;
+                    }
+                    throw new Error("can not get the object URL when endpoint is IP");
+                  case 3:
+                    if (!(strictObjectNameValidation && /^\?/.test(name))) {
+                      _context.next = 5;
+                      break;
+                    }
+                    throw new Error("Invalid object name ".concat(name));
+                  case 5:
+                    options = options || {};
+                    name = this._objectName(name);
+                    options.method = options.method || "GET";
+                    expires = utility.timestamp() + (options.expires || 1800);
+                    params = {
+                      bucket: this.options.bucket,
+                      object: name
+                    };
+                    resource = this._getResource(params);
+                    if (!(this.options.stsToken && isFunction(this.options.refreshSTSToken))) {
                       _context.next = 14;
-                      return setSTSToken.call(this);
-                    case 14:
-                      if (this.options.stsToken) {
-                        options["security-token"] = this.options.stsToken;
-                      }
-                      signRes = signHelper._signatureForURL(this.options.accessKeySecret, options, resource, expires);
-                      url = urlutil.parse(this._getReqUrl(params));
-                      url.query = {
-                        OSSAccessKeyId: this.options.accessKeyId,
-                        Expires: expires,
-                        Signature: signRes.Signature
-                      };
-                      copy(signRes.subResource).to(url.query);
-                      return _context.abrupt("return", url.format());
-                    case 20:
-                    case "end":
-                      return _context.stop();
-                  }
+                      break;
+                    }
+                    _context.next = 14;
+                    return setSTSToken.call(this);
+                  case 14:
+                    if (this.options.stsToken) {
+                      options["security-token"] = this.options.stsToken;
+                    }
+                    signRes = signHelper._signatureForURL(this.options.accessKeySecret, options, resource, expires);
+                    url = urlutil.parse(this._getReqUrl(params));
+                    url.query = {
+                      OSSAccessKeyId: this.options.accessKeyId,
+                      Expires: expires,
+                      Signature: signRes.Signature
+                    };
+                    copy(signRes.subResource).to(url.query);
+                    return _context.abrupt("return", url.format());
+                  case 20:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function asyncSignatureUrl(_x, _x2) {
               return _asyncSignatureUrl.apply(this, arguments);
             }
             return asyncSignatureUrl;
-          }();
+          })();
         }, { "../../common/signUtils": 52, "../utils/isFunction": 72, "../utils/isIP": 73, "../utils/setSTSToken": 82, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "copy-to": 107, "core-js/modules/es.regexp.exec.js": 338, "url": 543, "utility": 545 }], 32: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -3973,61 +3894,60 @@ var require_aliyun_oss_sdk = __commonJS({
           var _require = require2("../utils/checkBucketName"), _checkBucketName = _require.checkBucketName;
           var proto = exports3;
           var REPLACE_HEDERS = ["content-type", "content-encoding", "content-language", "content-disposition", "cache-control", "expires"];
-          proto.copy = /* @__PURE__ */ function() {
+          proto.copy = /* @__PURE__ */ (function() {
             var _copy = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, sourceName, bucketName, options) {
               var params, result, data;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      if ((0, _typeof2.default)(bucketName) === "object") {
-                        options = bucketName;
-                      }
-                      options = options || {};
-                      options.headers = options.headers || {};
-                      Object.keys(options.headers).forEach(function(key) {
-                        options.headers["x-oss-copy-source-".concat(key.toLowerCase())] = options.headers[key];
-                      });
-                      if (options.meta || Object.keys(options.headers).find(function(_) {
-                        return REPLACE_HEDERS.includes(_.toLowerCase());
-                      })) {
-                        options.headers["x-oss-metadata-directive"] = "REPLACE";
-                      }
-                      this._convertMetaToHeaders(options.meta, options.headers);
-                      sourceName = this._getSourceName(sourceName, bucketName);
-                      if (options.versionId) {
-                        sourceName = "".concat(sourceName, "?versionId=").concat(options.versionId);
-                      }
-                      options.headers["x-oss-copy-source"] = sourceName;
-                      params = this._objectRequestParams("PUT", name, options);
-                      params.xmlResponse = true;
-                      params.successStatuses = [200, 304];
-                      _context.next = 14;
-                      return this.request(params);
-                    case 14:
-                      result = _context.sent;
-                      data = result.data;
-                      if (data) {
-                        data = {
-                          etag: data.ETag,
-                          lastModified: data.LastModified
-                        };
-                      }
-                      return _context.abrupt("return", {
-                        data,
-                        res: result.res
-                      });
-                    case 18:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    if ((0, _typeof2.default)(bucketName) === "object") {
+                      options = bucketName;
+                    }
+                    options = options || {};
+                    options.headers = options.headers || {};
+                    Object.keys(options.headers).forEach(function(key) {
+                      options.headers["x-oss-copy-source-".concat(key.toLowerCase())] = options.headers[key];
+                    });
+                    if (options.meta || Object.keys(options.headers).find(function(_) {
+                      return REPLACE_HEDERS.includes(_.toLowerCase());
+                    })) {
+                      options.headers["x-oss-metadata-directive"] = "REPLACE";
+                    }
+                    this._convertMetaToHeaders(options.meta, options.headers);
+                    sourceName = this._getSourceName(sourceName, bucketName);
+                    if (options.versionId) {
+                      sourceName = "".concat(sourceName, "?versionId=").concat(options.versionId);
+                    }
+                    options.headers["x-oss-copy-source"] = sourceName;
+                    params = this._objectRequestParams("PUT", name, options);
+                    params.xmlResponse = true;
+                    params.successStatuses = [200, 304];
+                    _context.next = 14;
+                    return this.request(params);
+                  case 14:
+                    result = _context.sent;
+                    data = result.data;
+                    if (data) {
+                      data = {
+                        etag: data.ETag,
+                        lastModified: data.LastModified
+                      };
+                    }
+                    return _context.abrupt("return", {
+                      data,
+                      res: result.res
+                    });
+                  case 18:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function copy(_x, _x2, _x3, _x4) {
               return _copy.apply(this, arguments);
             }
             return copy;
-          }();
+          })();
           proto._getSourceName = function _getSourceName(sourceName, bucketName) {
             if (typeof bucketName === "string") {
               sourceName = this._objectName(sourceName);
@@ -4049,38 +3969,37 @@ var require_aliyun_oss_sdk = __commonJS({
           require2("core-js/modules/es.object.assign.js");
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var proto = exports3;
-          proto.delete = /* @__PURE__ */ function() {
+          proto.delete = /* @__PURE__ */ (function() {
             var _delete2 = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name) {
               var options, params, result, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
-                      options.subres = Object.assign({}, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
-                      }
-                      params = this._objectRequestParams("DELETE", name, options);
-                      params.successStatuses = [204];
-                      _context.next = 7;
-                      return this.request(params);
-                    case 7:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res
-                      });
-                    case 9:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
+                    options.subres = Object.assign({}, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    params = this._objectRequestParams("DELETE", name, options);
+                    params.successStatuses = [204];
+                    _context.next = 7;
+                    return this.request(params);
+                  case 7:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res
+                    });
+                  case 9:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function _delete(_x) {
               return _delete2.apply(this, arguments);
             }
             return _delete;
-          }();
+          })();
         }, { "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.object.assign.js": 325 }], 34: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -4090,78 +4009,77 @@ var require_aliyun_oss_sdk = __commonJS({
           var utility = require2("utility");
           var _require = require2("../utils/obj2xml"), obj2xml = _require.obj2xml;
           var proto = exports3;
-          proto.deleteMulti = /* @__PURE__ */ function() {
+          proto.deleteMulti = /* @__PURE__ */ (function() {
             var _deleteMulti = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(names) {
               var options, objects, i, object, _names$i, key, versionId, paramXMLObj, paramXML, params, result, r, deleted, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
-                      objects = [];
-                      if (!(!names || !names.length)) {
-                        _context.next = 4;
-                        break;
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
+                    objects = [];
+                    if (!(!names || !names.length)) {
+                      _context.next = 4;
+                      break;
+                    }
+                    throw new Error("names is required");
+                  case 4:
+                    for (i = 0; i < names.length; i++) {
+                      object = {};
+                      if (typeof names[i] === "string") {
+                        object.Key = utility.escape(this._objectName(names[i]));
+                      } else {
+                        _names$i = names[i], key = _names$i.key, versionId = _names$i.versionId;
+                        object.Key = utility.escape(this._objectName(key));
+                        object.VersionId = versionId;
                       }
-                      throw new Error("names is required");
-                    case 4:
-                      for (i = 0; i < names.length; i++) {
-                        object = {};
-                        if (typeof names[i] === "string") {
-                          object.Key = utility.escape(this._objectName(names[i]));
-                        } else {
-                          _names$i = names[i], key = _names$i.key, versionId = _names$i.versionId;
-                          object.Key = utility.escape(this._objectName(key));
-                          object.VersionId = versionId;
-                        }
-                        objects.push(object);
+                      objects.push(object);
+                    }
+                    paramXMLObj = {
+                      Delete: {
+                        Quiet: !!options.quiet,
+                        Object: objects
                       }
-                      paramXMLObj = {
-                        Delete: {
-                          Quiet: !!options.quiet,
-                          Object: objects
-                        }
-                      };
-                      paramXML = obj2xml(paramXMLObj, {
-                        headers: true
-                      });
-                      options.subres = Object.assign({
-                        delete: ""
-                      }, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
+                    };
+                    paramXML = obj2xml(paramXMLObj, {
+                      headers: true
+                    });
+                    options.subres = Object.assign({
+                      delete: ""
+                    }, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    params = this._objectRequestParams("POST", "", options);
+                    params.mime = "xml";
+                    params.content = paramXML;
+                    params.xmlResponse = true;
+                    params.successStatuses = [200];
+                    _context.next = 16;
+                    return this.request(params);
+                  case 16:
+                    result = _context.sent;
+                    r = result.data;
+                    deleted = r && r.Deleted || null;
+                    if (deleted) {
+                      if (!Array.isArray(deleted)) {
+                        deleted = [deleted];
                       }
-                      params = this._objectRequestParams("POST", "", options);
-                      params.mime = "xml";
-                      params.content = paramXML;
-                      params.xmlResponse = true;
-                      params.successStatuses = [200];
-                      _context.next = 16;
-                      return this.request(params);
-                    case 16:
-                      result = _context.sent;
-                      r = result.data;
-                      deleted = r && r.Deleted || null;
-                      if (deleted) {
-                        if (!Array.isArray(deleted)) {
-                          deleted = [deleted];
-                        }
-                      }
-                      return _context.abrupt("return", {
-                        res: result.res,
-                        deleted: deleted || []
-                      });
-                    case 21:
-                    case "end":
-                      return _context.stop();
-                  }
+                    }
+                    return _context.abrupt("return", {
+                      res: result.res,
+                      deleted: deleted || []
+                    });
+                  case 21:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function deleteMulti(_x) {
               return _deleteMulti.apply(this, arguments);
             }
             return deleteMulti;
-          }();
+          })();
         }, { "../utils/obj2xml": 76, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.object.assign.js": 325, "utility": 545 }], 35: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -4169,42 +4087,41 @@ var require_aliyun_oss_sdk = __commonJS({
           require2("core-js/modules/es.object.assign.js");
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var proto = exports3;
-          proto.deleteObjectTagging = /* @__PURE__ */ function() {
+          proto.deleteObjectTagging = /* @__PURE__ */ (function() {
             var _deleteObjectTagging = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name) {
               var options, params, result, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
-                      options.subres = Object.assign({
-                        tagging: ""
-                      }, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
-                      }
-                      name = this._objectName(name);
-                      params = this._objectRequestParams("DELETE", name, options);
-                      params.successStatuses = [204];
-                      _context.next = 8;
-                      return this.request(params);
-                    case 8:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        status: result.status,
-                        res: result.res
-                      });
-                    case 10:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
+                    options.subres = Object.assign({
+                      tagging: ""
+                    }, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    name = this._objectName(name);
+                    params = this._objectRequestParams("DELETE", name, options);
+                    params.successStatuses = [204];
+                    _context.next = 8;
+                    return this.request(params);
+                  case 8:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      status: result.status,
+                      res: result.res
+                    });
+                  case 10:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function deleteObjectTagging(_x) {
               return _deleteObjectTagging.apply(this, arguments);
             }
             return deleteObjectTagging;
-          }();
+          })();
         }, { "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.object.assign.js": 325 }], 36: [function(require2, module4, exports3) {
           "use strict";
           require2("core-js/modules/es.array.concat.js");
@@ -4239,78 +4156,77 @@ var require_aliyun_oss_sdk = __commonJS({
               var is = require2("is-type-of");
               var _require = require2("../utils/isObject"), isObject = _require.isObject;
               var proto = exports3;
-              proto.get = /* @__PURE__ */ function() {
+              proto.get = /* @__PURE__ */ (function() {
                 var _get = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, file) {
                   var options, writeStream, needDestroy, isBrowserEnv, responseCacheControl, defaultSubresOptions, result, params, _args = arguments;
                   return _regenerator.default.wrap(function _callee$(_context) {
-                    while (1)
-                      switch (_context.prev = _context.next) {
-                        case 0:
-                          options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
-                          writeStream = null;
-                          needDestroy = false;
-                          if (is.writableStream(file)) {
-                            writeStream = file;
-                          } else if (is.string(file)) {
-                            writeStream = fs2.createWriteStream(file);
-                            needDestroy = true;
-                          } else if (isObject(file)) {
-                            options = file;
-                          }
-                          options = options || {};
-                          isBrowserEnv = process && process.browser;
-                          responseCacheControl = options.responseCacheControl === null ? "" : "no-cache";
-                          defaultSubresOptions = isBrowserEnv && responseCacheControl ? {
-                            "response-cache-control": responseCacheControl
-                          } : {};
-                          options.subres = Object.assign(defaultSubresOptions, options.subres);
-                          if (options.versionId) {
-                            options.subres.versionId = options.versionId;
-                          }
-                          if (options.process) {
-                            options.subres["x-oss-process"] = options.process;
-                          }
-                          _context.prev = 11;
-                          params = this._objectRequestParams("GET", name, options);
-                          params.writeStream = writeStream;
-                          params.successStatuses = [200, 206, 304];
-                          _context.next = 17;
-                          return this.request(params);
-                        case 17:
-                          result = _context.sent;
-                          if (needDestroy) {
-                            writeStream.destroy();
-                          }
-                          _context.next = 28;
-                          break;
-                        case 21:
-                          _context.prev = 21;
-                          _context.t0 = _context["catch"](11);
-                          if (!needDestroy) {
-                            _context.next = 27;
-                            break;
-                          }
+                    while (1) switch (_context.prev = _context.next) {
+                      case 0:
+                        options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
+                        writeStream = null;
+                        needDestroy = false;
+                        if (is.writableStream(file)) {
+                          writeStream = file;
+                        } else if (is.string(file)) {
+                          writeStream = fs2.createWriteStream(file);
+                          needDestroy = true;
+                        } else if (isObject(file)) {
+                          options = file;
+                        }
+                        options = options || {};
+                        isBrowserEnv = process && process.browser;
+                        responseCacheControl = options.responseCacheControl === null ? "" : "no-cache";
+                        defaultSubresOptions = isBrowserEnv && responseCacheControl ? {
+                          "response-cache-control": responseCacheControl
+                        } : {};
+                        options.subres = Object.assign(defaultSubresOptions, options.subres);
+                        if (options.versionId) {
+                          options.subres.versionId = options.versionId;
+                        }
+                        if (options.process) {
+                          options.subres["x-oss-process"] = options.process;
+                        }
+                        _context.prev = 11;
+                        params = this._objectRequestParams("GET", name, options);
+                        params.writeStream = writeStream;
+                        params.successStatuses = [200, 206, 304];
+                        _context.next = 17;
+                        return this.request(params);
+                      case 17:
+                        result = _context.sent;
+                        if (needDestroy) {
                           writeStream.destroy();
+                        }
+                        _context.next = 28;
+                        break;
+                      case 21:
+                        _context.prev = 21;
+                        _context.t0 = _context["catch"](11);
+                        if (!needDestroy) {
                           _context.next = 27;
-                          return this._deleteFileSafe(file);
-                        case 27:
-                          throw _context.t0;
-                        case 28:
-                          return _context.abrupt("return", {
-                            res: result.res,
-                            content: result.data
-                          });
-                        case 29:
-                        case "end":
-                          return _context.stop();
-                      }
+                          break;
+                        }
+                        writeStream.destroy();
+                        _context.next = 27;
+                        return this._deleteFileSafe(file);
+                      case 27:
+                        throw _context.t0;
+                      case 28:
+                        return _context.abrupt("return", {
+                          res: result.res,
+                          content: result.data
+                        });
+                      case 29:
+                      case "end":
+                        return _context.stop();
+                    }
                   }, _callee, this, [[11, 21]]);
                 }));
                 function get(_x, _x2) {
                   return _get.apply(this, arguments);
                 }
                 return get;
-              }();
+              })();
             }).call(this);
           }).call(this, require2("_process"));
         }, { "../utils/isObject": 74, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "_process": 538, "core-js/modules/es.object.assign.js": 325, "fs": 102, "is-type-of": 537 }], 38: [function(require2, module4, exports3) {
@@ -4320,47 +4236,46 @@ var require_aliyun_oss_sdk = __commonJS({
           require2("core-js/modules/es.object.assign.js");
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var proto = exports3;
-          proto.getACL = /* @__PURE__ */ function() {
+          proto.getACL = /* @__PURE__ */ (function() {
             var _getACL = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name) {
               var options, params, result, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
-                      options.subres = Object.assign({
-                        acl: ""
-                      }, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
-                      }
-                      name = this._objectName(name);
-                      params = this._objectRequestParams("GET", name, options);
-                      params.successStatuses = [200];
-                      params.xmlResponse = true;
-                      _context.next = 9;
-                      return this.request(params);
-                    case 9:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        acl: result.data.AccessControlList.Grant,
-                        owner: {
-                          id: result.data.Owner.ID,
-                          displayName: result.data.Owner.DisplayName
-                        },
-                        res: result.res
-                      });
-                    case 11:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
+                    options.subres = Object.assign({
+                      acl: ""
+                    }, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    name = this._objectName(name);
+                    params = this._objectRequestParams("GET", name, options);
+                    params.successStatuses = [200];
+                    params.xmlResponse = true;
+                    _context.next = 9;
+                    return this.request(params);
+                  case 9:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      acl: result.data.AccessControlList.Grant,
+                      owner: {
+                        id: result.data.Owner.ID,
+                        displayName: result.data.Owner.DisplayName
+                      },
+                      res: result.res
+                    });
+                  case 11:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function getACL(_x) {
               return _getACL.apply(this, arguments);
             }
             return getACL;
-          }();
+          })();
         }, { "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.object.assign.js": 325 }], 39: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -4387,99 +4302,98 @@ var require_aliyun_oss_sdk = __commonJS({
             _getBucketVersions = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee() {
               var query, options, params, result, objects, deleteMarker, that, prefixes, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      query = _args.length > 0 && _args[0] !== void 0 ? _args[0] : {};
-                      options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
-                      if (!(query.versionIdMarker && query.keyMarker === void 0)) {
-                        _context.next = 4;
-                        break;
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    query = _args.length > 0 && _args[0] !== void 0 ? _args[0] : {};
+                    options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
+                    if (!(query.versionIdMarker && query.keyMarker === void 0)) {
+                      _context.next = 4;
+                      break;
+                    }
+                    throw new Error("A version-id marker cannot be specified without a key marker");
+                  case 4:
+                    options.subres = Object.assign({
+                      versions: ""
+                    }, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    params = this._objectRequestParams("GET", "", options);
+                    params.xmlResponse = true;
+                    params.successStatuses = [200];
+                    params.query = formatQuery(query);
+                    _context.next = 12;
+                    return this.request(params);
+                  case 12:
+                    result = _context.sent;
+                    objects = result.data.Version || [];
+                    deleteMarker = result.data.DeleteMarker || [];
+                    that = this;
+                    if (objects) {
+                      if (!Array.isArray(objects)) {
+                        objects = [objects];
                       }
-                      throw new Error("A version-id marker cannot be specified without a key marker");
-                    case 4:
-                      options.subres = Object.assign({
-                        versions: ""
-                      }, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
-                      }
-                      params = this._objectRequestParams("GET", "", options);
-                      params.xmlResponse = true;
-                      params.successStatuses = [200];
-                      params.query = formatQuery(query);
-                      _context.next = 12;
-                      return this.request(params);
-                    case 12:
-                      result = _context.sent;
-                      objects = result.data.Version || [];
-                      deleteMarker = result.data.DeleteMarker || [];
-                      that = this;
-                      if (objects) {
-                        if (!Array.isArray(objects)) {
-                          objects = [objects];
-                        }
-                        objects = objects.map(function(obj) {
-                          return {
-                            name: obj.Key,
-                            url: that._objectUrl(obj.Key),
-                            lastModified: obj.LastModified,
-                            isLatest: obj.IsLatest === "true",
-                            versionId: obj.VersionId,
-                            etag: obj.ETag,
-                            type: obj.Type,
-                            size: Number(obj.Size),
-                            storageClass: obj.StorageClass,
-                            owner: {
-                              id: obj.Owner.ID,
-                              displayName: obj.Owner.DisplayName
-                            },
-                            restoreInfo: parseRestoreInfo(obj.RestoreInfo)
-                          };
-                        });
-                      }
-                      if (deleteMarker) {
-                        if (!isArray(deleteMarker)) {
-                          deleteMarker = [deleteMarker];
-                        }
-                        deleteMarker = deleteMarker.map(function(obj) {
-                          return {
-                            name: obj.Key,
-                            lastModified: obj.LastModified,
-                            versionId: obj.VersionId,
-                            owner: {
-                              id: obj.Owner.ID,
-                              displayName: obj.Owner.DisplayName
-                            }
-                          };
-                        });
-                      }
-                      prefixes = result.data.CommonPrefixes || null;
-                      if (prefixes) {
-                        if (!isArray(prefixes)) {
-                          prefixes = [prefixes];
-                        }
-                        prefixes = prefixes.map(function(item) {
-                          return item.Prefix;
-                        });
-                      }
-                      return _context.abrupt("return", {
-                        res: result.res,
-                        objects,
-                        deleteMarker,
-                        prefixes,
-                        // attirbute of legacy error
-                        nextMarker: result.data.NextKeyMarker || null,
-                        // attirbute of legacy error
-                        NextVersionIdMarker: result.data.NextVersionIdMarker || null,
-                        nextKeyMarker: result.data.NextKeyMarker || null,
-                        nextVersionIdMarker: result.data.NextVersionIdMarker || null,
-                        isTruncated: result.data.IsTruncated === "true"
+                      objects = objects.map(function(obj) {
+                        return {
+                          name: obj.Key,
+                          url: that._objectUrl(obj.Key),
+                          lastModified: obj.LastModified,
+                          isLatest: obj.IsLatest === "true",
+                          versionId: obj.VersionId,
+                          etag: obj.ETag,
+                          type: obj.Type,
+                          size: Number(obj.Size),
+                          storageClass: obj.StorageClass,
+                          owner: {
+                            id: obj.Owner.ID,
+                            displayName: obj.Owner.DisplayName
+                          },
+                          restoreInfo: parseRestoreInfo(obj.RestoreInfo)
+                        };
                       });
-                    case 21:
-                    case "end":
-                      return _context.stop();
-                  }
+                    }
+                    if (deleteMarker) {
+                      if (!isArray(deleteMarker)) {
+                        deleteMarker = [deleteMarker];
+                      }
+                      deleteMarker = deleteMarker.map(function(obj) {
+                        return {
+                          name: obj.Key,
+                          lastModified: obj.LastModified,
+                          versionId: obj.VersionId,
+                          owner: {
+                            id: obj.Owner.ID,
+                            displayName: obj.Owner.DisplayName
+                          }
+                        };
+                      });
+                    }
+                    prefixes = result.data.CommonPrefixes || null;
+                    if (prefixes) {
+                      if (!isArray(prefixes)) {
+                        prefixes = [prefixes];
+                      }
+                      prefixes = prefixes.map(function(item) {
+                        return item.Prefix;
+                      });
+                    }
+                    return _context.abrupt("return", {
+                      res: result.res,
+                      objects,
+                      deleteMarker,
+                      prefixes,
+                      // attirbute of legacy error
+                      nextMarker: result.data.NextKeyMarker || null,
+                      // attirbute of legacy error
+                      NextVersionIdMarker: result.data.NextVersionIdMarker || null,
+                      nextKeyMarker: result.data.NextKeyMarker || null,
+                      nextVersionIdMarker: result.data.NextVersionIdMarker || null,
+                      isTruncated: result.data.IsTruncated === "true"
+                    });
+                  case 21:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             return _getBucketVersions.apply(this, arguments);
@@ -4504,42 +4418,41 @@ var require_aliyun_oss_sdk = __commonJS({
           require2("core-js/modules/es.object.assign.js");
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var proto = exports3;
-          proto.getObjectMeta = /* @__PURE__ */ function() {
+          proto.getObjectMeta = /* @__PURE__ */ (function() {
             var _getObjectMeta = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = options || {};
-                      name = this._objectName(name);
-                      options.subres = Object.assign({
-                        objectMeta: ""
-                      }, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
-                      }
-                      params = this._objectRequestParams("HEAD", name, options);
-                      params.successStatuses = [200];
-                      _context.next = 8;
-                      return this.request(params);
-                    case 8:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        status: result.status,
-                        res: result.res
-                      });
-                    case 10:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = options || {};
+                    name = this._objectName(name);
+                    options.subres = Object.assign({
+                      objectMeta: ""
+                    }, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    params = this._objectRequestParams("HEAD", name, options);
+                    params.successStatuses = [200];
+                    _context.next = 8;
+                    return this.request(params);
+                  case 8:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      status: result.status,
+                      res: result.res
+                    });
+                  case 10:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function getObjectMeta(_x, _x2) {
               return _getObjectMeta.apply(this, arguments);
             }
             return getObjectMeta;
-          }();
+          })();
         }, { "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.object.assign.js": 325 }], 41: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -4550,53 +4463,52 @@ var require_aliyun_oss_sdk = __commonJS({
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var proto = exports3;
           var _require = require2("../utils/isObject"), isObject = _require.isObject;
-          proto.getObjectTagging = /* @__PURE__ */ function() {
+          proto.getObjectTagging = /* @__PURE__ */ (function() {
             var _getObjectTagging = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name) {
               var options, params, result, Tagging, Tag, tag, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
-                      options.subres = Object.assign({
-                        tagging: ""
-                      }, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
-                      }
-                      name = this._objectName(name);
-                      params = this._objectRequestParams("GET", name, options);
-                      params.successStatuses = [200];
-                      _context.next = 8;
-                      return this.request(params);
-                    case 8:
-                      result = _context.sent;
-                      _context.next = 11;
-                      return this.parseXML(result.data);
-                    case 11:
-                      Tagging = _context.sent;
-                      Tag = Tagging.TagSet.Tag;
-                      Tag = Tag && isObject(Tag) ? [Tag] : Tag || [];
-                      tag = {};
-                      Tag.forEach(function(item) {
-                        tag[item.Key] = item.Value;
-                      });
-                      return _context.abrupt("return", {
-                        status: result.status,
-                        res: result.res,
-                        tag
-                      });
-                    case 17:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
+                    options.subres = Object.assign({
+                      tagging: ""
+                    }, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    name = this._objectName(name);
+                    params = this._objectRequestParams("GET", name, options);
+                    params.successStatuses = [200];
+                    _context.next = 8;
+                    return this.request(params);
+                  case 8:
+                    result = _context.sent;
+                    _context.next = 11;
+                    return this.parseXML(result.data);
+                  case 11:
+                    Tagging = _context.sent;
+                    Tag = Tagging.TagSet.Tag;
+                    Tag = Tag && isObject(Tag) ? [Tag] : Tag || [];
+                    tag = {};
+                    Tag.forEach(function(item) {
+                      tag[item.Key] = item.Value;
+                    });
+                    return _context.abrupt("return", {
+                      status: result.status,
+                      res: result.res,
+                      tag
+                    });
+                  case 17:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function getObjectTagging(_x) {
               return _getObjectTagging.apply(this, arguments);
             }
             return getObjectTagging;
-          }();
+          })();
         }, { "../utils/isObject": 74, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.object.assign.js": 325, "core-js/modules/es.object.to-string.js": 329, "core-js/modules/web.dom-collections.for-each.js": 380 }], 42: [function(require2, module4, exports3) {
           "use strict";
           var _require = require2("../utils/isIP"), isIP = _require.isIP;
@@ -4619,43 +4531,42 @@ var require_aliyun_oss_sdk = __commonJS({
           require2("core-js/modules/es.object.assign.js");
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var proto = exports3;
-          proto.getSymlink = /* @__PURE__ */ function() {
+          proto.getSymlink = /* @__PURE__ */ (function() {
             var _getSymlink = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name) {
               var options, params, result, target, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
-                      options.subres = Object.assign({
-                        symlink: ""
-                      }, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
-                      }
-                      name = this._objectName(name);
-                      params = this._objectRequestParams("GET", name, options);
-                      params.successStatuses = [200];
-                      _context.next = 8;
-                      return this.request(params);
-                    case 8:
-                      result = _context.sent;
-                      target = result.res.headers["x-oss-symlink-target"];
-                      return _context.abrupt("return", {
-                        targetName: decodeURIComponent(target),
-                        res: result.res
-                      });
-                    case 11:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
+                    options.subres = Object.assign({
+                      symlink: ""
+                    }, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    name = this._objectName(name);
+                    params = this._objectRequestParams("GET", name, options);
+                    params.successStatuses = [200];
+                    _context.next = 8;
+                    return this.request(params);
+                  case 8:
+                    result = _context.sent;
+                    target = result.res.headers["x-oss-symlink-target"];
+                    return _context.abrupt("return", {
+                      targetName: decodeURIComponent(target),
+                      res: result.res
+                    });
+                  case 11:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function getSymlink(_x) {
               return _getSymlink.apply(this, arguments);
             }
             return getSymlink;
-          }();
+          })();
         }, { "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.object.assign.js": 325 }], 44: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -4667,52 +4578,51 @@ var require_aliyun_oss_sdk = __commonJS({
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var _require = require2("../utils/checkEnv"), checkEnv = _require.checkEnv;
           var proto = exports3;
-          proto.head = /* @__PURE__ */ function() {
+          proto.head = /* @__PURE__ */ (function() {
             var _head = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name) {
               var options, params, result, data, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
-                      checkEnv("Because HeadObject has gzip enabled, head cannot get the file size correctly. If you need to get the file size, please use getObjectMeta");
-                      options.subres = Object.assign({}, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
-                      }
-                      params = this._objectRequestParams("HEAD", name, options);
-                      params.successStatuses = [200, 304];
-                      _context.next = 8;
-                      return this.request(params);
-                    case 8:
-                      result = _context.sent;
-                      data = {
-                        meta: null,
-                        res: result.res,
-                        status: result.status
-                      };
-                      if (result.status === 200) {
-                        Object.keys(result.headers).forEach(function(k) {
-                          if (k.indexOf("x-oss-meta-") === 0) {
-                            if (!data.meta) {
-                              data.meta = {};
-                            }
-                            data.meta[k.substring(11)] = result.headers[k];
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 1 && _args[1] !== void 0 ? _args[1] : {};
+                    checkEnv("Because HeadObject has gzip enabled, head cannot get the file size correctly. If you need to get the file size, please use getObjectMeta");
+                    options.subres = Object.assign({}, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    params = this._objectRequestParams("HEAD", name, options);
+                    params.successStatuses = [200, 304];
+                    _context.next = 8;
+                    return this.request(params);
+                  case 8:
+                    result = _context.sent;
+                    data = {
+                      meta: null,
+                      res: result.res,
+                      status: result.status
+                    };
+                    if (result.status === 200) {
+                      Object.keys(result.headers).forEach(function(k) {
+                        if (k.indexOf("x-oss-meta-") === 0) {
+                          if (!data.meta) {
+                            data.meta = {};
                           }
-                        });
-                      }
-                      return _context.abrupt("return", data);
-                    case 12:
-                    case "end":
-                      return _context.stop();
-                  }
+                          data.meta[k.substring(11)] = result.headers[k];
+                        }
+                      });
+                    }
+                    return _context.abrupt("return", data);
+                  case 12:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function head(_x) {
               return _head.apply(this, arguments);
             }
             return head;
-          }();
+          })();
         }, { "../utils/checkEnv": 55, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.object.assign.js": 325, "core-js/modules/es.object.keys.js": 328, "core-js/modules/es.object.to-string.js": 329, "core-js/modules/web.dom-collections.for-each.js": 380 }], 45: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -4720,43 +4630,42 @@ var require_aliyun_oss_sdk = __commonJS({
           require2("core-js/modules/es.object.assign.js");
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var proto = exports3;
-          proto.putACL = /* @__PURE__ */ function() {
+          proto.putACL = /* @__PURE__ */ (function() {
             var _putACL = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, acl, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = options || {};
-                      options.subres = Object.assign({
-                        acl: ""
-                      }, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
-                      }
-                      options.headers = options.headers || {};
-                      options.headers["x-oss-object-acl"] = acl;
-                      name = this._objectName(name);
-                      params = this._objectRequestParams("PUT", name, options);
-                      params.successStatuses = [200];
-                      _context.next = 10;
-                      return this.request(params);
-                    case 10:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res
-                      });
-                    case 12:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = options || {};
+                    options.subres = Object.assign({
+                      acl: ""
+                    }, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    options.headers = options.headers || {};
+                    options.headers["x-oss-object-acl"] = acl;
+                    name = this._objectName(name);
+                    params = this._objectRequestParams("PUT", name, options);
+                    params.successStatuses = [200];
+                    _context.next = 10;
+                    return this.request(params);
+                  case 10:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res
+                    });
+                  case 12:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function putACL(_x, _x2, _x3) {
               return _putACL.apply(this, arguments);
             }
             return putACL;
-          }();
+          })();
         }, { "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.object.assign.js": 325 }], 46: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -4768,58 +4677,57 @@ var require_aliyun_oss_sdk = __commonJS({
           var _require = require2("../utils/obj2xml"), obj2xml = _require.obj2xml;
           var _require2 = require2("../utils/checkObjectTag"), checkObjectTag = _require2.checkObjectTag;
           var proto = exports3;
-          proto.putObjectTagging = /* @__PURE__ */ function() {
+          proto.putObjectTagging = /* @__PURE__ */ (function() {
             var _putObjectTagging = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, tag) {
               var options, params, paramXMLObj, result, _args = arguments;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
-                      checkObjectTag(tag);
-                      options.subres = Object.assign({
-                        tagging: ""
-                      }, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
-                      }
-                      name = this._objectName(name);
-                      params = this._objectRequestParams("PUT", name, options);
-                      params.successStatuses = [200];
-                      tag = Object.keys(tag).map(function(key) {
-                        return {
-                          Key: key,
-                          Value: tag[key]
-                        };
-                      });
-                      paramXMLObj = {
-                        Tagging: {
-                          TagSet: {
-                            Tag: tag
-                          }
-                        }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = _args.length > 2 && _args[2] !== void 0 ? _args[2] : {};
+                    checkObjectTag(tag);
+                    options.subres = Object.assign({
+                      tagging: ""
+                    }, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    name = this._objectName(name);
+                    params = this._objectRequestParams("PUT", name, options);
+                    params.successStatuses = [200];
+                    tag = Object.keys(tag).map(function(key) {
+                      return {
+                        Key: key,
+                        Value: tag[key]
                       };
-                      params.mime = "xml";
-                      params.content = obj2xml(paramXMLObj);
-                      _context.next = 13;
-                      return this.request(params);
-                    case 13:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res,
-                        status: result.status
-                      });
-                    case 15:
-                    case "end":
-                      return _context.stop();
-                  }
+                    });
+                    paramXMLObj = {
+                      Tagging: {
+                        TagSet: {
+                          Tag: tag
+                        }
+                      }
+                    };
+                    params.mime = "xml";
+                    params.content = obj2xml(paramXMLObj);
+                    _context.next = 13;
+                    return this.request(params);
+                  case 13:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res,
+                      status: result.status
+                    });
+                  case 15:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function putObjectTagging(_x, _x2) {
               return _putObjectTagging.apply(this, arguments);
             }
             return putObjectTagging;
-          }();
+          })();
         }, { "../utils/checkObjectTag": 56, "../utils/obj2xml": 76, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.array.map.js": 318, "core-js/modules/es.object.assign.js": 325, "core-js/modules/es.object.keys.js": 328 }], 47: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -4827,48 +4735,47 @@ var require_aliyun_oss_sdk = __commonJS({
           require2("core-js/modules/es.object.assign.js");
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var proto = exports3;
-          proto.putSymlink = /* @__PURE__ */ function() {
+          proto.putSymlink = /* @__PURE__ */ (function() {
             var _putSymlink = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(name, targetName, options) {
               var params, result;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      options = options || {};
-                      options.headers = options.headers || {};
-                      targetName = this._escape(this._objectName(targetName));
-                      this._convertMetaToHeaders(options.meta, options.headers);
-                      options.headers["x-oss-symlink-target"] = targetName;
-                      options.subres = Object.assign({
-                        symlink: ""
-                      }, options.subres);
-                      if (options.versionId) {
-                        options.subres.versionId = options.versionId;
-                      }
-                      if (options.storageClass) {
-                        options.headers["x-oss-storage-class"] = options.storageClass;
-                      }
-                      name = this._objectName(name);
-                      params = this._objectRequestParams("PUT", name, options);
-                      params.successStatuses = [200];
-                      _context.next = 13;
-                      return this.request(params);
-                    case 13:
-                      result = _context.sent;
-                      return _context.abrupt("return", {
-                        res: result.res
-                      });
-                    case 15:
-                    case "end":
-                      return _context.stop();
-                  }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    options = options || {};
+                    options.headers = options.headers || {};
+                    targetName = this._escape(this._objectName(targetName));
+                    this._convertMetaToHeaders(options.meta, options.headers);
+                    options.headers["x-oss-symlink-target"] = targetName;
+                    options.subres = Object.assign({
+                      symlink: ""
+                    }, options.subres);
+                    if (options.versionId) {
+                      options.subres.versionId = options.versionId;
+                    }
+                    if (options.storageClass) {
+                      options.headers["x-oss-storage-class"] = options.storageClass;
+                    }
+                    name = this._objectName(name);
+                    params = this._objectRequestParams("PUT", name, options);
+                    params.successStatuses = [200];
+                    _context.next = 13;
+                    return this.request(params);
+                  case 13:
+                    result = _context.sent;
+                    return _context.abrupt("return", {
+                      res: result.res
+                    });
+                  case 15:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function putSymlink(_x, _x2, _x3) {
               return _putSymlink.apply(this, arguments);
             }
             return putSymlink;
-          }();
+          })();
         }, { "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.object.assign.js": 325 }], 48: [function(require2, module4, exports3) {
           (function(Buffer2) {
             (function() {
@@ -4951,62 +4858,61 @@ var require_aliyun_oss_sdk = __commonJS({
           var _require2 = require2("../utils/isFunction"), isFunction = _require2.isFunction;
           var _require3 = require2("../utils/getStandardRegion"), getStandardRegion = _require3.getStandardRegion;
           var proto = exports3;
-          proto.signatureUrlV4 = /* @__PURE__ */ function() {
+          proto.signatureUrlV4 = /* @__PURE__ */ (function() {
             var _signatureUrlV = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(method, expires, request, objectName, additionalHeaders) {
               var cloudBoxId, product, signRegion, headers, queries, date, formattedDate, onlyDate, fixedAdditionalHeaders, canonicalRequest, stringToSign, signedUrl;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      cloudBoxId = this.options.cloudBoxId;
-                      product = signHelper.getProduct(cloudBoxId);
-                      signRegion = signHelper.getSignRegion(getStandardRegion(this.options.region), cloudBoxId);
-                      headers = request && request.headers || {};
-                      queries = Object.assign({}, request && request.queries || {});
-                      date = new Date();
-                      formattedDate = dateFormat(date, "UTC:yyyymmdd'T'HHMMss'Z'");
-                      onlyDate = formattedDate.split("T")[0];
-                      fixedAdditionalHeaders = signHelper.fixAdditionalHeaders(additionalHeaders);
-                      if (fixedAdditionalHeaders.length > 0) {
-                        queries["x-oss-additional-headers"] = fixedAdditionalHeaders.join(";");
-                      }
-                      queries["x-oss-credential"] = signHelper.getCredential(onlyDate, signRegion, this.options.accessKeyId, product);
-                      queries["x-oss-date"] = formattedDate;
-                      queries["x-oss-expires"] = expires;
-                      queries["x-oss-signature-version"] = "OSS4-HMAC-SHA256";
-                      if (!(this.options.stsToken && isFunction(this.options.refreshSTSToken))) {
-                        _context.next = 17;
-                        break;
-                      }
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    cloudBoxId = this.options.cloudBoxId;
+                    product = signHelper.getProduct(cloudBoxId);
+                    signRegion = signHelper.getSignRegion(getStandardRegion(this.options.region), cloudBoxId);
+                    headers = request && request.headers || {};
+                    queries = Object.assign({}, request && request.queries || {});
+                    date = /* @__PURE__ */ new Date();
+                    formattedDate = dateFormat(date, "UTC:yyyymmdd'T'HHMMss'Z'");
+                    onlyDate = formattedDate.split("T")[0];
+                    fixedAdditionalHeaders = signHelper.fixAdditionalHeaders(additionalHeaders);
+                    if (fixedAdditionalHeaders.length > 0) {
+                      queries["x-oss-additional-headers"] = fixedAdditionalHeaders.join(";");
+                    }
+                    queries["x-oss-credential"] = signHelper.getCredential(onlyDate, signRegion, this.options.accessKeyId, product);
+                    queries["x-oss-date"] = formattedDate;
+                    queries["x-oss-expires"] = expires;
+                    queries["x-oss-signature-version"] = "OSS4-HMAC-SHA256";
+                    if (!(this.options.stsToken && isFunction(this.options.refreshSTSToken))) {
                       _context.next = 17;
-                      return setSTSToken.call(this);
-                    case 17:
-                      if (this.options.stsToken) {
-                        queries["x-oss-security-token"] = this.options.stsToken;
-                      }
-                      canonicalRequest = signHelper.getCanonicalRequest(method, {
-                        headers,
-                        queries
-                      }, this.options.bucket, objectName, fixedAdditionalHeaders);
-                      stringToSign = signHelper.getStringToSign(signRegion, formattedDate, canonicalRequest, product);
-                      queries["x-oss-signature"] = signHelper.getSignatureV4(this.options.accessKeySecret, onlyDate, signRegion, stringToSign, product);
-                      signedUrl = urlUtil.parse(this._getReqUrl({
-                        bucket: this.options.bucket,
-                        object: objectName
-                      }));
-                      signedUrl.query = Object.assign({}, queries);
-                      return _context.abrupt("return", signedUrl.format());
-                    case 24:
-                    case "end":
-                      return _context.stop();
-                  }
+                      break;
+                    }
+                    _context.next = 17;
+                    return setSTSToken.call(this);
+                  case 17:
+                    if (this.options.stsToken) {
+                      queries["x-oss-security-token"] = this.options.stsToken;
+                    }
+                    canonicalRequest = signHelper.getCanonicalRequest(method, {
+                      headers,
+                      queries
+                    }, this.options.bucket, objectName, fixedAdditionalHeaders);
+                    stringToSign = signHelper.getStringToSign(signRegion, formattedDate, canonicalRequest, product);
+                    queries["x-oss-signature"] = signHelper.getSignatureV4(this.options.accessKeySecret, onlyDate, signRegion, stringToSign, product);
+                    signedUrl = urlUtil.parse(this._getReqUrl({
+                      bucket: this.options.bucket,
+                      object: objectName
+                    }));
+                    signedUrl.query = Object.assign({}, queries);
+                    return _context.abrupt("return", signedUrl.format());
+                  case 24:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             function signatureUrlV4(_x, _x2, _x3, _x4, _x5) {
               return _signatureUrlV.apply(this, arguments);
             }
             return signatureUrlV4;
-          }();
+          })();
         }, { "../../common/signUtils": 52, "../utils/getStandardRegion": 65, "../utils/isFunction": 72, "../utils/setSTSToken": 82, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.array.join.js": 317, "core-js/modules/es.object.assign.js": 325, "dateformat": 383, "url": 543 }], 51: [function(require2, module4, exports3) {
           "use strict";
           var _interopRequireDefault = require2("@babel/runtime/helpers/interopRequireDefault");
@@ -5021,71 +4927,70 @@ var require_aliyun_oss_sdk = __commonJS({
           var _asyncToGenerator2 = _interopRequireDefault(require2("@babel/runtime/helpers/asyncToGenerator"));
           var _require = require2("./utils/isArray"), isArray = _require.isArray;
           var proto = exports3;
-          proto._parallelNode = /* @__PURE__ */ function() {
+          proto._parallelNode = /* @__PURE__ */ (function() {
             var _parallelNode2 = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee(todo, parallel, fn, sourceData) {
               var that, jobErr, jobs, tempBatch, remainder, batch, taskIndex, i;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      that = this;
-                      jobErr = [];
-                      jobs = [];
-                      tempBatch = todo.length / parallel;
-                      remainder = todo.length % parallel;
-                      batch = remainder === 0 ? tempBatch : (todo.length - remainder) / parallel + 1;
-                      taskIndex = 1;
-                      i = 0;
-                    case 8:
-                      if (!(i < todo.length)) {
-                        _context.next = 26;
-                        break;
-                      }
-                      if (!that.isCancel()) {
-                        _context.next = 11;
-                        break;
-                      }
-                      return _context.abrupt("break", 26);
-                    case 11:
-                      if (sourceData) {
-                        jobs.push(fn(that, todo[i], sourceData));
-                      } else {
-                        jobs.push(fn(that, todo[i]));
-                      }
-                      if (!(jobs.length === parallel || taskIndex === batch && i === todo.length - 1)) {
-                        _context.next = 23;
-                        break;
-                      }
-                      _context.prev = 13;
-                      taskIndex += 1;
-                      _context.next = 17;
-                      return Promise.all(jobs);
-                    case 17:
-                      _context.next = 22;
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    that = this;
+                    jobErr = [];
+                    jobs = [];
+                    tempBatch = todo.length / parallel;
+                    remainder = todo.length % parallel;
+                    batch = remainder === 0 ? tempBatch : (todo.length - remainder) / parallel + 1;
+                    taskIndex = 1;
+                    i = 0;
+                  case 8:
+                    if (!(i < todo.length)) {
+                      _context.next = 26;
                       break;
-                    case 19:
-                      _context.prev = 19;
-                      _context.t0 = _context["catch"](13);
-                      jobErr.push(_context.t0);
-                    case 22:
-                      jobs = [];
-                    case 23:
-                      i++;
-                      _context.next = 8;
+                    }
+                    if (!that.isCancel()) {
+                      _context.next = 11;
                       break;
-                    case 26:
-                      return _context.abrupt("return", jobErr);
-                    case 27:
-                    case "end":
-                      return _context.stop();
-                  }
+                    }
+                    return _context.abrupt("break", 26);
+                  case 11:
+                    if (sourceData) {
+                      jobs.push(fn(that, todo[i], sourceData));
+                    } else {
+                      jobs.push(fn(that, todo[i]));
+                    }
+                    if (!(jobs.length === parallel || taskIndex === batch && i === todo.length - 1)) {
+                      _context.next = 23;
+                      break;
+                    }
+                    _context.prev = 13;
+                    taskIndex += 1;
+                    _context.next = 17;
+                    return Promise.all(jobs);
+                  case 17:
+                    _context.next = 22;
+                    break;
+                  case 19:
+                    _context.prev = 19;
+                    _context.t0 = _context["catch"](13);
+                    jobErr.push(_context.t0);
+                  case 22:
+                    jobs = [];
+                  case 23:
+                    i++;
+                    _context.next = 8;
+                    break;
+                  case 26:
+                    return _context.abrupt("return", jobErr);
+                  case 27:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this, [[13, 19]]);
             }));
             function _parallelNode(_x, _x2, _x3, _x4) {
               return _parallelNode2.apply(this, arguments);
             }
             return _parallelNode;
-          }();
+          })();
           proto._parallel = function _parallel(todo, parallel, jobPromise) {
             var that = this;
             return new Promise(function(resolve) {
@@ -5096,8 +5001,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               function onlyOnce(fn) {
                 return function() {
-                  if (fn === null)
-                    throw new Error("Callback was already called.");
+                  if (fn === null) throw new Error("Callback was already called.");
                   var callFn = fn;
                   fn = null;
                   for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
@@ -5235,13 +5139,11 @@ var require_aliyun_oss_sdk = __commonJS({
               var _require = require2("./utils/lowercaseKeyHeader"), lowercaseKeyHeader = _require.lowercaseKeyHeader;
               var _require2 = require2("./utils/encodeString"), encodeString = _require2.encodeString;
               exports3.getProduct = function getProduct(cloudBoxId) {
-                if (cloudBoxId === void 0)
-                  return "oss";
+                if (cloudBoxId === void 0) return "oss";
                 return "oss-cloudbox";
               };
               exports3.getSignRegion = function getSignRegion(region, cloudBoxId) {
-                if (cloudBoxId === void 0)
-                  return region;
+                if (cloudBoxId === void 0) return region;
                 return cloudBoxId;
               };
               exports3.buildCanonicalizedResource = function buildCanonicalizedResource(resourcePath, parameters) {
@@ -5633,9 +5535,9 @@ var require_aliyun_oss_sdk = __commonJS({
                 delete headers[name.toLowerCase()];
               }
               function createRequest(params) {
-                var date = new Date();
+                var date = /* @__PURE__ */ new Date();
                 if (this.options.amendTimeSkewed) {
-                  date = +new Date() + this.options.amendTimeSkewed;
+                  date = +/* @__PURE__ */ new Date() + this.options.amendTimeSkewed;
                 }
                 var headers = {
                   "x-oss-date": dateFormat(date, this.options.authorizationV4 ? "UTC:yyyymmdd'T'HHMMss'Z'" : "UTC:ddd, dd mmm yyyy HH:MM:ss 'GMT'")
@@ -5760,30 +5662,25 @@ var require_aliyun_oss_sdk = __commonJS({
           var TRUE = ["true", "TRUE", "1", 1];
           var FALSE = ["false", "FALSE", "0", 0];
           function dataFix(o, conf, finalKill) {
-            if (!isObject_1.isObject(o))
-              return;
+            if (!isObject_1.isObject(o)) return;
             var _conf$remove = conf.remove, remove = _conf$remove === void 0 ? [] : _conf$remove, _conf$rename = conf.rename, rename = _conf$rename === void 0 ? {} : _conf$rename, _conf$camel = conf.camel, camel = _conf$camel === void 0 ? [] : _conf$camel, _conf$bool = conf.bool, bool = _conf$bool === void 0 ? [] : _conf$bool, _conf$lowerFirst = conf.lowerFirst, lowerFirst = _conf$lowerFirst === void 0 ? false : _conf$lowerFirst;
             remove.forEach(function(v) {
               return delete o[v];
             });
             Object.entries(rename).forEach(function(v) {
-              if (!o[v[0]])
-                return;
-              if (o[v[1]])
-                return;
+              if (!o[v[0]]) return;
+              if (o[v[1]]) return;
               o[v[1]] = o[v[0]];
               delete o[v[0]];
             });
             camel.forEach(function(v) {
-              if (!o[v])
-                return;
+              if (!o[v]) return;
               var afterKey = v.replace(/^(.)/, function($0) {
                 return $0.toLowerCase();
               }).replace(/-(\w)/g, function(_, $1) {
                 return $1.toUpperCase();
               });
-              if (o[afterKey])
-                return;
+              if (o[afterKey]) return;
               o[afterKey] = o[v];
             });
             bool.forEach(function(v) {
@@ -5797,10 +5694,8 @@ var require_aliyun_oss_sdk = __commonJS({
           }
           exports3.dataFix = dataFix;
           function fixBool(value) {
-            if (!value)
-              return false;
-            if (TRUE.includes(value))
-              return true;
+            if (!value) return false;
+            if (TRUE.includes(value)) return true;
             return FALSE.includes(value) ? false : value;
           }
           function fixLowerFirst(o, lowerFirst) {
@@ -5845,8 +5740,7 @@ var require_aliyun_oss_sdk = __commonJS({
           exports3.deepCopyWith = function(obj, customizer) {
             function deepCopyWithHelper(value, innerKey, innerObject) {
               var result = customizer(value, innerKey, innerObject);
-              if (result !== void 0)
-                return result;
+              if (result !== void 0) return result;
               if (value === null || (0, _typeof2.default)(value) !== "object") {
                 return value;
               }
@@ -5900,8 +5794,7 @@ var require_aliyun_oss_sdk = __commonJS({
               exports3.encoder = void 0;
               function encoder(str) {
                 var encoding = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "utf-8";
-                if (encoding === "utf-8")
-                  return str;
+                if (encoding === "utf-8") return str;
                 return Buffer2.from(str).toString("latin1");
               }
               exports3.encoder = encoder;
@@ -5922,8 +5815,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var formatObjKey_1 = require2("../utils/formatObjKey");
           function formatInventoryConfig(inventoryConfig) {
             var toArray = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
-            if (toArray && isObject_1.isObject(inventoryConfig))
-              inventoryConfig = [inventoryConfig];
+            if (toArray && isObject_1.isObject(inventoryConfig)) inventoryConfig = [inventoryConfig];
             if (isArray_1.isArray(inventoryConfig)) {
               inventoryConfig = inventoryConfig.map(formatFn);
             } else {
@@ -5947,8 +5839,7 @@ var require_aliyun_oss_sdk = __commonJS({
               delete conf.Destination;
               conf.frequency = conf.Schedule.Frequency;
               delete conf.Schedule.Frequency;
-              if (((_a = conf === null || conf === void 0 ? void 0 : conf.OptionalFields) === null || _a === void 0 ? void 0 : _a.Field) && !isArray_1.isArray((_b = conf.OptionalFields) === null || _b === void 0 ? void 0 : _b.Field))
-                conf.OptionalFields.Field = [conf.OptionalFields.Field];
+              if (((_a = conf === null || conf === void 0 ? void 0 : conf.OptionalFields) === null || _a === void 0 ? void 0 : _a.Field) && !isArray_1.isArray((_b = conf.OptionalFields) === null || _b === void 0 ? void 0 : _b.Field)) conf.OptionalFields.Field = [conf.OptionalFields.Field];
             });
             _ = formatObjKey_1.formatObjKey(_, "firstLowerCase", {
               exclude: ["OSSBucketDestination", "SSE-OSS", "SSE-KMS"]
@@ -5990,8 +5881,7 @@ var require_aliyun_oss_sdk = __commonJS({
           }
           exports3.formatObjKey = formatObjKey;
           function handelFormat(key, type, options) {
-            if (options && options.exclude && options.exclude.includes(key))
-              return key;
+            if (options && options.exclude && options.exclude.includes(key)) return key;
             if (type === "firstUpperCase") {
               key = key.replace(/^./, function(_) {
                 return _.toUpperCase();
@@ -6218,14 +6108,12 @@ var require_aliyun_oss_sdk = __commonJS({
             var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"];
             if (!it) {
               if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") {
-                if (it)
-                  o = it;
+                if (it) o = it;
                 var i = 0;
                 var F = function F2() {
                 };
                 return { s: F, n: function n() {
-                  if (i >= o.length)
-                    return { done: true };
+                  if (i >= o.length) return { done: true };
                   return { done: false, value: o[i++] };
                 }, e: function e(_e) {
                   throw _e;
@@ -6245,32 +6133,23 @@ var require_aliyun_oss_sdk = __commonJS({
               err = _e2;
             }, f: function f() {
               try {
-                if (!normalCompletion && it.return != null)
-                  it.return();
+                if (!normalCompletion && it.return != null) it.return();
               } finally {
-                if (didErr)
-                  throw err;
+                if (didErr) throw err;
               }
             } };
           }
           function _unsupportedIterableToArray(o, minLen) {
-            if (!o)
-              return;
-            if (typeof o === "string")
-              return _arrayLikeToArray(o, minLen);
+            if (!o) return;
+            if (typeof o === "string") return _arrayLikeToArray(o, minLen);
             var n = Object.prototype.toString.call(o).slice(8, -1);
-            if (n === "Object" && o.constructor)
-              n = o.constructor.name;
-            if (n === "Map" || n === "Set")
-              return Array.from(o);
-            if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-              return _arrayLikeToArray(o, minLen);
+            if (n === "Object" && o.constructor) n = o.constructor.name;
+            if (n === "Map" || n === "Set") return Array.from(o);
+            if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
           }
           function _arrayLikeToArray(arr, len) {
-            if (len == null || len > arr.length)
-              len = arr.length;
-            for (var i = 0, arr2 = new Array(len); i < len; i++)
-              arr2[i] = arr[i];
+            if (len == null || len > arr.length) len = arr.length;
+            for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
             return arr2;
           }
           Object.defineProperty(exports3, "__esModule", {
@@ -6426,42 +6305,40 @@ var require_aliyun_oss_sdk = __commonJS({
             _setSTSToken = (0, _asyncToGenerator2.default)(/* @__PURE__ */ _regenerator.default.mark(function _callee() {
               var now, credentials;
               return _regenerator.default.wrap(function _callee$(_context) {
-                while (1)
-                  switch (_context.prev = _context.next) {
-                    case 0:
-                      if (!this.options)
-                        this.options = {};
-                      now = new Date();
-                      if (!this.stsTokenFreshTime) {
-                        _context.next = 14;
-                        break;
-                      }
-                      if (!(+now - this.stsTokenFreshTime >= this.options.refreshSTSTokenInterval)) {
-                        _context.next = 12;
-                        break;
-                      }
-                      this.stsTokenFreshTime = now;
-                      _context.next = 7;
-                      return this.options.refreshSTSToken();
-                    case 7:
-                      credentials = _context.sent;
-                      credentials = formatObjKey_1.formatObjKey(credentials, "firstLowerCase");
-                      if (credentials.securityToken) {
-                        credentials.stsToken = credentials.securityToken;
-                      }
-                      checkCredentials(credentials);
-                      Object.assign(this.options, credentials);
-                    case 12:
-                      _context.next = 15;
+                while (1) switch (_context.prev = _context.next) {
+                  case 0:
+                    if (!this.options) this.options = {};
+                    now = /* @__PURE__ */ new Date();
+                    if (!this.stsTokenFreshTime) {
+                      _context.next = 14;
                       break;
-                    case 14:
-                      this.stsTokenFreshTime = now;
-                    case 15:
-                      return _context.abrupt("return", null);
-                    case 16:
-                    case "end":
-                      return _context.stop();
-                  }
+                    }
+                    if (!(+now - this.stsTokenFreshTime >= this.options.refreshSTSTokenInterval)) {
+                      _context.next = 12;
+                      break;
+                    }
+                    this.stsTokenFreshTime = now;
+                    _context.next = 7;
+                    return this.options.refreshSTSToken();
+                  case 7:
+                    credentials = _context.sent;
+                    credentials = formatObjKey_1.formatObjKey(credentials, "firstLowerCase");
+                    if (credentials.securityToken) {
+                      credentials.stsToken = credentials.securityToken;
+                    }
+                    checkCredentials(credentials);
+                    Object.assign(this.options, credentials);
+                  case 12:
+                    _context.next = 15;
+                    break;
+                  case 14:
+                    this.stsTokenFreshTime = now;
+                  case 15:
+                    return _context.abrupt("return", null);
+                  case 16:
+                  case "end":
+                    return _context.stop();
+                }
               }, _callee, this);
             }));
             return _setSTSToken.apply(this, arguments);
@@ -6481,18 +6358,15 @@ var require_aliyun_oss_sdk = __commonJS({
           exports3.checkCredentials = checkCredentials;
         }, { "./formatObjKey": 64, "@babel/runtime/helpers/asyncToGenerator": 85, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/regenerator": 93, "core-js/modules/es.array.find.js": 313, "core-js/modules/es.object.assign.js": 325, "core-js/modules/es.object.keys.js": 328, "core-js/modules/es.object.to-string.js": 329 }], 83: [function(require2, module4, exports3) {
           function _arrayLikeToArray(arr, len) {
-            if (len == null || len > arr.length)
-              len = arr.length;
-            for (var i = 0, arr2 = new Array(len); i < len; i++)
-              arr2[i] = arr[i];
+            if (len == null || len > arr.length) len = arr.length;
+            for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i];
             return arr2;
           }
           module4.exports = _arrayLikeToArray, module4.exports.__esModule = true, module4.exports["default"] = module4.exports;
         }, {}], 84: [function(require2, module4, exports3) {
           var arrayLikeToArray = require2("./arrayLikeToArray.js");
           function _arrayWithoutHoles(arr) {
-            if (Array.isArray(arr))
-              return arrayLikeToArray(arr);
+            if (Array.isArray(arr)) return arrayLikeToArray(arr);
           }
           module4.exports = _arrayWithoutHoles, module4.exports.__esModule = true, module4.exports["default"] = module4.exports;
         }, { "./arrayLikeToArray.js": 83 }], 85: [function(require2, module4, exports3) {
@@ -6535,8 +6409,7 @@ var require_aliyun_oss_sdk = __commonJS({
           module4.exports = _interopRequireDefault, module4.exports.__esModule = true, module4.exports["default"] = module4.exports;
         }, {}], 87: [function(require2, module4, exports3) {
           function _iterableToArray(iter) {
-            if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null)
-              return Array.from(iter);
+            if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter);
           }
           module4.exports = _iterableToArray, module4.exports.__esModule = true, module4.exports["default"] = module4.exports;
         }, {}], 88: [function(require2, module4, exports3) {
@@ -6642,11 +6515,9 @@ var require_aliyun_oss_sdk = __commonJS({
             function makeInvokeMethod(e2, r2, n2) {
               var o2 = h;
               return function(i2, a2) {
-                if (o2 === f)
-                  throw new Error("Generator is already running");
+                if (o2 === f) throw new Error("Generator is already running");
                 if (o2 === s) {
-                  if ("throw" === i2)
-                    throw a2;
+                  if ("throw" === i2) throw a2;
                   return {
                     value: t,
                     done: true
@@ -6657,24 +6528,19 @@ var require_aliyun_oss_sdk = __commonJS({
                   if (c2) {
                     var u2 = maybeInvokeDelegate(c2, n2);
                     if (u2) {
-                      if (u2 === y)
-                        continue;
+                      if (u2 === y) continue;
                       return u2;
                     }
                   }
-                  if ("next" === n2.method)
-                    n2.sent = n2._sent = n2.arg;
+                  if ("next" === n2.method) n2.sent = n2._sent = n2.arg;
                   else if ("throw" === n2.method) {
-                    if (o2 === h)
-                      throw o2 = s, n2.arg;
+                    if (o2 === h) throw o2 = s, n2.arg;
                     n2.dispatchException(n2.arg);
-                  } else
-                    "return" === n2.method && n2.abrupt("return", n2.arg);
+                  } else "return" === n2.method && n2.abrupt("return", n2.arg);
                   o2 = f;
                   var p2 = tryCatch(e2, r2, n2);
                   if ("normal" === p2.type) {
-                    if (o2 = n2.done ? s : l, p2.arg === y)
-                      continue;
+                    if (o2 = n2.done ? s : l, p2.arg === y) continue;
                     return {
                       value: p2.arg,
                       done: n2.done
@@ -6686,11 +6552,9 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             function maybeInvokeDelegate(e2, r2) {
               var n2 = r2.method, o2 = e2.iterator[n2];
-              if (o2 === t)
-                return r2.delegate = null, "throw" === n2 && e2.iterator["return"] && (r2.method = "return", r2.arg = t, maybeInvokeDelegate(e2, r2), "throw" === r2.method) || "return" !== n2 && (r2.method = "throw", r2.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y;
+              if (o2 === t) return r2.delegate = null, "throw" === n2 && e2.iterator["return"] && (r2.method = "return", r2.arg = t, maybeInvokeDelegate(e2, r2), "throw" === r2.method) || "return" !== n2 && (r2.method = "throw", r2.arg = new TypeError("The iterator does not provide a '" + n2 + "' method")), y;
               var i2 = tryCatch(o2, e2.iterator, r2.arg);
-              if ("throw" === i2.type)
-                return r2.method = "throw", r2.arg = i2.arg, r2.delegate = null, y;
+              if ("throw" === i2.type) return r2.method = "throw", r2.arg = i2.arg, r2.delegate = null, y;
               var a2 = i2.arg;
               return a2 ? a2.done ? (r2[e2.resultName] = a2.value, r2.next = e2.nextLoc, "return" !== r2.method && (r2.method = "next", r2.arg = t), r2.delegate = null, y) : a2 : (r2.method = "throw", r2.arg = new TypeError("iterator result is not an object"), r2.delegate = null, y);
             }
@@ -6712,15 +6576,11 @@ var require_aliyun_oss_sdk = __commonJS({
             function values(e2) {
               if (e2 || "" === e2) {
                 var r2 = e2[a];
-                if (r2)
-                  return r2.call(e2);
-                if ("function" == typeof e2.next)
-                  return e2;
+                if (r2) return r2.call(e2);
+                if ("function" == typeof e2.next) return e2;
                 if (!isNaN(e2.length)) {
                   var o2 = -1, i2 = function next() {
-                    for (; ++o2 < e2.length; )
-                      if (n.call(e2, o2))
-                        return next.value = e2[o2], next.done = false, next;
+                    for (; ++o2 < e2.length; ) if (n.call(e2, o2)) return next.value = e2[o2], next.done = false, next;
                     return next.value = t, next.done = true, next;
                   };
                   return i2.next = i2;
@@ -6757,56 +6617,44 @@ var require_aliyun_oss_sdk = __commonJS({
               return "[object Generator]";
             }), e.keys = function(t2) {
               var e2 = Object(t2), r2 = [];
-              for (var n2 in e2)
-                r2.push(n2);
+              for (var n2 in e2) r2.push(n2);
               return r2.reverse(), function next() {
                 for (; r2.length; ) {
                   var t3 = r2.pop();
-                  if (t3 in e2)
-                    return next.value = t3, next.done = false, next;
+                  if (t3 in e2) return next.value = t3, next.done = false, next;
                 }
                 return next.done = true, next;
               };
             }, e.values = values, Context.prototype = {
               constructor: Context,
               reset: function reset(e2) {
-                if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = false, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e2)
-                  for (var r2 in this)
-                    "t" === r2.charAt(0) && n.call(this, r2) && !isNaN(+r2.slice(1)) && (this[r2] = t);
+                if (this.prev = 0, this.next = 0, this.sent = this._sent = t, this.done = false, this.delegate = null, this.method = "next", this.arg = t, this.tryEntries.forEach(resetTryEntry), !e2) for (var r2 in this) "t" === r2.charAt(0) && n.call(this, r2) && !isNaN(+r2.slice(1)) && (this[r2] = t);
               },
               stop: function stop() {
                 this.done = true;
                 var t2 = this.tryEntries[0].completion;
-                if ("throw" === t2.type)
-                  throw t2.arg;
+                if ("throw" === t2.type) throw t2.arg;
                 return this.rval;
               },
               dispatchException: function dispatchException(e2) {
-                if (this.done)
-                  throw e2;
+                if (this.done) throw e2;
                 var r2 = this;
                 function handle(n2, o3) {
                   return a2.type = "throw", a2.arg = e2, r2.next = n2, o3 && (r2.method = "next", r2.arg = t), !!o3;
                 }
                 for (var o2 = this.tryEntries.length - 1; o2 >= 0; --o2) {
                   var i2 = this.tryEntries[o2], a2 = i2.completion;
-                  if ("root" === i2.tryLoc)
-                    return handle("end");
+                  if ("root" === i2.tryLoc) return handle("end");
                   if (i2.tryLoc <= this.prev) {
                     var c2 = n.call(i2, "catchLoc"), u2 = n.call(i2, "finallyLoc");
                     if (c2 && u2) {
-                      if (this.prev < i2.catchLoc)
-                        return handle(i2.catchLoc, true);
-                      if (this.prev < i2.finallyLoc)
-                        return handle(i2.finallyLoc);
+                      if (this.prev < i2.catchLoc) return handle(i2.catchLoc, true);
+                      if (this.prev < i2.finallyLoc) return handle(i2.finallyLoc);
                     } else if (c2) {
-                      if (this.prev < i2.catchLoc)
-                        return handle(i2.catchLoc, true);
+                      if (this.prev < i2.catchLoc) return handle(i2.catchLoc, true);
                     } else {
-                      if (!u2)
-                        throw new Error("try statement without catch or finally");
-                      if (this.prev < i2.finallyLoc)
-                        return handle(i2.finallyLoc);
+                      if (!u2) throw new Error("try statement without catch or finally");
+                      if (this.prev < i2.finallyLoc) return handle(i2.finallyLoc);
                     }
                   }
                 }
@@ -6824,15 +6672,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return a2.type = t2, a2.arg = e2, i2 ? (this.method = "next", this.next = i2.finallyLoc, y) : this.complete(a2);
               },
               complete: function complete(t2, e2) {
-                if ("throw" === t2.type)
-                  throw t2.arg;
+                if ("throw" === t2.type) throw t2.arg;
                 return "break" === t2.type || "continue" === t2.type ? this.next = t2.arg : "return" === t2.type ? (this.rval = this.arg = t2.arg, this.method = "return", this.next = "end") : "normal" === t2.type && e2 && (this.next = e2), y;
               },
               finish: function finish(t2) {
                 for (var e2 = this.tryEntries.length - 1; e2 >= 0; --e2) {
                   var r2 = this.tryEntries[e2];
-                  if (r2.finallyLoc === t2)
-                    return this.complete(r2.completion, r2.afterLoc), resetTryEntry(r2), y;
+                  if (r2.finallyLoc === t2) return this.complete(r2.completion, r2.afterLoc), resetTryEntry(r2), y;
                 }
               },
               "catch": function _catch(t2) {
@@ -6881,17 +6727,12 @@ var require_aliyun_oss_sdk = __commonJS({
         }, {}], 92: [function(require2, module4, exports3) {
           var arrayLikeToArray = require2("./arrayLikeToArray.js");
           function _unsupportedIterableToArray(o, minLen) {
-            if (!o)
-              return;
-            if (typeof o === "string")
-              return arrayLikeToArray(o, minLen);
+            if (!o) return;
+            if (typeof o === "string") return arrayLikeToArray(o, minLen);
             var n = Object.prototype.toString.call(o).slice(8, -1);
-            if (n === "Object" && o.constructor)
-              n = o.constructor.name;
-            if (n === "Map" || n === "Set")
-              return Array.from(o);
-            if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))
-              return arrayLikeToArray(o, minLen);
+            if (n === "Object" && o.constructor) n = o.constructor.name;
+            if (n === "Map" || n === "Set") return Array.from(o);
+            if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
           }
           module4.exports = _unsupportedIterableToArray, module4.exports.__esModule = true, module4.exports["default"] = module4.exports;
         }, { "./arrayLikeToArray.js": 83 }], 93: [function(require2, module4, exports3) {
@@ -6946,10 +6787,10 @@ var require_aliyun_oss_sdk = __commonJS({
               var util = require2("util/");
               var hasOwn = Object.prototype.hasOwnProperty;
               var pSlice = Array.prototype.slice;
-              var functionsHaveNames = function() {
+              var functionsHaveNames = (function() {
                 return function foo() {
                 }.name === "foo";
-              }();
+              })();
               function pToString(obj) {
                 return Object.prototype.toString.call(obj);
               }
@@ -7046,13 +6887,11 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               assert.fail = fail;
               function ok(value, message) {
-                if (!value)
-                  fail(value, true, message, "==", assert.ok);
+                if (!value) fail(value, true, message, "==", assert.ok);
               }
               assert.ok = ok;
               assert.equal = function equal(actual, expected, message) {
-                if (actual != expected)
-                  fail(actual, expected, message, "==", assert.equal);
+                if (actual != expected) fail(actual, expected, message, "==", assert.equal);
               };
               assert.notEqual = function notEqual(actual, expected, message) {
                 if (actual == expected) {
@@ -7216,12 +7055,10 @@ var require_aliyun_oss_sdk = __commonJS({
                 _throws(false, block, error, message);
               };
               assert.ifError = function(err) {
-                if (err)
-                  throw err;
+                if (err) throw err;
               };
               function strict(value, message) {
-                if (!value)
-                  fail(value, true, message, "==", strict);
+                if (!value) fail(value, true, message, "==", strict);
               }
               assert.strict = objectAssign(strict, assert, {
                 equal: assert.strictEqual,
@@ -7233,8 +7070,7 @@ var require_aliyun_oss_sdk = __commonJS({
               var objectKeys = Object.keys || function(obj) {
                 var keys = [];
                 for (var key in obj) {
-                  if (hasOwn.call(obj, key))
-                    keys.push(key);
+                  if (hasOwn.call(obj, key)) keys.push(key);
                 }
                 return keys;
               };
@@ -7283,10 +7119,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 var args = arguments;
                 var len = args.length;
                 var str = String(f).replace(formatRegExp, function(x2) {
-                  if (x2 === "%%")
-                    return "%";
-                  if (i >= len)
-                    return x2;
+                  if (x2 === "%%") return "%";
+                  if (i >= len) return x2;
                   switch (x2) {
                     case "%s":
                       return String(args[i++]);
@@ -7361,25 +7195,18 @@ var require_aliyun_oss_sdk = __commonJS({
                   seen: [],
                   stylize: stylizeNoColor
                 };
-                if (arguments.length >= 3)
-                  ctx.depth = arguments[2];
-                if (arguments.length >= 4)
-                  ctx.colors = arguments[3];
+                if (arguments.length >= 3) ctx.depth = arguments[2];
+                if (arguments.length >= 4) ctx.colors = arguments[3];
                 if (isBoolean(opts)) {
                   ctx.showHidden = opts;
                 } else if (opts) {
                   exports3._extend(ctx, opts);
                 }
-                if (isUndefined(ctx.showHidden))
-                  ctx.showHidden = false;
-                if (isUndefined(ctx.depth))
-                  ctx.depth = 2;
-                if (isUndefined(ctx.colors))
-                  ctx.colors = false;
-                if (isUndefined(ctx.customInspect))
-                  ctx.customInspect = true;
-                if (ctx.colors)
-                  ctx.stylize = stylizeWithColor;
+                if (isUndefined(ctx.showHidden)) ctx.showHidden = false;
+                if (isUndefined(ctx.depth)) ctx.depth = 2;
+                if (isUndefined(ctx.colors)) ctx.colors = false;
+                if (isUndefined(ctx.customInspect)) ctx.customInspect = true;
+                if (ctx.colors) ctx.stylize = stylizeWithColor;
                 return formatValue(ctx, obj, ctx.depth);
               }
               exports3.inspect = inspect;
@@ -7609,8 +7436,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 var numLinesEst = 0;
                 var length = output.reduce(function(prev, cur) {
                   numLinesEst++;
-                  if (cur.indexOf("\n") >= 0)
-                    numLinesEst++;
+                  if (cur.indexOf("\n") >= 0) numLinesEst++;
                   return prev + cur.replace(/\u001b\[\d\d?m/g, "").length + 1;
                 }, 0);
                 if (length > 60) {
@@ -7697,7 +7523,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 "Dec"
               ];
               function timestamp() {
-                var d = new Date();
+                var d = /* @__PURE__ */ new Date();
                 var time = [
                   pad(d.getHours()),
                   pad(d.getMinutes()),
@@ -7710,8 +7536,7 @@ var require_aliyun_oss_sdk = __commonJS({
               };
               exports3.inherits = require2("inherits");
               exports3._extend = function(origin, add) {
-                if (!add || !isObject(add))
-                  return origin;
+                if (!add || !isObject(add)) return origin;
                 var keys = Object.keys(add);
                 var i = keys.length;
                 while (i--) {
@@ -7774,8 +7599,7 @@ var require_aliyun_oss_sdk = __commonJS({
               throw new Error("Invalid string. Length must be a multiple of 4");
             }
             var validLen = b64.indexOf("=");
-            if (validLen === -1)
-              validLen = len2;
+            if (validLen === -1) validLen = len2;
             var placeHoldersLen = validLen === len2 ? 0 : 4 - validLen % 4;
             return [validLen, placeHoldersLen];
           }
@@ -7849,14 +7673,11 @@ var require_aliyun_oss_sdk = __commonJS({
             return parts.join("");
           }
         }, {}], 101: [function(require2, module4, exports3) {
-          !function(root, name, definition) {
-            if (typeof module4 != "undefined" && module4.exports)
-              module4.exports = definition();
-            else if (typeof define2 == "function" && define2.amd)
-              define2(name, definition);
-            else
-              root[name] = definition();
-          }(this, "bowser", function() {
+          !(function(root, name, definition) {
+            if (typeof module4 != "undefined" && module4.exports) module4.exports = definition();
+            else if (typeof define2 == "function" && define2.amd) define2(name, definition);
+            else root[name] = definition();
+          })(this, "bowser", function() {
             var t = true;
             function detect(ua) {
               function getFirstMatch(regex) {
@@ -8209,8 +8030,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 result.a = t;
               } else if (result.msie && result.version < 10 || result.chrome && result.version < 20 || result.firefox && result.version < 20 || result.safari && result.version < 6 || result.opera && result.version < 10 || result.ios && result.osversion && result.osversion.split(".")[0] < 6 || result.chromium && result.version < 20) {
                 result.c = t;
-              } else
-                result.x = t;
+              } else result.x = t;
               return result;
             }
             var bowser = detect(typeof navigator !== "undefined" ? navigator.userAgent || "" : "");
@@ -8326,16 +8146,14 @@ var require_aliyun_oss_sdk = __commonJS({
               Object.defineProperty(Buffer3.prototype, "parent", {
                 enumerable: true,
                 get: function() {
-                  if (!Buffer3.isBuffer(this))
-                    return void 0;
+                  if (!Buffer3.isBuffer(this)) return void 0;
                   return this.buffer;
                 }
               });
               Object.defineProperty(Buffer3.prototype, "offset", {
                 enumerable: true,
                 get: function() {
-                  if (!Buffer3.isBuffer(this))
-                    return void 0;
+                  if (!Buffer3.isBuffer(this)) return void 0;
                   return this.byteOffset;
                 }
               });
@@ -8392,8 +8210,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   return Buffer3.from(valueOf, encodingOrOffset, length);
                 }
                 var b = fromObject(value);
-                if (b)
-                  return b;
+                if (b) return b;
                 if (typeof Symbol !== "undefined" && Symbol.toPrimitive != null && typeof value[Symbol.toPrimitive] === "function") {
                   return Buffer3.from(
                     value[Symbol.toPrimitive]("string"),
@@ -8517,17 +8334,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 return b != null && b._isBuffer === true && b !== Buffer3.prototype;
               };
               Buffer3.compare = function compare(a, b) {
-                if (isInstance(a, Uint8Array))
-                  a = Buffer3.from(a, a.offset, a.byteLength);
-                if (isInstance(b, Uint8Array))
-                  b = Buffer3.from(b, b.offset, b.byteLength);
+                if (isInstance(a, Uint8Array)) a = Buffer3.from(a, a.offset, a.byteLength);
+                if (isInstance(b, Uint8Array)) b = Buffer3.from(b, b.offset, b.byteLength);
                 if (!Buffer3.isBuffer(a) || !Buffer3.isBuffer(b)) {
                   throw new TypeError(
                     'The "buf1", "buf2" arguments must be one of type Buffer or Uint8Array'
                   );
                 }
-                if (a === b)
-                  return 0;
+                if (a === b) return 0;
                 var x = a.length;
                 var y = b.length;
                 for (var i = 0, len = Math.min(x, y); i < len; ++i) {
@@ -8537,10 +8351,8 @@ var require_aliyun_oss_sdk = __commonJS({
                     break;
                   }
                 }
-                if (x < y)
-                  return -1;
-                if (y < x)
-                  return 1;
+                if (x < y) return -1;
+                if (y < x) return 1;
                 return 0;
               };
               Buffer3.isEncoding = function isEncoding(encoding) {
@@ -8604,8 +8416,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 var len = string.length;
                 var mustMatch = arguments.length > 2 && arguments[2] === true;
-                if (!mustMatch && len === 0)
-                  return 0;
+                if (!mustMatch && len === 0) return 0;
                 var loweredCase = false;
                 for (; ; ) {
                   switch (encoding) {
@@ -8654,8 +8465,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (end <= start) {
                   return "";
                 }
-                if (!encoding)
-                  encoding = "utf8";
+                if (!encoding) encoding = "utf8";
                 while (true) {
                   switch (encoding) {
                     case "hex":
@@ -8676,8 +8486,7 @@ var require_aliyun_oss_sdk = __commonJS({
                     case "utf-16le":
                       return utf16leSlice(this, start, end);
                     default:
-                      if (loweredCase)
-                        throw new TypeError("Unknown encoding: " + encoding);
+                      if (loweredCase) throw new TypeError("Unknown encoding: " + encoding);
                       encoding = (encoding + "").toLowerCase();
                       loweredCase = true;
                   }
@@ -8725,26 +8534,21 @@ var require_aliyun_oss_sdk = __commonJS({
               };
               Buffer3.prototype.toString = function toString() {
                 var length = this.length;
-                if (length === 0)
-                  return "";
-                if (arguments.length === 0)
-                  return utf8Slice(this, 0, length);
+                if (length === 0) return "";
+                if (arguments.length === 0) return utf8Slice(this, 0, length);
                 return slowToString.apply(this, arguments);
               };
               Buffer3.prototype.toLocaleString = Buffer3.prototype.toString;
               Buffer3.prototype.equals = function equals(b) {
-                if (!Buffer3.isBuffer(b))
-                  throw new TypeError("Argument must be a Buffer");
-                if (this === b)
-                  return true;
+                if (!Buffer3.isBuffer(b)) throw new TypeError("Argument must be a Buffer");
+                if (this === b) return true;
                 return Buffer3.compare(this, b) === 0;
               };
               Buffer3.prototype.inspect = function inspect() {
                 var str = "";
                 var max = exports3.INSPECT_MAX_BYTES;
                 str = this.toString("hex", 0, max).replace(/(.{2})/g, "$1 ").trim();
-                if (this.length > max)
-                  str += " ... ";
+                if (this.length > max) str += " ... ";
                 return "<Buffer " + str + ">";
               };
               Buffer3.prototype.compare = function compare(target, start, end, thisStart, thisEnd) {
@@ -8784,8 +8588,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 end >>>= 0;
                 thisStart >>>= 0;
                 thisEnd >>>= 0;
-                if (this === target)
-                  return 0;
+                if (this === target) return 0;
                 var x = thisEnd - thisStart;
                 var y = end - start;
                 var len = Math.min(x, y);
@@ -8798,15 +8601,12 @@ var require_aliyun_oss_sdk = __commonJS({
                     break;
                   }
                 }
-                if (x < y)
-                  return -1;
-                if (y < x)
-                  return 1;
+                if (x < y) return -1;
+                if (y < x) return 1;
                 return 0;
               };
               function bidirectionalIndexOf(buffer, val, byteOffset, encoding, dir) {
-                if (buffer.length === 0)
-                  return -1;
+                if (buffer.length === 0) return -1;
                 if (typeof byteOffset === "string") {
                   encoding = byteOffset;
                   byteOffset = 0;
@@ -8819,18 +8619,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (numberIsNaN(byteOffset)) {
                   byteOffset = dir ? 0 : buffer.length - 1;
                 }
-                if (byteOffset < 0)
-                  byteOffset = buffer.length + byteOffset;
+                if (byteOffset < 0) byteOffset = buffer.length + byteOffset;
                 if (byteOffset >= buffer.length) {
-                  if (dir)
-                    return -1;
-                  else
-                    byteOffset = buffer.length - 1;
+                  if (dir) return -1;
+                  else byteOffset = buffer.length - 1;
                 } else if (byteOffset < 0) {
-                  if (dir)
-                    byteOffset = 0;
-                  else
-                    return -1;
+                  if (dir) byteOffset = 0;
+                  else return -1;
                 }
                 if (typeof val === "string") {
                   val = Buffer3.from(val, encoding);
@@ -8881,19 +8676,15 @@ var require_aliyun_oss_sdk = __commonJS({
                   var foundIndex = -1;
                   for (i = byteOffset; i < arrLength; i++) {
                     if (read(arr, i) === read(val, foundIndex === -1 ? 0 : i - foundIndex)) {
-                      if (foundIndex === -1)
-                        foundIndex = i;
-                      if (i - foundIndex + 1 === valLength)
-                        return foundIndex * indexSize;
+                      if (foundIndex === -1) foundIndex = i;
+                      if (i - foundIndex + 1 === valLength) return foundIndex * indexSize;
                     } else {
-                      if (foundIndex !== -1)
-                        i -= i - foundIndex;
+                      if (foundIndex !== -1) i -= i - foundIndex;
                       foundIndex = -1;
                     }
                   }
                 } else {
-                  if (byteOffset + valLength > arrLength)
-                    byteOffset = arrLength - valLength;
+                  if (byteOffset + valLength > arrLength) byteOffset = arrLength - valLength;
                   for (i = byteOffset; i >= 0; i--) {
                     var found = true;
                     for (var j = 0; j < valLength; j++) {
@@ -8902,8 +8693,7 @@ var require_aliyun_oss_sdk = __commonJS({
                         break;
                       }
                     }
-                    if (found)
-                      return i;
+                    if (found) return i;
                   }
                 }
                 return -1;
@@ -8934,8 +8724,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 for (var i = 0; i < length; ++i) {
                   var parsed = parseInt(string.substr(i * 2, 2), 16);
-                  if (numberIsNaN(parsed))
-                    return i;
+                  if (numberIsNaN(parsed)) return i;
                   buf[offset + i] = parsed;
                 }
                 return i;
@@ -8968,8 +8757,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   offset = offset >>> 0;
                   if (isFinite(length)) {
                     length = length >>> 0;
-                    if (encoding === void 0)
-                      encoding = "utf8";
+                    if (encoding === void 0) encoding = "utf8";
                   } else {
                     encoding = length;
                     length = void 0;
@@ -8980,13 +8768,11 @@ var require_aliyun_oss_sdk = __commonJS({
                   );
                 }
                 var remaining = this.length - offset;
-                if (length === void 0 || length > remaining)
-                  length = remaining;
+                if (length === void 0 || length > remaining) length = remaining;
                 if (string.length > 0 && (length < 0 || offset < 0) || offset > this.length) {
                   throw new RangeError("Attempt to write outside buffer bounds");
                 }
-                if (!encoding)
-                  encoding = "utf8";
+                if (!encoding) encoding = "utf8";
                 var loweredCase = false;
                 for (; ; ) {
                   switch (encoding) {
@@ -9008,8 +8794,7 @@ var require_aliyun_oss_sdk = __commonJS({
                     case "utf-16le":
                       return ucs2Write(this, string, offset, length);
                     default:
-                      if (loweredCase)
-                        throw new TypeError("Unknown encoding: " + encoding);
+                      if (loweredCase) throw new TypeError("Unknown encoding: " + encoding);
                       encoding = ("" + encoding).toLowerCase();
                       loweredCase = true;
                   }
@@ -9122,10 +8907,8 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               function hexSlice(buf, start, end) {
                 var len = buf.length;
-                if (!start || start < 0)
-                  start = 0;
-                if (!end || end < 0 || end > len)
-                  end = len;
+                if (!start || start < 0) start = 0;
+                if (!end || end < 0 || end > len) end = len;
                 var out = "";
                 for (var i = start; i < end; ++i) {
                   out += toHex(buf[i]);
@@ -9146,35 +8929,29 @@ var require_aliyun_oss_sdk = __commonJS({
                 end = end === void 0 ? len : ~~end;
                 if (start < 0) {
                   start += len;
-                  if (start < 0)
-                    start = 0;
+                  if (start < 0) start = 0;
                 } else if (start > len) {
                   start = len;
                 }
                 if (end < 0) {
                   end += len;
-                  if (end < 0)
-                    end = 0;
+                  if (end < 0) end = 0;
                 } else if (end > len) {
                   end = len;
                 }
-                if (end < start)
-                  end = start;
+                if (end < start) end = start;
                 var newBuf = this.subarray(start, end);
                 newBuf.__proto__ = Buffer3.prototype;
                 return newBuf;
               };
               function checkOffset(offset, ext, length) {
-                if (offset % 1 !== 0 || offset < 0)
-                  throw new RangeError("offset is not uint");
-                if (offset + ext > length)
-                  throw new RangeError("Trying to access beyond buffer length");
+                if (offset % 1 !== 0 || offset < 0) throw new RangeError("offset is not uint");
+                if (offset + ext > length) throw new RangeError("Trying to access beyond buffer length");
               }
               Buffer3.prototype.readUIntLE = function readUIntLE(offset, byteLength2, noAssert) {
                 offset = offset >>> 0;
                 byteLength2 = byteLength2 >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, byteLength2, this.length);
+                if (!noAssert) checkOffset(offset, byteLength2, this.length);
                 var val = this[offset];
                 var mul = 1;
                 var i = 0;
@@ -9198,39 +8975,33 @@ var require_aliyun_oss_sdk = __commonJS({
               };
               Buffer3.prototype.readUInt8 = function readUInt8(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 1, this.length);
+                if (!noAssert) checkOffset(offset, 1, this.length);
                 return this[offset];
               };
               Buffer3.prototype.readUInt16LE = function readUInt16LE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 2, this.length);
+                if (!noAssert) checkOffset(offset, 2, this.length);
                 return this[offset] | this[offset + 1] << 8;
               };
               Buffer3.prototype.readUInt16BE = function readUInt16BE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 2, this.length);
+                if (!noAssert) checkOffset(offset, 2, this.length);
                 return this[offset] << 8 | this[offset + 1];
               };
               Buffer3.prototype.readUInt32LE = function readUInt32LE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 4, this.length);
+                if (!noAssert) checkOffset(offset, 4, this.length);
                 return (this[offset] | this[offset + 1] << 8 | this[offset + 2] << 16) + this[offset + 3] * 16777216;
               };
               Buffer3.prototype.readUInt32BE = function readUInt32BE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 4, this.length);
+                if (!noAssert) checkOffset(offset, 4, this.length);
                 return this[offset] * 16777216 + (this[offset + 1] << 16 | this[offset + 2] << 8 | this[offset + 3]);
               };
               Buffer3.prototype.readIntLE = function readIntLE(offset, byteLength2, noAssert) {
                 offset = offset >>> 0;
                 byteLength2 = byteLength2 >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, byteLength2, this.length);
+                if (!noAssert) checkOffset(offset, byteLength2, this.length);
                 var val = this[offset];
                 var mul = 1;
                 var i = 0;
@@ -9238,15 +9009,13 @@ var require_aliyun_oss_sdk = __commonJS({
                   val += this[offset + i] * mul;
                 }
                 mul *= 128;
-                if (val >= mul)
-                  val -= Math.pow(2, 8 * byteLength2);
+                if (val >= mul) val -= Math.pow(2, 8 * byteLength2);
                 return val;
               };
               Buffer3.prototype.readIntBE = function readIntBE(offset, byteLength2, noAssert) {
                 offset = offset >>> 0;
                 byteLength2 = byteLength2 >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, byteLength2, this.length);
+                if (!noAssert) checkOffset(offset, byteLength2, this.length);
                 var i = byteLength2;
                 var mul = 1;
                 var val = this[offset + --i];
@@ -9254,75 +9023,61 @@ var require_aliyun_oss_sdk = __commonJS({
                   val += this[offset + --i] * mul;
                 }
                 mul *= 128;
-                if (val >= mul)
-                  val -= Math.pow(2, 8 * byteLength2);
+                if (val >= mul) val -= Math.pow(2, 8 * byteLength2);
                 return val;
               };
               Buffer3.prototype.readInt8 = function readInt8(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 1, this.length);
-                if (!(this[offset] & 128))
-                  return this[offset];
+                if (!noAssert) checkOffset(offset, 1, this.length);
+                if (!(this[offset] & 128)) return this[offset];
                 return (255 - this[offset] + 1) * -1;
               };
               Buffer3.prototype.readInt16LE = function readInt16LE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 2, this.length);
+                if (!noAssert) checkOffset(offset, 2, this.length);
                 var val = this[offset] | this[offset + 1] << 8;
                 return val & 32768 ? val | 4294901760 : val;
               };
               Buffer3.prototype.readInt16BE = function readInt16BE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 2, this.length);
+                if (!noAssert) checkOffset(offset, 2, this.length);
                 var val = this[offset + 1] | this[offset] << 8;
                 return val & 32768 ? val | 4294901760 : val;
               };
               Buffer3.prototype.readInt32LE = function readInt32LE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 4, this.length);
+                if (!noAssert) checkOffset(offset, 4, this.length);
                 return this[offset] | this[offset + 1] << 8 | this[offset + 2] << 16 | this[offset + 3] << 24;
               };
               Buffer3.prototype.readInt32BE = function readInt32BE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 4, this.length);
+                if (!noAssert) checkOffset(offset, 4, this.length);
                 return this[offset] << 24 | this[offset + 1] << 16 | this[offset + 2] << 8 | this[offset + 3];
               };
               Buffer3.prototype.readFloatLE = function readFloatLE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 4, this.length);
+                if (!noAssert) checkOffset(offset, 4, this.length);
                 return ieee754.read(this, offset, true, 23, 4);
               };
               Buffer3.prototype.readFloatBE = function readFloatBE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 4, this.length);
+                if (!noAssert) checkOffset(offset, 4, this.length);
                 return ieee754.read(this, offset, false, 23, 4);
               };
               Buffer3.prototype.readDoubleLE = function readDoubleLE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 8, this.length);
+                if (!noAssert) checkOffset(offset, 8, this.length);
                 return ieee754.read(this, offset, true, 52, 8);
               };
               Buffer3.prototype.readDoubleBE = function readDoubleBE(offset, noAssert) {
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkOffset(offset, 8, this.length);
+                if (!noAssert) checkOffset(offset, 8, this.length);
                 return ieee754.read(this, offset, false, 52, 8);
               };
               function checkInt(buf, value, offset, ext, max, min) {
-                if (!Buffer3.isBuffer(buf))
-                  throw new TypeError('"buffer" argument must be a Buffer instance');
-                if (value > max || value < min)
-                  throw new RangeError('"value" argument is out of bounds');
-                if (offset + ext > buf.length)
-                  throw new RangeError("Index out of range");
+                if (!Buffer3.isBuffer(buf)) throw new TypeError('"buffer" argument must be a Buffer instance');
+                if (value > max || value < min) throw new RangeError('"value" argument is out of bounds');
+                if (offset + ext > buf.length) throw new RangeError("Index out of range");
               }
               Buffer3.prototype.writeUIntLE = function writeUIntLE(value, offset, byteLength2, noAssert) {
                 value = +value;
@@ -9359,16 +9114,14 @@ var require_aliyun_oss_sdk = __commonJS({
               Buffer3.prototype.writeUInt8 = function writeUInt8(value, offset, noAssert) {
                 value = +value;
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkInt(this, value, offset, 1, 255, 0);
+                if (!noAssert) checkInt(this, value, offset, 1, 255, 0);
                 this[offset] = value & 255;
                 return offset + 1;
               };
               Buffer3.prototype.writeUInt16LE = function writeUInt16LE(value, offset, noAssert) {
                 value = +value;
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkInt(this, value, offset, 2, 65535, 0);
+                if (!noAssert) checkInt(this, value, offset, 2, 65535, 0);
                 this[offset] = value & 255;
                 this[offset + 1] = value >>> 8;
                 return offset + 2;
@@ -9376,8 +9129,7 @@ var require_aliyun_oss_sdk = __commonJS({
               Buffer3.prototype.writeUInt16BE = function writeUInt16BE(value, offset, noAssert) {
                 value = +value;
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkInt(this, value, offset, 2, 65535, 0);
+                if (!noAssert) checkInt(this, value, offset, 2, 65535, 0);
                 this[offset] = value >>> 8;
                 this[offset + 1] = value & 255;
                 return offset + 2;
@@ -9385,8 +9137,7 @@ var require_aliyun_oss_sdk = __commonJS({
               Buffer3.prototype.writeUInt32LE = function writeUInt32LE(value, offset, noAssert) {
                 value = +value;
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkInt(this, value, offset, 4, 4294967295, 0);
+                if (!noAssert) checkInt(this, value, offset, 4, 4294967295, 0);
                 this[offset + 3] = value >>> 24;
                 this[offset + 2] = value >>> 16;
                 this[offset + 1] = value >>> 8;
@@ -9396,8 +9147,7 @@ var require_aliyun_oss_sdk = __commonJS({
               Buffer3.prototype.writeUInt32BE = function writeUInt32BE(value, offset, noAssert) {
                 value = +value;
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkInt(this, value, offset, 4, 4294967295, 0);
+                if (!noAssert) checkInt(this, value, offset, 4, 4294967295, 0);
                 this[offset] = value >>> 24;
                 this[offset + 1] = value >>> 16;
                 this[offset + 2] = value >>> 8;
@@ -9445,18 +9195,15 @@ var require_aliyun_oss_sdk = __commonJS({
               Buffer3.prototype.writeInt8 = function writeInt8(value, offset, noAssert) {
                 value = +value;
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkInt(this, value, offset, 1, 127, -128);
-                if (value < 0)
-                  value = 255 + value + 1;
+                if (!noAssert) checkInt(this, value, offset, 1, 127, -128);
+                if (value < 0) value = 255 + value + 1;
                 this[offset] = value & 255;
                 return offset + 1;
               };
               Buffer3.prototype.writeInt16LE = function writeInt16LE(value, offset, noAssert) {
                 value = +value;
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkInt(this, value, offset, 2, 32767, -32768);
+                if (!noAssert) checkInt(this, value, offset, 2, 32767, -32768);
                 this[offset] = value & 255;
                 this[offset + 1] = value >>> 8;
                 return offset + 2;
@@ -9464,8 +9211,7 @@ var require_aliyun_oss_sdk = __commonJS({
               Buffer3.prototype.writeInt16BE = function writeInt16BE(value, offset, noAssert) {
                 value = +value;
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkInt(this, value, offset, 2, 32767, -32768);
+                if (!noAssert) checkInt(this, value, offset, 2, 32767, -32768);
                 this[offset] = value >>> 8;
                 this[offset + 1] = value & 255;
                 return offset + 2;
@@ -9473,8 +9219,7 @@ var require_aliyun_oss_sdk = __commonJS({
               Buffer3.prototype.writeInt32LE = function writeInt32LE(value, offset, noAssert) {
                 value = +value;
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkInt(this, value, offset, 4, 2147483647, -2147483648);
+                if (!noAssert) checkInt(this, value, offset, 4, 2147483647, -2147483648);
                 this[offset] = value & 255;
                 this[offset + 1] = value >>> 8;
                 this[offset + 2] = value >>> 16;
@@ -9484,10 +9229,8 @@ var require_aliyun_oss_sdk = __commonJS({
               Buffer3.prototype.writeInt32BE = function writeInt32BE(value, offset, noAssert) {
                 value = +value;
                 offset = offset >>> 0;
-                if (!noAssert)
-                  checkInt(this, value, offset, 4, 2147483647, -2147483648);
-                if (value < 0)
-                  value = 4294967295 + value + 1;
+                if (!noAssert) checkInt(this, value, offset, 4, 2147483647, -2147483648);
+                if (value < 0) value = 4294967295 + value + 1;
                 this[offset] = value >>> 24;
                 this[offset + 1] = value >>> 16;
                 this[offset + 2] = value >>> 8;
@@ -9495,10 +9238,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 return offset + 4;
               };
               function checkIEEE754(buf, value, offset, ext, max, min) {
-                if (offset + ext > buf.length)
-                  throw new RangeError("Index out of range");
-                if (offset < 0)
-                  throw new RangeError("Index out of range");
+                if (offset + ext > buf.length) throw new RangeError("Index out of range");
+                if (offset < 0) throw new RangeError("Index out of range");
               }
               function writeFloat(buf, value, offset, littleEndian, noAssert) {
                 value = +value;
@@ -9531,31 +9272,20 @@ var require_aliyun_oss_sdk = __commonJS({
                 return writeDouble(this, value, offset, false, noAssert);
               };
               Buffer3.prototype.copy = function copy(target, targetStart, start, end) {
-                if (!Buffer3.isBuffer(target))
-                  throw new TypeError("argument should be a Buffer");
-                if (!start)
-                  start = 0;
-                if (!end && end !== 0)
-                  end = this.length;
-                if (targetStart >= target.length)
-                  targetStart = target.length;
-                if (!targetStart)
-                  targetStart = 0;
-                if (end > 0 && end < start)
-                  end = start;
-                if (end === start)
-                  return 0;
-                if (target.length === 0 || this.length === 0)
-                  return 0;
+                if (!Buffer3.isBuffer(target)) throw new TypeError("argument should be a Buffer");
+                if (!start) start = 0;
+                if (!end && end !== 0) end = this.length;
+                if (targetStart >= target.length) targetStart = target.length;
+                if (!targetStart) targetStart = 0;
+                if (end > 0 && end < start) end = start;
+                if (end === start) return 0;
+                if (target.length === 0 || this.length === 0) return 0;
                 if (targetStart < 0) {
                   throw new RangeError("targetStart out of bounds");
                 }
-                if (start < 0 || start >= this.length)
-                  throw new RangeError("Index out of range");
-                if (end < 0)
-                  throw new RangeError("sourceEnd out of bounds");
-                if (end > this.length)
-                  end = this.length;
+                if (start < 0 || start >= this.length) throw new RangeError("Index out of range");
+                if (end < 0) throw new RangeError("sourceEnd out of bounds");
+                if (end > this.length) end = this.length;
                 if (target.length - targetStart < end - start) {
                   end = target.length - targetStart + start;
                 }
@@ -9608,8 +9338,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 start = start >>> 0;
                 end = end === void 0 ? this.length : end >>> 0;
-                if (!val)
-                  val = 0;
+                if (!val) val = 0;
                 var i;
                 if (typeof val === "number") {
                   for (i = start; i < end; ++i) {
@@ -9631,16 +9360,14 @@ var require_aliyun_oss_sdk = __commonJS({
               function base64clean(str) {
                 str = str.split("=")[0];
                 str = str.trim().replace(INVALID_BASE64_RE, "");
-                if (str.length < 2)
-                  return "";
+                if (str.length < 2) return "";
                 while (str.length % 4 !== 0) {
                   str = str + "=";
                 }
                 return str;
               }
               function toHex(n) {
-                if (n < 16)
-                  return "0" + n.toString(16);
+                if (n < 16) return "0" + n.toString(16);
                 return n.toString(16);
               }
               function utf8ToBytes(string, units) {
@@ -9654,51 +9381,43 @@ var require_aliyun_oss_sdk = __commonJS({
                   if (codePoint > 55295 && codePoint < 57344) {
                     if (!leadSurrogate) {
                       if (codePoint > 56319) {
-                        if ((units -= 3) > -1)
-                          bytes.push(239, 191, 189);
+                        if ((units -= 3) > -1) bytes.push(239, 191, 189);
                         continue;
                       } else if (i + 1 === length) {
-                        if ((units -= 3) > -1)
-                          bytes.push(239, 191, 189);
+                        if ((units -= 3) > -1) bytes.push(239, 191, 189);
                         continue;
                       }
                       leadSurrogate = codePoint;
                       continue;
                     }
                     if (codePoint < 56320) {
-                      if ((units -= 3) > -1)
-                        bytes.push(239, 191, 189);
+                      if ((units -= 3) > -1) bytes.push(239, 191, 189);
                       leadSurrogate = codePoint;
                       continue;
                     }
                     codePoint = (leadSurrogate - 55296 << 10 | codePoint - 56320) + 65536;
                   } else if (leadSurrogate) {
-                    if ((units -= 3) > -1)
-                      bytes.push(239, 191, 189);
+                    if ((units -= 3) > -1) bytes.push(239, 191, 189);
                   }
                   leadSurrogate = null;
                   if (codePoint < 128) {
-                    if ((units -= 1) < 0)
-                      break;
+                    if ((units -= 1) < 0) break;
                     bytes.push(codePoint);
                   } else if (codePoint < 2048) {
-                    if ((units -= 2) < 0)
-                      break;
+                    if ((units -= 2) < 0) break;
                     bytes.push(
                       codePoint >> 6 | 192,
                       codePoint & 63 | 128
                     );
                   } else if (codePoint < 65536) {
-                    if ((units -= 3) < 0)
-                      break;
+                    if ((units -= 3) < 0) break;
                     bytes.push(
                       codePoint >> 12 | 224,
                       codePoint >> 6 & 63 | 128,
                       codePoint & 63 | 128
                     );
                   } else if (codePoint < 1114112) {
-                    if ((units -= 4) < 0)
-                      break;
+                    if ((units -= 4) < 0) break;
                     bytes.push(
                       codePoint >> 18 | 240,
                       codePoint >> 12 & 63 | 128,
@@ -9722,8 +9441,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 var c, hi, lo;
                 var byteArray = [];
                 for (var i = 0; i < str.length; ++i) {
-                  if ((units -= 2) < 0)
-                    break;
+                  if ((units -= 2) < 0) break;
                   c = str.charCodeAt(i);
                   hi = c >> 8;
                   lo = c % 256;
@@ -9737,8 +9455,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               function blitBuffer(src, dst, offset, length) {
                 for (var i = 0; i < length; ++i) {
-                  if (i + offset >= dst.length || i >= src.length)
-                    break;
+                  if (i + offset >= dst.length || i >= src.length) break;
                   dst[i + offset] = src[i];
                 }
                 return i;
@@ -9870,8 +9587,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var slice = Array.prototype.slice;
           module4.exports = Copy;
           function Copy(src, withAccess) {
-            if (!(this instanceof Copy))
-              return new Copy(src, withAccess);
+            if (!(this instanceof Copy)) return new Copy(src, withAccess);
             this.src = src;
             this._withAccess = withAccess;
           }
@@ -9890,28 +9606,23 @@ var require_aliyun_oss_sdk = __commonJS({
           };
           Copy.prototype.to = function(to) {
             to = to || {};
-            if (!this.src)
-              return to;
+            if (!this.src) return to;
             var keys = this.keys || Object.keys(this.src);
             if (!this._withAccess) {
               for (var i = 0; i < keys.length; i++) {
                 key = keys[i];
-                if (to[key] !== void 0)
-                  continue;
+                if (to[key] !== void 0) continue;
                 to[key] = this.src[key];
               }
               return to;
             }
             for (var i = 0; i < keys.length; i++) {
               var key = keys[i];
-              if (!notDefined(to, key))
-                continue;
+              if (!notDefined(to, key)) continue;
               var getter = this.src.__lookupGetter__(key);
               var setter = this.src.__lookupSetter__(key);
-              if (getter)
-                to.__defineGetter__(key, getter);
-              if (setter)
-                to.__defineSetter__(key, setter);
+              if (getter) to.__defineGetter__(key, getter);
+              if (setter) to.__defineSetter__(key, setter);
               if (!getter && !setter) {
                 to[key] = this.src[key];
               }
@@ -9925,10 +9636,8 @@ var require_aliyun_oss_sdk = __commonJS({
               delete to[key];
               var getter = this.src.__lookupGetter__(key);
               var setter = this.src.__lookupSetter__(key);
-              if (getter)
-                to.__defineGetter__(key, getter);
-              if (setter)
-                to.__defineSetter__(key, setter);
+              if (getter) to.__defineGetter__(key, getter);
+              if (setter) to.__defineSetter__(key, setter);
               if (!getter && !setter) {
                 to[key] = this.src[key];
               }
@@ -9952,8 +9661,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var tryToString = require2("../internals/try-to-string");
           var $TypeError = TypeError;
           module4.exports = function(argument) {
-            if (isCallable(argument))
-              return argument;
+            if (isCallable(argument)) return argument;
             throw new $TypeError(tryToString(argument) + " is not a function");
           };
         }, { "../internals/is-callable": 203, "../internals/try-to-string": 293 }], 109: [function(require2, module4, exports3) {
@@ -9962,8 +9670,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var tryToString = require2("../internals/try-to-string");
           var $TypeError = TypeError;
           module4.exports = function(argument) {
-            if (isConstructor(argument))
-              return argument;
+            if (isConstructor(argument)) return argument;
             throw new $TypeError(tryToString(argument) + " is not a constructor");
           };
         }, { "../internals/is-constructor": 204, "../internals/try-to-string": 293 }], 110: [function(require2, module4, exports3) {
@@ -9972,8 +9679,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var $String = String;
           var $TypeError = TypeError;
           module4.exports = function(argument) {
-            if (isPossiblePrototype(argument))
-              return argument;
+            if (isPossiblePrototype(argument)) return argument;
             throw new $TypeError("Can't set " + $String(argument) + " as a prototype");
           };
         }, { "../internals/is-possible-prototype": 209 }], 111: [function(require2, module4, exports3) {
@@ -10003,8 +9709,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var isPrototypeOf = require2("../internals/object-is-prototype-of");
           var $TypeError = TypeError;
           module4.exports = function(it, Prototype) {
-            if (isPrototypeOf(Prototype, it))
-              return it;
+            if (isPrototypeOf(Prototype, it)) return it;
             throw new $TypeError("Incorrect invocation");
           };
         }, { "../internals/object-is-prototype-of": 238 }], 114: [function(require2, module4, exports3) {
@@ -10013,8 +9718,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var $String = String;
           var $TypeError = TypeError;
           module4.exports = function(argument) {
-            if (isObject(argument))
-              return argument;
+            if (isObject(argument)) return argument;
             throw new $TypeError($String(argument) + " is not an object");
           };
         }, { "../internals/is-object": 208 }], 115: [function(require2, module4, exports3) {
@@ -10026,8 +9730,7 @@ var require_aliyun_oss_sdk = __commonJS({
           module4.exports = fails(function() {
             if (typeof ArrayBuffer == "function") {
               var buffer = new ArrayBuffer(8);
-              if (Object.isExtensible(buffer))
-                Object.defineProperty(buffer, "a", { value: 8 });
+              if (Object.isExtensible(buffer)) Object.defineProperty(buffer, "a", { value: 8 });
             }
           });
         }, { "../internals/fails": 171 }], 117: [function(require2, module4, exports3) {
@@ -10081,75 +9784,63 @@ var require_aliyun_oss_sdk = __commonJS({
             BigUint64Array: 8
           };
           var isView = function isView2(it) {
-            if (!isObject(it))
-              return false;
+            if (!isObject(it)) return false;
             var klass = classof(it);
             return klass === "DataView" || hasOwn(TypedArrayConstructorsList, klass) || hasOwn(BigIntArrayConstructorsList, klass);
           };
           var getTypedArrayConstructor = function(it) {
             var proto = getPrototypeOf(it);
-            if (!isObject(proto))
-              return;
+            if (!isObject(proto)) return;
             var state = getInternalState(proto);
             return state && hasOwn(state, TYPED_ARRAY_CONSTRUCTOR) ? state[TYPED_ARRAY_CONSTRUCTOR] : getTypedArrayConstructor(proto);
           };
           var isTypedArray = function(it) {
-            if (!isObject(it))
-              return false;
+            if (!isObject(it)) return false;
             var klass = classof(it);
             return hasOwn(TypedArrayConstructorsList, klass) || hasOwn(BigIntArrayConstructorsList, klass);
           };
           var aTypedArray = function(it) {
-            if (isTypedArray(it))
-              return it;
+            if (isTypedArray(it)) return it;
             throw new TypeError2("Target is not a typed array");
           };
           var aTypedArrayConstructor = function(C) {
-            if (isCallable(C) && (!setPrototypeOf || isPrototypeOf(TypedArray, C)))
-              return C;
+            if (isCallable(C) && (!setPrototypeOf || isPrototypeOf(TypedArray, C))) return C;
             throw new TypeError2(tryToString(C) + " is not a typed array constructor");
           };
           var exportTypedArrayMethod = function(KEY, property, forced, options) {
-            if (!DESCRIPTORS)
-              return;
-            if (forced)
-              for (var ARRAY in TypedArrayConstructorsList) {
-                var TypedArrayConstructor = global2[ARRAY];
-                if (TypedArrayConstructor && hasOwn(TypedArrayConstructor.prototype, KEY))
-                  try {
-                    delete TypedArrayConstructor.prototype[KEY];
-                  } catch (error) {
-                    try {
-                      TypedArrayConstructor.prototype[KEY] = property;
-                    } catch (error2) {
-                    }
-                  }
+            if (!DESCRIPTORS) return;
+            if (forced) for (var ARRAY in TypedArrayConstructorsList) {
+              var TypedArrayConstructor = global2[ARRAY];
+              if (TypedArrayConstructor && hasOwn(TypedArrayConstructor.prototype, KEY)) try {
+                delete TypedArrayConstructor.prototype[KEY];
+              } catch (error) {
+                try {
+                  TypedArrayConstructor.prototype[KEY] = property;
+                } catch (error2) {
+                }
               }
+            }
             if (!TypedArrayPrototype[KEY] || forced) {
               defineBuiltIn(TypedArrayPrototype, KEY, forced ? property : NATIVE_ARRAY_BUFFER_VIEWS && Int8ArrayPrototype[KEY] || property, options);
             }
           };
           var exportTypedArrayStaticMethod = function(KEY, property, forced) {
             var ARRAY, TypedArrayConstructor;
-            if (!DESCRIPTORS)
-              return;
+            if (!DESCRIPTORS) return;
             if (setPrototypeOf) {
-              if (forced)
-                for (ARRAY in TypedArrayConstructorsList) {
-                  TypedArrayConstructor = global2[ARRAY];
-                  if (TypedArrayConstructor && hasOwn(TypedArrayConstructor, KEY))
-                    try {
-                      delete TypedArrayConstructor[KEY];
-                    } catch (error) {
-                    }
+              if (forced) for (ARRAY in TypedArrayConstructorsList) {
+                TypedArrayConstructor = global2[ARRAY];
+                if (TypedArrayConstructor && hasOwn(TypedArrayConstructor, KEY)) try {
+                  delete TypedArrayConstructor[KEY];
+                } catch (error) {
                 }
+              }
               if (!TypedArray[KEY] || forced) {
                 try {
                   return defineBuiltIn(TypedArray, KEY, forced ? property : NATIVE_ARRAY_BUFFER_VIEWS && TypedArray[KEY] || property);
                 } catch (error) {
                 }
-              } else
-                return;
+              } else return;
             }
             for (ARRAY in TypedArrayConstructorsList) {
               TypedArrayConstructor = global2[ARRAY];
@@ -10161,34 +9852,27 @@ var require_aliyun_oss_sdk = __commonJS({
           for (NAME in TypedArrayConstructorsList) {
             Constructor = global2[NAME];
             Prototype = Constructor && Constructor.prototype;
-            if (Prototype)
-              enforceInternalState(Prototype)[TYPED_ARRAY_CONSTRUCTOR] = Constructor;
-            else
-              NATIVE_ARRAY_BUFFER_VIEWS = false;
+            if (Prototype) enforceInternalState(Prototype)[TYPED_ARRAY_CONSTRUCTOR] = Constructor;
+            else NATIVE_ARRAY_BUFFER_VIEWS = false;
           }
           for (NAME in BigIntArrayConstructorsList) {
             Constructor = global2[NAME];
             Prototype = Constructor && Constructor.prototype;
-            if (Prototype)
-              enforceInternalState(Prototype)[TYPED_ARRAY_CONSTRUCTOR] = Constructor;
+            if (Prototype) enforceInternalState(Prototype)[TYPED_ARRAY_CONSTRUCTOR] = Constructor;
           }
           if (!NATIVE_ARRAY_BUFFER_VIEWS || !isCallable(TypedArray) || TypedArray === Function.prototype) {
             TypedArray = function TypedArray2() {
               throw new TypeError2("Incorrect invocation");
             };
-            if (NATIVE_ARRAY_BUFFER_VIEWS)
-              for (NAME in TypedArrayConstructorsList) {
-                if (global2[NAME])
-                  setPrototypeOf(global2[NAME], TypedArray);
-              }
+            if (NATIVE_ARRAY_BUFFER_VIEWS) for (NAME in TypedArrayConstructorsList) {
+              if (global2[NAME]) setPrototypeOf(global2[NAME], TypedArray);
+            }
           }
           if (!NATIVE_ARRAY_BUFFER_VIEWS || !TypedArrayPrototype || TypedArrayPrototype === ObjectPrototype) {
             TypedArrayPrototype = TypedArray.prototype;
-            if (NATIVE_ARRAY_BUFFER_VIEWS)
-              for (NAME in TypedArrayConstructorsList) {
-                if (global2[NAME])
-                  setPrototypeOf(global2[NAME].prototype, TypedArrayPrototype);
-              }
+            if (NATIVE_ARRAY_BUFFER_VIEWS) for (NAME in TypedArrayConstructorsList) {
+              if (global2[NAME]) setPrototypeOf(global2[NAME].prototype, TypedArrayPrototype);
+            }
           }
           if (NATIVE_ARRAY_BUFFER_VIEWS && getPrototypeOf(Uint8ClampedArrayPrototype) !== TypedArrayPrototype) {
             setPrototypeOf(Uint8ClampedArrayPrototype, TypedArrayPrototype);
@@ -10201,10 +9885,9 @@ var require_aliyun_oss_sdk = __commonJS({
                 return isObject(this) ? this[TYPED_ARRAY_TAG] : void 0;
               }
             });
-            for (NAME in TypedArrayConstructorsList)
-              if (global2[NAME]) {
-                createNonEnumerableProperty(global2[NAME], TYPED_ARRAY_TAG, NAME);
-              }
+            for (NAME in TypedArrayConstructorsList) if (global2[NAME]) {
+              createNonEnumerableProperty(global2[NAME], TYPED_ARRAY_TAG, NAME);
+            }
           }
           module4.exports = {
             NATIVE_ARRAY_BUFFER_VIEWS,
@@ -10296,8 +9979,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var store = getInternalDataViewState(view);
             var intIndex = toIndex(index);
             var boolIsLittleEndian = !!isLittleEndian;
-            if (intIndex + count > store.byteLength)
-              throw new RangeError2(WRONG_INDEX);
+            if (intIndex + count > store.byteLength) throw new RangeError2(WRONG_INDEX);
             var bytes = store.bytes;
             var start = intIndex + store.byteOffset;
             var pack = arraySlice(bytes, start, start + count);
@@ -10308,12 +9990,10 @@ var require_aliyun_oss_sdk = __commonJS({
             var intIndex = toIndex(index);
             var pack = conversion(+value);
             var boolIsLittleEndian = !!isLittleEndian;
-            if (intIndex + count > store.byteLength)
-              throw new RangeError2(WRONG_INDEX);
+            if (intIndex + count > store.byteLength) throw new RangeError2(WRONG_INDEX);
             var bytes = store.bytes;
             var start = intIndex + store.byteOffset;
-            for (var i = 0; i < count; i++)
-              bytes[start + i] = pack[boolIsLittleEndian ? i : count - i - 1];
+            for (var i = 0; i < count; i++) bytes[start + i] = pack[boolIsLittleEndian ? i : count - i - 1];
           };
           if (!NATIVE_ARRAY_BUFFER) {
             $ArrayBuffer = function ArrayBuffer2(length) {
@@ -10336,11 +10016,9 @@ var require_aliyun_oss_sdk = __commonJS({
               var bufferState = getInternalArrayBufferState(buffer);
               var bufferLength = bufferState.byteLength;
               var offset = toIntegerOrInfinity(byteOffset);
-              if (offset < 0 || offset > bufferLength)
-                throw new RangeError2("Wrong offset");
+              if (offset < 0 || offset > bufferLength) throw new RangeError2("Wrong offset");
               byteLength = byteLength === void 0 ? bufferLength - offset : toLength(byteLength);
-              if (offset + byteLength > bufferLength)
-                throw new RangeError2(WRONG_LENGTH);
+              if (offset + byteLength > bufferLength) throw new RangeError2(WRONG_LENGTH);
               setInternalState(this, {
                 type: DATA_VIEW,
                 buffer,
@@ -10442,15 +10120,14 @@ var require_aliyun_oss_sdk = __commonJS({
             var $setInt8 = uncurryThis(DataViewPrototype.setInt8);
             testView.setInt8(0, 2147483648);
             testView.setInt8(1, 2147483649);
-            if (testView.getInt8(0) || !testView.getInt8(1))
-              defineBuiltIns(DataViewPrototype, {
-                setInt8: function setInt8(byteOffset, value) {
-                  $setInt8(this, byteOffset, value << 24 >> 24);
-                },
-                setUint8: function setUint8(byteOffset, value) {
-                  $setInt8(this, byteOffset, value << 24 >> 24);
-                }
-              }, { unsafe: true });
+            if (testView.getInt8(0) || !testView.getInt8(1)) defineBuiltIns(DataViewPrototype, {
+              setInt8: function setInt8(byteOffset, value) {
+                $setInt8(this, byteOffset, value << 24 >> 24);
+              },
+              setUint8: function setUint8(byteOffset, value) {
+                $setInt8(this, byteOffset, value << 24 >> 24);
+              }
+            }, { unsafe: true });
           }
           setToStringTag($ArrayBuffer, ARRAY_BUFFER);
           setToStringTag($DataView, DATA_VIEW);
@@ -10479,10 +10156,8 @@ var require_aliyun_oss_sdk = __commonJS({
               to += count - 1;
             }
             while (count-- > 0) {
-              if (from in O)
-                O[to] = O[from];
-              else
-                deletePropertyOrThrow(O, to);
+              if (from in O) O[to] = O[from];
+              else deletePropertyOrThrow(O, to);
               to += inc;
               from += inc;
             }
@@ -10500,8 +10175,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var index = toAbsoluteIndex(argumentsLength > 1 ? arguments[1] : void 0, length);
             var end = argumentsLength > 2 ? arguments[2] : void 0;
             var endPos = end === void 0 ? length : toAbsoluteIndex(end, length);
-            while (endPos > index)
-              O[index++] = value;
+            while (endPos > index) O[index++] = value;
             return O;
           };
         }, { "../internals/length-of-array-like": 219, "../internals/to-absolute-index": 279, "../internals/to-object": 285 }], 121: [function(require2, module4, exports3) {
@@ -10519,8 +10193,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var index = 0;
             var length = arguments.length > 2 ? $length : lengthOfArrayLike(list);
             var result = new Constructor(length);
-            while (length > index)
-              result[index] = list[index++];
+            while (length > index) result[index] = list[index++];
             return result;
           };
         }, { "../internals/length-of-array-like": 219 }], 123: [function(require2, module4, exports3) {
@@ -10542,8 +10215,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var argumentsLength = arguments.length;
             var mapfn = argumentsLength > 1 ? arguments[1] : void 0;
             var mapping = mapfn !== void 0;
-            if (mapping)
-              mapfn = bind(mapfn, argumentsLength > 2 ? arguments[2] : void 0);
+            if (mapping) mapfn = bind(mapfn, argumentsLength > 2 ? arguments[2] : void 0);
             var iteratorMethod = getIteratorMethod(O);
             var index = 0;
             var length, result, step, iterator, next, value;
@@ -10577,17 +10249,13 @@ var require_aliyun_oss_sdk = __commonJS({
               var length = lengthOfArrayLike(O);
               var index = toAbsoluteIndex(fromIndex, length);
               var value;
-              if (IS_INCLUDES && el !== el)
-                while (length > index) {
-                  value = O[index++];
-                  if (value !== value)
-                    return true;
-                }
-              else
-                for (; length > index; index++) {
-                  if ((IS_INCLUDES || index in O) && O[index] === el)
-                    return IS_INCLUDES || index || 0;
-                }
+              if (IS_INCLUDES && el !== el) while (length > index) {
+                value = O[index++];
+                if (value !== value) return true;
+              }
+              else for (; length > index; index++) {
+                if ((IS_INCLUDES || index in O) && O[index] === el) return IS_INCLUDES || index || 0;
+              }
               return !IS_INCLUDES && -1;
             };
           };
@@ -10625,33 +10293,33 @@ var require_aliyun_oss_sdk = __commonJS({
               var create = specificCreate || arraySpeciesCreate;
               var target = IS_MAP ? create($this, length) : IS_FILTER || IS_FILTER_REJECT ? create($this, 0) : void 0;
               var value, result;
-              for (; length > index; index++)
-                if (NO_HOLES || index in self2) {
-                  value = self2[index];
-                  result = boundFunction(value, index, O);
-                  if (TYPE) {
-                    if (IS_MAP)
-                      target[index] = result;
-                    else if (result)
-                      switch (TYPE) {
-                        case 3:
-                          return true;
-                        case 5:
-                          return value;
-                        case 6:
-                          return index;
-                        case 2:
-                          push(target, value);
-                      }
-                    else
-                      switch (TYPE) {
-                        case 4:
-                          return false;
-                        case 7:
-                          push(target, value);
-                      }
+              for (; length > index; index++) if (NO_HOLES || index in self2) {
+                value = self2[index];
+                result = boundFunction(value, index, O);
+                if (TYPE) {
+                  if (IS_MAP) target[index] = result;
+                  else if (result) switch (TYPE) {
+                    case 3:
+                      return true;
+                    // some
+                    case 5:
+                      return value;
+                    // find
+                    case 6:
+                      return index;
+                    // findIndex
+                    case 2:
+                      push(target, value);
+                  }
+                  else switch (TYPE) {
+                    case 4:
+                      return false;
+                    // every
+                    case 7:
+                      push(target, value);
                   }
                 }
+              }
               return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : target;
             };
           };
@@ -10694,18 +10362,13 @@ var require_aliyun_oss_sdk = __commonJS({
           var STRICT_METHOD = arrayMethodIsStrict("lastIndexOf");
           var FORCED = NEGATIVE_ZERO || !STRICT_METHOD;
           module4.exports = FORCED ? function lastIndexOf(searchElement) {
-            if (NEGATIVE_ZERO)
-              return apply($lastIndexOf, this, arguments) || 0;
+            if (NEGATIVE_ZERO) return apply($lastIndexOf, this, arguments) || 0;
             var O = toIndexedObject(this);
             var length = lengthOfArrayLike(O);
             var index = length - 1;
-            if (arguments.length > 1)
-              index = min(index, toIntegerOrInfinity(arguments[1]));
-            if (index < 0)
-              index = length + index;
-            for (; index >= 0; index--)
-              if (index in O && O[index] === searchElement)
-                return index || 0;
+            if (arguments.length > 1) index = min(index, toIntegerOrInfinity(arguments[1]));
+            if (index < 0) index = length + index;
+            for (; index >= 0; index--) if (index in O && O[index] === searchElement) return index || 0;
             return -1;
           } : $lastIndexOf;
         }, { "../internals/array-method-is-strict": 128, "../internals/function-apply": 174, "../internals/length-of-array-like": 219, "../internals/to-indexed-object": 282, "../internals/to-integer-or-infinity": 283 }], 127: [function(require2, module4, exports3) {
@@ -10750,22 +10413,20 @@ var require_aliyun_oss_sdk = __commonJS({
               aCallable(callbackfn);
               var index = IS_RIGHT ? length - 1 : 0;
               var i = IS_RIGHT ? -1 : 1;
-              if (argumentsLength < 2)
-                while (true) {
-                  if (index in self2) {
-                    memo = self2[index];
-                    index += i;
-                    break;
-                  }
-                  index += i;
-                  if (IS_RIGHT ? index < 0 : length <= index) {
-                    throw new $TypeError("Reduce of empty array with no initial value");
-                  }
-                }
-              for (; IS_RIGHT ? index >= 0 : length > index; index += i)
+              if (argumentsLength < 2) while (true) {
                 if (index in self2) {
-                  memo = callbackfn(memo, self2[index], index, O);
+                  memo = self2[index];
+                  index += i;
+                  break;
                 }
+                index += i;
+                if (IS_RIGHT ? index < 0 : length <= index) {
+                  throw new $TypeError("Reduce of empty array with no initial value");
+                }
+              }
+              for (; IS_RIGHT ? index >= 0 : length > index; index += i) if (index in self2) {
+                memo = callbackfn(memo, self2[index], index, O);
+              }
               return memo;
             };
           };
@@ -10783,15 +10444,14 @@ var require_aliyun_oss_sdk = __commonJS({
           var isArray = require2("../internals/is-array");
           var $TypeError = TypeError;
           var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-          var SILENT_ON_NON_WRITABLE_LENGTH_SET = DESCRIPTORS && !function() {
-            if (this !== void 0)
-              return true;
+          var SILENT_ON_NON_WRITABLE_LENGTH_SET = DESCRIPTORS && !(function() {
+            if (this !== void 0) return true;
             try {
               Object.defineProperty([], "length", { writable: false }).length = 1;
             } catch (error) {
               return error instanceof TypeError;
             }
-          }();
+          })();
           module4.exports = SILENT_ON_NON_WRITABLE_LENGTH_SET ? function(O, length) {
             if (isArray(O) && !getOwnPropertyDescriptor(O, "length").writable) {
               throw new $TypeError("Cannot set read only .length");
@@ -10819,8 +10479,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 while (j && comparefn(array[j - 1], element) > 0) {
                   array[j] = array[--j];
                 }
-                if (j !== i++)
-                  array[j] = element;
+                if (j !== i++) array[j] = element;
               }
             } else {
               var middle = floor(length / 2);
@@ -10849,12 +10508,10 @@ var require_aliyun_oss_sdk = __commonJS({
             var C;
             if (isArray(originalArray)) {
               C = originalArray.constructor;
-              if (isConstructor(C) && (C === $Array || isArray(C.prototype)))
-                C = void 0;
+              if (isConstructor(C) && (C === $Array || isArray(C.prototype))) C = void 0;
               else if (isObject(C)) {
                 C = C[SPECIES];
-                if (C === null)
-                  C = void 0;
+                if (C === null) C = void 0;
               }
             }
             return C === void 0 ? $Array : C;
@@ -10901,8 +10558,7 @@ var require_aliyun_oss_sdk = __commonJS({
           }
           module4.exports = function(exec, SKIP_CLOSING) {
             try {
-              if (!SKIP_CLOSING && !SAFE_CLOSING)
-                return false;
+              if (!SKIP_CLOSING && !SAFE_CLOSING) return false;
             } catch (error) {
               return false;
             }
@@ -10937,9 +10593,9 @@ var require_aliyun_oss_sdk = __commonJS({
           var wellKnownSymbol = require2("../internals/well-known-symbol");
           var TO_STRING_TAG = wellKnownSymbol("toStringTag");
           var $Object = Object;
-          var CORRECT_ARGUMENTS = classofRaw(function() {
+          var CORRECT_ARGUMENTS = classofRaw(/* @__PURE__ */ (function() {
             return arguments;
-          }()) === "Arguments";
+          })()) === "Arguments";
           var tryGet = function(it, key) {
             try {
               return it[key];
@@ -10978,10 +10634,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   last: void 0,
                   size: 0
                 });
-                if (!DESCRIPTORS)
-                  that.size = 0;
-                if (!isNullOrUndefined(iterable))
-                  iterate(iterable, that[ADDER], { that, AS_ENTRIES: IS_MAP });
+                if (!DESCRIPTORS) that.size = 0;
+                if (!isNullOrUndefined(iterable)) iterate(iterable, that[ADDER], { that, AS_ENTRIES: IS_MAP });
               });
               var Prototype = Constructor.prototype;
               var getInternalState = internalStateGetterFor(CONSTRUCTOR_NAME);
@@ -11000,16 +10654,11 @@ var require_aliyun_oss_sdk = __commonJS({
                     next: void 0,
                     removed: false
                   };
-                  if (!state.first)
-                    state.first = entry;
-                  if (previous)
-                    previous.next = entry;
-                  if (DESCRIPTORS)
-                    state.size++;
-                  else
-                    that.size++;
-                  if (index !== "F")
-                    state.index[index] = entry;
+                  if (!state.first) state.first = entry;
+                  if (previous) previous.next = entry;
+                  if (DESCRIPTORS) state.size++;
+                  else that.size++;
+                  if (index !== "F") state.index[index] = entry;
                 }
                 return that;
               };
@@ -11017,11 +10666,9 @@ var require_aliyun_oss_sdk = __commonJS({
                 var state = getInternalState(that);
                 var index = fastKey(key);
                 var entry;
-                if (index !== "F")
-                  return state.index[index];
+                if (index !== "F") return state.index[index];
                 for (entry = state.first; entry; entry = entry.next) {
-                  if (entry.key === key)
-                    return entry;
+                  if (entry.key === key) return entry;
                 }
               };
               defineBuiltIns(Prototype, {
@@ -11034,16 +10681,13 @@ var require_aliyun_oss_sdk = __commonJS({
                   var entry = state.first;
                   while (entry) {
                     entry.removed = true;
-                    if (entry.previous)
-                      entry.previous = entry.previous.next = void 0;
+                    if (entry.previous) entry.previous = entry.previous.next = void 0;
                     entry = entry.next;
                   }
                   state.first = state.last = void 0;
                   state.index = create(null);
-                  if (DESCRIPTORS)
-                    state.size = 0;
-                  else
-                    that.size = 0;
+                  if (DESCRIPTORS) state.size = 0;
+                  else that.size = 0;
                 },
                 // `{ Map, Set }.prototype.delete(key)` methods
                 // https://tc39.es/ecma262/#sec-map.prototype.delete
@@ -11057,18 +10701,12 @@ var require_aliyun_oss_sdk = __commonJS({
                     var prev = entry.previous;
                     delete state.index[entry.index];
                     entry.removed = true;
-                    if (prev)
-                      prev.next = next;
-                    if (next)
-                      next.previous = prev;
-                    if (state.first === entry)
-                      state.first = next;
-                    if (state.last === entry)
-                      state.last = prev;
-                    if (DESCRIPTORS)
-                      state.size--;
-                    else
-                      that.size--;
+                    if (prev) prev.next = next;
+                    if (next) next.previous = prev;
+                    if (state.first === entry) state.first = next;
+                    if (state.last === entry) state.last = prev;
+                    if (DESCRIPTORS) state.size--;
+                    else that.size--;
                   }
                   return !!entry;
                 },
@@ -11081,8 +10719,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   var entry;
                   while (entry = entry ? entry.next : state.first) {
                     boundFunction(entry.value, entry.key, this);
-                    while (entry && entry.removed)
-                      entry = entry.previous;
+                    while (entry && entry.removed) entry = entry.previous;
                   }
                 },
                 // `{ Map, Set}.prototype.has(key)` methods
@@ -11111,13 +10748,12 @@ var require_aliyun_oss_sdk = __commonJS({
                   return define3(this, value = value === 0 ? 0 : value, value);
                 }
               });
-              if (DESCRIPTORS)
-                defineBuiltInAccessor(Prototype, "size", {
-                  configurable: true,
-                  get: function() {
-                    return getInternalState(this).size;
-                  }
-                });
+              if (DESCRIPTORS) defineBuiltInAccessor(Prototype, "size", {
+                configurable: true,
+                get: function() {
+                  return getInternalState(this).size;
+                }
+              });
               return Constructor;
             },
             setStrong: function(Constructor, CONSTRUCTOR_NAME, IS_MAP) {
@@ -11136,16 +10772,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 var state = getInternalIteratorState(this);
                 var kind = state.kind;
                 var entry = state.last;
-                while (entry && entry.removed)
-                  entry = entry.previous;
+                while (entry && entry.removed) entry = entry.previous;
                 if (!state.target || !(state.last = entry = entry ? entry.next : state.state.first)) {
                   state.target = void 0;
                   return createIterResultObject(void 0, true);
                 }
-                if (kind === "keys")
-                  return createIterResultObject(entry.key, false);
-                if (kind === "values")
-                  return createIterResultObject(entry.value, false);
+                if (kind === "keys") return createIterResultObject(entry.key, false);
+                if (kind === "values") return createIterResultObject(entry.value, false);
                 return createIterResultObject([entry.key, entry.value], false);
               }, IS_MAP ? "entries" : "values", !IS_MAP, true);
               setSpecies(CONSTRUCTOR_NAME);
@@ -11217,16 +10850,14 @@ var require_aliyun_oss_sdk = __commonJS({
               var BUGGY_ZERO = !IS_WEAK && fails(function() {
                 var $instance = new NativeConstructor();
                 var index = 5;
-                while (index--)
-                  $instance[ADDER](index, index);
+                while (index--) $instance[ADDER](index, index);
                 return !$instance.has(-0);
               });
               if (!ACCEPT_ITERABLES) {
                 Constructor = wrapper(function(dummy, iterable) {
                   anInstance(dummy, NativePrototype);
                   var that = inheritIfRequired(new NativeConstructor(), dummy, Constructor);
-                  if (!isNullOrUndefined(iterable))
-                    iterate(iterable, that[ADDER], { that, AS_ENTRIES: IS_MAP });
+                  if (!isNullOrUndefined(iterable)) iterate(iterable, that[ADDER], { that, AS_ENTRIES: IS_MAP });
                   return that;
                 });
                 Constructor.prototype = NativePrototype;
@@ -11237,16 +10868,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 fixMethod("has");
                 IS_MAP && fixMethod("get");
               }
-              if (BUGGY_ZERO || HASNT_CHAINING)
-                fixMethod(ADDER);
-              if (IS_WEAK && NativePrototype.clear)
-                delete NativePrototype.clear;
+              if (BUGGY_ZERO || HASNT_CHAINING) fixMethod(ADDER);
+              if (IS_WEAK && NativePrototype.clear) delete NativePrototype.clear;
             }
             exported[CONSTRUCTOR_NAME] = Constructor;
             $({ global: true, constructor: true, forced: Constructor !== NativeConstructor }, exported);
             setToStringTag(Constructor, CONSTRUCTOR_NAME);
-            if (!IS_WEAK)
-              common.setStrong(Constructor, CONSTRUCTOR_NAME, IS_MAP);
+            if (!IS_WEAK) common.setStrong(Constructor, CONSTRUCTOR_NAME, IS_MAP);
             return Constructor;
           };
         }, { "../internals/an-instance": 113, "../internals/check-correctness-of-iteration": 136, "../internals/define-built-in": 149, "../internals/export": 170, "../internals/fails": 171, "../internals/function-uncurry-this": 181, "../internals/global": 188, "../internals/inherit-if-required": 196, "../internals/internal-metadata": 198, "../internals/is-callable": 203, "../internals/is-forced": 205, "../internals/is-null-or-undefined": 207, "../internals/is-object": 208, "../internals/iterate": 213, "../internals/set-to-string-tag": 266 }], 141: [function(require2, module4, exports3) {
@@ -11325,20 +10953,16 @@ var require_aliyun_oss_sdk = __commonJS({
           var createPropertyDescriptor = require2("../internals/create-property-descriptor");
           module4.exports = function(object, key, value) {
             var propertyKey = toPropertyKey(key);
-            if (propertyKey in object)
-              definePropertyModule.f(object, propertyKey, createPropertyDescriptor(0, value));
-            else
-              object[propertyKey] = value;
+            if (propertyKey in object) definePropertyModule.f(object, propertyKey, createPropertyDescriptor(0, value));
+            else object[propertyKey] = value;
           };
         }, { "../internals/create-property-descriptor": 146, "../internals/object-define-property": 231, "../internals/to-property-key": 289 }], 148: [function(require2, module4, exports3) {
           "use strict";
           var makeBuiltIn = require2("../internals/make-built-in");
           var defineProperty = require2("../internals/object-define-property");
           module4.exports = function(target, name, descriptor) {
-            if (descriptor.get)
-              makeBuiltIn(descriptor.get, name, { getter: true });
-            if (descriptor.set)
-              makeBuiltIn(descriptor.set, name, { setter: true });
+            if (descriptor.get) makeBuiltIn(descriptor.get, name, { getter: true });
+            if (descriptor.set) makeBuiltIn(descriptor.set, name, { setter: true });
             return defineProperty.f(target, name, descriptor);
           };
         }, { "../internals/make-built-in": 220, "../internals/object-define-property": 231 }], 149: [function(require2, module4, exports3) {
@@ -11348,34 +10972,26 @@ var require_aliyun_oss_sdk = __commonJS({
           var makeBuiltIn = require2("../internals/make-built-in");
           var defineGlobalProperty = require2("../internals/define-global-property");
           module4.exports = function(O, key, value, options) {
-            if (!options)
-              options = {};
+            if (!options) options = {};
             var simple = options.enumerable;
             var name = options.name !== void 0 ? options.name : key;
-            if (isCallable(value))
-              makeBuiltIn(value, name, options);
+            if (isCallable(value)) makeBuiltIn(value, name, options);
             if (options.global) {
-              if (simple)
-                O[key] = value;
-              else
-                defineGlobalProperty(key, value);
+              if (simple) O[key] = value;
+              else defineGlobalProperty(key, value);
             } else {
               try {
-                if (!options.unsafe)
-                  delete O[key];
-                else if (O[key])
-                  simple = true;
+                if (!options.unsafe) delete O[key];
+                else if (O[key]) simple = true;
               } catch (error) {
               }
-              if (simple)
-                O[key] = value;
-              else
-                definePropertyModule.f(O, key, {
-                  value,
-                  enumerable: false,
-                  configurable: !options.nonConfigurable,
-                  writable: !options.nonWritable
-                });
+              if (simple) O[key] = value;
+              else definePropertyModule.f(O, key, {
+                value,
+                enumerable: false,
+                configurable: !options.nonConfigurable,
+                writable: !options.nonWritable
+              });
             }
             return O;
           };
@@ -11383,8 +10999,7 @@ var require_aliyun_oss_sdk = __commonJS({
           "use strict";
           var defineBuiltIn = require2("../internals/define-built-in");
           module4.exports = function(target, src, options) {
-            for (var key in src)
-              defineBuiltIn(target, key, src[key], options);
+            for (var key in src) defineBuiltIn(target, key, src[key], options);
             return target;
           };
         }, { "../internals/define-built-in": 149 }], 151: [function(require2, module4, exports3) {
@@ -11404,8 +11019,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var tryToString = require2("../internals/try-to-string");
           var $TypeError = TypeError;
           module4.exports = function(O, P) {
-            if (!delete O[P])
-              throw new $TypeError("Cannot delete property " + tryToString(P) + " of " + tryToString(O));
+            if (!delete O[P]) throw new $TypeError("Cannot delete property " + tryToString(P) + " of " + tryToString(O));
           };
         }, { "../internals/try-to-string": 293 }], 153: [function(require2, module4, exports3) {
           "use strict";
@@ -11429,8 +11043,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var $TypeError = TypeError;
           var MAX_SAFE_INTEGER = 9007199254740991;
           module4.exports = function(it) {
-            if (it > MAX_SAFE_INTEGER)
-              throw $TypeError("Maximum allowed index exceeded");
+            if (it > MAX_SAFE_INTEGER) throw $TypeError("Maximum allowed index exceeded");
             return it;
           };
         }, {}], 156: [function(require2, module4, exports3) {
@@ -11528,8 +11141,7 @@ var require_aliyun_oss_sdk = __commonJS({
             match = userAgent.match(/Edge\/(\d+)/);
             if (!match || match[1] >= 74) {
               match = userAgent.match(/Chrome\/(\d+)/);
-              if (match)
-                version = +match[1];
+              if (match) version = +match[1];
             }
           }
           module4.exports = version;
@@ -11570,25 +11182,22 @@ var require_aliyun_oss_sdk = __commonJS({
             } else {
               target = (global2[TARGET] || {}).prototype;
             }
-            if (target)
-              for (key in source) {
-                sourceProperty = source[key];
-                if (options.dontCallGetSet) {
-                  descriptor = getOwnPropertyDescriptor(target, key);
-                  targetProperty = descriptor && descriptor.value;
-                } else
-                  targetProperty = target[key];
-                FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? "." : "#") + key, options.forced);
-                if (!FORCED && targetProperty !== void 0) {
-                  if (typeof sourceProperty == typeof targetProperty)
-                    continue;
-                  copyConstructorProperties(sourceProperty, targetProperty);
-                }
-                if (options.sham || targetProperty && targetProperty.sham) {
-                  createNonEnumerableProperty(sourceProperty, "sham", true);
-                }
-                defineBuiltIn(target, key, sourceProperty, options);
+            if (target) for (key in source) {
+              sourceProperty = source[key];
+              if (options.dontCallGetSet) {
+                descriptor = getOwnPropertyDescriptor(target, key);
+                targetProperty = descriptor && descriptor.value;
+              } else targetProperty = target[key];
+              FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? "." : "#") + key, options.forced);
+              if (!FORCED && targetProperty !== void 0) {
+                if (typeof sourceProperty == typeof targetProperty) continue;
+                copyConstructorProperties(sourceProperty, targetProperty);
               }
+              if (options.sham || targetProperty && targetProperty.sham) {
+                createNonEnumerableProperty(sourceProperty, "sham", true);
+              }
+              defineBuiltIn(target, key, sourceProperty, options);
+            }
           };
         }, { "../internals/copy-constructor-properties": 141, "../internals/create-non-enumerable-property": 145, "../internals/define-built-in": 149, "../internals/define-global-property": 151, "../internals/global": 188, "../internals/is-forced": 205, "../internals/object-get-own-property-descriptor": 232 }], 171: [function(require2, module4, exports3) {
           "use strict";
@@ -11654,8 +11263,7 @@ var require_aliyun_oss_sdk = __commonJS({
               defineBuiltIn(String.prototype, KEY, methods[0]);
               defineBuiltIn(RegExpPrototype, SYMBOL, methods[1]);
             }
-            if (SHAM)
-              createNonEnumerableProperty(RegExpPrototype[SYMBOL], "sham", true);
+            if (SHAM) createNonEnumerableProperty(RegExpPrototype[SYMBOL], "sham", true);
           };
         }, { "../internals/create-non-enumerable-property": 145, "../internals/define-built-in": 149, "../internals/fails": 171, "../internals/function-uncurry-this-clause": 180, "../internals/regexp-exec": 256, "../internals/well-known-symbol": 306, "../modules/es.regexp.exec": 338 }], 173: [function(require2, module4, exports3) {
           "use strict";
@@ -11688,8 +11296,8 @@ var require_aliyun_oss_sdk = __commonJS({
           "use strict";
           var fails = require2("../internals/fails");
           module4.exports = !fails(function() {
-            var test = function() {
-            }.bind();
+            var test = (function() {
+            }).bind();
             return typeof test != "function" || test.hasOwnProperty("prototype");
           });
         }, { "../internals/fails": 171 }], 177: [function(require2, module4, exports3) {
@@ -11706,8 +11314,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var FunctionPrototype = Function.prototype;
           var getDescriptor = DESCRIPTORS && Object.getOwnPropertyDescriptor;
           var EXISTS = hasOwn(FunctionPrototype, "name");
-          var PROPER = EXISTS && function something() {
-          }.name === "something";
+          var PROPER = EXISTS && (function something() {
+          }).name === "something";
           var CONFIGURABLE = EXISTS && (!DESCRIPTORS || DESCRIPTORS && getDescriptor(FunctionPrototype, "name").configurable);
           module4.exports = {
             EXISTS,
@@ -11729,8 +11337,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var classofRaw = require2("../internals/classof-raw");
           var uncurryThis = require2("../internals/function-uncurry-this");
           module4.exports = function(fn) {
-            if (classofRaw(fn) === "Function")
-              return uncurryThis(fn);
+            if (classofRaw(fn) === "Function") return uncurryThis(fn);
           };
         }, { "../internals/classof-raw": 137, "../internals/function-uncurry-this": 181 }], 181: [function(require2, module4, exports3) {
           "use strict";
@@ -11762,8 +11369,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var wellKnownSymbol = require2("../internals/well-known-symbol");
           var ITERATOR = wellKnownSymbol("iterator");
           module4.exports = function(it) {
-            if (!isNullOrUndefined(it))
-              return getMethod(it, ITERATOR) || getMethod(it, "@@iterator") || Iterators[classof(it)];
+            if (!isNullOrUndefined(it)) return getMethod(it, ITERATOR) || getMethod(it, "@@iterator") || Iterators[classof(it)];
           };
         }, { "../internals/classof": 138, "../internals/get-method": 186, "../internals/is-null-or-undefined": 207, "../internals/iterators": 218, "../internals/well-known-symbol": 306 }], 184: [function(require2, module4, exports3) {
           "use strict";
@@ -11775,8 +11381,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var $TypeError = TypeError;
           module4.exports = function(argument, usingIterator) {
             var iteratorMethod = arguments.length < 2 ? getIteratorMethod(argument) : usingIterator;
-            if (aCallable(iteratorMethod))
-              return anObject(call(iteratorMethod, argument));
+            if (aCallable(iteratorMethod)) return anObject(call(iteratorMethod, argument));
             throw new $TypeError(tryToString(argument) + " is not iterable");
           };
         }, { "../internals/a-callable": 108, "../internals/an-object": 114, "../internals/function-call": 177, "../internals/get-iterator-method": 183, "../internals/try-to-string": 293 }], 185: [function(require2, module4, exports3) {
@@ -11788,18 +11393,14 @@ var require_aliyun_oss_sdk = __commonJS({
           var toString = require2("../internals/to-string");
           var push = uncurryThis([].push);
           module4.exports = function(replacer) {
-            if (isCallable(replacer))
-              return replacer;
-            if (!isArray(replacer))
-              return;
+            if (isCallable(replacer)) return replacer;
+            if (!isArray(replacer)) return;
             var rawLength = replacer.length;
             var keys = [];
             for (var i = 0; i < rawLength; i++) {
               var element = replacer[i];
-              if (typeof element == "string")
-                push(keys, element);
-              else if (typeof element == "number" || classof(element) === "Number" || classof(element) === "String")
-                push(keys, toString(element));
+              if (typeof element == "string") push(keys, element);
+              else if (typeof element == "number" || classof(element) === "Number" || classof(element) === "String") push(keys, toString(element));
             }
             var keysLength = keys.length;
             var root = true;
@@ -11808,11 +11409,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 root = false;
                 return value;
               }
-              if (isArray(this))
-                return value;
-              for (var j = 0; j < keysLength; j++)
-                if (keys[j] === key)
-                  return value;
+              if (isArray(this)) return value;
+              for (var j = 0; j < keysLength; j++) if (keys[j] === key) return value;
             };
           };
         }, { "../internals/classof-raw": 137, "../internals/function-uncurry-this": 181, "../internals/is-array": 201, "../internals/is-callable": 203, "../internals/to-string": 291 }], 186: [function(require2, module4, exports3) {
@@ -11857,14 +11455,11 @@ var require_aliyun_oss_sdk = __commonJS({
                   break;
                 default:
                   var n = +ch;
-                  if (n === 0)
-                    return match;
+                  if (n === 0) return match;
                   if (n > m) {
                     var f = floor(n / 10);
-                    if (f === 0)
-                      return match;
-                    if (f <= m)
-                      return captures[f - 1] === void 0 ? charAt(ch, 1) : captures[f - 1] + charAt(ch, 1);
+                    if (f === 0) return match;
+                    if (f <= m) return captures[f - 1] === void 0 ? charAt(ch, 1) : captures[f - 1] + charAt(ch, 1);
                     return match;
                   }
                   capture = captures[n - 1];
@@ -11882,9 +11477,9 @@ var require_aliyun_oss_sdk = __commonJS({
               module4.exports = // eslint-disable-next-line es/no-global-this -- safe
               check(typeof globalThis == "object" && globalThis) || check(typeof window == "object" && window) || // eslint-disable-next-line no-restricted-globals -- safe
               check(typeof self == "object" && self) || check(typeof global2 == "object" && global2) || check(typeof this == "object" && this) || // eslint-disable-next-line no-new-func -- fallback
-              function() {
+              /* @__PURE__ */ (function() {
                 return this;
-              }() || Function("return this")();
+              })() || Function("return this")();
             }).call(this);
           }).call(this, typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {});
         }, {}], 189: [function(require2, module4, exports3) {
@@ -12044,8 +11639,7 @@ var require_aliyun_oss_sdk = __commonJS({
               // it can work only with native `setPrototypeOf`
               setPrototypeOf && // we haven't completely correct pre-ES6 way for getting `new.target`, so use this
               isCallable(NewTarget = dummy.constructor) && NewTarget !== Wrapper && isObject(NewTargetPrototype = NewTarget.prototype) && NewTargetPrototype !== Wrapper.prototype
-            )
-              setPrototypeOf($this, NewTargetPrototype);
+            ) setPrototypeOf($this, NewTargetPrototype);
             return $this;
           };
         }, { "../internals/is-callable": 203, "../internals/is-object": 208, "../internals/object-set-prototype-of": 242 }], 197: [function(require2, module4, exports3) {
@@ -12085,30 +11679,24 @@ var require_aliyun_oss_sdk = __commonJS({
             } });
           };
           var fastKey = function(it, create) {
-            if (!isObject(it))
-              return typeof it == "symbol" ? it : (typeof it == "string" ? "S" : "P") + it;
+            if (!isObject(it)) return typeof it == "symbol" ? it : (typeof it == "string" ? "S" : "P") + it;
             if (!hasOwn(it, METADATA)) {
-              if (!isExtensible(it))
-                return "F";
-              if (!create)
-                return "E";
+              if (!isExtensible(it)) return "F";
+              if (!create) return "E";
               setMetadata(it);
             }
             return it[METADATA].objectID;
           };
           var getWeakData = function(it, create) {
             if (!hasOwn(it, METADATA)) {
-              if (!isExtensible(it))
-                return true;
-              if (!create)
-                return false;
+              if (!isExtensible(it)) return true;
+              if (!create) return false;
               setMetadata(it);
             }
             return it[METADATA].weakData;
           };
           var onFreeze = function(it) {
-            if (FREEZING && REQUIRED && isExtensible(it) && !hasOwn(it, METADATA))
-              setMetadata(it);
+            if (FREEZING && REQUIRED && isExtensible(it) && !hasOwn(it, METADATA)) setMetadata(it);
             return it;
           };
           var enable = function() {
@@ -12174,8 +11762,7 @@ var require_aliyun_oss_sdk = __commonJS({
             store.has = store.has;
             store.set = store.set;
             set = function(it, metadata) {
-              if (store.has(it))
-                throw new TypeError2(OBJECT_ALREADY_INITIALIZED);
+              if (store.has(it)) throw new TypeError2(OBJECT_ALREADY_INITIALIZED);
               metadata.facade = it;
               store.set(it, metadata);
               return metadata;
@@ -12190,8 +11777,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var STATE = sharedKey("state");
             hiddenKeys[STATE] = true;
             set = function(it, metadata) {
-              if (hasOwn(it, STATE))
-                throw new TypeError2(OBJECT_ALREADY_INITIALIZED);
+              if (hasOwn(it, STATE)) throw new TypeError2(OBJECT_ALREADY_INITIALIZED);
               metadata.facade = it;
               createNonEnumerableProperty(it, STATE, metadata);
               return metadata;
@@ -12256,8 +11842,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var exec = uncurryThis(constructorRegExp.exec);
           var INCORRECT_TO_STRING = !constructorRegExp.test(noop);
           var isConstructorModern = function isConstructor(argument) {
-            if (!isCallable(argument))
-              return false;
+            if (!isCallable(argument)) return false;
             try {
               construct(noop, empty, argument);
               return true;
@@ -12266,8 +11851,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }
           };
           var isConstructorLegacy = function isConstructor(argument) {
-            if (!isCallable(argument))
-              return false;
+            if (!isCallable(argument)) return false;
             switch (classof(argument)) {
               case "AsyncFunction":
               case "GeneratorFunction":
@@ -12380,8 +11964,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var fn = bind(unboundFunction, that);
             var iterator, iterFn, index, length, result, next, step;
             var stop = function(condition) {
-              if (iterator)
-                iteratorClose(iterator, "normal", condition);
+              if (iterator) iteratorClose(iterator, "normal", condition);
               return new Result(true, condition);
             };
             var callFn = function(value) {
@@ -12397,13 +11980,11 @@ var require_aliyun_oss_sdk = __commonJS({
               iterator = iterable;
             } else {
               iterFn = getIteratorMethod(iterable);
-              if (!iterFn)
-                throw new $TypeError(tryToString(iterable) + " is not iterable");
+              if (!iterFn) throw new $TypeError(tryToString(iterable) + " is not iterable");
               if (isArrayIteratorMethod(iterFn)) {
                 for (index = 0, length = lengthOfArrayLike(iterable); length > index; index++) {
                   result = callFn(iterable[index]);
-                  if (result && isPrototypeOf(ResultPrototype, result))
-                    return result;
+                  if (result && isPrototypeOf(ResultPrototype, result)) return result;
                 }
                 return new Result(false);
               }
@@ -12416,8 +11997,7 @@ var require_aliyun_oss_sdk = __commonJS({
               } catch (error) {
                 iteratorClose(iterator, "throw", error);
               }
-              if (typeof result == "object" && result && isPrototypeOf(ResultPrototype, result))
-                return result;
+              if (typeof result == "object" && result && isPrototypeOf(ResultPrototype, result)) return result;
             }
             return new Result(false);
           };
@@ -12432,8 +12012,7 @@ var require_aliyun_oss_sdk = __commonJS({
             try {
               innerResult = getMethod(iterator, "return");
               if (!innerResult) {
-                if (kind === "throw")
-                  throw value;
+                if (kind === "throw") throw value;
                 return value;
               }
               innerResult = call(innerResult, iterator);
@@ -12441,10 +12020,8 @@ var require_aliyun_oss_sdk = __commonJS({
               innerError = true;
               innerResult = error;
             }
-            if (kind === "throw")
-              throw value;
-            if (innerError)
-              throw innerResult;
+            if (kind === "throw") throw value;
+            if (innerError) throw innerResult;
             anObject(innerResult);
             return value;
           };
@@ -12495,10 +12072,8 @@ var require_aliyun_oss_sdk = __commonJS({
           module4.exports = function(Iterable, NAME, IteratorConstructor, next, DEFAULT, IS_SET, FORCED) {
             createIteratorConstructor(IteratorConstructor, NAME, next);
             var getIterationMethod = function(KIND) {
-              if (KIND === DEFAULT && defaultIterator)
-                return defaultIterator;
-              if (!BUGGY_SAFARI_ITERATORS && KIND && KIND in IterablePrototype)
-                return IterablePrototype[KIND];
+              if (KIND === DEFAULT && defaultIterator) return defaultIterator;
+              if (!BUGGY_SAFARI_ITERATORS && KIND && KIND in IterablePrototype) return IterablePrototype[KIND];
               switch (KIND) {
                 case KEYS:
                   return function keys() {
@@ -12535,8 +12110,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   }
                 }
                 setToStringTag(CurrentIteratorPrototype, TO_STRING_TAG, true, true);
-                if (IS_PURE)
-                  Iterators[TO_STRING_TAG] = returnThis;
+                if (IS_PURE) Iterators[TO_STRING_TAG] = returnThis;
               }
             }
             if (PROPER_FUNCTION_NAME && DEFAULT === VALUES && nativeIterator && nativeIterator.name !== VALUES) {
@@ -12555,14 +12129,12 @@ var require_aliyun_oss_sdk = __commonJS({
                 keys: IS_SET ? defaultIterator : getIterationMethod(KEYS),
                 entries: getIterationMethod(ENTRIES)
               };
-              if (FORCED)
-                for (KEY in methods) {
-                  if (BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME || !(KEY in IterablePrototype)) {
-                    defineBuiltIn(IterablePrototype, KEY, methods[KEY]);
-                  }
+              if (FORCED) for (KEY in methods) {
+                if (BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME || !(KEY in IterablePrototype)) {
+                  defineBuiltIn(IterablePrototype, KEY, methods[KEY]);
                 }
-              else
-                $({ target: NAME, proto: true, forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME }, methods);
+              }
+              else $({ target: NAME, proto: true, forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME }, methods);
             }
             if ((!IS_PURE || FORCED) && IterablePrototype[ITERATOR] !== defaultIterator) {
               defineBuiltIn(IterablePrototype, ITERATOR, defaultIterator, { name: DEFAULT });
@@ -12585,22 +12157,18 @@ var require_aliyun_oss_sdk = __commonJS({
           var IteratorPrototype, PrototypeOfArrayIteratorPrototype, arrayIterator;
           if ([].keys) {
             arrayIterator = [].keys();
-            if (!("next" in arrayIterator))
-              BUGGY_SAFARI_ITERATORS = true;
+            if (!("next" in arrayIterator)) BUGGY_SAFARI_ITERATORS = true;
             else {
               PrototypeOfArrayIteratorPrototype = getPrototypeOf(getPrototypeOf(arrayIterator));
-              if (PrototypeOfArrayIteratorPrototype !== Object.prototype)
-                IteratorPrototype = PrototypeOfArrayIteratorPrototype;
+              if (PrototypeOfArrayIteratorPrototype !== Object.prototype) IteratorPrototype = PrototypeOfArrayIteratorPrototype;
             }
           }
           var NEW_ITERATOR_PROTOTYPE = !isObject(IteratorPrototype) || fails(function() {
             var test = {};
             return IteratorPrototype[ITERATOR].call(test) !== test;
           });
-          if (NEW_ITERATOR_PROTOTYPE)
-            IteratorPrototype = {};
-          else if (IS_PURE)
-            IteratorPrototype = create(IteratorPrototype);
+          if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype = {};
+          else if (IS_PURE) IteratorPrototype = create(IteratorPrototype);
           if (!isCallable(IteratorPrototype[ITERATOR])) {
             defineBuiltIn(IteratorPrototype, ITERATOR, function() {
               return this;
@@ -12644,25 +12212,19 @@ var require_aliyun_oss_sdk = __commonJS({
             if (stringSlice($String(name), 0, 7) === "Symbol(") {
               name = "[" + replace($String(name), /^Symbol\(([^)]*)\)/, "$1") + "]";
             }
-            if (options && options.getter)
-              name = "get " + name;
-            if (options && options.setter)
-              name = "set " + name;
+            if (options && options.getter) name = "get " + name;
+            if (options && options.setter) name = "set " + name;
             if (!hasOwn(value, "name") || CONFIGURABLE_FUNCTION_NAME && value.name !== name) {
-              if (DESCRIPTORS)
-                defineProperty(value, "name", { value: name, configurable: true });
-              else
-                value.name = name;
+              if (DESCRIPTORS) defineProperty(value, "name", { value: name, configurable: true });
+              else value.name = name;
             }
             if (CONFIGURABLE_LENGTH && options && hasOwn(options, "arity") && value.length !== options.arity) {
               defineProperty(value, "length", { value: options.arity });
             }
             try {
               if (options && hasOwn(options, "constructor") && options.constructor) {
-                if (DESCRIPTORS)
-                  defineProperty(value, "prototype", { writable: false });
-              } else if (value.prototype)
-                value.prototype = void 0;
+                if (DESCRIPTORS) defineProperty(value, "prototype", { writable: false });
+              } else if (value.prototype) value.prototype = void 0;
             } catch (error) {
             }
             var state = enforceInternalState(value);
@@ -12687,12 +12249,10 @@ var require_aliyun_oss_sdk = __commonJS({
             var n = +x;
             var absolute = abs(n);
             var s = sign(n);
-            if (absolute < FLOAT_MIN_VALUE)
-              return s * roundTiesToEven(absolute / FLOAT_MIN_VALUE / FLOAT_EPSILON) * FLOAT_MIN_VALUE * FLOAT_EPSILON;
+            if (absolute < FLOAT_MIN_VALUE) return s * roundTiesToEven(absolute / FLOAT_MIN_VALUE / FLOAT_EPSILON) * FLOAT_MIN_VALUE * FLOAT_EPSILON;
             var a = (1 + FLOAT_EPSILON / EPSILON) * absolute;
             var result = a - (a - absolute);
-            if (result > FLOAT_MAX_VALUE || result !== result)
-              return s * Infinity;
+            if (result > FLOAT_MAX_VALUE || result !== result) return s * Infinity;
             return s * result;
           };
         }, { "../internals/math-sign": 223 }], 222: [function(require2, module4, exports3) {
@@ -12739,18 +12299,14 @@ var require_aliyun_oss_sdk = __commonJS({
             var queue = new Queue();
             var flush = function() {
               var parent, fn;
-              if (IS_NODE && (parent = process.domain))
-                parent.exit();
-              while (fn = queue.get())
-                try {
-                  fn();
-                } catch (error) {
-                  if (queue.head)
-                    notify();
-                  throw error;
-                }
-              if (parent)
-                parent.enter();
+              if (IS_NODE && (parent = process.domain)) parent.exit();
+              while (fn = queue.get()) try {
+                fn();
+              } catch (error) {
+                if (queue.head) notify();
+                throw error;
+              }
+              if (parent) parent.enter();
             };
             if (!IS_IOS && !IS_NODE && !IS_WEBOS_WEBKIT && MutationObserver && document2) {
               toggle = true;
@@ -12777,8 +12333,7 @@ var require_aliyun_oss_sdk = __commonJS({
               };
             }
             microtask = function(fn) {
-              if (!queue.head)
-                notify();
+              if (!queue.head) notify();
               queue.add(fn);
             };
           }
@@ -12790,8 +12345,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var PromiseCapability = function(C) {
             var resolve, reject;
             this.promise = new C(function($$resolve, $$reject) {
-              if (resolve !== void 0 || reject !== void 0)
-                throw new $TypeError("Bad Promise constructor");
+              if (resolve !== void 0 || reject !== void 0) throw new $TypeError("Bad Promise constructor");
               resolve = $$resolve;
               reject = $$reject;
             });
@@ -12834,8 +12388,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   enumerable: false
                 });
               }
-            }), { b: 2 })).b !== 1)
-              return true;
+            }), { b: 2 })).b !== 1) return true;
             var A = {};
             var B = {};
             var symbol = Symbol("assign detection");
@@ -12859,8 +12412,7 @@ var require_aliyun_oss_sdk = __commonJS({
               var key;
               while (length > j) {
                 key = keys[j++];
-                if (!DESCRIPTORS || call(propertyIsEnumerable, S, key))
-                  T[key] = S[key];
+                if (!DESCRIPTORS || call(propertyIsEnumerable, S, key)) T[key] = S[key];
               }
             }
             return T;
@@ -12912,8 +12464,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             NullProtoObject = typeof document != "undefined" ? document.domain && activeXDocument ? NullProtoObjectViaActiveX(activeXDocument) : NullProtoObjectViaIFrame() : NullProtoObjectViaActiveX(activeXDocument);
             var length = enumBugKeys.length;
-            while (length--)
-              delete NullProtoObject[PROTOTYPE][enumBugKeys[length]];
+            while (length--) delete NullProtoObject[PROTOTYPE][enumBugKeys[length]];
             return NullProtoObject();
           };
           hiddenKeys[IE_PROTO] = true;
@@ -12924,8 +12475,7 @@ var require_aliyun_oss_sdk = __commonJS({
               result = new EmptyConstructor();
               EmptyConstructor[PROTOTYPE] = null;
               result[IE_PROTO] = O;
-            } else
-              result = NullProtoObject();
+            } else result = NullProtoObject();
             return Properties === void 0 ? result : definePropertiesModule.f(result, Properties);
           };
         }, { "../internals/an-object": 114, "../internals/document-create-element": 154, "../internals/enum-bug-keys": 169, "../internals/hidden-keys": 190, "../internals/html": 192, "../internals/object-define-properties": 230, "../internals/shared-key": 267 }], 230: [function(require2, module4, exports3) {
@@ -12943,8 +12493,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var length = keys.length;
             var index = 0;
             var key;
-            while (length > index)
-              definePropertyModule.f(O, key = keys[index++], props[key]);
+            while (length > index) definePropertyModule.f(O, key = keys[index++], props[key]);
             return O;
           };
         }, { "../internals/an-object": 114, "../internals/descriptors": 153, "../internals/object-define-property": 231, "../internals/object-keys": 240, "../internals/to-indexed-object": 282, "../internals/v8-prototype-define-bug": 301 }], 231: [function(require2, module4, exports3) {
@@ -12980,15 +12529,12 @@ var require_aliyun_oss_sdk = __commonJS({
             anObject(O);
             P = toPropertyKey(P);
             anObject(Attributes);
-            if (IE8_DOM_DEFINE)
-              try {
-                return $defineProperty(O, P, Attributes);
-              } catch (error) {
-              }
-            if ("get" in Attributes || "set" in Attributes)
-              throw new $TypeError("Accessors not supported");
-            if ("value" in Attributes)
-              O[P] = Attributes.value;
+            if (IE8_DOM_DEFINE) try {
+              return $defineProperty(O, P, Attributes);
+            } catch (error) {
+            }
+            if ("get" in Attributes || "set" in Attributes) throw new $TypeError("Accessors not supported");
+            if ("value" in Attributes) O[P] = Attributes.value;
             return O;
           };
         }, { "../internals/an-object": 114, "../internals/descriptors": 153, "../internals/ie8-dom-define": 193, "../internals/to-property-key": 289, "../internals/v8-prototype-define-bug": 301 }], 232: [function(require2, module4, exports3) {
@@ -13005,13 +12551,11 @@ var require_aliyun_oss_sdk = __commonJS({
           exports3.f = DESCRIPTORS ? $getOwnPropertyDescriptor : function getOwnPropertyDescriptor(O, P) {
             O = toIndexedObject(O);
             P = toPropertyKey(P);
-            if (IE8_DOM_DEFINE)
-              try {
-                return $getOwnPropertyDescriptor(O, P);
-              } catch (error) {
-              }
-            if (hasOwn(O, P))
-              return createPropertyDescriptor(!call(propertyIsEnumerableModule.f, O, P), O[P]);
+            if (IE8_DOM_DEFINE) try {
+              return $getOwnPropertyDescriptor(O, P);
+            } catch (error) {
+            }
+            if (hasOwn(O, P)) return createPropertyDescriptor(!call(propertyIsEnumerableModule.f, O, P), O[P]);
           };
         }, { "../internals/create-property-descriptor": 146, "../internals/descriptors": 153, "../internals/function-call": 177, "../internals/has-own-property": 189, "../internals/ie8-dom-define": 193, "../internals/object-property-is-enumerable": 241, "../internals/to-indexed-object": 282, "../internals/to-property-key": 289 }], 233: [function(require2, module4, exports3) {
           "use strict";
@@ -13053,8 +12597,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var ObjectPrototype = $Object.prototype;
           module4.exports = CORRECT_PROTOTYPE_GETTER ? $Object.getPrototypeOf : function(O) {
             var object = toObject(O);
-            if (hasOwn(object, IE_PROTO))
-              return object[IE_PROTO];
+            if (hasOwn(object, IE_PROTO)) return object[IE_PROTO];
             var constructor = object.constructor;
             if (isCallable(constructor) && object instanceof constructor) {
               return constructor.prototype;
@@ -13072,10 +12615,8 @@ var require_aliyun_oss_sdk = __commonJS({
             $isExtensible(1);
           });
           module4.exports = FAILS_ON_PRIMITIVES || ARRAY_BUFFER_NON_EXTENSIBLE ? function isExtensible(it) {
-            if (!isObject(it))
-              return false;
-            if (ARRAY_BUFFER_NON_EXTENSIBLE && classof(it) === "ArrayBuffer")
-              return false;
+            if (!isObject(it)) return false;
+            if (ARRAY_BUFFER_NON_EXTENSIBLE && classof(it) === "ArrayBuffer") return false;
             return $isExtensible ? $isExtensible(it) : true;
           } : $isExtensible;
         }, { "../internals/array-buffer-non-extensible": 116, "../internals/classof-raw": 137, "../internals/fails": 171, "../internals/is-object": 208 }], 238: [function(require2, module4, exports3) {
@@ -13095,12 +12636,10 @@ var require_aliyun_oss_sdk = __commonJS({
             var i = 0;
             var result = [];
             var key;
-            for (key in O)
-              !hasOwn(hiddenKeys, key) && hasOwn(O, key) && push(result, key);
-            while (names.length > i)
-              if (hasOwn(O, key = names[i++])) {
-                ~indexOf(result, key) || push(result, key);
-              }
+            for (key in O) !hasOwn(hiddenKeys, key) && hasOwn(O, key) && push(result, key);
+            while (names.length > i) if (hasOwn(O, key = names[i++])) {
+              ~indexOf(result, key) || push(result, key);
+            }
             return result;
           };
         }, { "../internals/array-includes": 124, "../internals/function-uncurry-this": 181, "../internals/has-own-property": 189, "../internals/hidden-keys": 190, "../internals/to-indexed-object": 282 }], 240: [function(require2, module4, exports3) {
@@ -13124,7 +12663,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var uncurryThisAccessor = require2("../internals/function-uncurry-this-accessor");
           var anObject = require2("../internals/an-object");
           var aPossiblePrototype = require2("../internals/a-possible-prototype");
-          module4.exports = Object.setPrototypeOf || ("__proto__" in {} ? function() {
+          module4.exports = Object.setPrototypeOf || ("__proto__" in {} ? (function() {
             var CORRECT_SETTER = false;
             var test = {};
             var setter;
@@ -13137,13 +12676,11 @@ var require_aliyun_oss_sdk = __commonJS({
             return function setPrototypeOf(O, proto) {
               anObject(O);
               aPossiblePrototype(proto);
-              if (CORRECT_SETTER)
-                setter(O, proto);
-              else
-                O.__proto__ = proto;
+              if (CORRECT_SETTER) setter(O, proto);
+              else O.__proto__ = proto;
               return O;
             };
-          }() : void 0);
+          })() : void 0);
         }, { "../internals/a-possible-prototype": 110, "../internals/an-object": 114, "../internals/function-uncurry-this-accessor": 179 }], 243: [function(require2, module4, exports3) {
           "use strict";
           var DESCRIPTORS = require2("../internals/descriptors");
@@ -13201,12 +12738,9 @@ var require_aliyun_oss_sdk = __commonJS({
           var $TypeError = TypeError;
           module4.exports = function(input, pref) {
             var fn, val;
-            if (pref === "string" && isCallable(fn = input.toString) && !isObject(val = call(fn, input)))
-              return val;
-            if (isCallable(fn = input.valueOf) && !isObject(val = call(fn, input)))
-              return val;
-            if (pref !== "string" && isCallable(fn = input.toString) && !isObject(val = call(fn, input)))
-              return val;
+            if (pref === "string" && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;
+            if (isCallable(fn = input.valueOf) && !isObject(val = call(fn, input))) return val;
+            if (pref !== "string" && isCallable(fn = input.toString) && !isObject(val = call(fn, input))) return val;
             throw new $TypeError("Can't convert object to primitive value");
           };
         }, { "../internals/function-call": 177, "../internals/is-callable": 203, "../internals/is-object": 208 }], 246: [function(require2, module4, exports3) {
@@ -13254,10 +12788,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var FORCED_PROMISE_CONSTRUCTOR = isForced("Promise", function() {
             var PROMISE_CONSTRUCTOR_SOURCE = inspectSource(NativePromiseConstructor);
             var GLOBAL_CORE_JS_PROMISE = PROMISE_CONSTRUCTOR_SOURCE !== String(NativePromiseConstructor);
-            if (!GLOBAL_CORE_JS_PROMISE && V8_VERSION === 66)
-              return true;
-            if (IS_PURE && !(NativePromisePrototype["catch"] && NativePromisePrototype["finally"]))
-              return true;
+            if (!GLOBAL_CORE_JS_PROMISE && V8_VERSION === 66) return true;
+            if (IS_PURE && !(NativePromisePrototype["catch"] && NativePromisePrototype["finally"])) return true;
             if (!V8_VERSION || V8_VERSION < 51 || !/native code/.test(PROMISE_CONSTRUCTOR_SOURCE)) {
               var promise = new NativePromiseConstructor(function(resolve) {
                 resolve(1);
@@ -13271,8 +12803,7 @@ var require_aliyun_oss_sdk = __commonJS({
               constructor[SPECIES] = FakePromise;
               SUBCLASSING = promise.then(function() {
               }) instanceof FakePromise;
-              if (!SUBCLASSING)
-                return true;
+              if (!SUBCLASSING) return true;
             }
             return !GLOBAL_CORE_JS_PROMISE && (IS_BROWSER || IS_DENO) && !NATIVE_PROMISE_REJECTION_EVENT;
           });
@@ -13292,8 +12823,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var newPromiseCapability = require2("../internals/new-promise-capability");
           module4.exports = function(C, x) {
             anObject(C);
-            if (isObject(x) && x.constructor === C)
-              return x;
+            if (isObject(x) && x.constructor === C) return x;
             var promiseCapability = newPromiseCapability.f(C);
             var resolve = promiseCapability.resolve;
             resolve(x);
@@ -13332,18 +12862,15 @@ var require_aliyun_oss_sdk = __commonJS({
             add: function(item) {
               var entry = { item, next: null };
               var tail = this.tail;
-              if (tail)
-                tail.next = entry;
-              else
-                this.head = entry;
+              if (tail) tail.next = entry;
+              else this.head = entry;
               this.tail = entry;
             },
             get: function() {
               var entry = this.head;
               if (entry) {
                 var next = this.head = entry.next;
-                if (next === null)
-                  this.tail = null;
+                if (next === null) this.tail = null;
                 return entry.item;
               }
             }
@@ -13361,12 +12888,10 @@ var require_aliyun_oss_sdk = __commonJS({
             var exec = R.exec;
             if (isCallable(exec)) {
               var result = call(exec, R, S);
-              if (result !== null)
-                anObject(result);
+              if (result !== null) anObject(result);
               return result;
             }
-            if (classof(R) === "RegExp")
-              return call(regexpExec, R, S);
+            if (classof(R) === "RegExp") return call(regexpExec, R, S);
             throw new $TypeError("RegExp#exec called on incompatible receiver");
           };
         }, { "../internals/an-object": 114, "../internals/classof-raw": 137, "../internals/function-call": 177, "../internals/is-callable": 203, "../internals/regexp-exec": 256 }], 256: [function(require2, module4, exports3) {
@@ -13388,13 +12913,13 @@ var require_aliyun_oss_sdk = __commonJS({
           var indexOf = uncurryThis("".indexOf);
           var replace = uncurryThis("".replace);
           var stringSlice = uncurryThis("".slice);
-          var UPDATES_LAST_INDEX_WRONG = function() {
+          var UPDATES_LAST_INDEX_WRONG = (function() {
             var re1 = /a/;
             var re2 = /b*/g;
             call(nativeExec, re1, "a");
             call(nativeExec, re2, "a");
             return re1.lastIndex !== 0 || re2.lastIndex !== 0;
-          }();
+          })();
           var UNSUPPORTED_Y = stickyHelpers.BROKEN_CARET;
           var NPCG_INCLUDED = /()??/.exec("")[1] !== void 0;
           var PATCH = UPDATES_LAST_INDEX_WRONG || NPCG_INCLUDED || UNSUPPORTED_Y || UNSUPPORTED_DOT_ALL || UNSUPPORTED_NCG;
@@ -13433,8 +12958,7 @@ var require_aliyun_oss_sdk = __commonJS({
               if (NPCG_INCLUDED) {
                 reCopy = new RegExp("^" + source + "$(?!\\s)", flags);
               }
-              if (UPDATES_LAST_INDEX_WRONG)
-                lastIndex = re.lastIndex;
+              if (UPDATES_LAST_INDEX_WRONG) lastIndex = re.lastIndex;
               match = call(nativeExec, sticky ? reCopy : re, strCopy);
               if (sticky) {
                 if (match) {
@@ -13442,16 +12966,14 @@ var require_aliyun_oss_sdk = __commonJS({
                   match[0] = stringSlice(match[0], charsAdded);
                   match.index = re.lastIndex;
                   re.lastIndex += match[0].length;
-                } else
-                  re.lastIndex = 0;
+                } else re.lastIndex = 0;
               } else if (UPDATES_LAST_INDEX_WRONG && match) {
                 re.lastIndex = re.global ? match.index + match[0].length : lastIndex;
               }
               if (NPCG_INCLUDED && match && match.length > 1) {
                 call(nativeReplace, match[0], reCopy, function() {
                   for (i = 1; i < arguments.length - 2; i++) {
-                    if (arguments[i] === void 0)
-                      match[i] = void 0;
+                    if (arguments[i] === void 0) match[i] = void 0;
                   }
                 });
               }
@@ -13472,22 +12994,14 @@ var require_aliyun_oss_sdk = __commonJS({
           module4.exports = function() {
             var that = anObject(this);
             var result = "";
-            if (that.hasIndices)
-              result += "d";
-            if (that.global)
-              result += "g";
-            if (that.ignoreCase)
-              result += "i";
-            if (that.multiline)
-              result += "m";
-            if (that.dotAll)
-              result += "s";
-            if (that.unicode)
-              result += "u";
-            if (that.unicodeSets)
-              result += "v";
-            if (that.sticky)
-              result += "y";
+            if (that.hasIndices) result += "d";
+            if (that.global) result += "g";
+            if (that.ignoreCase) result += "i";
+            if (that.multiline) result += "m";
+            if (that.dotAll) result += "s";
+            if (that.unicode) result += "u";
+            if (that.unicodeSets) result += "v";
+            if (that.sticky) result += "y";
             return result;
           };
         }, { "../internals/an-object": 114 }], 258: [function(require2, module4, exports3) {
@@ -13547,8 +13061,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var isNullOrUndefined = require2("../internals/is-null-or-undefined");
           var $TypeError = TypeError;
           module4.exports = function(it) {
-            if (isNullOrUndefined(it))
-              throw new $TypeError("Can't call method on " + it);
+            if (isNullOrUndefined(it)) throw new $TypeError("Can't call method on " + it);
             return it;
           };
         }, { "../internals/is-null-or-undefined": 207 }], 263: [function(require2, module4, exports3) {
@@ -13557,8 +13070,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var DESCRIPTORS = require2("../internals/descriptors");
           var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
           module4.exports = function(name) {
-            if (!DESCRIPTORS)
-              return global2[name];
+            if (!DESCRIPTORS) return global2[name];
             var descriptor = getOwnPropertyDescriptor(global2, name);
             return descriptor && descriptor.value;
           };
@@ -13592,8 +13104,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var wellKnownSymbol = require2("../internals/well-known-symbol");
           var TO_STRING_TAG = wellKnownSymbol("toStringTag");
           module4.exports = function(target, TAG, STATIC) {
-            if (target && !STATIC)
-              target = target.prototype;
+            if (target && !STATIC) target = target.prototype;
             if (target && !hasOwn(target, TO_STRING_TAG)) {
               defineProperty(target, TO_STRING_TAG, { configurable: true, value: TAG });
             }
@@ -13653,8 +13164,7 @@ var require_aliyun_oss_sdk = __commonJS({
               var position = toIntegerOrInfinity(pos);
               var size = S.length;
               var first, second;
-              if (position < 0 || position >= size)
-                return CONVERT_TO_STRING ? "" : void 0;
+              if (position < 0 || position >= size) return CONVERT_TO_STRING ? "" : void 0;
               first = charCodeAt(S, position);
               return first < 55296 || first > 56319 || position + 1 === size || (second = charCodeAt(S, position + 1)) < 56320 || second > 57343 ? CONVERT_TO_STRING ? charAt(S, position) : first : CONVERT_TO_STRING ? stringSlice(S, position, position + 2) : (first - 55296 << 10) + (second - 56320) + 65536;
             };
@@ -13690,10 +13200,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var createMethod = function(TYPE) {
             return function($this) {
               var string = toString(requireObjectCoercible($this));
-              if (TYPE & 1)
-                string = replace(string, ltrim, "");
-              if (TYPE & 2)
-                string = replace(string, rtrim, "$1");
+              if (TYPE & 1) string = replace(string, ltrim, "");
+              if (TYPE & 2) string = replace(string, rtrim, "$1");
               return string;
             };
           };
@@ -13852,8 +13360,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var $TypeError = TypeError;
           module4.exports = function(argument) {
             var prim = toPrimitive(argument, "number");
-            if (typeof prim == "number")
-              throw new $TypeError("Can't convert number to bigint");
+            if (typeof prim == "number") throw new $TypeError("Can't convert number to bigint");
             return BigInt(prim);
           };
         }, { "../internals/to-primitive": 288 }], 281: [function(require2, module4, exports3) {
@@ -13862,12 +13369,10 @@ var require_aliyun_oss_sdk = __commonJS({
           var toLength = require2("../internals/to-length");
           var $RangeError = RangeError;
           module4.exports = function(it) {
-            if (it === void 0)
-              return 0;
+            if (it === void 0) return 0;
             var number = toIntegerOrInfinity(it);
             var length = toLength(number);
-            if (number !== length)
-              throw new $RangeError("Wrong length or index");
+            if (number !== length) throw new $RangeError("Wrong length or index");
             return length;
           };
         }, { "../internals/to-integer-or-infinity": 283, "../internals/to-length": 284 }], 282: [function(require2, module4, exports3) {
@@ -13904,8 +13409,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var $RangeError = RangeError;
           module4.exports = function(it, BYTES) {
             var offset = toPositiveInteger(it);
-            if (offset % BYTES)
-              throw new $RangeError("Wrong offset");
+            if (offset % BYTES) throw new $RangeError("Wrong offset");
             return offset;
           };
         }, { "../internals/to-positive-integer": 287 }], 287: [function(require2, module4, exports3) {
@@ -13914,8 +13418,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var $RangeError = RangeError;
           module4.exports = function(it) {
             var result = toIntegerOrInfinity(it);
-            if (result < 0)
-              throw new $RangeError("The argument can't be less than 0");
+            if (result < 0) throw new $RangeError("The argument can't be less than 0");
             return result;
           };
         }, { "../internals/to-integer-or-infinity": 283 }], 288: [function(require2, module4, exports3) {
@@ -13929,20 +13432,16 @@ var require_aliyun_oss_sdk = __commonJS({
           var $TypeError = TypeError;
           var TO_PRIMITIVE = wellKnownSymbol("toPrimitive");
           module4.exports = function(input, pref) {
-            if (!isObject(input) || isSymbol(input))
-              return input;
+            if (!isObject(input) || isSymbol(input)) return input;
             var exoticToPrim = getMethod(input, TO_PRIMITIVE);
             var result;
             if (exoticToPrim) {
-              if (pref === void 0)
-                pref = "default";
+              if (pref === void 0) pref = "default";
               result = call(exoticToPrim, input, pref);
-              if (!isObject(result) || isSymbol(result))
-                return result;
+              if (!isObject(result) || isSymbol(result)) return result;
               throw new $TypeError("Can't convert object to primitive value");
             }
-            if (pref === void 0)
-              pref = "number";
+            if (pref === void 0) pref = "number";
             return ordinaryToPrimitive(input, pref);
           };
         }, { "../internals/function-call": 177, "../internals/get-method": 186, "../internals/is-object": 208, "../internals/is-symbol": 212, "../internals/ordinary-to-primitive": 245, "../internals/well-known-symbol": 306 }], 289: [function(require2, module4, exports3) {
@@ -13965,8 +13464,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var classof = require2("../internals/classof");
           var $String = String;
           module4.exports = function(argument) {
-            if (classof(argument) === "Symbol")
-              throw new TypeError("Cannot convert a Symbol value to a string");
+            if (classof(argument) === "Symbol") throw new TypeError("Cannot convert a Symbol value to a string");
             return $String(argument);
           };
         }, { "../internals/classof": 138 }], 292: [function(require2, module4, exports3) {
@@ -14120,15 +13618,12 @@ var require_aliyun_oss_sdk = __commonJS({
                     byteOffset = toOffset(offset, BYTES);
                     var $len = data.byteLength;
                     if ($length === void 0) {
-                      if ($len % BYTES)
-                        throw new RangeError2(WRONG_LENGTH);
+                      if ($len % BYTES) throw new RangeError2(WRONG_LENGTH);
                       byteLength = $len - byteOffset;
-                      if (byteLength < 0)
-                        throw new RangeError2(WRONG_LENGTH);
+                      if (byteLength < 0) throw new RangeError2(WRONG_LENGTH);
                     } else {
                       byteLength = toLength($length) * BYTES;
-                      if (byteLength + byteOffset > $len)
-                        throw new RangeError2(WRONG_LENGTH);
+                      if (byteLength + byteOffset > $len) throw new RangeError2(WRONG_LENGTH);
                     }
                     length = byteLength / BYTES;
                   } else if (isTypedArray(data)) {
@@ -14143,27 +13638,21 @@ var require_aliyun_oss_sdk = __commonJS({
                     length,
                     view: new DataView2(buffer)
                   });
-                  while (index < length)
-                    addElement(that, index++);
+                  while (index < length) addElement(that, index++);
                 });
-                if (setPrototypeOf)
-                  setPrototypeOf(TypedArrayConstructor, TypedArray);
+                if (setPrototypeOf) setPrototypeOf(TypedArrayConstructor, TypedArray);
                 TypedArrayConstructorPrototype = TypedArrayConstructor.prototype = create(TypedArrayPrototype);
               } else if (TYPED_ARRAYS_CONSTRUCTORS_REQUIRES_WRAPPERS) {
                 TypedArrayConstructor = wrapper(function(dummy, data, typedArrayOffset, $length) {
                   anInstance(dummy, TypedArrayConstructorPrototype);
-                  return inheritIfRequired(function() {
-                    if (!isObject(data))
-                      return new NativeTypedArrayConstructor(toIndex(data));
-                    if (isArrayBuffer(data))
-                      return $length !== void 0 ? new NativeTypedArrayConstructor(data, toOffset(typedArrayOffset, BYTES), $length) : typedArrayOffset !== void 0 ? new NativeTypedArrayConstructor(data, toOffset(typedArrayOffset, BYTES)) : new NativeTypedArrayConstructor(data);
-                    if (isTypedArray(data))
-                      return arrayFromConstructorAndList(TypedArrayConstructor, data);
+                  return inheritIfRequired((function() {
+                    if (!isObject(data)) return new NativeTypedArrayConstructor(toIndex(data));
+                    if (isArrayBuffer(data)) return $length !== void 0 ? new NativeTypedArrayConstructor(data, toOffset(typedArrayOffset, BYTES), $length) : typedArrayOffset !== void 0 ? new NativeTypedArrayConstructor(data, toOffset(typedArrayOffset, BYTES)) : new NativeTypedArrayConstructor(data);
+                    if (isTypedArray(data)) return arrayFromConstructorAndList(TypedArrayConstructor, data);
                     return call(typedArrayFrom, TypedArrayConstructor, data);
-                  }(), dummy, TypedArrayConstructor);
+                  })(), dummy, TypedArrayConstructor);
                 });
-                if (setPrototypeOf)
-                  setPrototypeOf(TypedArrayConstructor, TypedArray);
+                if (setPrototypeOf) setPrototypeOf(TypedArrayConstructor, TypedArray);
                 forEach(getOwnPropertyNames(NativeTypedArrayConstructor), function(key) {
                   if (!(key in TypedArrayConstructor)) {
                     createNonEnumerableProperty(TypedArrayConstructor, key, NativeTypedArrayConstructor[key]);
@@ -14189,9 +13678,8 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               setSpecies(CONSTRUCTOR_NAME);
             };
-          } else
-            module4.exports = function() {
-            };
+          } else module4.exports = function() {
+          };
         }, { "../internals/an-instance": 113, "../internals/array-buffer": 118, "../internals/array-buffer-view-core": 117, "../internals/array-from-constructor-and-list": 122, "../internals/array-iteration": 125, "../internals/classof": 138, "../internals/create-non-enumerable-property": 145, "../internals/create-property-descriptor": 146, "../internals/define-built-in-accessor": 148, "../internals/descriptors": 153, "../internals/export": 170, "../internals/function-call": 177, "../internals/global": 188, "../internals/has-own-property": 189, "../internals/inherit-if-required": 196, "../internals/internal-state": 199, "../internals/is-integral-number": 206, "../internals/is-object": 208, "../internals/is-symbol": 212, "../internals/object-create": 229, "../internals/object-define-property": 231, "../internals/object-get-own-property-descriptor": 232, "../internals/object-get-own-property-names": 234, "../internals/object-is-prototype-of": 238, "../internals/object-set-prototype-of": 242, "../internals/set-species": 265, "../internals/to-index": 281, "../internals/to-length": 284, "../internals/to-offset": 286, "../internals/to-property-key": 289, "../internals/to-uint8-clamped": 292, "../internals/typed-array-constructors-require-wrappers": 295, "../internals/typed-array-from": 297 }], 295: [function(require2, module4, exports3) {
           "use strict";
           var global2 = require2("../internals/global");
@@ -14297,8 +13785,7 @@ var require_aliyun_oss_sdk = __commonJS({
           "use strict";
           var $TypeError = TypeError;
           module4.exports = function(passed, required) {
-            if (passed < required)
-              throw new $TypeError("Not enough arguments");
+            if (passed < required) throw new $TypeError("Not enough arguments");
             return passed;
           };
         }, {}], 303: [function(require2, module4, exports3) {
@@ -14315,10 +13802,9 @@ var require_aliyun_oss_sdk = __commonJS({
           var defineProperty = require2("../internals/object-define-property").f;
           module4.exports = function(NAME) {
             var Symbol2 = path3.Symbol || (path3.Symbol = {});
-            if (!hasOwn(Symbol2, NAME))
-              defineProperty(Symbol2, NAME, {
-                value: wrappedWellKnownSymbolModule.f(NAME)
-              });
+            if (!hasOwn(Symbol2, NAME)) defineProperty(Symbol2, NAME, {
+              value: wrappedWellKnownSymbolModule.f(NAME)
+            });
           };
         }, { "../internals/has-own-property": 189, "../internals/object-define-property": 231, "../internals/path": 247, "../internals/well-known-symbol-wrapped": 305 }], 305: [function(require2, module4, exports3) {
           "use strict";
@@ -14415,8 +13901,7 @@ var require_aliyun_oss_sdk = __commonJS({
             return array.concat()[0] !== array;
           });
           var isConcatSpreadable = function(O) {
-            if (!isObject(O))
-              return false;
+            if (!isObject(O)) return false;
             var spreadable = O[IS_CONCAT_SPREADABLE];
             return spreadable !== void 0 ? !!spreadable : isArray(O);
           };
@@ -14433,9 +13918,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (isConcatSpreadable(E)) {
                   len = lengthOfArrayLike(E);
                   doesNotExceedSafeInteger(n + len);
-                  for (k = 0; k < len; k++, n++)
-                    if (k in E)
-                      createProperty(A, n, E[k]);
+                  for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
                 } else {
                   doesNotExceedSafeInteger(n + 1);
                   createProperty(A, n++, E);
@@ -14472,10 +13955,9 @@ var require_aliyun_oss_sdk = __commonJS({
           var addToUnscopables = require2("../internals/add-to-unscopables");
           var FIND = "find";
           var SKIPS_HOLES = true;
-          if (FIND in [])
-            Array(1)[FIND](function() {
-              SKIPS_HOLES = false;
-            });
+          if (FIND in []) Array(1)[FIND](function() {
+            SKIPS_HOLES = false;
+          });
           $({ target: "Array", proto: true, forced: SKIPS_HOLES }, {
             find: function find(callbackfn) {
               return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : void 0);
@@ -14552,11 +14034,10 @@ var require_aliyun_oss_sdk = __commonJS({
           addToUnscopables("keys");
           addToUnscopables("values");
           addToUnscopables("entries");
-          if (!IS_PURE && DESCRIPTORS && values.name !== "values")
-            try {
-              defineProperty(values, "name", { value: "values" });
-            } catch (error) {
-            }
+          if (!IS_PURE && DESCRIPTORS && values.name !== "values") try {
+            defineProperty(values, "name", { value: "values" });
+          } catch (error) {
+          }
         }, { "../internals/add-to-unscopables": 111, "../internals/create-iter-result-object": 144, "../internals/descriptors": 153, "../internals/internal-state": 199, "../internals/is-pure": 210, "../internals/iterator-define": 216, "../internals/iterators": 218, "../internals/object-define-property": 231, "../internals/to-indexed-object": 282 }], 317: [function(require2, module4, exports3) {
           "use strict";
           var $ = require2("../internals/export");
@@ -14613,17 +14094,14 @@ var require_aliyun_oss_sdk = __commonJS({
                   Constructor = void 0;
                 } else if (isObject(Constructor)) {
                   Constructor = Constructor[SPECIES];
-                  if (Constructor === null)
-                    Constructor = void 0;
+                  if (Constructor === null) Constructor = void 0;
                 }
                 if (Constructor === $Array || Constructor === void 0) {
                   return nativeSlice(O, k, fin);
                 }
               }
               result = new (Constructor === void 0 ? $Array : Constructor)(max(fin - k, 0));
-              for (n = 0; k < fin; k++, n++)
-                if (k in O)
-                  createProperty(result, n, O[k]);
+              for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
               result.length = n;
               return result;
             }
@@ -14655,14 +14133,10 @@ var require_aliyun_oss_sdk = __commonJS({
           });
           var STRICT_METHOD = arrayMethodIsStrict("sort");
           var STABLE_SORT = !fails(function() {
-            if (V8)
-              return V8 < 70;
-            if (FF && FF > 3)
-              return;
-            if (IE_OR_EDGE)
-              return true;
-            if (WEBKIT)
-              return WEBKIT < 603;
+            if (V8) return V8 < 70;
+            if (FF && FF > 3) return;
+            if (IE_OR_EDGE) return true;
+            if (WEBKIT) return WEBKIT < 603;
             var result = "";
             var code, chr, value, index;
             for (code = 65; code < 76; code++) {
@@ -14690,44 +14164,35 @@ var require_aliyun_oss_sdk = __commonJS({
             });
             for (index = 0; index < test.length; index++) {
               chr = test[index].k.charAt(0);
-              if (result.charAt(result.length - 1) !== chr)
-                result += chr;
+              if (result.charAt(result.length - 1) !== chr) result += chr;
             }
             return result !== "DGBEFHACIJK";
           });
           var FORCED = FAILS_ON_UNDEFINED || !FAILS_ON_NULL || !STRICT_METHOD || !STABLE_SORT;
           var getSortCompare = function(comparefn) {
             return function(x, y) {
-              if (y === void 0)
-                return -1;
-              if (x === void 0)
-                return 1;
-              if (comparefn !== void 0)
-                return +comparefn(x, y) || 0;
+              if (y === void 0) return -1;
+              if (x === void 0) return 1;
+              if (comparefn !== void 0) return +comparefn(x, y) || 0;
               return toString(x) > toString(y) ? 1 : -1;
             };
           };
           $({ target: "Array", proto: true, forced: FORCED }, {
             sort: function sort(comparefn) {
-              if (comparefn !== void 0)
-                aCallable(comparefn);
+              if (comparefn !== void 0) aCallable(comparefn);
               var array = toObject(this);
-              if (STABLE_SORT)
-                return comparefn === void 0 ? nativeSort(array) : nativeSort(array, comparefn);
+              if (STABLE_SORT) return comparefn === void 0 ? nativeSort(array) : nativeSort(array, comparefn);
               var items = [];
               var arrayLength = lengthOfArrayLike(array);
               var itemsLength, index;
               for (index = 0; index < arrayLength; index++) {
-                if (index in array)
-                  push(items, array[index]);
+                if (index in array) push(items, array[index]);
               }
               internalSort(items, getSortCompare(comparefn));
               itemsLength = lengthOfArrayLike(items);
               index = 0;
-              while (index < itemsLength)
-                array[index] = items[index++];
-              while (index < arrayLength)
-                deletePropertyOrThrow(array, index++);
+              while (index < itemsLength) array[index] = items[index++];
+              while (index < arrayLength) deletePropertyOrThrow(array, index++);
               return array;
             }
           });
@@ -14767,29 +14232,23 @@ var require_aliyun_oss_sdk = __commonJS({
               A = arraySpeciesCreate(O, actualDeleteCount);
               for (k = 0; k < actualDeleteCount; k++) {
                 from = actualStart + k;
-                if (from in O)
-                  createProperty(A, k, O[from]);
+                if (from in O) createProperty(A, k, O[from]);
               }
               A.length = actualDeleteCount;
               if (insertCount < actualDeleteCount) {
                 for (k = actualStart; k < len - actualDeleteCount; k++) {
                   from = k + actualDeleteCount;
                   to = k + insertCount;
-                  if (from in O)
-                    O[to] = O[from];
-                  else
-                    deletePropertyOrThrow(O, to);
+                  if (from in O) O[to] = O[from];
+                  else deletePropertyOrThrow(O, to);
                 }
-                for (k = len; k > len - actualDeleteCount + insertCount; k--)
-                  deletePropertyOrThrow(O, k - 1);
+                for (k = len; k > len - actualDeleteCount + insertCount; k--) deletePropertyOrThrow(O, k - 1);
               } else if (insertCount > actualDeleteCount) {
                 for (k = len - actualDeleteCount; k > actualStart; k--) {
                   from = k + actualDeleteCount - 1;
                   to = k + insertCount - 1;
-                  if (from in O)
-                    O[to] = O[from];
-                  else
-                    deletePropertyOrThrow(O, to);
+                  if (from in O) O[to] = O[from];
+                  else deletePropertyOrThrow(O, to);
                 }
               }
               for (k = 0; k < insertCount; k++) {
@@ -14855,13 +14314,10 @@ var require_aliyun_oss_sdk = __commonJS({
           var stringifyWithSymbolsFix = function(it, replacer) {
             var args = arraySlice(arguments);
             var $replacer = getReplacerFunction(replacer);
-            if (!isCallable($replacer) && (it === void 0 || isSymbol(it)))
-              return;
+            if (!isCallable($replacer) && (it === void 0 || isSymbol(it))) return;
             args[1] = function(key, value) {
-              if (isCallable($replacer))
-                value = call($replacer, this, $String(key), value);
-              if (!isSymbol(value))
-                return value;
+              if (isCallable($replacer)) value = call($replacer, this, $String(key), value);
+              if (!isSymbol(value)) return value;
             };
             return apply($stringify, null, args);
           };
@@ -14917,22 +14373,22 @@ var require_aliyun_oss_sdk = __commonJS({
           var toNumber = function(argument) {
             var it = toPrimitive(argument, "number");
             var first, third, radix, maxCode, digits, length, index, code;
-            if (isSymbol(it))
-              throw new TypeError2("Cannot convert a Symbol value to a number");
+            if (isSymbol(it)) throw new TypeError2("Cannot convert a Symbol value to a number");
             if (typeof it == "string" && it.length > 2) {
               it = trim(it);
               first = charCodeAt(it, 0);
               if (first === 43 || first === 45) {
                 third = charCodeAt(it, 2);
-                if (third === 88 || third === 120)
-                  return NaN;
+                if (third === 88 || third === 120) return NaN;
               } else if (first === 48) {
                 switch (charCodeAt(it, 1)) {
+                  // fast equal of /^0b[01]+$/i
                   case 66:
                   case 98:
                     radix = 2;
                     maxCode = 49;
                     break;
+                  // fast equal of /^0o[0-7]+$/i
                   case 79:
                   case 111:
                     radix = 8;
@@ -14945,8 +14401,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 length = digits.length;
                 for (index = 0; index < length; index++) {
                   code = charCodeAt(digits, index);
-                  if (code < 48 || code > maxCode)
-                    return NaN;
+                  if (code < 48 || code > maxCode) return NaN;
                 }
                 return parseInt(digits, radix);
               }
@@ -14964,8 +14419,7 @@ var require_aliyun_oss_sdk = __commonJS({
             return calledWithNew(this) ? inheritIfRequired(Object(n), this, NumberWrapper) : n;
           };
           NumberWrapper.prototype = NumberPrototype;
-          if (FORCED && !IS_PURE)
-            NumberPrototype.constructor = NumberWrapper;
+          if (FORCED && !IS_PURE) NumberPrototype.constructor = NumberWrapper;
           $({ global: true, constructor: true, wrap: true, forced: FORCED }, {
             Number: NumberWrapper
           });
@@ -14979,10 +14433,8 @@ var require_aliyun_oss_sdk = __commonJS({
               }
             }
           };
-          if (IS_PURE && PureNumberNamespace)
-            copyConstructorProperties(path3[NUMBER], PureNumberNamespace);
-          if (FORCED || IS_PURE)
-            copyConstructorProperties(path3[NUMBER], NativeNumber);
+          if (IS_PURE && PureNumberNamespace) copyConstructorProperties(path3[NUMBER], PureNumberNamespace);
+          if (FORCED || IS_PURE) copyConstructorProperties(path3[NUMBER], NativeNumber);
         }, { "../internals/descriptors": 153, "../internals/export": 170, "../internals/fails": 171, "../internals/function-uncurry-this": 181, "../internals/global": 188, "../internals/has-own-property": 189, "../internals/inherit-if-required": 196, "../internals/is-forced": 205, "../internals/is-pure": 210, "../internals/is-symbol": 212, "../internals/object-define-property": 231, "../internals/object-get-own-property-descriptor": 232, "../internals/object-get-own-property-names": 234, "../internals/object-is-prototype-of": 238, "../internals/path": 247, "../internals/string-trim": 273, "../internals/this-number-value": 278, "../internals/to-primitive": 288 }], 325: [function(require2, module4, exports3) {
           "use strict";
           var $ = require2("../internals/export");
@@ -15062,8 +14514,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   var alreadyCalled = false;
                   remaining++;
                   call($promiseResolve, C, promise).then(function(value) {
-                    if (alreadyCalled)
-                      return;
+                    if (alreadyCalled) return;
                     alreadyCalled = true;
                     values[index] = value;
                     --remaining || resolve(values);
@@ -15071,8 +14522,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 });
                 --remaining || resolve(values);
               });
-              if (result.error)
-                reject(result.value);
+              if (result.error) reject(result.value);
               return capability.promise;
             }
           });
@@ -15160,15 +14610,12 @@ var require_aliyun_oss_sdk = __commonJS({
             try {
               if (handler) {
                 if (!ok) {
-                  if (state.rejection === UNHANDLED)
-                    onHandleUnhandled(state);
+                  if (state.rejection === UNHANDLED) onHandleUnhandled(state);
                   state.rejection = HANDLED;
                 }
-                if (handler === true)
-                  result = value;
+                if (handler === true) result = value;
                 else {
-                  if (domain)
-                    domain.enter();
+                  if (domain) domain.enter();
                   result = handler(value);
                   if (domain) {
                     domain.exit();
@@ -15179,19 +14626,15 @@ var require_aliyun_oss_sdk = __commonJS({
                   reject(new TypeError2("Promise-chain cycle"));
                 } else if (then = isThenable(result)) {
                   call(then, result, resolve, reject);
-                } else
-                  resolve(result);
-              } else
-                reject(value);
+                } else resolve(result);
+              } else reject(value);
             } catch (error) {
-              if (domain && !exited)
-                domain.exit();
+              if (domain && !exited) domain.exit();
               reject(error);
             }
           };
           var notify = function(state, isReject) {
-            if (state.notified)
-              return;
+            if (state.notified) return;
             state.notified = true;
             microtask(function() {
               var reactions = state.reactions;
@@ -15200,8 +14643,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 callReaction(reaction, state);
               }
               state.notified = false;
-              if (isReject && !state.rejection)
-                onUnhandled(state);
+              if (isReject && !state.rejection) onUnhandled(state);
             });
           };
           var dispatchEvent = function(name, promise, reason) {
@@ -15212,12 +14654,9 @@ var require_aliyun_oss_sdk = __commonJS({
               event.reason = reason;
               event.initEvent(name, false, true);
               global2.dispatchEvent(event);
-            } else
-              event = { promise, reason };
-            if (!NATIVE_PROMISE_REJECTION_EVENT && (handler = global2["on" + name]))
-              handler(event);
-            else if (name === UNHANDLED_REJECTION)
-              hostReportErrors("Unhandled promise rejection", reason);
+            } else event = { promise, reason };
+            if (!NATIVE_PROMISE_REJECTION_EVENT && (handler = global2["on" + name])) handler(event);
+            else if (name === UNHANDLED_REJECTION) hostReportErrors("Unhandled promise rejection", reason);
           };
           var onUnhandled = function(state) {
             call(task, global2, function() {
@@ -15229,12 +14668,10 @@ var require_aliyun_oss_sdk = __commonJS({
                 result = perform(function() {
                   if (IS_NODE) {
                     process.emit("unhandledRejection", value, promise);
-                  } else
-                    dispatchEvent(UNHANDLED_REJECTION, promise, value);
+                  } else dispatchEvent(UNHANDLED_REJECTION, promise, value);
                 });
                 state.rejection = IS_NODE || isUnhandled(state) ? UNHANDLED : HANDLED;
-                if (result.error)
-                  throw result.value;
+                if (result.error) throw result.value;
               }
             });
           };
@@ -15246,8 +14683,7 @@ var require_aliyun_oss_sdk = __commonJS({
               var promise = state.facade;
               if (IS_NODE) {
                 process.emit("rejectionHandled", promise);
-              } else
-                dispatchEvent(REJECTION_HANDLED, promise, state.value);
+              } else dispatchEvent(REJECTION_HANDLED, promise, state.value);
             });
           };
           var bind = function(fn, state, unwrap) {
@@ -15256,24 +14692,19 @@ var require_aliyun_oss_sdk = __commonJS({
             };
           };
           var internalReject = function(state, value, unwrap) {
-            if (state.done)
-              return;
+            if (state.done) return;
             state.done = true;
-            if (unwrap)
-              state = unwrap;
+            if (unwrap) state = unwrap;
             state.value = value;
             state.state = REJECTED;
             notify(state, true);
           };
           var internalResolve = function(state, value, unwrap) {
-            if (state.done)
-              return;
+            if (state.done) return;
             state.done = true;
-            if (unwrap)
-              state = unwrap;
+            if (unwrap) state = unwrap;
             try {
-              if (state.facade === value)
-                throw new TypeError2("Promise can't be resolved itself");
+              if (state.facade === value) throw new TypeError2("Promise can't be resolved itself");
               var then = isThenable(value);
               if (then) {
                 microtask(function() {
@@ -15330,12 +14761,10 @@ var require_aliyun_oss_sdk = __commonJS({
               reaction.ok = isCallable(onFulfilled) ? onFulfilled : true;
               reaction.fail = isCallable(onRejected) && onRejected;
               reaction.domain = IS_NODE ? process.domain : void 0;
-              if (state.state === PENDING)
-                state.reactions.add(reaction);
-              else
-                microtask(function() {
-                  callReaction(reaction, state);
-                });
+              if (state.state === PENDING) state.reactions.add(reaction);
+              else microtask(function() {
+                callReaction(reaction, state);
+              });
               return reaction.promise;
             });
             OwnPromiseCapability = function() {
@@ -15400,8 +14829,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   call($promiseResolve, C, promise).then(capability.resolve, reject);
                 });
               });
-              if (result.error)
-                reject(result.value);
+              if (result.error) reject(result.value);
               return capability.promise;
             }
           });
@@ -15518,33 +14946,30 @@ var require_aliyun_oss_sdk = __commonJS({
                 chr += charAt(string, ++index2);
               } else if (chr === "]") {
                 brackets = false;
-              } else if (!brackets)
-                switch (true) {
-                  case chr === "[":
-                    brackets = true;
-                    break;
-                  case chr === "(":
-                    if (exec(IS_NCG, stringSlice(string, index2 + 1))) {
-                      index2 += 2;
-                      ncg = true;
-                    }
-                    result += chr;
-                    groupid++;
-                    continue;
-                  case (chr === ">" && ncg):
-                    if (groupname === "" || hasOwn(names, groupname)) {
-                      throw new SyntaxError2("Invalid capture group name");
-                    }
-                    names[groupname] = true;
-                    named[named.length] = [groupname, groupid];
-                    ncg = false;
-                    groupname = "";
-                    continue;
-                }
-              if (ncg)
-                groupname += chr;
-              else
-                result += chr;
+              } else if (!brackets) switch (true) {
+                case chr === "[":
+                  brackets = true;
+                  break;
+                case chr === "(":
+                  if (exec(IS_NCG, stringSlice(string, index2 + 1))) {
+                    index2 += 2;
+                    ncg = true;
+                  }
+                  result += chr;
+                  groupid++;
+                  continue;
+                case (chr === ">" && ncg):
+                  if (groupname === "" || hasOwn(names, groupname)) {
+                    throw new SyntaxError2("Invalid capture group name");
+                  }
+                  names[groupname] = true;
+                  named[named.length] = [groupname, groupid];
+                  ncg = false;
+                  groupname = "";
+                  continue;
+              }
+              if (ncg) groupname += chr;
+              else result += chr;
             }
             return [result, named];
           };
@@ -15561,22 +14986,19 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               if (patternIsRegExp || isPrototypeOf(RegExpPrototype, pattern)) {
                 pattern = pattern.source;
-                if (flagsAreUndefined)
-                  flags = getRegExpFlags(rawPattern);
+                if (flagsAreUndefined) flags = getRegExpFlags(rawPattern);
               }
               pattern = pattern === void 0 ? "" : toString(pattern);
               flags = flags === void 0 ? "" : toString(flags);
               rawPattern = pattern;
               if (UNSUPPORTED_DOT_ALL && "dotAll" in re1) {
                 dotAll = !!flags && stringIndexOf(flags, "s") > -1;
-                if (dotAll)
-                  flags = replace(flags, /s/g, "");
+                if (dotAll) flags = replace(flags, /s/g, "");
               }
               rawFlags = flags;
               if (MISSED_STICKY && "sticky" in re1) {
                 sticky = !!flags && stringIndexOf(flags, "y") > -1;
-                if (sticky && UNSUPPORTED_Y)
-                  flags = replace(flags, /y/g, "");
+                if (sticky && UNSUPPORTED_Y) flags = replace(flags, /y/g, "");
               }
               if (UNSUPPORTED_NCG) {
                 handled = handleNCG(pattern);
@@ -15590,16 +15012,13 @@ var require_aliyun_oss_sdk = __commonJS({
                   state.dotAll = true;
                   state.raw = RegExpWrapper(handleDotAll(pattern), rawFlags);
                 }
-                if (sticky)
-                  state.sticky = true;
-                if (groups.length)
-                  state.groups = groups;
+                if (sticky) state.sticky = true;
+                if (groups.length) state.groups = groups;
               }
-              if (pattern !== rawPattern)
-                try {
-                  createNonEnumerableProperty(result, "source", rawPattern === "" ? "(?:)" : rawPattern);
-                } catch (error) {
-                }
+              if (pattern !== rawPattern) try {
+                createNonEnumerableProperty(result, "source", rawPattern === "" ? "(?:)" : rawPattern);
+              } catch (error) {
+              }
               return result;
             };
             for (var keys = getOwnPropertyNames(NativeRegExp), index = 0; keys.length > index; ) {
@@ -15691,8 +15110,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var string = state.string;
             var index = state.index;
             var point;
-            if (index >= string.length)
-              return createIterResultObject(void 0, true);
+            if (index >= string.length) return createIterResultObject(void 0, true);
             point = charAt(string, index);
             state.index += point.length;
             return createIterResultObject(point, false);
@@ -15724,10 +15142,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 var rx = anObject(this);
                 var S = toString(string);
                 var res = maybeCallNative(nativeMatch, rx, S);
-                if (res.done)
-                  return res.value;
-                if (!rx.global)
-                  return regExpExec(rx, S);
+                if (res.done) return res.value;
+                if (!rx.global) return regExpExec(rx, S);
                 var fullUnicode = rx.unicode;
                 rx.lastIndex = 0;
                 var A = [];
@@ -15736,8 +15152,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 while ((result = regExpExec(rx, S)) !== null) {
                   var matchStr = toString(result[0]);
                   A[n] = matchStr;
-                  if (matchStr === "")
-                    rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
+                  if (matchStr === "") rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
                   n++;
                 }
                 return n === 0 ? null : A;
@@ -15773,15 +15188,15 @@ var require_aliyun_oss_sdk = __commonJS({
           var maybeToString = function(it) {
             return it === void 0 ? it : String(it);
           };
-          var REPLACE_KEEPS_$0 = function() {
+          var REPLACE_KEEPS_$0 = (function() {
             return "a".replace(/./, "$0") === "$0";
-          }();
-          var REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE = function() {
+          })();
+          var REGEXP_REPLACE_SUBSTITUTES_UNDEFINED_CAPTURE = (function() {
             if (/./[REPLACE]) {
               return /./[REPLACE]("a", "$0") === "";
             }
             return false;
-          }();
+          })();
           var REPLACE_SUPPORTS_NAMED_GROUPS = !fails(function() {
             var re = /./;
             re.exec = function() {
@@ -15808,12 +15223,10 @@ var require_aliyun_oss_sdk = __commonJS({
                 var S = toString(string);
                 if (typeof replaceValue == "string" && stringIndexOf(replaceValue, UNSAFE_SUBSTITUTE) === -1 && stringIndexOf(replaceValue, "$<") === -1) {
                   var res = maybeCallNative(nativeReplace, rx, S, replaceValue);
-                  if (res.done)
-                    return res.value;
+                  if (res.done) return res.value;
                 }
                 var functionalReplace = isCallable(replaceValue);
-                if (!functionalReplace)
-                  replaceValue = toString(replaceValue);
+                if (!functionalReplace) replaceValue = toString(replaceValue);
                 var global2 = rx.global;
                 var fullUnicode;
                 if (global2) {
@@ -15824,14 +15237,11 @@ var require_aliyun_oss_sdk = __commonJS({
                 var result;
                 while (true) {
                   result = regExpExec(rx, S);
-                  if (result === null)
-                    break;
+                  if (result === null) break;
                   push(results, result);
-                  if (!global2)
-                    break;
+                  if (!global2) break;
                   var matchStr = toString(result[0]);
-                  if (matchStr === "")
-                    rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
+                  if (matchStr === "") rx.lastIndex = advanceStringIndex(S, toLength(rx.lastIndex), fullUnicode);
                 }
                 var accumulatedResult = "";
                 var nextSourcePosition = 0;
@@ -15841,13 +15251,11 @@ var require_aliyun_oss_sdk = __commonJS({
                   var position = max(min(toIntegerOrInfinity(result.index), S.length), 0);
                   var captures = [];
                   var replacement;
-                  for (var j = 1; j < result.length; j++)
-                    push(captures, maybeToString(result[j]));
+                  for (var j = 1; j < result.length; j++) push(captures, maybeToString(result[j]));
                   var namedCaptures = result.groups;
                   if (functionalReplace) {
                     var replacerArgs = concat([matched], captures, position, S);
-                    if (namedCaptures !== void 0)
-                      push(replacerArgs, namedCaptures);
+                    if (namedCaptures !== void 0) push(replacerArgs, namedCaptures);
                     replacement = toString(apply(replaceValue, void 0, replacerArgs));
                   } else {
                     replacement = getSubstitution(matched, S, position, captures, namedCaptures, replaceValue);
@@ -15887,14 +15295,11 @@ var require_aliyun_oss_sdk = __commonJS({
                 var rx = anObject(this);
                 var S = toString(string);
                 var res = maybeCallNative(nativeSearch, rx, S);
-                if (res.done)
-                  return res.value;
+                if (res.done) return res.value;
                 var previousLastIndex = rx.lastIndex;
-                if (!sameValue(previousLastIndex, 0))
-                  rx.lastIndex = 0;
+                if (!sameValue(previousLastIndex, 0)) rx.lastIndex = 0;
                 var result = regExpExec(rx, S);
-                if (!sameValue(rx.lastIndex, previousLastIndex))
-                  rx.lastIndex = previousLastIndex;
+                if (!sameValue(rx.lastIndex, previousLastIndex)) rx.lastIndex = previousLastIndex;
                 return result === null ? -1 : result.index;
               }
             ];
@@ -15943,10 +15348,8 @@ var require_aliyun_oss_sdk = __commonJS({
               internalSplit = function(separator, limit) {
                 var string = toString(requireObjectCoercible(this));
                 var lim = limit === void 0 ? MAX_UINT32 : limit >>> 0;
-                if (lim === 0)
-                  return [];
-                if (separator === void 0)
-                  return [string];
+                if (lim === 0) return [];
+                if (separator === void 0) return [string];
                 if (!isRegExp(separator)) {
                   return call(nativeSplit, string, separator, lim);
                 }
@@ -15959,29 +15362,23 @@ var require_aliyun_oss_sdk = __commonJS({
                   lastIndex = separatorCopy.lastIndex;
                   if (lastIndex > lastLastIndex) {
                     push(output, stringSlice(string, lastLastIndex, match.index));
-                    if (match.length > 1 && match.index < string.length)
-                      apply($push, output, arraySlice(match, 1));
+                    if (match.length > 1 && match.index < string.length) apply($push, output, arraySlice(match, 1));
                     lastLength = match[0].length;
                     lastLastIndex = lastIndex;
-                    if (output.length >= lim)
-                      break;
+                    if (output.length >= lim) break;
                   }
-                  if (separatorCopy.lastIndex === match.index)
-                    separatorCopy.lastIndex++;
+                  if (separatorCopy.lastIndex === match.index) separatorCopy.lastIndex++;
                 }
                 if (lastLastIndex === string.length) {
-                  if (lastLength || !exec(separatorCopy, ""))
-                    push(output, "");
-                } else
-                  push(output, stringSlice(string, lastLastIndex));
+                  if (lastLength || !exec(separatorCopy, "")) push(output, "");
+                } else push(output, stringSlice(string, lastLastIndex));
                 return output.length > lim ? arraySlice(output, 0, lim) : output;
               };
             } else if ("0".split(void 0, 0).length) {
               internalSplit = function(separator, limit) {
                 return separator === void 0 && limit === 0 ? [] : call(nativeSplit, this, separator, limit);
               };
-            } else
-              internalSplit = nativeSplit;
+            } else internalSplit = nativeSplit;
             return [
               // `String.prototype.split` method
               // https://tc39.es/ecma262/#sec-string.prototype.split
@@ -15999,17 +15396,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 var rx = anObject(this);
                 var S = toString(string);
                 var res = maybeCallNative(internalSplit, rx, S, limit, internalSplit !== nativeSplit);
-                if (res.done)
-                  return res.value;
+                if (res.done) return res.value;
                 var C = speciesConstructor(rx, RegExp);
                 var unicodeMatching = rx.unicode;
                 var flags = (rx.ignoreCase ? "i" : "") + (rx.multiline ? "m" : "") + (rx.unicode ? "u" : "") + (UNSUPPORTED_Y ? "g" : "y");
                 var splitter = new C(UNSUPPORTED_Y ? "^(?:" + rx.source + ")" : rx, flags);
                 var lim = limit === void 0 ? MAX_UINT32 : limit >>> 0;
-                if (lim === 0)
-                  return [];
-                if (S.length === 0)
-                  return callRegExpExec(splitter, S) === null ? [S] : [];
+                if (lim === 0) return [];
+                if (S.length === 0) return callRegExpExec(splitter, S) === null ? [S] : [];
                 var p = 0;
                 var q = 0;
                 var A = [];
@@ -16021,12 +15415,10 @@ var require_aliyun_oss_sdk = __commonJS({
                     q = advanceStringIndex(S, q, unicodeMatching);
                   } else {
                     push(A, stringSlice(S, p, q));
-                    if (A.length === lim)
-                      return A;
+                    if (A.length === lim) return A;
                     for (var i = 1; i <= z.length - 1; i++) {
                       push(A, z[i]);
-                      if (A.length === lim)
-                        return A;
+                      if (A.length === lim) return A;
                     }
                     q = p = e;
                   }
@@ -16050,10 +15442,10 @@ var require_aliyun_oss_sdk = __commonJS({
           var stringSlice = uncurryThis("".slice);
           var min = Math.min;
           var CORRECT_IS_REGEXP_LOGIC = correctIsRegExpLogic("startsWith");
-          var MDN_POLYFILL_BUG = !IS_PURE && !CORRECT_IS_REGEXP_LOGIC && !!function() {
+          var MDN_POLYFILL_BUG = !IS_PURE && !CORRECT_IS_REGEXP_LOGIC && !!(function() {
             var descriptor = getOwnPropertyDescriptor(String.prototype, "startsWith");
             return descriptor && !descriptor.writable;
-          }();
+          })();
           $({ target: "String", proto: true, forced: !MDN_POLYFILL_BUG && !CORRECT_IS_REGEXP_LOGIC }, {
             startsWith: function startsWith(searchString) {
               var that = toString(requireObjectCoercible(this));
@@ -16134,8 +15526,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var USE_SETTER = !QObject || !QObject[PROTOTYPE] || !QObject[PROTOTYPE].findChild;
           var fallbackDefineProperty = function(O, P, Attributes) {
             var ObjectPrototypeDescriptor = nativeGetOwnPropertyDescriptor(ObjectPrototype, P);
-            if (ObjectPrototypeDescriptor)
-              delete ObjectPrototype[P];
+            if (ObjectPrototypeDescriptor) delete ObjectPrototype[P];
             nativeDefineProperty(O, P, Attributes);
             if (ObjectPrototypeDescriptor && O !== ObjectPrototype) {
               nativeDefineProperty(ObjectPrototype, P, ObjectPrototypeDescriptor);
@@ -16155,24 +15546,20 @@ var require_aliyun_oss_sdk = __commonJS({
               tag,
               description
             });
-            if (!DESCRIPTORS)
-              symbol.description = description;
+            if (!DESCRIPTORS) symbol.description = description;
             return symbol;
           };
           var $defineProperty = function defineProperty(O, P, Attributes) {
-            if (O === ObjectPrototype)
-              $defineProperty(ObjectPrototypeSymbols, P, Attributes);
+            if (O === ObjectPrototype) $defineProperty(ObjectPrototypeSymbols, P, Attributes);
             anObject(O);
             var key = toPropertyKey(P);
             anObject(Attributes);
             if (hasOwn(AllSymbols, key)) {
               if (!Attributes.enumerable) {
-                if (!hasOwn(O, HIDDEN))
-                  nativeDefineProperty(O, HIDDEN, createPropertyDescriptor(1, nativeObjectCreate(null)));
+                if (!hasOwn(O, HIDDEN)) nativeDefineProperty(O, HIDDEN, createPropertyDescriptor(1, nativeObjectCreate(null)));
                 O[HIDDEN][key] = true;
               } else {
-                if (hasOwn(O, HIDDEN) && O[HIDDEN][key])
-                  O[HIDDEN][key] = false;
+                if (hasOwn(O, HIDDEN) && O[HIDDEN][key]) O[HIDDEN][key] = false;
                 Attributes = nativeObjectCreate(Attributes, { enumerable: createPropertyDescriptor(0, false) });
               }
               return setSymbolDescriptor(O, key, Attributes);
@@ -16184,8 +15571,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var properties = toIndexedObject(Properties);
             var keys = objectKeys(properties).concat($getOwnPropertySymbols(properties));
             $forEach(keys, function(key) {
-              if (!DESCRIPTORS || call($propertyIsEnumerable, properties, key))
-                $defineProperty(O, key, properties[key]);
+              if (!DESCRIPTORS || call($propertyIsEnumerable, properties, key)) $defineProperty(O, key, properties[key]);
             });
             return O;
           };
@@ -16195,15 +15581,13 @@ var require_aliyun_oss_sdk = __commonJS({
           var $propertyIsEnumerable = function propertyIsEnumerable(V) {
             var P = toPropertyKey(V);
             var enumerable = call(nativePropertyIsEnumerable, this, P);
-            if (this === ObjectPrototype && hasOwn(AllSymbols, P) && !hasOwn(ObjectPrototypeSymbols, P))
-              return false;
+            if (this === ObjectPrototype && hasOwn(AllSymbols, P) && !hasOwn(ObjectPrototypeSymbols, P)) return false;
             return enumerable || !hasOwn(this, P) || !hasOwn(AllSymbols, P) || hasOwn(this, HIDDEN) && this[HIDDEN][P] ? enumerable : true;
           };
           var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(O, P) {
             var it = toIndexedObject(O);
             var key = toPropertyKey(P);
-            if (it === ObjectPrototype && hasOwn(AllSymbols, key) && !hasOwn(ObjectPrototypeSymbols, key))
-              return;
+            if (it === ObjectPrototype && hasOwn(AllSymbols, key) && !hasOwn(ObjectPrototypeSymbols, key)) return;
             var descriptor = nativeGetOwnPropertyDescriptor(it, key);
             if (descriptor && hasOwn(AllSymbols, key) && !(hasOwn(it, HIDDEN) && it[HIDDEN][key])) {
               descriptor.enumerable = true;
@@ -16214,8 +15598,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var names = nativeGetOwnPropertyNames(toIndexedObject(O));
             var result = [];
             $forEach(names, function(key) {
-              if (!hasOwn(AllSymbols, key) && !hasOwn(hiddenKeys, key))
-                push(result, key);
+              if (!hasOwn(AllSymbols, key) && !hasOwn(hiddenKeys, key)) push(result, key);
             });
             return result;
           };
@@ -16232,27 +15615,22 @@ var require_aliyun_oss_sdk = __commonJS({
           };
           if (!NATIVE_SYMBOL) {
             $Symbol = function Symbol2() {
-              if (isPrototypeOf(SymbolPrototype, this))
-                throw new TypeError2("Symbol is not a constructor");
+              if (isPrototypeOf(SymbolPrototype, this)) throw new TypeError2("Symbol is not a constructor");
               var description = !arguments.length || arguments[0] === void 0 ? void 0 : $toString(arguments[0]);
               var tag = uid(description);
               var setter = function(value) {
                 var $this = this === void 0 ? global2 : this;
-                if ($this === ObjectPrototype)
-                  call(setter, ObjectPrototypeSymbols, value);
-                if (hasOwn($this, HIDDEN) && hasOwn($this[HIDDEN], tag))
-                  $this[HIDDEN][tag] = false;
+                if ($this === ObjectPrototype) call(setter, ObjectPrototypeSymbols, value);
+                if (hasOwn($this, HIDDEN) && hasOwn($this[HIDDEN], tag)) $this[HIDDEN][tag] = false;
                 var descriptor = createPropertyDescriptor(1, value);
                 try {
                   setSymbolDescriptor($this, tag, descriptor);
                 } catch (error) {
-                  if (!(error instanceof RangeError2))
-                    throw error;
+                  if (!(error instanceof RangeError2)) throw error;
                   fallbackDefineProperty($this, tag, descriptor);
                 }
               };
-              if (DESCRIPTORS && USE_SETTER)
-                setSymbolDescriptor(ObjectPrototype, tag, { configurable: true, set: setter });
+              if (DESCRIPTORS && USE_SETTER) setSymbolDescriptor(ObjectPrototype, tag, { configurable: true, set: setter });
               return wrap(tag, description);
             };
             SymbolPrototype = $Symbol[PROTOTYPE];
@@ -16339,8 +15717,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var SymbolWrapper = function Symbol2() {
               var description = arguments.length < 1 || arguments[0] === void 0 ? void 0 : toString(arguments[0]);
               var result = isPrototypeOf(SymbolPrototype, this) ? new NativeSymbol(description) : description === void 0 ? NativeSymbol() : NativeSymbol(description);
-              if (description === "")
-                EmptyStringDescriptionStore[result] = true;
+              if (description === "") EmptyStringDescriptionStore[result] = true;
               return result;
             };
             copyConstructorProperties(SymbolWrapper, NativeSymbol);
@@ -16356,8 +15733,7 @@ var require_aliyun_oss_sdk = __commonJS({
               configurable: true,
               get: function description() {
                 var symbol = thisSymbolValue(this);
-                if (hasOwn(EmptyStringDescriptionStore, symbol))
-                  return "";
+                if (hasOwn(EmptyStringDescriptionStore, symbol)) return "";
                 var string = symbolDescriptiveString(symbol);
                 var desc = NATIVE_SYMBOL ? stringSlice(string, 7, -1) : replace(string, regexp, "$1");
                 return desc === "" ? void 0 : desc;
@@ -16380,8 +15756,7 @@ var require_aliyun_oss_sdk = __commonJS({
           $({ target: "Symbol", stat: true, forced: !NATIVE_SYMBOL_REGISTRY }, {
             "for": function(key) {
               var string = toString(key);
-              if (hasOwn(StringToSymbolRegistry, string))
-                return StringToSymbolRegistry[string];
+              if (hasOwn(StringToSymbolRegistry, string)) return StringToSymbolRegistry[string];
               var symbol = getBuiltIn("Symbol")(string);
               StringToSymbolRegistry[string] = symbol;
               SymbolToStringRegistry[symbol] = string;
@@ -16410,10 +15785,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var SymbolToStringRegistry = shared("symbol-to-string-registry");
           $({ target: "Symbol", stat: true, forced: !NATIVE_SYMBOL_REGISTRY }, {
             keyFor: function keyFor(sym) {
-              if (!isSymbol(sym))
-                throw new TypeError(tryToString(sym) + " is not a symbol");
-              if (hasOwn(SymbolToStringRegistry, sym))
-                return SymbolToStringRegistry[sym];
+              if (!isSymbol(sym)) throw new TypeError(tryToString(sym) + " is not a symbol");
+              if (hasOwn(SymbolToStringRegistry, sym)) return SymbolToStringRegistry[sym];
             }
           });
         }, { "../internals/export": 170, "../internals/has-own-property": 189, "../internals/is-symbol": 212, "../internals/shared": 269, "../internals/symbol-registry-detection": 276, "../internals/try-to-string": 293 }], 356: [function(require2, module4, exports3) {
@@ -16650,15 +16023,12 @@ var require_aliyun_oss_sdk = __commonJS({
             aTypedArray(this);
             var offset = toOffset(arguments.length > 1 ? arguments[1] : void 0, 1);
             var src = toIndexedObject(arrayLike);
-            if (WORKS_WITH_OBJECTS_AND_GENERIC_ON_TYPED_ARRAYS)
-              return call($set, this, src, offset);
+            if (WORKS_WITH_OBJECTS_AND_GENERIC_ON_TYPED_ARRAYS) return call($set, this, src, offset);
             var length = this.length;
             var len = lengthOfArrayLike(src);
             var index = 0;
-            if (len + offset > length)
-              throw new RangeError2("Wrong length");
-            while (index < len)
-              this[offset + index] = src[index++];
+            if (len + offset > length) throw new RangeError2("Wrong length");
+            while (index < len) this[offset + index] = src[index++];
           }, !WORKS_WITH_OBJECTS_AND_GENERIC_ON_TYPED_ARRAYS || TO_OBJECT_BUG);
         }, { "../internals/array-buffer-view-core": 117, "../internals/fails": 171, "../internals/function-call": 177, "../internals/global": 188, "../internals/length-of-array-like": 219, "../internals/to-object": 285, "../internals/to-offset": 286 }], 373: [function(require2, module4, exports3) {
           "use strict";
@@ -16677,8 +16047,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var index = 0;
             var length = list.length;
             var result = new C(length);
-            while (length > index)
-              result[index] = list[index++];
+            while (length > index) result[index] = list[index++];
             return result;
           }, FORCED);
         }, { "../internals/array-buffer-view-core": 117, "../internals/array-slice": 131, "../internals/fails": 171, "../internals/typed-array-species-constructor": 298 }], 374: [function(require2, module4, exports3) {
@@ -16712,14 +16081,10 @@ var require_aliyun_oss_sdk = __commonJS({
             nativeSort(new Uint16Array2(2), {});
           }));
           var STABLE_SORT = !!nativeSort && !fails(function() {
-            if (V8)
-              return V8 < 74;
-            if (FF)
-              return FF < 67;
-            if (IE_OR_EDGE)
-              return true;
-            if (WEBKIT)
-              return WEBKIT < 602;
+            if (V8) return V8 < 74;
+            if (FF) return FF < 67;
+            if (IE_OR_EDGE) return true;
+            if (WEBKIT) return WEBKIT < 602;
             var array = new Uint16Array2(516);
             var expected = Array(516);
             var index, mod;
@@ -16732,28 +16097,21 @@ var require_aliyun_oss_sdk = __commonJS({
               return (a / 4 | 0) - (b / 4 | 0);
             });
             for (index = 0; index < 516; index++) {
-              if (array[index] !== expected[index])
-                return true;
+              if (array[index] !== expected[index]) return true;
             }
           });
           var getSortCompare = function(comparefn) {
             return function(x, y) {
-              if (comparefn !== void 0)
-                return +comparefn(x, y) || 0;
-              if (y !== y)
-                return -1;
-              if (x !== x)
-                return 1;
-              if (x === 0 && y === 0)
-                return 1 / x > 0 && 1 / y < 0 ? 1 : -1;
+              if (comparefn !== void 0) return +comparefn(x, y) || 0;
+              if (y !== y) return -1;
+              if (x !== x) return 1;
+              if (x === 0 && y === 0) return 1 / x > 0 && 1 / y < 0 ? 1 : -1;
               return x > y;
             };
           };
           exportTypedArrayMethod("sort", function sort(comparefn) {
-            if (comparefn !== void 0)
-              aCallable(comparefn);
-            if (STABLE_SORT)
-              return nativeSort(this, comparefn);
+            if (comparefn !== void 0) aCallable(comparefn);
+            if (STABLE_SORT) return nativeSort(this, comparefn);
             return internalSort(aTypedArray(this), getSortCompare(comparefn));
           }, !STABLE_SORT || ACCEPT_INCORRECT_ARGUMENTS);
         }, { "../internals/a-callable": 108, "../internals/array-buffer-view-core": 117, "../internals/array-sort": 132, "../internals/engine-ff-version": 158, "../internals/engine-is-ie-or-edge": 161, "../internals/engine-v8-version": 167, "../internals/engine-webkit-version": 168, "../internals/fails": 171, "../internals/function-uncurry-this-clause": 180, "../internals/global": 188 }], 376: [function(require2, module4, exports3) {
@@ -16836,12 +16194,11 @@ var require_aliyun_oss_sdk = __commonJS({
           var forEach = require2("../internals/array-for-each");
           var createNonEnumerableProperty = require2("../internals/create-non-enumerable-property");
           var handlePrototype = function(CollectionPrototype) {
-            if (CollectionPrototype && CollectionPrototype.forEach !== forEach)
-              try {
-                createNonEnumerableProperty(CollectionPrototype, "forEach", forEach);
-              } catch (error) {
-                CollectionPrototype.forEach = forEach;
-              }
+            if (CollectionPrototype && CollectionPrototype.forEach !== forEach) try {
+              createNonEnumerableProperty(CollectionPrototype, "forEach", forEach);
+            } catch (error) {
+              CollectionPrototype.forEach = forEach;
+            }
           };
           for (var COLLECTION_NAME in DOMIterables) {
             if (DOMIterables[COLLECTION_NAME]) {
@@ -16862,22 +16219,19 @@ var require_aliyun_oss_sdk = __commonJS({
           var ArrayValues = ArrayIteratorMethods.values;
           var handlePrototype = function(CollectionPrototype, COLLECTION_NAME2) {
             if (CollectionPrototype) {
-              if (CollectionPrototype[ITERATOR] !== ArrayValues)
-                try {
-                  createNonEnumerableProperty(CollectionPrototype, ITERATOR, ArrayValues);
-                } catch (error) {
-                  CollectionPrototype[ITERATOR] = ArrayValues;
-                }
+              if (CollectionPrototype[ITERATOR] !== ArrayValues) try {
+                createNonEnumerableProperty(CollectionPrototype, ITERATOR, ArrayValues);
+              } catch (error) {
+                CollectionPrototype[ITERATOR] = ArrayValues;
+              }
               setToStringTag(CollectionPrototype, COLLECTION_NAME2, true);
-              if (DOMIterables[COLLECTION_NAME2])
-                for (var METHOD_NAME in ArrayIteratorMethods) {
-                  if (CollectionPrototype[METHOD_NAME] !== ArrayIteratorMethods[METHOD_NAME])
-                    try {
-                      createNonEnumerableProperty(CollectionPrototype, METHOD_NAME, ArrayIteratorMethods[METHOD_NAME]);
-                    } catch (error) {
-                      CollectionPrototype[METHOD_NAME] = ArrayIteratorMethods[METHOD_NAME];
-                    }
+              if (DOMIterables[COLLECTION_NAME2]) for (var METHOD_NAME in ArrayIteratorMethods) {
+                if (CollectionPrototype[METHOD_NAME] !== ArrayIteratorMethods[METHOD_NAME]) try {
+                  createNonEnumerableProperty(CollectionPrototype, METHOD_NAME, ArrayIteratorMethods[METHOD_NAME]);
+                } catch (error) {
+                  CollectionPrototype[METHOD_NAME] = ArrayIteratorMethods[METHOD_NAME];
                 }
+              }
             }
           };
           for (var COLLECTION_NAME in DOMIterables) {
@@ -16952,7 +16306,7 @@ var require_aliyun_oss_sdk = __commonJS({
         }, { "buffer": 103 }], 383: [function(require2, module4, exports3) {
           (function(global2) {
             "use strict";
-            var dateFormat = function() {
+            var dateFormat = /* @__PURE__ */ (function() {
               var token = /d{1,4}|m{1,4}|yy(?:yy)?|([HhMsTt])\1?|[LloSZWN]|'[^']*'|'[^']*'/g;
               var timezone = /\b(?:[PMCEA][SDP]T|(?:Pacific|Mountain|Central|Eastern|Atlantic) (?:Standard|Daylight|Prevailing) Time|(?:GMT|UTC)(?:[-+]\d{4})?)\b/g;
               var timezoneClip = /[^-+\dA-Z]/g;
@@ -16961,7 +16315,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   mask = date;
                   date = void 0;
                 }
-                date = date || new Date();
+                date = date || /* @__PURE__ */ new Date();
                 if (!(date instanceof Date)) {
                   date = new Date(date);
                 }
@@ -17027,7 +16381,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   return match.slice(1, match.length - 1);
                 });
               };
-            }();
+            })();
             dateFormat.masks = {
               "default": "ddd mmm dd yyyy HH:MM:ss",
               "shortDate": "m/d/yy",
@@ -17251,8 +16605,7 @@ var require_aliyun_oss_sdk = __commonJS({
             };
           }
           function ProcessEmitWarning(warning) {
-            if (console && console.warn)
-              console.warn(warning);
+            if (console && console.warn) console.warn(warning);
           }
           var NumberIsNaN = Number.isNaN || function NumberIsNaN2(value) {
             return value !== value;
@@ -17308,8 +16661,7 @@ var require_aliyun_oss_sdk = __commonJS({
           };
           EventEmitter.prototype.emit = function emit(type) {
             var args = [];
-            for (var i = 1; i < arguments.length; i++)
-              args.push(arguments[i]);
+            for (var i = 1; i < arguments.length; i++) args.push(arguments[i]);
             var doError = type === "error";
             var events = this._events;
             if (events !== void 0)
@@ -17480,8 +16832,7 @@ var require_aliyun_oss_sdk = __commonJS({
               var key;
               for (i = 0; i < keys.length; ++i) {
                 key = keys[i];
-                if (key === "removeListener")
-                  continue;
+                if (key === "removeListener") continue;
                 this.removeAllListeners(key);
               }
               this.removeAllListeners("removeListener");
@@ -17750,7 +17101,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var throwTypeError = function() {
             throw new $TypeError();
           };
-          var ThrowTypeError = $gOPD ? function() {
+          var ThrowTypeError = $gOPD ? (function() {
             try {
               arguments.callee;
               return throwTypeError;
@@ -17761,7 +17112,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return throwTypeError;
               }
             }
-          }() : throwTypeError;
+          })() : throwTypeError;
           var hasSymbols = require2("has-symbols")();
           var hasProto = require2("has-proto")();
           var getProto = Object.getPrototypeOf || (hasProto ? function(x) {
@@ -18007,7 +17358,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   if (!allowMissing) {
                     throw new $TypeError("base intrinsic for " + name + " exists, but the property is not available.");
                   }
-                  return void 0;
+                  return void undefined2;
                 }
                 if ($gOPD && i + 1 >= parts.length) {
                   var desc = $gOPD(value, part);
@@ -18158,8 +17509,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var url = require2("url");
           var https = module4.exports;
           for (var key in http) {
-            if (http.hasOwnProperty(key))
-              https[key] = http[key];
+            if (http.hasOwnProperty(key)) https[key] = http[key];
           }
           https.request = function(params, cb) {
             params = validateParams(params);
@@ -18186,8 +17536,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var util = require2("util");
           var ms = require2("ms");
           module4.exports = function(t) {
-            if (typeof t === "number")
-              return t;
+            if (typeof t === "number") return t;
             var r = ms(t);
             if (r === void 0) {
               var err = new Error(util.format("humanize-ms(%j) result undefined", t));
@@ -18497,9 +17846,9 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             return value !== null && typeof value === "object" && typeof value.length === "number" && value.length >= 0 && $toString(value) !== "[object Array]" && $toString(value.callee) === "[object Function]";
           };
-          var supportsStandardArguments = function() {
+          var supportsStandardArguments = (function() {
             return isStandardArguments(arguments);
-          }();
+          })();
           isStandardArguments.isLegacyArguments = isLegacyArguments;
           module4.exports = supportsStandardArguments ? isStandardArguments : isLegacyArguments;
         }, { "call-bind/callBound": 105, "has-tostringtag/shams": 396 }], 409: [function(require2, module4, exports3) {
@@ -18679,12 +18028,11 @@ var require_aliyun_oss_sdk = __commonJS({
                 var _Base64 = global3.Base64;
                 var version = "2.6.4";
                 var b64chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-                var b64tab = function(bin) {
+                var b64tab = (function(bin) {
                   var t = {};
-                  for (var i = 0, l = bin.length; i < l; i++)
-                    t[bin.charAt(i)] = i;
+                  for (var i = 0, l = bin.length; i < l; i++) t[bin.charAt(i)] = i;
                   return t;
-                }(b64chars);
+                })(b64chars);
                 var fromCharCode = String.fromCharCode;
                 var cb_utob = function(c) {
                   if (c.length < 2) {
@@ -18711,10 +18059,9 @@ var require_aliyun_oss_sdk = __commonJS({
                 var btoa = global3.btoa && typeof global3.btoa == "function" ? function(b) {
                   return global3.btoa(b);
                 } : function(b) {
-                  if (b.match(/[^\x00-\xFF]/))
-                    throw new RangeError(
-                      "The string contains invalid characters."
-                    );
+                  if (b.match(/[^\x00-\xFF]/)) throw new RangeError(
+                    "The string contains invalid characters."
+                  );
                   return b.replace(/[\s\S]{1,3}/g, cb_encode);
                 };
                 var _encode = function(u) {
@@ -18732,16 +18079,15 @@ var require_aliyun_oss_sdk = __commonJS({
                   return encode(u, true);
                 };
                 var fromUint8Array;
-                if (global3.Uint8Array)
-                  fromUint8Array = function(a, urisafe) {
-                    var b64 = "";
-                    for (var i = 0, l = a.length; i < l; i += 3) {
-                      var a0 = a[i], a1 = a[i + 1], a2 = a[i + 2];
-                      var ord = a0 << 16 | a1 << 8 | a2;
-                      b64 += b64chars.charAt(ord >>> 18) + b64chars.charAt(ord >>> 12 & 63) + (typeof a1 != "undefined" ? b64chars.charAt(ord >>> 6 & 63) : "=") + (typeof a2 != "undefined" ? b64chars.charAt(ord & 63) : "=");
-                    }
-                    return urisafe ? mkUriSafe(b64) : b64;
-                  };
+                if (global3.Uint8Array) fromUint8Array = function(a, urisafe) {
+                  var b64 = "";
+                  for (var i = 0, l = a.length; i < l; i += 3) {
+                    var a0 = a[i], a1 = a[i + 1], a2 = a[i + 2];
+                    var ord = a0 << 16 | a1 << 8 | a2;
+                    b64 += b64chars.charAt(ord >>> 18) + b64chars.charAt(ord >>> 12 & 63) + (typeof a1 != "undefined" ? b64chars.charAt(ord >>> 6 & 63) : "=") + (typeof a2 != "undefined" ? b64chars.charAt(ord & 63) : "=");
+                  }
+                  return urisafe ? mkUriSafe(b64) : b64;
+                };
                 var re_btou = /[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF]{2}|[\xF0-\xF7][\x80-\xBF]{3}/g;
                 var cb_btou = function(cccc) {
                   switch (cccc.length) {
@@ -18790,12 +18136,11 @@ var require_aliyun_oss_sdk = __commonJS({
                   return _decode(_fromURI(a));
                 };
                 var toUint8Array;
-                if (global3.Uint8Array)
-                  toUint8Array = function(a) {
-                    return Uint8Array.from(atob2(_fromURI(a)), function(c) {
-                      return c.charCodeAt(0);
-                    });
-                  };
+                if (global3.Uint8Array) toUint8Array = function(a) {
+                  return Uint8Array.from(atob2(_fromURI(a)), function(c) {
+                    return c.charCodeAt(0);
+                  });
+                };
                 var noConflict = function() {
                   var Base642 = global3.Base64;
                   global3.Base64 = _Base64;
@@ -20035,7 +19380,7 @@ var require_aliyun_oss_sdk = __commonJS({
               $webkitStorageInfo: true,
               $window: true
             };
-            var hasAutomationEqualityBug = function() {
+            var hasAutomationEqualityBug = (function() {
               if (typeof window === "undefined") {
                 return false;
               }
@@ -20053,7 +19398,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               }
               return false;
-            }();
+            })();
             var equalsConstructorPrototypeIfNotBuggy = function(o) {
               if (typeof window === "undefined" || !hasAutomationEqualityBug) {
                 return equalsConstructorPrototype(o);
@@ -20113,10 +19458,10 @@ var require_aliyun_oss_sdk = __commonJS({
           var originalKeys = Object.keys;
           keysShim.shim = function shimObjectKeys() {
             if (Object.keys) {
-              var keysWorksWithArguments = function() {
+              var keysWorksWithArguments = (function() {
                 var args = Object.keys(arguments);
                 return args && args.length === arguments.length;
-              }(1, 2);
+              })(1, 2);
               if (!keysWorksWithArguments) {
                 Object.keys = function keys(object) {
                   if (isArgs(object)) {
@@ -20345,17 +19690,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 },
                 normalize: function normalize(path3) {
                   assertPath(path3);
-                  if (path3.length === 0)
-                    return ".";
+                  if (path3.length === 0) return ".";
                   var isAbsolute = path3.charCodeAt(0) === 47;
                   var trailingSeparator = path3.charCodeAt(path3.length - 1) === 47;
                   path3 = normalizeStringPosix(path3, !isAbsolute);
-                  if (path3.length === 0 && !isAbsolute)
-                    path3 = ".";
-                  if (path3.length > 0 && trailingSeparator)
-                    path3 += "/";
-                  if (isAbsolute)
-                    return "/" + path3;
+                  if (path3.length === 0 && !isAbsolute) path3 = ".";
+                  if (path3.length > 0 && trailingSeparator) path3 += "/";
+                  if (isAbsolute) return "/" + path3;
                   return path3;
                 },
                 isAbsolute: function isAbsolute(path3) {
@@ -20383,12 +19724,10 @@ var require_aliyun_oss_sdk = __commonJS({
                 relative: function relative(from, to) {
                   assertPath(from);
                   assertPath(to);
-                  if (from === to)
-                    return "";
+                  if (from === to) return "";
                   from = posix.resolve(from);
                   to = posix.resolve(to);
-                  if (from === to)
-                    return "";
+                  if (from === to) return "";
                   var fromStart = 1;
                   for (; fromStart < from.length; ++fromStart) {
                     if (from.charCodeAt(fromStart) !== 47)
@@ -20453,8 +19792,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 },
                 dirname: function dirname(path3) {
                   assertPath(path3);
-                  if (path3.length === 0)
-                    return ".";
+                  if (path3.length === 0) return ".";
                   var code = path3.charCodeAt(0);
                   var hasRoot = code === 47;
                   var end = -1;
@@ -20470,23 +19808,19 @@ var require_aliyun_oss_sdk = __commonJS({
                       matchedSlash = false;
                     }
                   }
-                  if (end === -1)
-                    return hasRoot ? "/" : ".";
-                  if (hasRoot && end === 1)
-                    return "//";
+                  if (end === -1) return hasRoot ? "/" : ".";
+                  if (hasRoot && end === 1) return "//";
                   return path3.slice(0, end);
                 },
                 basename: function basename(path3, ext) {
-                  if (ext !== void 0 && typeof ext !== "string")
-                    throw new TypeError('"ext" argument must be a string');
+                  if (ext !== void 0 && typeof ext !== "string") throw new TypeError('"ext" argument must be a string');
                   assertPath(path3);
                   var start = 0;
                   var end = -1;
                   var matchedSlash = true;
                   var i;
                   if (ext !== void 0 && ext.length > 0 && ext.length <= path3.length) {
-                    if (ext.length === path3.length && ext === path3)
-                      return "";
+                    if (ext.length === path3.length && ext === path3) return "";
                     var extIdx = ext.length - 1;
                     var firstNonSlashEnd = -1;
                     for (i = path3.length - 1; i >= 0; --i) {
@@ -20513,10 +19847,8 @@ var require_aliyun_oss_sdk = __commonJS({
                         }
                       }
                     }
-                    if (start === end)
-                      end = firstNonSlashEnd;
-                    else if (end === -1)
-                      end = path3.length;
+                    if (start === end) end = firstNonSlashEnd;
+                    else if (end === -1) end = path3.length;
                     return path3.slice(start, end);
                   } else {
                     for (i = path3.length - 1; i >= 0; --i) {
@@ -20530,8 +19862,7 @@ var require_aliyun_oss_sdk = __commonJS({
                         end = i + 1;
                       }
                     }
-                    if (end === -1)
-                      return "";
+                    if (end === -1) return "";
                     return path3.slice(start, end);
                   }
                 },
@@ -20580,8 +19911,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 parse: function parse(path3) {
                   assertPath(path3);
                   var ret = { root: "", dir: "", base: "", ext: "", name: "" };
-                  if (path3.length === 0)
-                    return ret;
+                  if (path3.length === 0) return ret;
                   var code = path3.charCodeAt(0);
                   var isAbsolute = code === 47;
                   var start;
@@ -20611,10 +19941,8 @@ var require_aliyun_oss_sdk = __commonJS({
                       end = i + 1;
                     }
                     if (code === 46) {
-                      if (startDot === -1)
-                        startDot = i;
-                      else if (preDotState !== 1)
-                        preDotState = 1;
+                      if (startDot === -1) startDot = i;
+                      else if (preDotState !== 1) preDotState = 1;
                     } else if (startDot !== -1) {
                       preDotState = -1;
                     }
@@ -20623,10 +19951,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   preDotState === 0 || // The (right-most) trimmed path component is exactly '..'
                   preDotState === 1 && startDot === end - 1 && startDot === startPart + 1) {
                     if (end !== -1) {
-                      if (startPart === 0 && isAbsolute)
-                        ret.base = ret.name = path3.slice(1, end);
-                      else
-                        ret.base = ret.name = path3.slice(startPart, end);
+                      if (startPart === 0 && isAbsolute) ret.base = ret.name = path3.slice(1, end);
+                      else ret.base = ret.name = path3.slice(startPart, end);
                     }
                   } else {
                     if (startPart === 0 && isAbsolute) {
@@ -20638,10 +19964,8 @@ var require_aliyun_oss_sdk = __commonJS({
                     }
                     ret.ext = path3.slice(startDot, end);
                   }
-                  if (startPart > 0)
-                    ret.dir = path3.slice(0, startPart - 1);
-                  else if (isAbsolute)
-                    ret.dir = "/";
+                  if (startPart > 0) ret.dir = path3.slice(0, startPart - 1);
+                  else if (isAbsolute) ret.dir = "/";
                   return ret;
                 },
                 sep: "/",
@@ -22274,13 +21598,13 @@ var require_aliyun_oss_sdk = __commonJS({
           var formats = require2("./formats");
           var has = Object.prototype.hasOwnProperty;
           var isArray = Array.isArray;
-          var hexTable = function() {
+          var hexTable = (function() {
             var array = [];
             for (var i = 0; i < 256; ++i) {
               array.push("%" + ((i < 16 ? "0" : "") + i.toString(16)).toUpperCase());
             }
             return array;
-          }();
+          })();
           var compactQueue = function compactQueue2(queue) {
             while (queue.length > 1) {
               var item = queue.pop();
@@ -22541,16 +21865,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               }).join(sep);
             }
-            if (!name)
-              return "";
+            if (!name) return "";
             return encodeURIComponent(stringifyPrimitive(name)) + eq + encodeURIComponent(stringifyPrimitive(obj));
           };
           var isArray = Array.isArray || function(xs) {
             return Object.prototype.toString.call(xs) === "[object Array]";
           };
           function map(xs, f) {
-            if (xs.map)
-              return xs.map(f);
+            if (xs.map) return xs.map(f);
             var res = [];
             for (var i = 0; i < xs.length; i++) {
               res.push(f(xs[i], i));
@@ -22560,8 +21882,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var objectKeys = Object.keys || function(obj) {
             var res = [];
             for (var key in obj) {
-              if (Object.prototype.hasOwnProperty.call(obj, key))
-                res.push(key);
+              if (Object.prototype.hasOwnProperty.call(obj, key)) res.push(key);
             }
             return res;
           };
@@ -22589,22 +21910,17 @@ var require_aliyun_oss_sdk = __commonJS({
             var keys = objectKeys(Writable.prototype);
             for (var v = 0; v < keys.length; v++) {
               var method = keys[v];
-              if (!Duplex.prototype[method])
-                Duplex.prototype[method] = Writable.prototype[method];
+              if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
             }
           }
           function Duplex(options) {
-            if (!(this instanceof Duplex))
-              return new Duplex(options);
+            if (!(this instanceof Duplex)) return new Duplex(options);
             Readable.call(this, options);
             Writable.call(this, options);
-            if (options && options.readable === false)
-              this.readable = false;
-            if (options && options.writable === false)
-              this.writable = false;
+            if (options && options.readable === false) this.readable = false;
+            if (options && options.writable === false) this.writable = false;
             this.allowHalfOpen = true;
-            if (options && options.allowHalfOpen === false)
-              this.allowHalfOpen = false;
+            if (options && options.allowHalfOpen === false) this.allowHalfOpen = false;
             this.once("end", onend);
           }
           Object.defineProperty(Duplex.prototype, "writableHighWaterMark", {
@@ -22617,8 +21933,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }
           });
           function onend() {
-            if (this.allowHalfOpen || this._writableState.ended)
-              return;
+            if (this.allowHalfOpen || this._writableState.ended) return;
             pna.nextTick(onEndNT, this);
           }
           function onEndNT(self2) {
@@ -22652,8 +21967,7 @@ var require_aliyun_oss_sdk = __commonJS({
           util.inherits = require2("inherits");
           util.inherits(PassThrough, Transform);
           function PassThrough(options) {
-            if (!(this instanceof PassThrough))
-              return new PassThrough(options);
+            if (!(this instanceof PassThrough)) return new PassThrough(options);
             Transform.call(this, options);
           }
           PassThrough.prototype._transform = function(chunk, encoding, cb) {
@@ -22698,31 +22012,23 @@ var require_aliyun_oss_sdk = __commonJS({
               util.inherits(Readable, Stream);
               var kProxyEvents = ["error", "close", "destroy", "pause", "resume"];
               function prependListener(emitter, event, fn) {
-                if (typeof emitter.prependListener === "function")
-                  return emitter.prependListener(event, fn);
-                if (!emitter._events || !emitter._events[event])
-                  emitter.on(event, fn);
-                else if (isArray(emitter._events[event]))
-                  emitter._events[event].unshift(fn);
-                else
-                  emitter._events[event] = [fn, emitter._events[event]];
+                if (typeof emitter.prependListener === "function") return emitter.prependListener(event, fn);
+                if (!emitter._events || !emitter._events[event]) emitter.on(event, fn);
+                else if (isArray(emitter._events[event])) emitter._events[event].unshift(fn);
+                else emitter._events[event] = [fn, emitter._events[event]];
               }
               function ReadableState(options, stream) {
                 Duplex = Duplex || require2("./_stream_duplex");
                 options = options || {};
                 var isDuplex = stream instanceof Duplex;
                 this.objectMode = !!options.objectMode;
-                if (isDuplex)
-                  this.objectMode = this.objectMode || !!options.readableObjectMode;
+                if (isDuplex) this.objectMode = this.objectMode || !!options.readableObjectMode;
                 var hwm = options.highWaterMark;
                 var readableHwm = options.readableHighWaterMark;
                 var defaultHwm = this.objectMode ? 16 : 16 * 1024;
-                if (hwm || hwm === 0)
-                  this.highWaterMark = hwm;
-                else if (isDuplex && (readableHwm || readableHwm === 0))
-                  this.highWaterMark = readableHwm;
-                else
-                  this.highWaterMark = defaultHwm;
+                if (hwm || hwm === 0) this.highWaterMark = hwm;
+                else if (isDuplex && (readableHwm || readableHwm === 0)) this.highWaterMark = readableHwm;
+                else this.highWaterMark = defaultHwm;
                 this.highWaterMark = Math.floor(this.highWaterMark);
                 this.buffer = new BufferList();
                 this.length = 0;
@@ -22744,23 +22050,19 @@ var require_aliyun_oss_sdk = __commonJS({
                 this.decoder = null;
                 this.encoding = null;
                 if (options.encoding) {
-                  if (!StringDecoder)
-                    StringDecoder = require2("string_decoder/").StringDecoder;
+                  if (!StringDecoder) StringDecoder = require2("string_decoder/").StringDecoder;
                   this.decoder = new StringDecoder(options.encoding);
                   this.encoding = options.encoding;
                 }
               }
               function Readable(options) {
                 Duplex = Duplex || require2("./_stream_duplex");
-                if (!(this instanceof Readable))
-                  return new Readable(options);
+                if (!(this instanceof Readable)) return new Readable(options);
                 this._readableState = new ReadableState(options, this);
                 this.readable = true;
                 if (options) {
-                  if (typeof options.read === "function")
-                    this._read = options.read;
-                  if (typeof options.destroy === "function")
-                    this._destroy = options.destroy;
+                  if (typeof options.read === "function") this._read = options.read;
+                  if (typeof options.destroy === "function") this._destroy = options.destroy;
                 }
                 Stream.call(this);
               }
@@ -22811,8 +22113,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   onEofChunk(stream, state);
                 } else {
                   var er;
-                  if (!skipChunkCheck)
-                    er = chunkInvalid(state, chunk);
+                  if (!skipChunkCheck) er = chunkInvalid(state, chunk);
                   if (er) {
                     stream.emit("error", er);
                   } else if (state.objectMode || chunk && chunk.length > 0) {
@@ -22820,20 +22121,16 @@ var require_aliyun_oss_sdk = __commonJS({
                       chunk = _uint8ArrayToBuffer(chunk);
                     }
                     if (addToFront) {
-                      if (state.endEmitted)
-                        stream.emit("error", new Error("stream.unshift() after end event"));
-                      else
-                        addChunk(stream, state, chunk, true);
+                      if (state.endEmitted) stream.emit("error", new Error("stream.unshift() after end event"));
+                      else addChunk(stream, state, chunk, true);
                     } else if (state.ended) {
                       stream.emit("error", new Error("stream.push() after EOF"));
                     } else {
                       state.reading = false;
                       if (state.decoder && !encoding) {
                         chunk = state.decoder.write(chunk);
-                        if (state.objectMode || chunk.length !== 0)
-                          addChunk(stream, state, chunk, false);
-                        else
-                          maybeReadMore(stream, state);
+                        if (state.objectMode || chunk.length !== 0) addChunk(stream, state, chunk, false);
+                        else maybeReadMore(stream, state);
                       } else {
                         addChunk(stream, state, chunk, false);
                       }
@@ -22850,12 +22147,9 @@ var require_aliyun_oss_sdk = __commonJS({
                   stream.read(0);
                 } else {
                   state.length += state.objectMode ? 1 : chunk.length;
-                  if (addToFront)
-                    state.buffer.unshift(chunk);
-                  else
-                    state.buffer.push(chunk);
-                  if (state.needReadable)
-                    emitReadable(stream);
+                  if (addToFront) state.buffer.unshift(chunk);
+                  else state.buffer.push(chunk);
+                  if (state.needReadable) emitReadable(stream);
                 }
                 maybeReadMore(stream, state);
               }
@@ -22873,8 +22167,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this._readableState.flowing === false;
               };
               Readable.prototype.setEncoding = function(enc) {
-                if (!StringDecoder)
-                  StringDecoder = require2("string_decoder/").StringDecoder;
+                if (!StringDecoder) StringDecoder = require2("string_decoder/").StringDecoder;
                 this._readableState.decoder = new StringDecoder(enc);
                 this._readableState.encoding = enc;
                 return this;
@@ -22895,20 +22188,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 return n;
               }
               function howMuchToRead(n, state) {
-                if (n <= 0 || state.length === 0 && state.ended)
-                  return 0;
-                if (state.objectMode)
-                  return 1;
+                if (n <= 0 || state.length === 0 && state.ended) return 0;
+                if (state.objectMode) return 1;
                 if (n !== n) {
-                  if (state.flowing && state.length)
-                    return state.buffer.head.data.length;
-                  else
-                    return state.length;
+                  if (state.flowing && state.length) return state.buffer.head.data.length;
+                  else return state.length;
                 }
-                if (n > state.highWaterMark)
-                  state.highWaterMark = computeNewHighWaterMark(n);
-                if (n <= state.length)
-                  return n;
+                if (n > state.highWaterMark) state.highWaterMark = computeNewHighWaterMark(n);
+                if (n <= state.length) return n;
                 if (!state.ended) {
                   state.needReadable = true;
                   return 0;
@@ -22920,20 +22207,16 @@ var require_aliyun_oss_sdk = __commonJS({
                 n = parseInt(n, 10);
                 var state = this._readableState;
                 var nOrig = n;
-                if (n !== 0)
-                  state.emittedReadable = false;
+                if (n !== 0) state.emittedReadable = false;
                 if (n === 0 && state.needReadable && (state.length >= state.highWaterMark || state.ended)) {
                   debug("read: emitReadable", state.length, state.ended);
-                  if (state.length === 0 && state.ended)
-                    endReadable(this);
-                  else
-                    emitReadable(this);
+                  if (state.length === 0 && state.ended) endReadable(this);
+                  else emitReadable(this);
                   return null;
                 }
                 n = howMuchToRead(n, state);
                 if (n === 0 && state.ended) {
-                  if (state.length === 0)
-                    endReadable(this);
+                  if (state.length === 0) endReadable(this);
                   return null;
                 }
                 var doRead = state.needReadable;
@@ -22949,18 +22232,14 @@ var require_aliyun_oss_sdk = __commonJS({
                   debug("do read");
                   state.reading = true;
                   state.sync = true;
-                  if (state.length === 0)
-                    state.needReadable = true;
+                  if (state.length === 0) state.needReadable = true;
                   this._read(state.highWaterMark);
                   state.sync = false;
-                  if (!state.reading)
-                    n = howMuchToRead(nOrig, state);
+                  if (!state.reading) n = howMuchToRead(nOrig, state);
                 }
                 var ret;
-                if (n > 0)
-                  ret = fromList(n, state);
-                else
-                  ret = null;
+                if (n > 0) ret = fromList(n, state);
+                else ret = null;
                 if (ret === null) {
                   state.needReadable = true;
                   n = 0;
@@ -22968,18 +22247,14 @@ var require_aliyun_oss_sdk = __commonJS({
                   state.length -= n;
                 }
                 if (state.length === 0) {
-                  if (!state.ended)
-                    state.needReadable = true;
-                  if (nOrig !== n && state.ended)
-                    endReadable(this);
+                  if (!state.ended) state.needReadable = true;
+                  if (nOrig !== n && state.ended) endReadable(this);
                 }
-                if (ret !== null)
-                  this.emit("data", ret);
+                if (ret !== null) this.emit("data", ret);
                 return ret;
               };
               function onEofChunk(stream, state) {
-                if (state.ended)
-                  return;
+                if (state.ended) return;
                 if (state.decoder) {
                   var chunk = state.decoder.end();
                   if (chunk && chunk.length) {
@@ -22996,10 +22271,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (!state.emittedReadable) {
                   debug("emitReadable", state.flowing);
                   state.emittedReadable = true;
-                  if (state.sync)
-                    pna.nextTick(emitReadable_, stream);
-                  else
-                    emitReadable_(stream);
+                  if (state.sync) pna.nextTick(emitReadable_, stream);
+                  else emitReadable_(stream);
                 }
               }
               function emitReadable_(stream) {
@@ -23020,8 +22293,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   stream.read(0);
                   if (len === state.length)
                     break;
-                  else
-                    len = state.length;
+                  else len = state.length;
                 }
                 state.readingMore = false;
               }
@@ -23046,10 +22318,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 debug("pipe count=%d opts=%j", state.pipesCount, pipeOpts);
                 var doEnd = (!pipeOpts || pipeOpts.end !== false) && dest !== process.stdout && dest !== process.stderr;
                 var endFn = doEnd ? onend : unpipe;
-                if (state.endEmitted)
-                  pna.nextTick(endFn);
-                else
-                  src.once("end", endFn);
+                if (state.endEmitted) pna.nextTick(endFn);
+                else src.once("end", endFn);
                 dest.on("unpipe", onunpipe);
                 function onunpipe(readable, unpipeInfo) {
                   debug("onunpipe");
@@ -23078,8 +22348,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   src.removeListener("end", unpipe);
                   src.removeListener("data", ondata);
                   cleanedUp = true;
-                  if (state.awaitDrain && (!dest._writableState || dest._writableState.needDrain))
-                    ondrain();
+                  if (state.awaitDrain && (!dest._writableState || dest._writableState.needDrain)) ondrain();
                 }
                 var increasedAwaitDrain = false;
                 src.on("data", ondata);
@@ -23100,8 +22369,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   debug("onerror", er);
                   unpipe();
                   dest.removeListener("error", onerror);
-                  if (EElistenerCount(dest, "error") === 0)
-                    dest.emit("error", er);
+                  if (EElistenerCount(dest, "error") === 0) dest.emit("error", er);
                 }
                 prependListener(dest, "error", onerror);
                 function onclose() {
@@ -23130,8 +22398,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return function() {
                   var state = src._readableState;
                   debug("pipeOnDrain", state.awaitDrain);
-                  if (state.awaitDrain)
-                    state.awaitDrain--;
+                  if (state.awaitDrain) state.awaitDrain--;
                   if (state.awaitDrain === 0 && EElistenerCount(src, "data")) {
                     state.flowing = true;
                     flow(src);
@@ -23141,18 +22408,14 @@ var require_aliyun_oss_sdk = __commonJS({
               Readable.prototype.unpipe = function(dest) {
                 var state = this._readableState;
                 var unpipeInfo = { hasUnpiped: false };
-                if (state.pipesCount === 0)
-                  return this;
+                if (state.pipesCount === 0) return this;
                 if (state.pipesCount === 1) {
-                  if (dest && dest !== state.pipes)
-                    return this;
-                  if (!dest)
-                    dest = state.pipes;
+                  if (dest && dest !== state.pipes) return this;
+                  if (!dest) dest = state.pipes;
                   state.pipes = null;
                   state.pipesCount = 0;
                   state.flowing = false;
-                  if (dest)
-                    dest.emit("unpipe", this, unpipeInfo);
+                  if (dest) dest.emit("unpipe", this, unpipeInfo);
                   return this;
                 }
                 if (!dest) {
@@ -23167,20 +22430,17 @@ var require_aliyun_oss_sdk = __commonJS({
                   return this;
                 }
                 var index = indexOf(state.pipes, dest);
-                if (index === -1)
-                  return this;
+                if (index === -1) return this;
                 state.pipes.splice(index, 1);
                 state.pipesCount -= 1;
-                if (state.pipesCount === 1)
-                  state.pipes = state.pipes[0];
+                if (state.pipesCount === 1) state.pipes = state.pipes[0];
                 dest.emit("unpipe", this, unpipeInfo);
                 return this;
               };
               Readable.prototype.on = function(ev, fn) {
                 var res = Stream.prototype.on.call(this, ev, fn);
                 if (ev === "data") {
-                  if (this._readableState.flowing !== false)
-                    this.resume();
+                  if (this._readableState.flowing !== false) this.resume();
                 } else if (ev === "readable") {
                   var state = this._readableState;
                   if (!state.endEmitted && !state.readableListening) {
@@ -23224,8 +22484,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 state.awaitDrain = 0;
                 stream.emit("resume");
                 flow(stream);
-                if (state.flowing && !state.reading)
-                  stream.read(0);
+                if (state.flowing && !state.reading) stream.read(0);
               }
               Readable.prototype.pause = function() {
                 debug("call pause flowing=%j", this._readableState.flowing);
@@ -23250,19 +22509,15 @@ var require_aliyun_oss_sdk = __commonJS({
                   debug("wrapped end");
                   if (state.decoder && !state.ended) {
                     var chunk = state.decoder.end();
-                    if (chunk && chunk.length)
-                      _this.push(chunk);
+                    if (chunk && chunk.length) _this.push(chunk);
                   }
                   _this.push(null);
                 });
                 stream.on("data", function(chunk) {
                   debug("wrapped data");
-                  if (state.decoder)
-                    chunk = state.decoder.write(chunk);
-                  if (state.objectMode && (chunk === null || chunk === void 0))
-                    return;
-                  else if (!state.objectMode && (!chunk || !chunk.length))
-                    return;
+                  if (state.decoder) chunk = state.decoder.write(chunk);
+                  if (state.objectMode && (chunk === null || chunk === void 0)) return;
+                  else if (!state.objectMode && (!chunk || !chunk.length)) return;
                   var ret = _this.push(chunk);
                   if (!ret) {
                     paused = true;
@@ -23271,11 +22526,11 @@ var require_aliyun_oss_sdk = __commonJS({
                 });
                 for (var i in stream) {
                   if (this[i] === void 0 && typeof stream[i] === "function") {
-                    this[i] = function(method) {
+                    this[i] = /* @__PURE__ */ (function(method) {
                       return function() {
                         return stream[method].apply(stream, arguments);
                       };
-                    }(i);
+                    })(i);
                   }
                 }
                 for (var n = 0; n < kProxyEvents.length; n++) {
@@ -23301,18 +22556,13 @@ var require_aliyun_oss_sdk = __commonJS({
               });
               Readable._fromList = fromList;
               function fromList(n, state) {
-                if (state.length === 0)
-                  return null;
+                if (state.length === 0) return null;
                 var ret;
-                if (state.objectMode)
-                  ret = state.buffer.shift();
+                if (state.objectMode) ret = state.buffer.shift();
                 else if (!n || n >= state.length) {
-                  if (state.decoder)
-                    ret = state.buffer.join("");
-                  else if (state.buffer.length === 1)
-                    ret = state.buffer.head.data;
-                  else
-                    ret = state.buffer.concat(state.length);
+                  if (state.decoder) ret = state.buffer.join("");
+                  else if (state.buffer.length === 1) ret = state.buffer.head.data;
+                  else ret = state.buffer.concat(state.length);
                   state.buffer.clear();
                 } else {
                   ret = fromListPartial(n, state.buffer, state.decoder);
@@ -23339,18 +22589,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 while (p = p.next) {
                   var str = p.data;
                   var nb = n > str.length ? str.length : n;
-                  if (nb === str.length)
-                    ret += str;
-                  else
-                    ret += str.slice(0, n);
+                  if (nb === str.length) ret += str;
+                  else ret += str.slice(0, n);
                   n -= nb;
                   if (n === 0) {
                     if (nb === str.length) {
                       ++c;
-                      if (p.next)
-                        list.head = p.next;
-                      else
-                        list.head = list.tail = null;
+                      if (p.next) list.head = p.next;
+                      else list.head = list.tail = null;
                     } else {
                       list.head = p;
                       p.data = str.slice(nb);
@@ -23376,10 +22622,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   if (n === 0) {
                     if (nb === buf.length) {
                       ++c;
-                      if (p.next)
-                        list.head = p.next;
-                      else
-                        list.head = list.tail = null;
+                      if (p.next) list.head = p.next;
+                      else list.head = list.tail = null;
                     } else {
                       list.head = p;
                       p.data = buf.slice(nb);
@@ -23393,8 +22637,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               function endReadable(stream) {
                 var state = stream._readableState;
-                if (state.length > 0)
-                  throw new Error('"endReadable()" called on non-empty stream');
+                if (state.length > 0) throw new Error('"endReadable()" called on non-empty stream');
                 if (!state.endEmitted) {
                   state.ended = true;
                   pna.nextTick(endReadableNT, state, stream);
@@ -23409,8 +22652,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               function indexOf(xs, x) {
                 for (var i = 0, l = xs.length; i < l; i++) {
-                  if (xs[i] === x)
-                    return i;
+                  if (xs[i] === x) return i;
                 }
                 return -1;
               }
@@ -23442,8 +22684,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }
           }
           function Transform(options) {
-            if (!(this instanceof Transform))
-              return new Transform(options);
+            if (!(this instanceof Transform)) return new Transform(options);
             Duplex.call(this, options);
             this._transformState = {
               afterTransform: afterTransform.bind(this),
@@ -23456,10 +22697,8 @@ var require_aliyun_oss_sdk = __commonJS({
             this._readableState.needReadable = true;
             this._readableState.sync = false;
             if (options) {
-              if (typeof options.transform === "function")
-                this._transform = options.transform;
-              if (typeof options.flush === "function")
-                this._flush = options.flush;
+              if (typeof options.transform === "function") this._transform = options.transform;
+              if (typeof options.flush === "function") this._flush = options.flush;
             }
             this.on("prefinish", prefinish);
           }
@@ -23487,8 +22726,7 @@ var require_aliyun_oss_sdk = __commonJS({
             ts.writeencoding = encoding;
             if (!ts.transforming) {
               var rs = this._readableState;
-              if (ts.needTransform || rs.needReadable || rs.length < rs.highWaterMark)
-                this._read(rs.highWaterMark);
+              if (ts.needTransform || rs.needReadable || rs.length < rs.highWaterMark) this._read(rs.highWaterMark);
             }
           };
           Transform.prototype._read = function(n) {
@@ -23508,14 +22746,11 @@ var require_aliyun_oss_sdk = __commonJS({
             });
           };
           function done(stream, er, data) {
-            if (er)
-              return stream.emit("error", er);
+            if (er) return stream.emit("error", er);
             if (data != null)
               stream.push(data);
-            if (stream._writableState.length)
-              throw new Error("Calling transform done when ws.length != 0");
-            if (stream._transformState.transforming)
-              throw new Error("Calling transform done when still transforming");
+            if (stream._writableState.length) throw new Error("Calling transform done when ws.length != 0");
+            if (stream._transformState.transforming) throw new Error("Calling transform done when still transforming");
             return stream.push(null);
           }
         }, { "./_stream_duplex": 452, "core-util-is": 382, "inherits": 407 }], 456: [function(require2, module4, exports3) {
@@ -23565,17 +22800,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 options = options || {};
                 var isDuplex = stream instanceof Duplex;
                 this.objectMode = !!options.objectMode;
-                if (isDuplex)
-                  this.objectMode = this.objectMode || !!options.writableObjectMode;
+                if (isDuplex) this.objectMode = this.objectMode || !!options.writableObjectMode;
                 var hwm = options.highWaterMark;
                 var writableHwm = options.writableHighWaterMark;
                 var defaultHwm = this.objectMode ? 16 : 16 * 1024;
-                if (hwm || hwm === 0)
-                  this.highWaterMark = hwm;
-                else if (isDuplex && (writableHwm || writableHwm === 0))
-                  this.highWaterMark = writableHwm;
-                else
-                  this.highWaterMark = defaultHwm;
+                if (hwm || hwm === 0) this.highWaterMark = hwm;
+                else if (isDuplex && (writableHwm || writableHwm === 0)) this.highWaterMark = writableHwm;
+                else this.highWaterMark = defaultHwm;
                 this.highWaterMark = Math.floor(this.highWaterMark);
                 this.finalCalled = false;
                 this.needDrain = false;
@@ -23628,10 +22859,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 realHasInstance = Function.prototype[Symbol.hasInstance];
                 Object.defineProperty(Writable, Symbol.hasInstance, {
                   value: function(object) {
-                    if (realHasInstance.call(this, object))
-                      return true;
-                    if (this !== Writable)
-                      return false;
+                    if (realHasInstance.call(this, object)) return true;
+                    if (this !== Writable) return false;
                     return object && object._writableState instanceof WritableState;
                   }
                 });
@@ -23648,14 +22877,10 @@ var require_aliyun_oss_sdk = __commonJS({
                 this._writableState = new WritableState(options, this);
                 this.writable = true;
                 if (options) {
-                  if (typeof options.write === "function")
-                    this._write = options.write;
-                  if (typeof options.writev === "function")
-                    this._writev = options.writev;
-                  if (typeof options.destroy === "function")
-                    this._destroy = options.destroy;
-                  if (typeof options.final === "function")
-                    this._final = options.final;
+                  if (typeof options.write === "function") this._write = options.write;
+                  if (typeof options.writev === "function") this._writev = options.writev;
+                  if (typeof options.destroy === "function") this._destroy = options.destroy;
+                  if (typeof options.final === "function") this._final = options.final;
                 }
                 Stream.call(this);
               }
@@ -23693,14 +22918,10 @@ var require_aliyun_oss_sdk = __commonJS({
                   cb = encoding;
                   encoding = null;
                 }
-                if (isBuf)
-                  encoding = "buffer";
-                else if (!encoding)
-                  encoding = state.defaultEncoding;
-                if (typeof cb !== "function")
-                  cb = nop;
-                if (state.ended)
-                  writeAfterEnd(this, cb);
+                if (isBuf) encoding = "buffer";
+                else if (!encoding) encoding = state.defaultEncoding;
+                if (typeof cb !== "function") cb = nop;
+                if (state.ended) writeAfterEnd(this, cb);
                 else if (isBuf || validChunk(this, state, chunk, cb)) {
                   state.pendingcb++;
                   ret = writeOrBuffer(this, state, isBuf, chunk, encoding, cb);
@@ -23715,15 +22936,12 @@ var require_aliyun_oss_sdk = __commonJS({
                 var state = this._writableState;
                 if (state.corked) {
                   state.corked--;
-                  if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest)
-                    clearBuffer(this, state);
+                  if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
                 }
               };
               Writable.prototype.setDefaultEncoding = function setDefaultEncoding(encoding) {
-                if (typeof encoding === "string")
-                  encoding = encoding.toLowerCase();
-                if (!(["hex", "utf8", "utf-8", "ascii", "binary", "base64", "ucs2", "ucs-2", "utf16le", "utf-16le", "raw"].indexOf((encoding + "").toLowerCase()) > -1))
-                  throw new TypeError("Unknown encoding: " + encoding);
+                if (typeof encoding === "string") encoding = encoding.toLowerCase();
+                if (!(["hex", "utf8", "utf-8", "ascii", "binary", "base64", "ucs2", "ucs-2", "utf16le", "utf-16le", "raw"].indexOf((encoding + "").toLowerCase()) > -1)) throw new TypeError("Unknown encoding: " + encoding);
                 this._writableState.defaultEncoding = encoding;
                 return this;
               };
@@ -23754,8 +22972,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 var len = state.objectMode ? 1 : chunk.length;
                 state.length += len;
                 var ret = state.length < state.highWaterMark;
-                if (!ret)
-                  state.needDrain = true;
+                if (!ret) state.needDrain = true;
                 if (state.writing || state.corked) {
                   var last = state.lastBufferedRequest;
                   state.lastBufferedRequest = {
@@ -23781,10 +22998,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 state.writecb = cb;
                 state.writing = true;
                 state.sync = true;
-                if (writev)
-                  stream._writev(chunk, state.onwrite);
-                else
-                  stream._write(chunk, encoding, state.onwrite);
+                if (writev) stream._writev(chunk, state.onwrite);
+                else stream._write(chunk, encoding, state.onwrite);
                 state.sync = false;
               }
               function onwriteError(stream, state, sync, er, cb) {
@@ -23812,8 +23027,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 var sync = state.sync;
                 var cb = state.writecb;
                 onwriteStateUpdate(state);
-                if (er)
-                  onwriteError(stream, state, sync, er, cb);
+                if (er) onwriteError(stream, state, sync, er, cb);
                 else {
                   var finished = needFinish(state);
                   if (!finished && !state.corked && !state.bufferProcessing && state.bufferedRequest) {
@@ -23827,8 +23041,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               }
               function afterWrite(stream, state, finished, cb) {
-                if (!finished)
-                  onwriteDrain(stream, state);
+                if (!finished) onwriteDrain(stream, state);
                 state.pendingcb--;
                 cb();
                 finishMaybe(stream, state);
@@ -23851,8 +23064,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   var allBuffers = true;
                   while (entry) {
                     buffer[count] = entry;
-                    if (!entry.isBuf)
-                      allBuffers = false;
+                    if (!entry.isBuf) allBuffers = false;
                     entry = entry.next;
                     count += 1;
                   }
@@ -23880,8 +23092,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       break;
                     }
                   }
-                  if (entry === null)
-                    state.lastBufferedRequest = null;
+                  if (entry === null) state.lastBufferedRequest = null;
                 }
                 state.bufferedRequest = entry;
                 state.bufferProcessing = false;
@@ -23900,14 +23111,12 @@ var require_aliyun_oss_sdk = __commonJS({
                   cb = encoding;
                   encoding = null;
                 }
-                if (chunk !== null && chunk !== void 0)
-                  this.write(chunk, encoding);
+                if (chunk !== null && chunk !== void 0) this.write(chunk, encoding);
                 if (state.corked) {
                   state.corked = 1;
                   this.uncork();
                 }
-                if (!state.ending)
-                  endWritable(this, state, cb);
+                if (!state.ending) endWritable(this, state, cb);
               };
               function needFinish(state) {
                 return state.ending && state.length === 0 && state.bufferedRequest === null && !state.finished && !state.writing;
@@ -23950,10 +23159,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 state.ending = true;
                 finishMaybe(stream, state);
                 if (cb) {
-                  if (state.finished)
-                    pna.nextTick(cb);
-                  else
-                    stream.once("finish", cb);
+                  if (state.finished) pna.nextTick(cb);
+                  else stream.once("finish", cb);
                 }
                 state.ended = true;
                 stream.writable = false;
@@ -24003,7 +23210,7 @@ var require_aliyun_oss_sdk = __commonJS({
           function copyBuffer(src, target, offset) {
             src.copy(target, offset);
           }
-          module4.exports = function() {
+          module4.exports = (function() {
             function BufferList() {
               _classCallCheck(this, BufferList);
               this.head = null;
@@ -24012,28 +23219,22 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             BufferList.prototype.push = function push(v) {
               var entry = { data: v, next: null };
-              if (this.length > 0)
-                this.tail.next = entry;
-              else
-                this.head = entry;
+              if (this.length > 0) this.tail.next = entry;
+              else this.head = entry;
               this.tail = entry;
               ++this.length;
             };
             BufferList.prototype.unshift = function unshift(v) {
               var entry = { data: v, next: this.head };
-              if (this.length === 0)
-                this.tail = entry;
+              if (this.length === 0) this.tail = entry;
               this.head = entry;
               ++this.length;
             };
             BufferList.prototype.shift = function shift() {
-              if (this.length === 0)
-                return;
+              if (this.length === 0) return;
               var ret = this.head.data;
-              if (this.length === 1)
-                this.head = this.tail = null;
-              else
-                this.head = this.head.next;
+              if (this.length === 1) this.head = this.tail = null;
+              else this.head = this.head.next;
               --this.length;
               return ret;
             };
@@ -24042,8 +23243,7 @@ var require_aliyun_oss_sdk = __commonJS({
               this.length = 0;
             };
             BufferList.prototype.join = function join3(s) {
-              if (this.length === 0)
-                return "";
+              if (this.length === 0) return "";
               var p = this.head;
               var ret = "" + p.data;
               while (p = p.next) {
@@ -24052,8 +23252,7 @@ var require_aliyun_oss_sdk = __commonJS({
               return ret;
             };
             BufferList.prototype.concat = function concat(n) {
-              if (this.length === 0)
-                return Buffer2.alloc(0);
+              if (this.length === 0) return Buffer2.alloc(0);
               var ret = Buffer2.allocUnsafe(n >>> 0);
               var p = this.head;
               var i = 0;
@@ -24065,7 +23264,7 @@ var require_aliyun_oss_sdk = __commonJS({
               return ret;
             };
             return BufferList;
-          }();
+          })();
           if (util && util.inspect && util.inspect.custom) {
             module4.exports.prototype[util.inspect.custom] = function() {
               var obj = util.inspect({ length: this.length });
@@ -24218,8 +23417,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }
           };
           function _normalizeEncoding(enc) {
-            if (!enc)
-              return "utf8";
+            if (!enc) return "utf8";
             var retried;
             while (true) {
               switch (enc) {
@@ -24239,8 +23437,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 case "hex":
                   return enc;
                 default:
-                  if (retried)
-                    return;
+                  if (retried) return;
                   enc = ("" + enc).toLowerCase();
                   retried = true;
               }
@@ -24249,8 +23446,7 @@ var require_aliyun_oss_sdk = __commonJS({
           ;
           function normalizeEncoding(enc) {
             var nenc = _normalizeEncoding(enc);
-            if (typeof nenc !== "string" && (Buffer2.isEncoding === isEncoding || !isEncoding(enc)))
-              throw new Error("Unknown encoding: " + enc);
+            if (typeof nenc !== "string" && (Buffer2.isEncoding === isEncoding || !isEncoding(enc))) throw new Error("Unknown encoding: " + enc);
             return nenc || enc;
           }
           exports3.StringDecoder = StringDecoder;
@@ -24282,21 +23478,18 @@ var require_aliyun_oss_sdk = __commonJS({
             this.lastChar = Buffer2.allocUnsafe(nb);
           }
           StringDecoder.prototype.write = function(buf) {
-            if (buf.length === 0)
-              return "";
+            if (buf.length === 0) return "";
             var r;
             var i;
             if (this.lastNeed) {
               r = this.fillLast(buf);
-              if (r === void 0)
-                return "";
+              if (r === void 0) return "";
               i = this.lastNeed;
               this.lastNeed = 0;
             } else {
               i = 0;
             }
-            if (i < buf.length)
-              return r ? r + this.text(buf, i) : this.text(buf, i);
+            if (i < buf.length) return r ? r + this.text(buf, i) : this.text(buf, i);
             return r || "";
           };
           StringDecoder.prototype.end = utf8End;
@@ -24310,43 +23503,32 @@ var require_aliyun_oss_sdk = __commonJS({
             this.lastNeed -= buf.length;
           };
           function utf8CheckByte(byte) {
-            if (byte <= 127)
-              return 0;
-            else if (byte >> 5 === 6)
-              return 2;
-            else if (byte >> 4 === 14)
-              return 3;
-            else if (byte >> 3 === 30)
-              return 4;
+            if (byte <= 127) return 0;
+            else if (byte >> 5 === 6) return 2;
+            else if (byte >> 4 === 14) return 3;
+            else if (byte >> 3 === 30) return 4;
             return byte >> 6 === 2 ? -1 : -2;
           }
           function utf8CheckIncomplete(self2, buf, i) {
             var j = buf.length - 1;
-            if (j < i)
-              return 0;
+            if (j < i) return 0;
             var nb = utf8CheckByte(buf[j]);
             if (nb >= 0) {
-              if (nb > 0)
-                self2.lastNeed = nb - 1;
+              if (nb > 0) self2.lastNeed = nb - 1;
               return nb;
             }
-            if (--j < i || nb === -2)
-              return 0;
+            if (--j < i || nb === -2) return 0;
             nb = utf8CheckByte(buf[j]);
             if (nb >= 0) {
-              if (nb > 0)
-                self2.lastNeed = nb - 2;
+              if (nb > 0) self2.lastNeed = nb - 2;
               return nb;
             }
-            if (--j < i || nb === -2)
-              return 0;
+            if (--j < i || nb === -2) return 0;
             nb = utf8CheckByte(buf[j]);
             if (nb >= 0) {
               if (nb > 0) {
-                if (nb === 2)
-                  nb = 0;
-                else
-                  self2.lastNeed = nb - 3;
+                if (nb === 2) nb = 0;
+                else self2.lastNeed = nb - 3;
               }
               return nb;
             }
@@ -24373,8 +23555,7 @@ var require_aliyun_oss_sdk = __commonJS({
           function utf8FillLast(buf) {
             var p = this.lastTotal - this.lastNeed;
             var r = utf8CheckExtraBytes(this, buf, p);
-            if (r !== void 0)
-              return r;
+            if (r !== void 0) return r;
             if (this.lastNeed <= buf.length) {
               buf.copy(this.lastChar, p, 0, this.lastNeed);
               return this.lastChar.toString(this.encoding, 0, this.lastTotal);
@@ -24384,8 +23565,7 @@ var require_aliyun_oss_sdk = __commonJS({
           }
           function utf8Text(buf, i) {
             var total = utf8CheckIncomplete(this, buf, i);
-            if (!this.lastNeed)
-              return buf.toString("utf8", i);
+            if (!this.lastNeed) return buf.toString("utf8", i);
             this.lastTotal = total;
             var end = buf.length - (total - this.lastNeed);
             buf.copy(this.lastChar, 0, end);
@@ -24393,8 +23573,7 @@ var require_aliyun_oss_sdk = __commonJS({
           }
           function utf8End(buf) {
             var r = buf && buf.length ? this.write(buf) : "";
-            if (this.lastNeed)
-              return r + "\uFFFD";
+            if (this.lastNeed) return r + "\uFFFD";
             return r;
           }
           function utf16Text(buf, i) {
@@ -24427,8 +23606,7 @@ var require_aliyun_oss_sdk = __commonJS({
           }
           function base64Text(buf, i) {
             var n = (buf.length - i) % 3;
-            if (n === 0)
-              return buf.toString("base64", i);
+            if (n === 0) return buf.toString("base64", i);
             this.lastNeed = 3 - n;
             this.lastTotal = 3;
             if (n === 1) {
@@ -24441,8 +23619,7 @@ var require_aliyun_oss_sdk = __commonJS({
           }
           function base64End(buf) {
             var r = buf && buf.length ? this.write(buf) : "";
-            if (this.lastNeed)
-              return r + this.lastChar.toString("base64", 0, 3 - this.lastNeed);
+            if (this.lastNeed) return r + this.lastChar.toString("base64", 0, 3 - this.lastNeed);
             return r;
           }
           function simpleWrite(buf) {
@@ -24599,9 +23776,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (!Object.keys) {
                   Object.keys = function(o) {
                     var a = [];
-                    for (var i in o)
-                      if (o.hasOwnProperty(i))
-                        a.push(i);
+                    for (var i in o) if (o.hasOwnProperty(i)) a.push(i);
                     return a;
                   };
                 }
@@ -24671,9 +23846,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   Stream = function() {
                   };
                 }
-                if (!Stream)
-                  Stream = function() {
-                  };
+                if (!Stream) Stream = function() {
+                };
                 var streamWraps = sax.EVENTS.filter(function(ev) {
                   return ev !== "error" && ev !== "end";
                 });
@@ -25124,21 +24298,17 @@ var require_aliyun_oss_sdk = __commonJS({
                   parser[event] && parser[event](data);
                 }
                 function emitNode(parser, nodeType, data) {
-                  if (parser.textNode)
-                    closeText(parser);
+                  if (parser.textNode) closeText(parser);
                   emit(parser, nodeType, data);
                 }
                 function closeText(parser) {
                   parser.textNode = textopts(parser.opt, parser.textNode);
-                  if (parser.textNode)
-                    emit(parser, "ontext", parser.textNode);
+                  if (parser.textNode) emit(parser, "ontext", parser.textNode);
                   parser.textNode = "";
                 }
                 function textopts(opt, text) {
-                  if (opt.trim)
-                    text = text.trim();
-                  if (opt.normalize)
-                    text = text.replace(/\s+/g, " ");
+                  if (opt.trim) text = text.trim();
+                  if (opt.normalize) text = text.replace(/\s+/g, " ");
                   return text;
                 }
                 function error(parser, er) {
@@ -25152,8 +24322,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   return parser;
                 }
                 function end(parser) {
-                  if (parser.sawRoot && !parser.closedRoot)
-                    strictFail(parser, "Unclosed root tag");
+                  if (parser.sawRoot && !parser.closedRoot) strictFail(parser, "Unclosed root tag");
                   if (parser.state !== S.BEGIN && parser.state !== S.BEGIN_WHITESPACE && parser.state !== S.TEXT) {
                     error(parser, "Unexpected end");
                   }
@@ -25173,8 +24342,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   }
                 }
                 function newTag(parser) {
-                  if (!parser.strict)
-                    parser.tagName = parser.tagName[parser.looseCase]();
+                  if (!parser.strict) parser.tagName = parser.tagName[parser.looseCase]();
                   var parent = parser.tags[parser.tags.length - 1] || parser;
                   var tag = parser.tag = { name: parser.tagName, attributes: {} };
                   if (parser.opt.xmlns) {
@@ -25351,8 +24519,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       });
                     }
                   }
-                  if (t === 0)
-                    parser.closedRoot = true;
+                  if (t === 0) parser.closedRoot = true;
                   parser.tagName = parser.attribValue = parser.attribName = "";
                   parser.attribList.length = 0;
                   parser.state = S.TEXT;
@@ -26156,17 +25323,14 @@ var require_aliyun_oss_sdk = __commonJS({
             }
             var didOnEnd = false;
             function onend() {
-              if (didOnEnd)
-                return;
+              if (didOnEnd) return;
               didOnEnd = true;
               dest.end();
             }
             function onclose() {
-              if (didOnEnd)
-                return;
+              if (didOnEnd) return;
               didOnEnd = true;
-              if (typeof dest.destroy === "function")
-                dest.destroy();
+              if (typeof dest.destroy === "function") dest.destroy();
             }
             function onerror(er) {
               cleanup();
@@ -26212,13 +25376,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return message(arg1, arg2, arg3);
               }
             }
-            var NodeError = /* @__PURE__ */ function(_Base) {
+            var NodeError = /* @__PURE__ */ (function(_Base) {
               _inheritsLoose(NodeError2, _Base);
               function NodeError2(arg1, arg2, arg3) {
                 return _Base.call(this, getMessage(arg1, arg2, arg3)) || this;
               }
               return NodeError2;
-            }(Base);
+            })(Base);
             NodeError.prototype.name = Base.name;
             NodeError.prototype.code = code;
             codes[code] = NodeError;
@@ -26303,8 +25467,7 @@ var require_aliyun_oss_sdk = __commonJS({
               "use strict";
               var objectKeys = Object.keys || function(obj) {
                 var keys2 = [];
-                for (var key in obj)
-                  keys2.push(key);
+                for (var key in obj) keys2.push(key);
                 return keys2;
               };
               module4.exports = Duplex;
@@ -26315,21 +25478,17 @@ var require_aliyun_oss_sdk = __commonJS({
                 var keys = objectKeys(Writable.prototype);
                 for (var v = 0; v < keys.length; v++) {
                   var method = keys[v];
-                  if (!Duplex.prototype[method])
-                    Duplex.prototype[method] = Writable.prototype[method];
+                  if (!Duplex.prototype[method]) Duplex.prototype[method] = Writable.prototype[method];
                 }
               }
               function Duplex(options) {
-                if (!(this instanceof Duplex))
-                  return new Duplex(options);
+                if (!(this instanceof Duplex)) return new Duplex(options);
                 Readable.call(this, options);
                 Writable.call(this, options);
                 this.allowHalfOpen = true;
                 if (options) {
-                  if (options.readable === false)
-                    this.readable = false;
-                  if (options.writable === false)
-                    this.writable = false;
+                  if (options.readable === false) this.readable = false;
+                  if (options.writable === false) this.writable = false;
                   if (options.allowHalfOpen === false) {
                     this.allowHalfOpen = false;
                     this.once("end", onend);
@@ -26364,8 +25523,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               });
               function onend() {
-                if (this._writableState.ended)
-                  return;
+                if (this._writableState.ended) return;
                 process.nextTick(onEndNT, this);
               }
               function onEndNT(self2) {
@@ -26398,8 +25556,7 @@ var require_aliyun_oss_sdk = __commonJS({
           var Transform = require2("./_stream_transform");
           require2("inherits")(PassThrough, Transform);
           function PassThrough(options) {
-            if (!(this instanceof PassThrough))
-              return new PassThrough(options);
+            if (!(this instanceof PassThrough)) return new PassThrough(options);
             Transform.call(this, options);
           }
           PassThrough.prototype._transform = function(chunk, encoding, cb) {
@@ -26445,23 +25602,17 @@ var require_aliyun_oss_sdk = __commonJS({
               var errorOrDestroy = destroyImpl.errorOrDestroy;
               var kProxyEvents = ["error", "close", "destroy", "pause", "resume"];
               function prependListener(emitter, event, fn) {
-                if (typeof emitter.prependListener === "function")
-                  return emitter.prependListener(event, fn);
-                if (!emitter._events || !emitter._events[event])
-                  emitter.on(event, fn);
-                else if (Array.isArray(emitter._events[event]))
-                  emitter._events[event].unshift(fn);
-                else
-                  emitter._events[event] = [fn, emitter._events[event]];
+                if (typeof emitter.prependListener === "function") return emitter.prependListener(event, fn);
+                if (!emitter._events || !emitter._events[event]) emitter.on(event, fn);
+                else if (Array.isArray(emitter._events[event])) emitter._events[event].unshift(fn);
+                else emitter._events[event] = [fn, emitter._events[event]];
               }
               function ReadableState(options, stream, isDuplex) {
                 Duplex = Duplex || require2("./_stream_duplex");
                 options = options || {};
-                if (typeof isDuplex !== "boolean")
-                  isDuplex = stream instanceof Duplex;
+                if (typeof isDuplex !== "boolean") isDuplex = stream instanceof Duplex;
                 this.objectMode = !!options.objectMode;
-                if (isDuplex)
-                  this.objectMode = this.objectMode || !!options.readableObjectMode;
+                if (isDuplex) this.objectMode = this.objectMode || !!options.readableObjectMode;
                 this.highWaterMark = getHighWaterMark(this, options, "readableHighWaterMark", isDuplex);
                 this.buffer = new BufferList();
                 this.length = 0;
@@ -26486,24 +25637,20 @@ var require_aliyun_oss_sdk = __commonJS({
                 this.decoder = null;
                 this.encoding = null;
                 if (options.encoding) {
-                  if (!StringDecoder)
-                    StringDecoder = require2("string_decoder/").StringDecoder;
+                  if (!StringDecoder) StringDecoder = require2("string_decoder/").StringDecoder;
                   this.decoder = new StringDecoder(options.encoding);
                   this.encoding = options.encoding;
                 }
               }
               function Readable(options) {
                 Duplex = Duplex || require2("./_stream_duplex");
-                if (!(this instanceof Readable))
-                  return new Readable(options);
+                if (!(this instanceof Readable)) return new Readable(options);
                 var isDuplex = this instanceof Duplex;
                 this._readableState = new ReadableState(options, this, isDuplex);
                 this.readable = true;
                 if (options) {
-                  if (typeof options.read === "function")
-                    this._read = options.read;
-                  if (typeof options.destroy === "function")
-                    this._destroy = options.destroy;
+                  if (typeof options.read === "function") this._read = options.read;
+                  if (typeof options.destroy === "function") this._destroy = options.destroy;
                 }
                 Stream.call(this);
               }
@@ -26558,8 +25705,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   onEofChunk(stream, state);
                 } else {
                   var er;
-                  if (!skipChunkCheck)
-                    er = chunkInvalid(state, chunk);
+                  if (!skipChunkCheck) er = chunkInvalid(state, chunk);
                   if (er) {
                     errorOrDestroy(stream, er);
                   } else if (state.objectMode || chunk && chunk.length > 0) {
@@ -26567,10 +25713,8 @@ var require_aliyun_oss_sdk = __commonJS({
                       chunk = _uint8ArrayToBuffer(chunk);
                     }
                     if (addToFront) {
-                      if (state.endEmitted)
-                        errorOrDestroy(stream, new ERR_STREAM_UNSHIFT_AFTER_END_EVENT());
-                      else
-                        addChunk(stream, state, chunk, true);
+                      if (state.endEmitted) errorOrDestroy(stream, new ERR_STREAM_UNSHIFT_AFTER_END_EVENT());
+                      else addChunk(stream, state, chunk, true);
                     } else if (state.ended) {
                       errorOrDestroy(stream, new ERR_STREAM_PUSH_AFTER_EOF());
                     } else if (state.destroyed) {
@@ -26579,10 +25723,8 @@ var require_aliyun_oss_sdk = __commonJS({
                       state.reading = false;
                       if (state.decoder && !encoding) {
                         chunk = state.decoder.write(chunk);
-                        if (state.objectMode || chunk.length !== 0)
-                          addChunk(stream, state, chunk, false);
-                        else
-                          maybeReadMore(stream, state);
+                        if (state.objectMode || chunk.length !== 0) addChunk(stream, state, chunk, false);
+                        else maybeReadMore(stream, state);
                       } else {
                         addChunk(stream, state, chunk, false);
                       }
@@ -26600,12 +25742,9 @@ var require_aliyun_oss_sdk = __commonJS({
                   stream.emit("data", chunk);
                 } else {
                   state.length += state.objectMode ? 1 : chunk.length;
-                  if (addToFront)
-                    state.buffer.unshift(chunk);
-                  else
-                    state.buffer.push(chunk);
-                  if (state.needReadable)
-                    emitReadable(stream);
+                  if (addToFront) state.buffer.unshift(chunk);
+                  else state.buffer.push(chunk);
+                  if (state.needReadable) emitReadable(stream);
                 }
                 maybeReadMore(stream, state);
               }
@@ -26620,8 +25759,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this._readableState.flowing === false;
               };
               Readable.prototype.setEncoding = function(enc) {
-                if (!StringDecoder)
-                  StringDecoder = require2("string_decoder/").StringDecoder;
+                if (!StringDecoder) StringDecoder = require2("string_decoder/").StringDecoder;
                 var decoder = new StringDecoder(enc);
                 this._readableState.decoder = decoder;
                 this._readableState.encoding = this._readableState.decoder.encoding;
@@ -26632,8 +25770,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   p = p.next;
                 }
                 this._readableState.buffer.clear();
-                if (content !== "")
-                  this._readableState.buffer.push(content);
+                if (content !== "") this._readableState.buffer.push(content);
                 this._readableState.length = content.length;
                 return this;
               };
@@ -26653,20 +25790,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 return n;
               }
               function howMuchToRead(n, state) {
-                if (n <= 0 || state.length === 0 && state.ended)
-                  return 0;
-                if (state.objectMode)
-                  return 1;
+                if (n <= 0 || state.length === 0 && state.ended) return 0;
+                if (state.objectMode) return 1;
                 if (n !== n) {
-                  if (state.flowing && state.length)
-                    return state.buffer.head.data.length;
-                  else
-                    return state.length;
+                  if (state.flowing && state.length) return state.buffer.head.data.length;
+                  else return state.length;
                 }
-                if (n > state.highWaterMark)
-                  state.highWaterMark = computeNewHighWaterMark(n);
-                if (n <= state.length)
-                  return n;
+                if (n > state.highWaterMark) state.highWaterMark = computeNewHighWaterMark(n);
+                if (n <= state.length) return n;
                 if (!state.ended) {
                   state.needReadable = true;
                   return 0;
@@ -26678,20 +25809,16 @@ var require_aliyun_oss_sdk = __commonJS({
                 n = parseInt(n, 10);
                 var state = this._readableState;
                 var nOrig = n;
-                if (n !== 0)
-                  state.emittedReadable = false;
+                if (n !== 0) state.emittedReadable = false;
                 if (n === 0 && state.needReadable && ((state.highWaterMark !== 0 ? state.length >= state.highWaterMark : state.length > 0) || state.ended)) {
                   debug("read: emitReadable", state.length, state.ended);
-                  if (state.length === 0 && state.ended)
-                    endReadable(this);
-                  else
-                    emitReadable(this);
+                  if (state.length === 0 && state.ended) endReadable(this);
+                  else emitReadable(this);
                   return null;
                 }
                 n = howMuchToRead(n, state);
                 if (n === 0 && state.ended) {
-                  if (state.length === 0)
-                    endReadable(this);
+                  if (state.length === 0) endReadable(this);
                   return null;
                 }
                 var doRead = state.needReadable;
@@ -26707,18 +25834,14 @@ var require_aliyun_oss_sdk = __commonJS({
                   debug("do read");
                   state.reading = true;
                   state.sync = true;
-                  if (state.length === 0)
-                    state.needReadable = true;
+                  if (state.length === 0) state.needReadable = true;
                   this._read(state.highWaterMark);
                   state.sync = false;
-                  if (!state.reading)
-                    n = howMuchToRead(nOrig, state);
+                  if (!state.reading) n = howMuchToRead(nOrig, state);
                 }
                 var ret;
-                if (n > 0)
-                  ret = fromList(n, state);
-                else
-                  ret = null;
+                if (n > 0) ret = fromList(n, state);
+                else ret = null;
                 if (ret === null) {
                   state.needReadable = state.length <= state.highWaterMark;
                   n = 0;
@@ -26727,19 +25850,15 @@ var require_aliyun_oss_sdk = __commonJS({
                   state.awaitDrain = 0;
                 }
                 if (state.length === 0) {
-                  if (!state.ended)
-                    state.needReadable = true;
-                  if (nOrig !== n && state.ended)
-                    endReadable(this);
+                  if (!state.ended) state.needReadable = true;
+                  if (nOrig !== n && state.ended) endReadable(this);
                 }
-                if (ret !== null)
-                  this.emit("data", ret);
+                if (ret !== null) this.emit("data", ret);
                 return ret;
               };
               function onEofChunk(stream, state) {
                 debug("onEofChunk");
-                if (state.ended)
-                  return;
+                if (state.ended) return;
                 if (state.decoder) {
                   var chunk = state.decoder.end();
                   if (chunk && chunk.length) {
@@ -26815,10 +25934,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 debug("pipe count=%d opts=%j", state.pipesCount, pipeOpts);
                 var doEnd = (!pipeOpts || pipeOpts.end !== false) && dest !== process.stdout && dest !== process.stderr;
                 var endFn = doEnd ? onend : unpipe;
-                if (state.endEmitted)
-                  process.nextTick(endFn);
-                else
-                  src.once("end", endFn);
+                if (state.endEmitted) process.nextTick(endFn);
+                else src.once("end", endFn);
                 dest.on("unpipe", onunpipe);
                 function onunpipe(readable, unpipeInfo) {
                   debug("onunpipe");
@@ -26847,8 +25964,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   src.removeListener("end", unpipe);
                   src.removeListener("data", ondata);
                   cleanedUp = true;
-                  if (state.awaitDrain && (!dest._writableState || dest._writableState.needDrain))
-                    ondrain();
+                  if (state.awaitDrain && (!dest._writableState || dest._writableState.needDrain)) ondrain();
                 }
                 src.on("data", ondata);
                 function ondata(chunk) {
@@ -26867,8 +25983,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   debug("onerror", er);
                   unpipe();
                   dest.removeListener("error", onerror);
-                  if (EElistenerCount(dest, "error") === 0)
-                    errorOrDestroy(dest, er);
+                  if (EElistenerCount(dest, "error") === 0) errorOrDestroy(dest, er);
                 }
                 prependListener(dest, "error", onerror);
                 function onclose() {
@@ -26897,8 +26012,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return function pipeOnDrainFunctionResult() {
                   var state = src._readableState;
                   debug("pipeOnDrain", state.awaitDrain);
-                  if (state.awaitDrain)
-                    state.awaitDrain--;
+                  if (state.awaitDrain) state.awaitDrain--;
                   if (state.awaitDrain === 0 && EElistenerCount(src, "data")) {
                     state.flowing = true;
                     flow(src);
@@ -26910,18 +26024,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 var unpipeInfo = {
                   hasUnpiped: false
                 };
-                if (state.pipesCount === 0)
-                  return this;
+                if (state.pipesCount === 0) return this;
                 if (state.pipesCount === 1) {
-                  if (dest && dest !== state.pipes)
-                    return this;
-                  if (!dest)
-                    dest = state.pipes;
+                  if (dest && dest !== state.pipes) return this;
+                  if (!dest) dest = state.pipes;
                   state.pipes = null;
                   state.pipesCount = 0;
                   state.flowing = false;
-                  if (dest)
-                    dest.emit("unpipe", this, unpipeInfo);
+                  if (dest) dest.emit("unpipe", this, unpipeInfo);
                   return this;
                 }
                 if (!dest) {
@@ -26930,19 +26040,16 @@ var require_aliyun_oss_sdk = __commonJS({
                   state.pipes = null;
                   state.pipesCount = 0;
                   state.flowing = false;
-                  for (var i = 0; i < len; i++)
-                    dests[i].emit("unpipe", this, {
-                      hasUnpiped: false
-                    });
+                  for (var i = 0; i < len; i++) dests[i].emit("unpipe", this, {
+                    hasUnpiped: false
+                  });
                   return this;
                 }
                 var index = indexOf(state.pipes, dest);
-                if (index === -1)
-                  return this;
+                if (index === -1) return this;
                 state.pipes.splice(index, 1);
                 state.pipesCount -= 1;
-                if (state.pipesCount === 1)
-                  state.pipes = state.pipes[0];
+                if (state.pipesCount === 1) state.pipes = state.pipes[0];
                 dest.emit("unpipe", this, unpipeInfo);
                 return this;
               };
@@ -26951,8 +26058,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 var state = this._readableState;
                 if (ev === "data") {
                   state.readableListening = this.listenerCount("readable") > 0;
-                  if (state.flowing !== false)
-                    this.resume();
+                  if (state.flowing !== false) this.resume();
                 } else if (ev === "readable") {
                   if (!state.endEmitted && !state.readableListening) {
                     state.readableListening = state.needReadable = true;
@@ -27020,8 +26126,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 state.resumeScheduled = false;
                 stream.emit("resume");
                 flow(stream);
-                if (state.flowing && !state.reading)
-                  stream.read(0);
+                if (state.flowing && !state.reading) stream.read(0);
               }
               Readable.prototype.pause = function() {
                 debug("call pause flowing=%j", this._readableState.flowing);
@@ -27036,8 +26141,7 @@ var require_aliyun_oss_sdk = __commonJS({
               function flow(stream) {
                 var state = stream._readableState;
                 debug("flow", state.flowing);
-                while (state.flowing && stream.read() !== null)
-                  ;
+                while (state.flowing && stream.read() !== null) ;
               }
               Readable.prototype.wrap = function(stream) {
                 var _this = this;
@@ -27047,19 +26151,15 @@ var require_aliyun_oss_sdk = __commonJS({
                   debug("wrapped end");
                   if (state.decoder && !state.ended) {
                     var chunk = state.decoder.end();
-                    if (chunk && chunk.length)
-                      _this.push(chunk);
+                    if (chunk && chunk.length) _this.push(chunk);
                   }
                   _this.push(null);
                 });
                 stream.on("data", function(chunk) {
                   debug("wrapped data");
-                  if (state.decoder)
-                    chunk = state.decoder.write(chunk);
-                  if (state.objectMode && (chunk === null || chunk === void 0))
-                    return;
-                  else if (!state.objectMode && (!chunk || !chunk.length))
-                    return;
+                  if (state.decoder) chunk = state.decoder.write(chunk);
+                  if (state.objectMode && (chunk === null || chunk === void 0)) return;
+                  else if (!state.objectMode && (!chunk || !chunk.length)) return;
                   var ret = _this.push(chunk);
                   if (!ret) {
                     paused = true;
@@ -27068,11 +26168,11 @@ var require_aliyun_oss_sdk = __commonJS({
                 });
                 for (var i in stream) {
                   if (this[i] === void 0 && typeof stream[i] === "function") {
-                    this[i] = function methodWrap(method) {
+                    this[i] = /* @__PURE__ */ (function methodWrap(method) {
                       return function methodWrapReturnFunction() {
                         return stream[method].apply(stream, arguments);
                       };
-                    }(i);
+                    })(i);
                   }
                 }
                 for (var n = 0; n < kProxyEvents.length; n++) {
@@ -27138,18 +26238,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               });
               function fromList(n, state) {
-                if (state.length === 0)
-                  return null;
+                if (state.length === 0) return null;
                 var ret;
-                if (state.objectMode)
-                  ret = state.buffer.shift();
+                if (state.objectMode) ret = state.buffer.shift();
                 else if (!n || n >= state.length) {
-                  if (state.decoder)
-                    ret = state.buffer.join("");
-                  else if (state.buffer.length === 1)
-                    ret = state.buffer.first();
-                  else
-                    ret = state.buffer.concat(state.length);
+                  if (state.decoder) ret = state.buffer.join("");
+                  else if (state.buffer.length === 1) ret = state.buffer.first();
+                  else ret = state.buffer.concat(state.length);
                   state.buffer.clear();
                 } else {
                   ret = state.buffer.consume(n, state.decoder);
@@ -27188,8 +26283,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               function indexOf(xs, x) {
                 for (var i = 0, l = xs.length; i < l; i++) {
-                  if (xs[i] === x)
-                    return i;
+                  if (xs[i] === x) return i;
                 }
                 return -1;
               }
@@ -27220,8 +26314,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }
           }
           function Transform(options) {
-            if (!(this instanceof Transform))
-              return new Transform(options);
+            if (!(this instanceof Transform)) return new Transform(options);
             Duplex.call(this, options);
             this._transformState = {
               afterTransform: afterTransform.bind(this),
@@ -27234,10 +26327,8 @@ var require_aliyun_oss_sdk = __commonJS({
             this._readableState.needReadable = true;
             this._readableState.sync = false;
             if (options) {
-              if (typeof options.transform === "function")
-                this._transform = options.transform;
-              if (typeof options.flush === "function")
-                this._flush = options.flush;
+              if (typeof options.transform === "function") this._transform = options.transform;
+              if (typeof options.flush === "function") this._flush = options.flush;
             }
             this.on("prefinish", prefinish);
           }
@@ -27265,8 +26356,7 @@ var require_aliyun_oss_sdk = __commonJS({
             ts.writeencoding = encoding;
             if (!ts.transforming) {
               var rs = this._readableState;
-              if (ts.needTransform || rs.needReadable || rs.length < rs.highWaterMark)
-                this._read(rs.highWaterMark);
+              if (ts.needTransform || rs.needReadable || rs.length < rs.highWaterMark) this._read(rs.highWaterMark);
             }
           };
           Transform.prototype._read = function(n) {
@@ -27284,14 +26374,11 @@ var require_aliyun_oss_sdk = __commonJS({
             });
           };
           function done(stream, er, data) {
-            if (er)
-              return stream.emit("error", er);
+            if (er) return stream.emit("error", er);
             if (data != null)
               stream.push(data);
-            if (stream._writableState.length)
-              throw new ERR_TRANSFORM_WITH_LENGTH_0();
-            if (stream._transformState.transforming)
-              throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
+            if (stream._writableState.length) throw new ERR_TRANSFORM_WITH_LENGTH_0();
+            if (stream._transformState.transforming) throw new ERR_TRANSFORM_ALREADY_TRANSFORMING();
             return stream.push(null);
           }
         }, { "../errors": 469, "./_stream_duplex": 470, "inherits": 407 }], 474: [function(require2, module4, exports3) {
@@ -27338,11 +26425,9 @@ var require_aliyun_oss_sdk = __commonJS({
               function WritableState(options, stream, isDuplex) {
                 Duplex = Duplex || require2("./_stream_duplex");
                 options = options || {};
-                if (typeof isDuplex !== "boolean")
-                  isDuplex = stream instanceof Duplex;
+                if (typeof isDuplex !== "boolean") isDuplex = stream instanceof Duplex;
                 this.objectMode = !!options.objectMode;
-                if (isDuplex)
-                  this.objectMode = this.objectMode || !!options.writableObjectMode;
+                if (isDuplex) this.objectMode = this.objectMode || !!options.writableObjectMode;
                 this.highWaterMark = getHighWaterMark(this, options, "writableHighWaterMark", isDuplex);
                 this.finalCalled = false;
                 this.needDrain = false;
@@ -27397,10 +26482,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 realHasInstance = Function.prototype[Symbol.hasInstance];
                 Object.defineProperty(Writable, Symbol.hasInstance, {
                   value: function value(object) {
-                    if (realHasInstance.call(this, object))
-                      return true;
-                    if (this !== Writable)
-                      return false;
+                    if (realHasInstance.call(this, object)) return true;
+                    if (this !== Writable) return false;
                     return object && object._writableState instanceof WritableState;
                   }
                 });
@@ -27412,19 +26495,14 @@ var require_aliyun_oss_sdk = __commonJS({
               function Writable(options) {
                 Duplex = Duplex || require2("./_stream_duplex");
                 var isDuplex = this instanceof Duplex;
-                if (!isDuplex && !realHasInstance.call(Writable, this))
-                  return new Writable(options);
+                if (!isDuplex && !realHasInstance.call(Writable, this)) return new Writable(options);
                 this._writableState = new WritableState(options, this, isDuplex);
                 this.writable = true;
                 if (options) {
-                  if (typeof options.write === "function")
-                    this._write = options.write;
-                  if (typeof options.writev === "function")
-                    this._writev = options.writev;
-                  if (typeof options.destroy === "function")
-                    this._destroy = options.destroy;
-                  if (typeof options.final === "function")
-                    this._final = options.final;
+                  if (typeof options.write === "function") this._write = options.write;
+                  if (typeof options.writev === "function") this._writev = options.writev;
+                  if (typeof options.destroy === "function") this._destroy = options.destroy;
+                  if (typeof options.final === "function") this._final = options.final;
                 }
                 Stream.call(this);
               }
@@ -27461,14 +26539,10 @@ var require_aliyun_oss_sdk = __commonJS({
                   cb = encoding;
                   encoding = null;
                 }
-                if (isBuf)
-                  encoding = "buffer";
-                else if (!encoding)
-                  encoding = state.defaultEncoding;
-                if (typeof cb !== "function")
-                  cb = nop;
-                if (state.ending)
-                  writeAfterEnd(this, cb);
+                if (isBuf) encoding = "buffer";
+                else if (!encoding) encoding = state.defaultEncoding;
+                if (typeof cb !== "function") cb = nop;
+                if (state.ending) writeAfterEnd(this, cb);
                 else if (isBuf || validChunk(this, state, chunk, cb)) {
                   state.pendingcb++;
                   ret = writeOrBuffer(this, state, isBuf, chunk, encoding, cb);
@@ -27482,15 +26556,12 @@ var require_aliyun_oss_sdk = __commonJS({
                 var state = this._writableState;
                 if (state.corked) {
                   state.corked--;
-                  if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest)
-                    clearBuffer(this, state);
+                  if (!state.writing && !state.corked && !state.bufferProcessing && state.bufferedRequest) clearBuffer(this, state);
                 }
               };
               Writable.prototype.setDefaultEncoding = function setDefaultEncoding(encoding) {
-                if (typeof encoding === "string")
-                  encoding = encoding.toLowerCase();
-                if (!(["hex", "utf8", "utf-8", "ascii", "binary", "base64", "ucs2", "ucs-2", "utf16le", "utf-16le", "raw"].indexOf((encoding + "").toLowerCase()) > -1))
-                  throw new ERR_UNKNOWN_ENCODING(encoding);
+                if (typeof encoding === "string") encoding = encoding.toLowerCase();
+                if (!(["hex", "utf8", "utf-8", "ascii", "binary", "base64", "ucs2", "ucs-2", "utf16le", "utf-16le", "raw"].indexOf((encoding + "").toLowerCase()) > -1)) throw new ERR_UNKNOWN_ENCODING(encoding);
                 this._writableState.defaultEncoding = encoding;
                 return this;
               };
@@ -27530,8 +26601,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 var len = state.objectMode ? 1 : chunk.length;
                 state.length += len;
                 var ret = state.length < state.highWaterMark;
-                if (!ret)
-                  state.needDrain = true;
+                if (!ret) state.needDrain = true;
                 if (state.writing || state.corked) {
                   var last = state.lastBufferedRequest;
                   state.lastBufferedRequest = {
@@ -27557,12 +26627,9 @@ var require_aliyun_oss_sdk = __commonJS({
                 state.writecb = cb;
                 state.writing = true;
                 state.sync = true;
-                if (state.destroyed)
-                  state.onwrite(new ERR_STREAM_DESTROYED("write"));
-                else if (writev)
-                  stream._writev(chunk, state.onwrite);
-                else
-                  stream._write(chunk, encoding, state.onwrite);
+                if (state.destroyed) state.onwrite(new ERR_STREAM_DESTROYED("write"));
+                else if (writev) stream._writev(chunk, state.onwrite);
+                else stream._write(chunk, encoding, state.onwrite);
                 state.sync = false;
               }
               function onwriteError(stream, state, sync, er, cb) {
@@ -27589,11 +26656,9 @@ var require_aliyun_oss_sdk = __commonJS({
                 var state = stream._writableState;
                 var sync = state.sync;
                 var cb = state.writecb;
-                if (typeof cb !== "function")
-                  throw new ERR_MULTIPLE_CALLBACK();
+                if (typeof cb !== "function") throw new ERR_MULTIPLE_CALLBACK();
                 onwriteStateUpdate(state);
-                if (er)
-                  onwriteError(stream, state, sync, er, cb);
+                if (er) onwriteError(stream, state, sync, er, cb);
                 else {
                   var finished = needFinish(state) || stream.destroyed;
                   if (!finished && !state.corked && !state.bufferProcessing && state.bufferedRequest) {
@@ -27607,8 +26672,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               }
               function afterWrite(stream, state, finished, cb) {
-                if (!finished)
-                  onwriteDrain(stream, state);
+                if (!finished) onwriteDrain(stream, state);
                 state.pendingcb--;
                 cb();
                 finishMaybe(stream, state);
@@ -27631,8 +26695,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   var allBuffers = true;
                   while (entry) {
                     buffer[count] = entry;
-                    if (!entry.isBuf)
-                      allBuffers = false;
+                    if (!entry.isBuf) allBuffers = false;
                     entry = entry.next;
                     count += 1;
                   }
@@ -27660,8 +26723,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       break;
                     }
                   }
-                  if (entry === null)
-                    state.lastBufferedRequest = null;
+                  if (entry === null) state.lastBufferedRequest = null;
                 }
                 state.bufferedRequest = entry;
                 state.bufferProcessing = false;
@@ -27680,14 +26742,12 @@ var require_aliyun_oss_sdk = __commonJS({
                   cb = encoding;
                   encoding = null;
                 }
-                if (chunk !== null && chunk !== void 0)
-                  this.write(chunk, encoding);
+                if (chunk !== null && chunk !== void 0) this.write(chunk, encoding);
                 if (state.corked) {
                   state.corked = 1;
                   this.uncork();
                 }
-                if (!state.ending)
-                  endWritable(this, state, cb);
+                if (!state.ending) endWritable(this, state, cb);
                 return this;
               };
               Object.defineProperty(Writable.prototype, "writableLength", {
@@ -27746,10 +26806,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 state.ending = true;
                 finishMaybe(stream, state);
                 if (cb) {
-                  if (state.finished)
-                    process.nextTick(cb);
-                  else
-                    stream.once("finish", cb);
+                  if (state.finished) process.nextTick(cb);
+                  else stream.once("finish", cb);
                 }
                 state.ended = true;
                 stream.writable = false;
@@ -27809,13 +26867,11 @@ var require_aliyun_oss_sdk = __commonJS({
                 return typeof key === "symbol" ? key : String(key);
               }
               function _toPrimitive(input, hint) {
-                if (typeof input !== "object" || input === null)
-                  return input;
+                if (typeof input !== "object" || input === null) return input;
                 var prim = input[Symbol.toPrimitive];
                 if (prim !== void 0) {
                   var res = prim.call(input, hint || "default");
-                  if (typeof res !== "object")
-                    return res;
+                  if (typeof res !== "object") return res;
                   throw new TypeError("@@toPrimitive must return a primitive value.");
                 }
                 return (hint === "string" ? String : Number)(input);
@@ -28016,16 +27072,13 @@ var require_aliyun_oss_sdk = __commonJS({
               var descriptor = props[i];
               descriptor.enumerable = descriptor.enumerable || false;
               descriptor.configurable = true;
-              if ("value" in descriptor)
-                descriptor.writable = true;
+              if ("value" in descriptor) descriptor.writable = true;
               Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor);
             }
           }
           function _createClass(Constructor, protoProps, staticProps) {
-            if (protoProps)
-              _defineProperties(Constructor.prototype, protoProps);
-            if (staticProps)
-              _defineProperties(Constructor, staticProps);
+            if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+            if (staticProps) _defineProperties(Constructor, staticProps);
             Object.defineProperty(Constructor, "prototype", { writable: false });
             return Constructor;
           }
@@ -28034,13 +27087,11 @@ var require_aliyun_oss_sdk = __commonJS({
             return typeof key === "symbol" ? key : String(key);
           }
           function _toPrimitive(input, hint) {
-            if (typeof input !== "object" || input === null)
-              return input;
+            if (typeof input !== "object" || input === null) return input;
             var prim = input[Symbol.toPrimitive];
             if (prim !== void 0) {
               var res = prim.call(input, hint || "default");
-              if (typeof res !== "object")
-                return res;
+              if (typeof res !== "object") return res;
               throw new TypeError("@@toPrimitive must return a primitive value.");
             }
             return (hint === "string" ? String : Number)(input);
@@ -28051,7 +27102,7 @@ var require_aliyun_oss_sdk = __commonJS({
           function copyBuffer(src, target, offset) {
             Buffer2.prototype.copy.call(src, target, offset);
           }
-          module4.exports = /* @__PURE__ */ function() {
+          module4.exports = /* @__PURE__ */ (function() {
             function BufferList() {
               _classCallCheck(this, BufferList);
               this.head = null;
@@ -28065,10 +27116,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   data: v,
                   next: null
                 };
-                if (this.length > 0)
-                  this.tail.next = entry;
-                else
-                  this.head = entry;
+                if (this.length > 0) this.tail.next = entry;
+                else this.head = entry;
                 this.tail = entry;
                 ++this.length;
               }
@@ -28079,21 +27128,17 @@ var require_aliyun_oss_sdk = __commonJS({
                   data: v,
                   next: this.head
                 };
-                if (this.length === 0)
-                  this.tail = entry;
+                if (this.length === 0) this.tail = entry;
                 this.head = entry;
                 ++this.length;
               }
             }, {
               key: "shift",
               value: function shift() {
-                if (this.length === 0)
-                  return;
+                if (this.length === 0) return;
                 var ret = this.head.data;
-                if (this.length === 1)
-                  this.head = this.tail = null;
-                else
-                  this.head = this.head.next;
+                if (this.length === 1) this.head = this.tail = null;
+                else this.head = this.head.next;
                 --this.length;
                 return ret;
               }
@@ -28106,19 +27151,16 @@ var require_aliyun_oss_sdk = __commonJS({
             }, {
               key: "join",
               value: function join3(s) {
-                if (this.length === 0)
-                  return "";
+                if (this.length === 0) return "";
                 var p = this.head;
                 var ret = "" + p.data;
-                while (p = p.next)
-                  ret += s + p.data;
+                while (p = p.next) ret += s + p.data;
                 return ret;
               }
             }, {
               key: "concat",
               value: function concat(n) {
-                if (this.length === 0)
-                  return Buffer2.alloc(0);
+                if (this.length === 0) return Buffer2.alloc(0);
                 var ret = Buffer2.allocUnsafe(n >>> 0);
                 var p = this.head;
                 var i = 0;
@@ -28160,18 +27202,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 while (p = p.next) {
                   var str = p.data;
                   var nb = n > str.length ? str.length : n;
-                  if (nb === str.length)
-                    ret += str;
-                  else
-                    ret += str.slice(0, n);
+                  if (nb === str.length) ret += str;
+                  else ret += str.slice(0, n);
                   n -= nb;
                   if (n === 0) {
                     if (nb === str.length) {
                       ++c;
-                      if (p.next)
-                        this.head = p.next;
-                      else
-                        this.head = this.tail = null;
+                      if (p.next) this.head = p.next;
+                      else this.head = this.tail = null;
                     } else {
                       this.head = p;
                       p.data = str.slice(nb);
@@ -28200,10 +27238,8 @@ var require_aliyun_oss_sdk = __commonJS({
                   if (n === 0) {
                     if (nb === buf.length) {
                       ++c;
-                      if (p.next)
-                        this.head = p.next;
-                      else
-                        this.head = this.tail = null;
+                      if (p.next) this.head = p.next;
+                      else this.head = this.tail = null;
                     } else {
                       this.head = p;
                       p.data = buf.slice(nb);
@@ -28228,7 +27264,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
             }]);
             return BufferList;
-          }();
+          })();
         }, { "buffer": 103, "util": 102 }], 477: [function(require2, module4, exports3) {
           (function(process) {
             (function() {
@@ -28280,10 +27316,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 emitCloseNT(self2);
               }
               function emitCloseNT(self2) {
-                if (self2._writableState && !self2._writableState.emitClose)
-                  return;
-                if (self2._readableState && !self2._readableState.emitClose)
-                  return;
+                if (self2._writableState && !self2._writableState.emitClose) return;
+                if (self2._readableState && !self2._readableState.emitClose) return;
                 self2.emit("close");
               }
               function undestroy() {
@@ -28309,10 +27343,8 @@ var require_aliyun_oss_sdk = __commonJS({
               function errorOrDestroy(stream, err) {
                 var rState = stream._readableState;
                 var wState = stream._writableState;
-                if (rState && rState.autoDestroy || wState && wState.autoDestroy)
-                  stream.destroy(err);
-                else
-                  stream.emit("error", err);
+                if (rState && rState.autoDestroy || wState && wState.autoDestroy) stream.destroy(err);
+                else stream.emit("error", err);
               }
               module4.exports = {
                 destroy,
@@ -28327,8 +27359,7 @@ var require_aliyun_oss_sdk = __commonJS({
           function once(callback) {
             var called = false;
             return function() {
-              if (called)
-                return;
+              if (called) return;
               called = true;
               for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
                 args[_key] = arguments[_key];
@@ -28342,30 +27373,25 @@ var require_aliyun_oss_sdk = __commonJS({
             return stream.setHeader && typeof stream.abort === "function";
           }
           function eos(stream, opts, callback) {
-            if (typeof opts === "function")
-              return eos(stream, null, opts);
-            if (!opts)
-              opts = {};
+            if (typeof opts === "function") return eos(stream, null, opts);
+            if (!opts) opts = {};
             callback = once(callback || noop);
             var readable = opts.readable || opts.readable !== false && stream.readable;
             var writable = opts.writable || opts.writable !== false && stream.writable;
             var onlegacyfinish = function onlegacyfinish2() {
-              if (!stream.writable)
-                onfinish();
+              if (!stream.writable) onfinish();
             };
             var writableEnded = stream._writableState && stream._writableState.finished;
             var onfinish = function onfinish2() {
               writable = false;
               writableEnded = true;
-              if (!readable)
-                callback.call(stream);
+              if (!readable) callback.call(stream);
             };
             var readableEnded = stream._readableState && stream._readableState.endEmitted;
             var onend = function onend2() {
               readable = false;
               readableEnded = true;
-              if (!writable)
-                callback.call(stream);
+              if (!writable) callback.call(stream);
             };
             var onerror = function onerror2(err) {
               callback.call(stream, err);
@@ -28373,13 +27399,11 @@ var require_aliyun_oss_sdk = __commonJS({
             var onclose = function onclose2() {
               var err;
               if (readable && !readableEnded) {
-                if (!stream._readableState || !stream._readableState.ended)
-                  err = new ERR_STREAM_PREMATURE_CLOSE();
+                if (!stream._readableState || !stream._readableState.ended) err = new ERR_STREAM_PREMATURE_CLOSE();
                 return callback.call(stream, err);
               }
               if (writable && !writableEnded) {
-                if (!stream._writableState || !stream._writableState.ended)
-                  err = new ERR_STREAM_PREMATURE_CLOSE();
+                if (!stream._writableState || !stream._writableState.ended) err = new ERR_STREAM_PREMATURE_CLOSE();
                 return callback.call(stream, err);
               }
             };
@@ -28389,25 +27413,21 @@ var require_aliyun_oss_sdk = __commonJS({
             if (isRequest(stream)) {
               stream.on("complete", onfinish);
               stream.on("abort", onclose);
-              if (stream.req)
-                onrequest();
-              else
-                stream.on("request", onrequest);
+              if (stream.req) onrequest();
+              else stream.on("request", onrequest);
             } else if (writable && !stream._writableState) {
               stream.on("end", onlegacyfinish);
               stream.on("close", onlegacyfinish);
             }
             stream.on("end", onend);
             stream.on("finish", onfinish);
-            if (opts.error !== false)
-              stream.on("error", onerror);
+            if (opts.error !== false) stream.on("error", onerror);
             stream.on("close", onclose);
             return function() {
               stream.removeListener("complete", onfinish);
               stream.removeListener("abort", onclose);
               stream.removeListener("request", onrequest);
-              if (stream.req)
-                stream.req.removeListener("finish", onfinish);
+              if (stream.req) stream.req.removeListener("finish", onfinish);
               stream.removeListener("end", onlegacyfinish);
               stream.removeListener("close", onlegacyfinish);
               stream.removeListener("finish", onfinish);
@@ -28427,16 +27447,14 @@ var require_aliyun_oss_sdk = __commonJS({
           function once(callback) {
             var called = false;
             return function() {
-              if (called)
-                return;
+              if (called) return;
               called = true;
               callback.apply(void 0, arguments);
             };
           }
           var _require$codes = require2("../../../errors").codes, ERR_MISSING_ARGS = _require$codes.ERR_MISSING_ARGS, ERR_STREAM_DESTROYED = _require$codes.ERR_STREAM_DESTROYED;
           function noop(err) {
-            if (err)
-              throw err;
+            if (err) throw err;
           }
           function isRequest(stream) {
             return stream.setHeader && typeof stream.abort === "function";
@@ -28447,28 +27465,22 @@ var require_aliyun_oss_sdk = __commonJS({
             stream.on("close", function() {
               closed = true;
             });
-            if (eos === void 0)
-              eos = require2("./end-of-stream");
+            if (eos === void 0) eos = require2("./end-of-stream");
             eos(stream, {
               readable: reading,
               writable: writing
             }, function(err) {
-              if (err)
-                return callback(err);
+              if (err) return callback(err);
               closed = true;
               callback();
             });
             var destroyed = false;
             return function(err) {
-              if (closed)
-                return;
-              if (destroyed)
-                return;
+              if (closed) return;
+              if (destroyed) return;
               destroyed = true;
-              if (isRequest(stream))
-                return stream.abort();
-              if (typeof stream.destroy === "function")
-                return stream.destroy();
+              if (isRequest(stream)) return stream.abort();
+              if (typeof stream.destroy === "function") return stream.destroy();
               callback(err || new ERR_STREAM_DESTROYED("pipe"));
             };
           }
@@ -28479,10 +27491,8 @@ var require_aliyun_oss_sdk = __commonJS({
             return from.pipe(to);
           }
           function popCallback(streams) {
-            if (!streams.length)
-              return noop;
-            if (typeof streams[streams.length - 1] !== "function")
-              return noop;
+            if (!streams.length) return noop;
+            if (typeof streams[streams.length - 1] !== "function") return noop;
             return streams.pop();
           }
           function pipeline() {
@@ -28490,8 +27500,7 @@ var require_aliyun_oss_sdk = __commonJS({
               streams[_key] = arguments[_key];
             }
             var callback = popCallback(streams);
-            if (Array.isArray(streams[0]))
-              streams = streams[0];
+            if (Array.isArray(streams[0])) streams = streams[0];
             if (streams.length < 2) {
               throw new ERR_MISSING_ARGS("streams");
             }
@@ -28500,12 +27509,9 @@ var require_aliyun_oss_sdk = __commonJS({
               var reading = i < streams.length - 1;
               var writing = i > 0;
               return destroyer(stream, reading, writing, function(err) {
-                if (!error)
-                  error = err;
-                if (err)
-                  destroys.forEach(call);
-                if (reading)
-                  return;
+                if (!error) error = err;
+                if (err) destroys.forEach(call);
+                if (reading) return;
                 destroys.forEach(call);
                 callback(error);
               });
@@ -28649,14 +27655,12 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               function config(name) {
                 try {
-                  if (!global2.localStorage)
-                    return false;
+                  if (!global2.localStorage) return false;
                 } catch (_) {
                   return false;
                 }
                 var val = global2.localStorage[name];
-                if (null == val)
-                  return false;
+                if (null == val) return false;
                 return String(val).toLowerCase() === "true";
               }
             }).call(this);
@@ -28910,10 +27914,8 @@ var require_aliyun_oss_sdk = __commonJS({
                 var args = arguments;
                 var len = args.length;
                 var str = String(f).replace(formatRegExp, function(x2) {
-                  if (x2 === "%%")
-                    return "%";
-                  if (i >= len)
-                    return x2;
+                  if (x2 === "%%") return "%";
+                  if (i >= len) return x2;
                   switch (x2) {
                     case "%s":
                       return String(args[i++]);
@@ -28991,25 +27993,18 @@ var require_aliyun_oss_sdk = __commonJS({
                   seen: [],
                   stylize: stylizeNoColor
                 };
-                if (arguments.length >= 3)
-                  ctx.depth = arguments[2];
-                if (arguments.length >= 4)
-                  ctx.colors = arguments[3];
+                if (arguments.length >= 3) ctx.depth = arguments[2];
+                if (arguments.length >= 4) ctx.colors = arguments[3];
                 if (isBoolean(opts)) {
                   ctx.showHidden = opts;
                 } else if (opts) {
                   exports3._extend(ctx, opts);
                 }
-                if (isUndefined(ctx.showHidden))
-                  ctx.showHidden = false;
-                if (isUndefined(ctx.depth))
-                  ctx.depth = 2;
-                if (isUndefined(ctx.colors))
-                  ctx.colors = false;
-                if (isUndefined(ctx.customInspect))
-                  ctx.customInspect = true;
-                if (ctx.colors)
-                  ctx.stylize = stylizeWithColor;
+                if (isUndefined(ctx.showHidden)) ctx.showHidden = false;
+                if (isUndefined(ctx.depth)) ctx.depth = 2;
+                if (isUndefined(ctx.colors)) ctx.colors = false;
+                if (isUndefined(ctx.customInspect)) ctx.customInspect = true;
+                if (ctx.colors) ctx.stylize = stylizeWithColor;
                 return formatValue(ctx, obj, ctx.depth);
               }
               exports3.inspect = inspect;
@@ -29239,8 +28234,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 var numLinesEst = 0;
                 var length = output.reduce(function(prev, cur) {
                   numLinesEst++;
-                  if (cur.indexOf("\n") >= 0)
-                    numLinesEst++;
+                  if (cur.indexOf("\n") >= 0) numLinesEst++;
                   return prev + cur.replace(/\u001b\[\d\d?m/g, "").length + 1;
                 }, 0);
                 if (length > 60) {
@@ -29331,7 +28325,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 "Dec"
               ];
               function timestamp() {
-                var d = new Date();
+                var d = /* @__PURE__ */ new Date();
                 var time = [
                   pad(d.getHours()),
                   pad(d.getMinutes()),
@@ -29344,8 +28338,7 @@ var require_aliyun_oss_sdk = __commonJS({
               };
               exports3.inherits = require2("inherits");
               exports3._extend = function(origin, add) {
-                if (!add || !isObject(add))
-                  return origin;
+                if (!add || !isObject(add)) return origin;
                 var keys = Object.keys(add);
                 var i = keys.length;
                 while (i--) {
@@ -29398,13 +28391,12 @@ var require_aliyun_oss_sdk = __commonJS({
                   return promise;
                 }
                 Object.setPrototypeOf(fn, Object.getPrototypeOf(original));
-                if (kCustomPromisifiedSymbol)
-                  Object.defineProperty(fn, kCustomPromisifiedSymbol, {
-                    value: fn,
-                    enumerable: false,
-                    writable: false,
-                    configurable: true
-                  });
+                if (kCustomPromisifiedSymbol) Object.defineProperty(fn, kCustomPromisifiedSymbol, {
+                  value: fn,
+                  enumerable: false,
+                  writable: false,
+                  configurable: true
+                });
                 return Object.defineProperties(
                   fn,
                   getOwnPropertyDescriptors(original)
@@ -29575,20 +28567,18 @@ var require_aliyun_oss_sdk = __commonJS({
             escapeCDATA = function(entry) {
               return entry.replace("]]>", "]]]]><![CDATA[>");
             };
-            exports3.Builder = function() {
+            exports3.Builder = (function() {
               function Builder(opts) {
                 var key, ref, value;
                 this.options = {};
                 ref = defaults["0.2"];
                 for (key in ref) {
-                  if (!hasProp.call(ref, key))
-                    continue;
+                  if (!hasProp.call(ref, key)) continue;
                   value = ref[key];
                   this.options[key] = value;
                 }
                 for (key in opts) {
-                  if (!hasProp.call(opts, key))
-                    continue;
+                  if (!hasProp.call(opts, key)) continue;
                   value = opts[key];
                   this.options[key] = value;
                 }
@@ -29603,7 +28593,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 } else {
                   rootName = this.options.rootName;
                 }
-                render = function(_this) {
+                render = /* @__PURE__ */ (function(_this) {
                   return function(element, obj) {
                     var attr, child, entry, index, key, value;
                     if (typeof obj !== "object") {
@@ -29614,8 +28604,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       }
                     } else if (Array.isArray(obj)) {
                       for (index in obj) {
-                        if (!hasProp.call(obj, index))
-                          continue;
+                        if (!hasProp.call(obj, index)) continue;
                         child = obj[index];
                         for (key in child) {
                           entry = child[key];
@@ -29624,8 +28613,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       }
                     } else {
                       for (key in obj) {
-                        if (!hasProp.call(obj, key))
-                          continue;
+                        if (!hasProp.call(obj, key)) continue;
                         child = obj[key];
                         if (key === attrkey) {
                           if (typeof child === "object") {
@@ -29642,8 +28630,7 @@ var require_aliyun_oss_sdk = __commonJS({
                           }
                         } else if (Array.isArray(child)) {
                           for (index in child) {
-                            if (!hasProp.call(child, index))
-                              continue;
+                            if (!hasProp.call(child, index)) continue;
                             entry = child[index];
                             if (typeof entry === "string") {
                               if (_this.options.cdata && requiresCDATA(entry)) {
@@ -29671,7 +28658,7 @@ var require_aliyun_oss_sdk = __commonJS({
                     }
                     return element;
                   };
-                }(this);
+                })(this);
                 rootElement = builder.create(rootName, this.options.xmldec, this.options.doctype, {
                   headless: this.options.headless,
                   allowSurrogateChars: this.options.allowSurrogateChars
@@ -29679,7 +28666,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return render(rootElement, rootObj).end(this.options.renderOpts);
               };
               return Builder;
-            }();
+            })();
           }).call(this);
         }, { "./defaults": 493, "xmlbuilder": 529 }], 493: [function(require2, module4, exports3) {
           (function() {
@@ -29761,8 +28748,7 @@ var require_aliyun_oss_sdk = __commonJS({
               };
             }, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -29798,7 +28784,7 @@ var require_aliyun_oss_sdk = __commonJS({
               descriptor.configurable = true;
               return Object.defineProperty(obj, key, descriptor);
             };
-            exports3.Parser = function(superClass) {
+            exports3.Parser = (function(superClass) {
               extend(Parser, superClass);
               function Parser(opts) {
                 this.parseStringPromise = bind(this.parseStringPromise, this);
@@ -29813,14 +28799,12 @@ var require_aliyun_oss_sdk = __commonJS({
                 this.options = {};
                 ref = defaults["0.2"];
                 for (key in ref) {
-                  if (!hasProp.call(ref, key))
-                    continue;
+                  if (!hasProp.call(ref, key)) continue;
                   value = ref[key];
                   this.options[key] = value;
                 }
                 for (key in opts) {
-                  if (!hasProp.call(opts, key))
-                    continue;
+                  if (!hasProp.call(opts, key)) continue;
                   value = opts[key];
                   this.options[key] = value;
                 }
@@ -29880,7 +28864,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   xmlns: this.options.xmlns
                 });
                 this.saxParser.errThrown = false;
-                this.saxParser.onerror = function(_this) {
+                this.saxParser.onerror = /* @__PURE__ */ (function(_this) {
                   return function(error) {
                     _this.saxParser.resume();
                     if (!_this.saxParser.errThrown) {
@@ -29888,22 +28872,22 @@ var require_aliyun_oss_sdk = __commonJS({
                       return _this.emit("error", error);
                     }
                   };
-                }(this);
-                this.saxParser.onend = function(_this) {
+                })(this);
+                this.saxParser.onend = /* @__PURE__ */ (function(_this) {
                   return function() {
                     if (!_this.saxParser.ended) {
                       _this.saxParser.ended = true;
                       return _this.emit("end", _this.resultObject);
                     }
                   };
-                }(this);
+                })(this);
                 this.saxParser.ended = false;
                 this.EXPLICIT_CHARKEY = this.options.explicitCharkey;
                 this.resultObject = null;
                 stack = [];
                 attrkey = this.options.attrkey;
                 charkey = this.options.charkey;
-                this.saxParser.onopentag = function(_this) {
+                this.saxParser.onopentag = /* @__PURE__ */ (function(_this) {
                   return function(node) {
                     var key, newValue, obj, processedKey, ref;
                     obj = {};
@@ -29911,8 +28895,7 @@ var require_aliyun_oss_sdk = __commonJS({
                     if (!_this.options.ignoreAttrs) {
                       ref = node.attributes;
                       for (key in ref) {
-                        if (!hasProp.call(ref, key))
-                          continue;
+                        if (!hasProp.call(ref, key)) continue;
                         if (!(attrkey in obj) && !_this.options.mergeAttrs) {
                           obj[attrkey] = {};
                         }
@@ -29934,8 +28917,8 @@ var require_aliyun_oss_sdk = __commonJS({
                     }
                     return stack.push(obj);
                   };
-                }(this);
-                this.saxParser.onclosetag = function(_this) {
+                })(this);
+                this.saxParser.onclosetag = /* @__PURE__ */ (function(_this) {
                   return function() {
                     var cdata, emptyStr, key, node, nodeName, obj, objClone, old, s, xpath;
                     obj = stack.pop();
@@ -29971,7 +28954,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       }
                     }
                     if (_this.options.validator != null) {
-                      xpath = "/" + function() {
+                      xpath = "/" + (function() {
                         var i, len, results;
                         results = [];
                         for (i = 0, len = stack.length; i < len; i++) {
@@ -29979,7 +28962,7 @@ var require_aliyun_oss_sdk = __commonJS({
                           results.push(node["#name"]);
                         }
                         return results;
-                      }().concat(nodeName).join("/");
+                      })().concat(nodeName).join("/");
                       (function() {
                         var err;
                         try {
@@ -30009,8 +28992,7 @@ var require_aliyun_oss_sdk = __commonJS({
                         s[_this.options.childkey] = s[_this.options.childkey] || [];
                         objClone = {};
                         for (key in obj) {
-                          if (!hasProp.call(obj, key))
-                            continue;
+                          if (!hasProp.call(obj, key)) continue;
                           defineProperty(objClone, key, obj[key]);
                         }
                         s[_this.options.childkey].push(objClone);
@@ -30033,8 +29015,8 @@ var require_aliyun_oss_sdk = __commonJS({
                       return _this.emit("end", _this.resultObject);
                     }
                   };
-                }(this);
-                ontext = function(_this) {
+                })(this);
+                ontext = /* @__PURE__ */ (function(_this) {
                   return function(text) {
                     var charChild, s;
                     s = stack[stack.length - 1];
@@ -30054,9 +29036,9 @@ var require_aliyun_oss_sdk = __commonJS({
                       return s;
                     }
                   };
-                }(this);
+                })(this);
                 this.saxParser.ontext = ontext;
-                return this.saxParser.oncdata = function(_this) {
+                return this.saxParser.oncdata = /* @__PURE__ */ (function(_this) {
                   return function(text) {
                     var s;
                     s = ontext(text);
@@ -30064,7 +29046,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       return s.cdata = true;
                     }
                   };
-                }(this);
+                })(this);
               };
               Parser.prototype.parseString = function(str, cb) {
                 var err;
@@ -30102,7 +29084,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               };
               Parser.prototype.parseStringPromise = function(str) {
-                return new Promise(function(_this) {
+                return new Promise(/* @__PURE__ */ (function(_this) {
                   return function(resolve, reject) {
                     return _this.parseString(str, function(err, value) {
                       if (err) {
@@ -30112,10 +29094,10 @@ var require_aliyun_oss_sdk = __commonJS({
                       }
                     });
                   };
-                }(this));
+                })(this));
               };
               return Parser;
-            }(events);
+            })(events);
             exports3.parseString = function(str, a, b) {
               var cb, options, parser;
               if (b != null) {
@@ -30175,8 +29157,7 @@ var require_aliyun_oss_sdk = __commonJS({
             "use strict";
             var builder, defaults, parser, processors, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -30192,13 +29173,13 @@ var require_aliyun_oss_sdk = __commonJS({
             processors = require2("./processors");
             exports3.defaults = defaults.defaults;
             exports3.processors = processors;
-            exports3.ValidationError = function(superClass) {
+            exports3.ValidationError = (function(superClass) {
               extend(ValidationError, superClass);
               function ValidationError(message) {
                 this.message = message;
               }
               return ValidationError;
-            }(Error);
+            })(Error);
             exports3.Builder = builder.Builder;
             exports3.Parser = parser.Parser;
             exports3.parseString = parser.parseString;
@@ -30250,8 +29231,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   source = sources[i];
                   if (source != null) {
                     for (key in source) {
-                      if (!hasProp.call(source, key))
-                        continue;
+                      if (!hasProp.call(source, key)) continue;
                       target[key] = source[key];
                     }
                   }
@@ -30279,8 +29259,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return !val.length;
               } else {
                 for (key in val) {
-                  if (!hasProp.call(val, key))
-                    continue;
+                  if (!hasProp.call(val, key)) continue;
                   return false;
                 }
                 return true;
@@ -30319,7 +29298,7 @@ var require_aliyun_oss_sdk = __commonJS({
             var NodeType, XMLAttribute, XMLNode;
             NodeType = require2("./NodeType");
             XMLNode = require2("./XMLNode");
-            module4.exports = XMLAttribute = function() {
+            module4.exports = XMLAttribute = (function() {
               function XMLAttribute2(parent, name, value) {
                 this.parent = parent;
                 if (this.parent) {
@@ -30403,14 +29382,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return true;
               };
               return XMLAttribute2;
-            }();
+            })();
           }).call(this);
         }, { "./NodeType": 498, "./XMLNode": 520 }], 502: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLCData, XMLCharacterData, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -30422,7 +29400,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }, hasProp = {}.hasOwnProperty;
             NodeType = require2("./NodeType");
             XMLCharacterData = require2("./XMLCharacterData");
-            module4.exports = XMLCData = function(superClass) {
+            module4.exports = XMLCData = (function(superClass) {
               extend(XMLCData2, superClass);
               function XMLCData2(parent, text) {
                 XMLCData2.__super__.constructor.call(this, parent);
@@ -30440,14 +29418,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.options.writer.cdata(this, this.options.writer.filterOptions(options));
               };
               return XMLCData2;
-            }(XMLCharacterData);
+            })(XMLCharacterData);
           }).call(this);
         }, { "./NodeType": 498, "./XMLCharacterData": 503 }], 503: [function(require2, module4, exports3) {
           (function() {
             var XMLCharacterData, XMLNode, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -30458,7 +29435,7 @@ var require_aliyun_oss_sdk = __commonJS({
               return child;
             }, hasProp = {}.hasOwnProperty;
             XMLNode = require2("./XMLNode");
-            module4.exports = XMLCharacterData = function(superClass) {
+            module4.exports = XMLCharacterData = (function(superClass) {
               extend(XMLCharacterData2, superClass);
               function XMLCharacterData2(parent) {
                 XMLCharacterData2.__super__.constructor.call(this, parent);
@@ -30513,14 +29490,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return true;
               };
               return XMLCharacterData2;
-            }(XMLNode);
+            })(XMLNode);
           }).call(this);
         }, { "./XMLNode": 520 }], 504: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLCharacterData, XMLComment, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -30532,7 +29508,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }, hasProp = {}.hasOwnProperty;
             NodeType = require2("./NodeType");
             XMLCharacterData = require2("./XMLCharacterData");
-            module4.exports = XMLComment = function(superClass) {
+            module4.exports = XMLComment = (function(superClass) {
               extend(XMLComment2, superClass);
               function XMLComment2(parent, text) {
                 XMLComment2.__super__.constructor.call(this, parent);
@@ -30550,14 +29526,14 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.options.writer.comment(this, this.options.writer.filterOptions(options));
               };
               return XMLComment2;
-            }(XMLCharacterData);
+            })(XMLCharacterData);
           }).call(this);
         }, { "./NodeType": 498, "./XMLCharacterData": 503 }], 505: [function(require2, module4, exports3) {
           (function() {
             var XMLDOMConfiguration, XMLDOMErrorHandler, XMLDOMStringList;
             XMLDOMErrorHandler = require2("./XMLDOMErrorHandler");
             XMLDOMStringList = require2("./XMLDOMStringList");
-            module4.exports = XMLDOMConfiguration = function() {
+            module4.exports = XMLDOMConfiguration = (function() {
               function XMLDOMConfiguration2() {
                 var clonedSelf;
                 this.defaultParams = {
@@ -30604,24 +29580,24 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               };
               return XMLDOMConfiguration2;
-            }();
+            })();
           }).call(this);
         }, { "./XMLDOMErrorHandler": 506, "./XMLDOMStringList": 508 }], 506: [function(require2, module4, exports3) {
           (function() {
             var XMLDOMErrorHandler;
-            module4.exports = XMLDOMErrorHandler = function() {
+            module4.exports = XMLDOMErrorHandler = (function() {
               function XMLDOMErrorHandler2() {
               }
               XMLDOMErrorHandler2.prototype.handleError = function(error) {
                 throw new Error(error);
               };
               return XMLDOMErrorHandler2;
-            }();
+            })();
           }).call(this);
         }, {}], 507: [function(require2, module4, exports3) {
           (function() {
             var XMLDOMImplementation;
-            module4.exports = XMLDOMImplementation = function() {
+            module4.exports = XMLDOMImplementation = (function() {
               function XMLDOMImplementation2() {
               }
               XMLDOMImplementation2.prototype.hasFeature = function(feature, version) {
@@ -30640,12 +29616,12 @@ var require_aliyun_oss_sdk = __commonJS({
                 throw new Error("This DOM method is not implemented.");
               };
               return XMLDOMImplementation2;
-            }();
+            })();
           }).call(this);
         }, {}], 508: [function(require2, module4, exports3) {
           (function() {
             var XMLDOMStringList;
-            module4.exports = XMLDOMStringList = function() {
+            module4.exports = XMLDOMStringList = (function() {
               function XMLDOMStringList2(arr) {
                 this.arr = arr || [];
               }
@@ -30661,14 +29637,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.arr.indexOf(str) !== -1;
               };
               return XMLDOMStringList2;
-            }();
+            })();
           }).call(this);
         }, {}], 509: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLDTDAttList, XMLNode, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -30680,7 +29655,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }, hasProp = {}.hasOwnProperty;
             XMLNode = require2("./XMLNode");
             NodeType = require2("./NodeType");
-            module4.exports = XMLDTDAttList = function(superClass) {
+            module4.exports = XMLDTDAttList = (function(superClass) {
               extend(XMLDTDAttList2, superClass);
               function XMLDTDAttList2(parent, elementName, attributeName, attributeType, defaultValueType, defaultValue) {
                 XMLDTDAttList2.__super__.constructor.call(this, parent);
@@ -30718,14 +29693,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.options.writer.dtdAttList(this, this.options.writer.filterOptions(options));
               };
               return XMLDTDAttList2;
-            }(XMLNode);
+            })(XMLNode);
           }).call(this);
         }, { "./NodeType": 498, "./XMLNode": 520 }], 510: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLDTDElement, XMLNode, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -30737,7 +29711,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }, hasProp = {}.hasOwnProperty;
             XMLNode = require2("./XMLNode");
             NodeType = require2("./NodeType");
-            module4.exports = XMLDTDElement = function(superClass) {
+            module4.exports = XMLDTDElement = (function(superClass) {
               extend(XMLDTDElement2, superClass);
               function XMLDTDElement2(parent, name, value) {
                 XMLDTDElement2.__super__.constructor.call(this, parent);
@@ -30758,14 +29732,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.options.writer.dtdElement(this, this.options.writer.filterOptions(options));
               };
               return XMLDTDElement2;
-            }(XMLNode);
+            })(XMLNode);
           }).call(this);
         }, { "./NodeType": 498, "./XMLNode": 520 }], 511: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLDTDEntity, XMLNode, isObject, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -30778,7 +29751,7 @@ var require_aliyun_oss_sdk = __commonJS({
             isObject = require2("./Utility").isObject;
             XMLNode = require2("./XMLNode");
             NodeType = require2("./NodeType");
-            module4.exports = XMLDTDEntity = function(superClass) {
+            module4.exports = XMLDTDEntity = (function(superClass) {
               extend(XMLDTDEntity2, superClass);
               function XMLDTDEntity2(parent, pe, name, value) {
                 XMLDTDEntity2.__super__.constructor.call(this, parent);
@@ -30850,14 +29823,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.options.writer.dtdEntity(this, this.options.writer.filterOptions(options));
               };
               return XMLDTDEntity2;
-            }(XMLNode);
+            })(XMLNode);
           }).call(this);
         }, { "./NodeType": 498, "./Utility": 499, "./XMLNode": 520 }], 512: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLDTDNotation, XMLNode, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -30869,7 +29841,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }, hasProp = {}.hasOwnProperty;
             XMLNode = require2("./XMLNode");
             NodeType = require2("./NodeType");
-            module4.exports = XMLDTDNotation = function(superClass) {
+            module4.exports = XMLDTDNotation = (function(superClass) {
               extend(XMLDTDNotation2, superClass);
               function XMLDTDNotation2(parent, name, value) {
                 XMLDTDNotation2.__super__.constructor.call(this, parent);
@@ -30902,14 +29874,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.options.writer.dtdNotation(this, this.options.writer.filterOptions(options));
               };
               return XMLDTDNotation2;
-            }(XMLNode);
+            })(XMLNode);
           }).call(this);
         }, { "./NodeType": 498, "./XMLNode": 520 }], 513: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLDeclaration, XMLNode, isObject, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -30922,7 +29893,7 @@ var require_aliyun_oss_sdk = __commonJS({
             isObject = require2("./Utility").isObject;
             XMLNode = require2("./XMLNode");
             NodeType = require2("./NodeType");
-            module4.exports = XMLDeclaration = function(superClass) {
+            module4.exports = XMLDeclaration = (function(superClass) {
               extend(XMLDeclaration2, superClass);
               function XMLDeclaration2(parent, version, encoding, standalone) {
                 var ref;
@@ -30946,14 +29917,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.options.writer.declaration(this, this.options.writer.filterOptions(options));
               };
               return XMLDeclaration2;
-            }(XMLNode);
+            })(XMLNode);
           }).call(this);
         }, { "./NodeType": 498, "./Utility": 499, "./XMLNode": 520 }], 514: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLDTDAttList, XMLDTDElement, XMLDTDEntity, XMLDTDNotation, XMLDocType, XMLNamedNodeMap, XMLNode, isObject, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -30971,7 +29941,7 @@ var require_aliyun_oss_sdk = __commonJS({
             XMLDTDElement = require2("./XMLDTDElement");
             XMLDTDNotation = require2("./XMLDTDNotation");
             XMLNamedNodeMap = require2("./XMLNamedNodeMap");
-            module4.exports = XMLDocType = function(superClass) {
+            module4.exports = XMLDocType = (function(superClass) {
               extend(XMLDocType2, superClass);
               function XMLDocType2(parent, pubID, sysID) {
                 var child, i, len, ref, ref1, ref2;
@@ -31111,14 +30081,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return true;
               };
               return XMLDocType2;
-            }(XMLNode);
+            })(XMLNode);
           }).call(this);
         }, { "./NodeType": 498, "./Utility": 499, "./XMLDTDAttList": 509, "./XMLDTDElement": 510, "./XMLDTDEntity": 511, "./XMLDTDNotation": 512, "./XMLNamedNodeMap": 519, "./XMLNode": 520 }], 515: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLDOMConfiguration, XMLDOMImplementation, XMLDocument, XMLNode, XMLStringWriter, XMLStringifier, isPlainObject, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -31135,7 +30104,7 @@ var require_aliyun_oss_sdk = __commonJS({
             NodeType = require2("./NodeType");
             XMLStringifier = require2("./XMLStringifier");
             XMLStringWriter = require2("./XMLStringWriter");
-            module4.exports = XMLDocument = function(superClass) {
+            module4.exports = XMLDocument = (function(superClass) {
               extend(XMLDocument2, superClass);
               function XMLDocument2(options) {
                 XMLDocument2.__super__.constructor.call(this, null);
@@ -31314,7 +30283,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 throw new Error("This DOM method is not implemented." + this.debugInfo());
               };
               return XMLDocument2;
-            }(XMLNode);
+            })(XMLNode);
           }).call(this);
         }, { "./NodeType": 498, "./Utility": 499, "./XMLDOMConfiguration": 505, "./XMLDOMImplementation": 507, "./XMLNode": 520, "./XMLStringWriter": 525, "./XMLStringifier": 526 }], 516: [function(require2, module4, exports3) {
           (function() {
@@ -31338,7 +30307,7 @@ var require_aliyun_oss_sdk = __commonJS({
             XMLStringifier = require2("./XMLStringifier");
             XMLStringWriter = require2("./XMLStringWriter");
             WriterState = require2("./WriterState");
-            module4.exports = XMLDocumentCB = function() {
+            module4.exports = XMLDocumentCB = (function() {
               function XMLDocumentCB2(options, onData, onEnd) {
                 var writerOptions;
                 this.name = "?xml";
@@ -31379,8 +30348,7 @@ var require_aliyun_oss_sdk = __commonJS({
                     attributes = {};
                     ref1 = node.attribs;
                     for (attName in ref1) {
-                      if (!hasProp.call(ref1, attName))
-                        continue;
+                      if (!hasProp.call(ref1, attName)) continue;
                       att = ref1[attName];
                       attributes[attName] = att.value;
                     }
@@ -31475,8 +30443,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 if (isObject(name)) {
                   for (attName in name) {
-                    if (!hasProp.call(name, attName))
-                      continue;
+                    if (!hasProp.call(name, attName)) continue;
                     attValue = name[attName];
                     this.attribute(attName, attValue);
                   }
@@ -31536,8 +30503,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   }
                 } else if (isObject(target)) {
                   for (insTarget in target) {
-                    if (!hasProp.call(target, insTarget))
-                      continue;
+                    if (!hasProp.call(target, insTarget)) continue;
                     insValue = target[insTarget];
                     this.instruction(insTarget, insValue);
                   }
@@ -31652,8 +30618,7 @@ var require_aliyun_oss_sdk = __commonJS({
                     chunk = this.writer.indent(node, this.writerOptions, this.currentLevel) + "<" + node.name;
                     ref1 = node.attribs;
                     for (name in ref1) {
-                      if (!hasProp.call(ref1, name))
-                        continue;
+                      if (!hasProp.call(ref1, name)) continue;
                       att = ref1[name];
                       chunk += this.writer.attribute(att, this.writerOptions, this.currentLevel);
                     }
@@ -31779,14 +30744,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.notation(name, value);
               };
               return XMLDocumentCB2;
-            }();
+            })();
           }).call(this);
         }, { "./NodeType": 498, "./Utility": 499, "./WriterState": 500, "./XMLAttribute": 501, "./XMLCData": 502, "./XMLComment": 504, "./XMLDTDAttList": 509, "./XMLDTDElement": 510, "./XMLDTDEntity": 511, "./XMLDTDNotation": 512, "./XMLDeclaration": 513, "./XMLDocType": 514, "./XMLDocument": 515, "./XMLElement": 518, "./XMLProcessingInstruction": 522, "./XMLRaw": 523, "./XMLStringWriter": 525, "./XMLStringifier": 526, "./XMLText": 527 }], 517: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLDummy, XMLNode, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -31798,7 +30762,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }, hasProp = {}.hasOwnProperty;
             XMLNode = require2("./XMLNode");
             NodeType = require2("./NodeType");
-            module4.exports = XMLDummy = function(superClass) {
+            module4.exports = XMLDummy = (function(superClass) {
               extend(XMLDummy2, superClass);
               function XMLDummy2(parent) {
                 XMLDummy2.__super__.constructor.call(this, parent);
@@ -31811,14 +30775,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return "";
               };
               return XMLDummy2;
-            }(XMLNode);
+            })(XMLNode);
           }).call(this);
         }, { "./NodeType": 498, "./XMLNode": 520 }], 518: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLAttribute, XMLElement, XMLNamedNodeMap, XMLNode, getValue, isFunction, isObject, ref, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -31833,7 +30796,7 @@ var require_aliyun_oss_sdk = __commonJS({
             NodeType = require2("./NodeType");
             XMLAttribute = require2("./XMLAttribute");
             XMLNamedNodeMap = require2("./XMLNamedNodeMap");
-            module4.exports = XMLElement = function(superClass) {
+            module4.exports = XMLElement = (function(superClass) {
               extend(XMLElement2, superClass);
               function XMLElement2(parent, name, attributes) {
                 var child, j, len, ref1;
@@ -31916,8 +30879,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 clonedSelf.attribs = {};
                 ref1 = this.attribs;
                 for (attName in ref1) {
-                  if (!hasProp.call(ref1, attName))
-                    continue;
+                  if (!hasProp.call(ref1, attName)) continue;
                   att = ref1[attName];
                   clonedSelf.attribs[attName] = att.clone();
                 }
@@ -31937,8 +30899,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 if (isObject(name)) {
                   for (attName in name) {
-                    if (!hasProp.call(name, attName))
-                      continue;
+                    if (!hasProp.call(name, attName)) continue;
                     attValue = name[attName];
                     this.attribute(attName, attValue);
                   }
@@ -32076,12 +31037,12 @@ var require_aliyun_oss_sdk = __commonJS({
                 return true;
               };
               return XMLElement2;
-            }(XMLNode);
+            })(XMLNode);
           }).call(this);
         }, { "./NodeType": 498, "./Utility": 499, "./XMLAttribute": 501, "./XMLNamedNodeMap": 519, "./XMLNode": 520 }], 519: [function(require2, module4, exports3) {
           (function() {
             var XMLNamedNodeMap;
-            module4.exports = XMLNamedNodeMap = function() {
+            module4.exports = XMLNamedNodeMap = (function() {
               function XMLNamedNodeMap2(nodes) {
                 this.nodes = nodes;
               }
@@ -32121,7 +31082,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 throw new Error("This DOM method is not implemented.");
               };
               return XMLNamedNodeMap2;
-            }();
+            })();
           }).call(this);
         }, {}], 520: [function(require2, module4, exports3) {
           (function() {
@@ -32140,7 +31101,7 @@ var require_aliyun_oss_sdk = __commonJS({
             XMLNodeList = null;
             XMLNamedNodeMap = null;
             DocumentPosition = null;
-            module4.exports = XMLNode = function() {
+            module4.exports = XMLNode = (function() {
               function XMLNode2(parent1) {
                 this.parent = parent1;
                 if (this.parent) {
@@ -32284,8 +31245,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   lastChild = this.element(name.apply());
                 } else if (isObject(name)) {
                   for (key in name) {
-                    if (!hasProp.call(name, key))
-                      continue;
+                    if (!hasProp.call(name, key)) continue;
                     val = name[key];
                     if (isFunction(val)) {
                       val = val.apply();
@@ -32464,8 +31424,7 @@ var require_aliyun_oss_sdk = __commonJS({
                   }
                 } else if (isObject(target)) {
                   for (insTarget in target) {
-                    if (!hasProp.call(target, insTarget))
-                      continue;
+                    if (!hasProp.call(target, insTarget)) continue;
                     insValue = target[insTarget];
                     this.instruction(insTarget, insValue);
                   }
@@ -32811,12 +31770,12 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
               };
               return XMLNode2;
-            }();
+            })();
           }).call(this);
         }, { "./DocumentPosition": 497, "./NodeType": 498, "./Utility": 499, "./XMLCData": 502, "./XMLComment": 504, "./XMLDeclaration": 513, "./XMLDocType": 514, "./XMLDummy": 517, "./XMLElement": 518, "./XMLNamedNodeMap": 519, "./XMLNodeList": 521, "./XMLProcessingInstruction": 522, "./XMLRaw": 523, "./XMLText": 527 }], 521: [function(require2, module4, exports3) {
           (function() {
             var XMLNodeList;
-            module4.exports = XMLNodeList = function() {
+            module4.exports = XMLNodeList = (function() {
               function XMLNodeList2(nodes) {
                 this.nodes = nodes;
               }
@@ -32832,14 +31791,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.nodes[index] || null;
               };
               return XMLNodeList2;
-            }();
+            })();
           }).call(this);
         }, {}], 522: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLCharacterData, XMLProcessingInstruction, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -32851,7 +31809,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }, hasProp = {}.hasOwnProperty;
             NodeType = require2("./NodeType");
             XMLCharacterData = require2("./XMLCharacterData");
-            module4.exports = XMLProcessingInstruction = function(superClass) {
+            module4.exports = XMLProcessingInstruction = (function(superClass) {
               extend(XMLProcessingInstruction2, superClass);
               function XMLProcessingInstruction2(parent, target, value) {
                 XMLProcessingInstruction2.__super__.constructor.call(this, parent);
@@ -32881,14 +31839,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return true;
               };
               return XMLProcessingInstruction2;
-            }(XMLCharacterData);
+            })(XMLCharacterData);
           }).call(this);
         }, { "./NodeType": 498, "./XMLCharacterData": 503 }], 523: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLNode, XMLRaw, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -32900,7 +31857,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }, hasProp = {}.hasOwnProperty;
             NodeType = require2("./NodeType");
             XMLNode = require2("./XMLNode");
-            module4.exports = XMLRaw = function(superClass) {
+            module4.exports = XMLRaw = (function(superClass) {
               extend(XMLRaw2, superClass);
               function XMLRaw2(parent, text) {
                 XMLRaw2.__super__.constructor.call(this, parent);
@@ -32917,14 +31874,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.options.writer.raw(this, this.options.writer.filterOptions(options));
               };
               return XMLRaw2;
-            }(XMLNode);
+            })(XMLNode);
           }).call(this);
         }, { "./NodeType": 498, "./XMLNode": 520 }], 524: [function(require2, module4, exports3) {
           (function() {
             var NodeType, WriterState, XMLStreamWriter, XMLWriterBase, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -32937,7 +31893,7 @@ var require_aliyun_oss_sdk = __commonJS({
             NodeType = require2("./NodeType");
             XMLWriterBase = require2("./XMLWriterBase");
             WriterState = require2("./WriterState");
-            module4.exports = XMLStreamWriter = function(superClass) {
+            module4.exports = XMLStreamWriter = (function(superClass) {
               extend(XMLStreamWriter2, superClass);
               function XMLStreamWriter2(stream, options) {
                 this.stream = stream;
@@ -33016,8 +31972,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 this.stream.write(this.indent(node, options, level) + "<" + node.name);
                 ref = node.attribs;
                 for (name in ref) {
-                  if (!hasProp.call(ref, name))
-                    continue;
+                  if (!hasProp.call(ref, name)) continue;
                   att = ref[name];
                   this.attribute(att, options, level);
                 }
@@ -33081,14 +32036,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return this.stream.write(XMLStreamWriter2.__super__.dtdNotation.call(this, node, options, level));
               };
               return XMLStreamWriter2;
-            }(XMLWriterBase);
+            })(XMLWriterBase);
           }).call(this);
         }, { "./NodeType": 498, "./WriterState": 500, "./XMLWriterBase": 528 }], 525: [function(require2, module4, exports3) {
           (function() {
             var XMLStringWriter, XMLWriterBase, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -33099,7 +32053,7 @@ var require_aliyun_oss_sdk = __commonJS({
               return child;
             }, hasProp = {}.hasOwnProperty;
             XMLWriterBase = require2("./XMLWriterBase");
-            module4.exports = XMLStringWriter = function(superClass) {
+            module4.exports = XMLStringWriter = (function(superClass) {
               extend(XMLStringWriter2, superClass);
               function XMLStringWriter2(options) {
                 XMLStringWriter2.__super__.constructor.call(this, options);
@@ -33119,7 +32073,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return r;
               };
               return XMLStringWriter2;
-            }(XMLWriterBase);
+            })(XMLWriterBase);
           }).call(this);
         }, { "./XMLWriterBase": 528 }], 526: [function(require2, module4, exports3) {
           (function() {
@@ -33128,7 +32082,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 return fn.apply(me, arguments);
               };
             }, hasProp = {}.hasOwnProperty;
-            module4.exports = XMLStringifier = function() {
+            module4.exports = XMLStringifier = (function() {
               function XMLStringifier2(options) {
                 this.assertLegalName = bind(this.assertLegalName, this);
                 this.assertLegalChar = bind(this.assertLegalChar, this);
@@ -33140,8 +32094,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 }
                 ref = options.stringify || {};
                 for (key in ref) {
-                  if (!hasProp.call(ref, key))
-                    continue;
+                  if (!hasProp.call(ref, key)) continue;
                   value = ref[key];
                   this[key] = value;
                 }
@@ -33330,14 +32283,13 @@ var require_aliyun_oss_sdk = __commonJS({
                 return str.replace(ampregex, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;").replace(/\t/g, "&#x9;").replace(/\n/g, "&#xA;").replace(/\r/g, "&#xD;");
               };
               return XMLStringifier2;
-            }();
+            })();
           }).call(this);
         }, {}], 527: [function(require2, module4, exports3) {
           (function() {
             var NodeType, XMLCharacterData, XMLText, extend = function(child, parent) {
               for (var key in parent) {
-                if (hasProp.call(parent, key))
-                  child[key] = parent[key];
+                if (hasProp.call(parent, key)) child[key] = parent[key];
               }
               function ctor() {
                 this.constructor = child;
@@ -33349,7 +32301,7 @@ var require_aliyun_oss_sdk = __commonJS({
             }, hasProp = {}.hasOwnProperty;
             NodeType = require2("./NodeType");
             XMLCharacterData = require2("./XMLCharacterData");
-            module4.exports = XMLText = function(superClass) {
+            module4.exports = XMLText = (function(superClass) {
               extend(XMLText2, superClass);
               function XMLText2(parent, text) {
                 XMLText2.__super__.constructor.call(this, parent);
@@ -33396,7 +32348,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 throw new Error("This DOM method is not implemented." + this.debugInfo());
               };
               return XMLText2;
-            }(XMLCharacterData);
+            })(XMLCharacterData);
           }).call(this);
         }, { "./NodeType": 498, "./XMLCharacterData": 503 }], 528: [function(require2, module4, exports3) {
           (function() {
@@ -33417,15 +32369,14 @@ var require_aliyun_oss_sdk = __commonJS({
             XMLDTDEntity = require2("./XMLDTDEntity");
             XMLDTDNotation = require2("./XMLDTDNotation");
             WriterState = require2("./WriterState");
-            module4.exports = XMLWriterBase = function() {
+            module4.exports = XMLWriterBase = (function() {
               function XMLWriterBase2(options) {
                 var key, ref, value;
                 options || (options = {});
                 this.options = options;
                 ref = options.writer || {};
                 for (key in ref) {
-                  if (!hasProp.call(ref, key))
-                    continue;
+                  if (!hasProp.call(ref, key)) continue;
                   value = ref[key];
                   this["_" + key] = this[key];
                   this[key] = value;
@@ -33566,8 +32517,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 r += this.indent(node, options, level) + "<" + node.name;
                 ref = node.attribs;
                 for (name in ref) {
-                  if (!hasProp.call(ref, name))
-                    continue;
+                  if (!hasProp.call(ref, name)) continue;
                   att = ref[name];
                   r += this.attribute(att, options, level);
                 }
@@ -33788,7 +32738,7 @@ var require_aliyun_oss_sdk = __commonJS({
               XMLWriterBase2.prototype.closeAttribute = function(att, options, level) {
               };
               return XMLWriterBase2;
-            }();
+            })();
           }).call(this);
         }, { "./NodeType": 498, "./Utility": 499, "./WriterState": 500, "./XMLCData": 502, "./XMLComment": 504, "./XMLDTDAttList": 509, "./XMLDTDElement": 510, "./XMLDTDEntity": 511, "./XMLDTDNotation": 512, "./XMLDeclaration": 513, "./XMLDocType": 514, "./XMLDummy": 517, "./XMLElement": 518, "./XMLProcessingInstruction": 522, "./XMLRaw": 523, "./XMLText": 527 }], 529: [function(require2, module4, exports3) {
           (function() {
@@ -33875,10 +32825,8 @@ var require_aliyun_oss_sdk = __commonJS({
           var zeroBuffer = Buffer2.alloc(blocksize);
           zeroBuffer.fill(0);
           function hmac(fn, key, data) {
-            if (!Buffer2.isBuffer(key))
-              key = Buffer2.from(key);
-            if (!Buffer2.isBuffer(data))
-              data = Buffer2.from(data);
+            if (!Buffer2.isBuffer(key)) key = Buffer2.from(key);
+            if (!Buffer2.isBuffer(data)) data = Buffer2.from(data);
             if (key.length > blocksize) {
               key = fn(key);
             } else if (key.length < blocksize) {
@@ -33897,12 +32845,10 @@ var require_aliyun_oss_sdk = __commonJS({
             var fn = algorithms[alg];
             var bufs = [];
             var length = 0;
-            if (!fn)
-              error("algorithm:", alg, "is not yet supported");
+            if (!fn) error("algorithm:", alg, "is not yet supported");
             return {
               update: function update(data) {
-                if (!Buffer2.isBuffer(data))
-                  data = Buffer2.from(data);
+                if (!Buffer2.isBuffer(data)) data = Buffer2.from(data);
                 bufs.push(data);
                 length += data.length;
                 return this;
@@ -33982,8 +32928,7 @@ var require_aliyun_oss_sdk = __commonJS({
             return buf;
           }
           function hash(buf, fn, hashSize, bigEndian) {
-            if (!Buffer2.isBuffer(buf))
-              buf = Buffer2.from(buf);
+            if (!Buffer2.isBuffer(buf)) buf = Buffer2.from(buf);
             var arr = fn(toArray(buf, bigEndian), buf.length * chrsz);
             return toBuffer(arr, hashSize, bigEndian);
           }
@@ -34124,10 +33069,8 @@ var require_aliyun_oss_sdk = __commonJS({
               var oldd = d;
               var olde = e;
               for (var j = 0; j < 80; j++) {
-                if (j < 16)
-                  w[j] = x[i + j];
-                else
-                  w[j] = rol(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
+                if (j < 16) w[j] = x[i + j];
+                else w[j] = rol(w[j - 3] ^ w[j - 8] ^ w[j - 14] ^ w[j - 16], 1);
                 var t = safe_add(safe_add(rol(a, 5), sha1_ft(j, b, c, d)), safe_add(safe_add(e, w[j]), sha1_kt(j)));
                 e = d;
                 d = c;
@@ -34144,12 +33087,9 @@ var require_aliyun_oss_sdk = __commonJS({
             return Array(a, b, c, d, e);
           }
           function sha1_ft(t, b, c, d) {
-            if (t < 20)
-              return b & c | ~b & d;
-            if (t < 40)
-              return b ^ c ^ d;
-            if (t < 60)
-              return b & c | b & d | c & d;
+            if (t < 20) return b & c | ~b & d;
+            if (t < 40) return b ^ c ^ d;
+            if (t < 60) return b & c | b & d | c & d;
             return b ^ c ^ d;
           }
           function sha1_kt(t) {
@@ -34323,23 +33263,19 @@ var require_aliyun_oss_sdk = __commonJS({
               var url = require2("url");
               var http = exports3;
               http.request = function(opts, cb) {
-                if (typeof opts === "string")
-                  opts = url.parse(opts);
-                else
-                  opts = extend(opts);
+                if (typeof opts === "string") opts = url.parse(opts);
+                else opts = extend(opts);
                 var defaultProtocol = global2.location.protocol.search(/^https?:$/) === -1 ? "http:" : "";
                 var protocol = opts.protocol || defaultProtocol;
                 var host = opts.hostname || opts.host;
                 var port = opts.port;
                 var path3 = opts.path || "/";
-                if (host && host.indexOf(":") !== -1)
-                  host = "[" + host + "]";
+                if (host && host.indexOf(":") !== -1) host = "[" + host + "]";
                 opts.url = (host ? protocol + "//" + host : "") + (port ? ":" + port : "") + path3;
                 opts.method = (opts.method || "GET").toUpperCase();
                 opts.headers = opts.headers || {};
                 var req = new ClientRequest(opts);
-                if (cb)
-                  req.on("response", cb);
+                if (cb) req.on("response", cb);
                 return req;
               };
               http.get = function get(opts, cb) {
@@ -34377,8 +33313,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               var xhr;
               function getXHR() {
-                if (xhr !== void 0)
-                  return xhr;
+                if (xhr !== void 0) return xhr;
                 if (global2.XMLHttpRequest) {
                   xhr = new global2.XMLHttpRequest();
                   try {
@@ -34393,8 +33328,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               function checkTypeSupport(type) {
                 var xhr2 = getXHR();
-                if (!xhr2)
-                  return false;
+                if (!xhr2) return false;
                 try {
                   xhr2.responseType = type;
                   return xhr2.responseType === type;
@@ -34455,8 +33389,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 self2._opts = opts;
                 self2._body = [];
                 self2._headers = {};
-                if (opts.auth)
-                  self2.setHeader("Authorization", "Basic " + new Buffer2(opts.auth).toString("base64"));
+                if (opts.auth) self2.setHeader("Authorization", "Basic " + new Buffer2(opts.auth).toString("base64"));
                 Object.keys(opts.headers).forEach(function(name) {
                   self2.setHeader(name, opts.headers[name]);
                 });
@@ -34484,8 +33417,7 @@ var require_aliyun_oss_sdk = __commonJS({
               ClientRequest.prototype.setHeader = function(name, value) {
                 var self2 = this;
                 var lowerName = name.toLowerCase();
-                if (unsafeHeaders.indexOf(lowerName) !== -1)
-                  return;
+                if (unsafeHeaders.indexOf(lowerName) !== -1) return;
                 self2._headers[lowerName] = {
                   name,
                   value
@@ -34493,8 +33425,7 @@ var require_aliyun_oss_sdk = __commonJS({
               };
               ClientRequest.prototype.getHeader = function(name) {
                 var header = this._headers[name.toLowerCase()];
-                if (header)
-                  return header.value;
+                if (header) return header.value;
                 return null;
               };
               ClientRequest.prototype.removeHeader = function(name) {
@@ -34503,8 +33434,7 @@ var require_aliyun_oss_sdk = __commonJS({
               };
               ClientRequest.prototype._onFinish = function() {
                 var self2 = this;
-                if (self2._destroyed)
-                  return;
+                if (self2._destroyed) return;
                 var opts = self2._opts;
                 var headersObj = self2._headers;
                 var body = null;
@@ -34543,8 +33473,7 @@ var require_aliyun_oss_sdk = __commonJS({
                     if ("requestTimeout" in opts && opts.requestTimeout !== 0) {
                       self2._fetchTimer = global2.setTimeout(function() {
                         self2.emit("requestTimeout");
-                        if (self2._fetchAbortController)
-                          self2._fetchAbortController.abort();
+                        if (self2._fetchAbortController) self2._fetchAbortController.abort();
                       }, opts.requestTimeout);
                     }
                   }
@@ -34560,8 +33489,7 @@ var require_aliyun_oss_sdk = __commonJS({
                     self2._connect();
                   }, function(reason) {
                     global2.clearTimeout(self2._fetchTimer);
-                    if (!self2._destroyed)
-                      self2.emit("error", reason);
+                    if (!self2._destroyed) self2.emit("error", reason);
                   });
                 } else {
                   var xhr = self2._xhr = new global2.XMLHttpRequest();
@@ -34573,12 +33501,9 @@ var require_aliyun_oss_sdk = __commonJS({
                     });
                     return;
                   }
-                  if ("responseType" in xhr)
-                    xhr.responseType = self2._mode.split(":")[0];
-                  if ("withCredentials" in xhr)
-                    xhr.withCredentials = !!opts.withCredentials;
-                  if (self2._mode === "text" && "overrideMimeType" in xhr)
-                    xhr.overrideMimeType("text/plain; charset=x-user-defined");
+                  if ("responseType" in xhr) xhr.responseType = self2._mode.split(":")[0];
+                  if ("withCredentials" in xhr) xhr.withCredentials = !!opts.withCredentials;
+                  if (self2._mode === "text" && "overrideMimeType" in xhr) xhr.overrideMimeType("text/plain; charset=x-user-defined");
                   if ("requestTimeout" in opts) {
                     xhr.timeout = opts.requestTimeout;
                     xhr.ontimeout = function() {
@@ -34603,8 +33528,7 @@ var require_aliyun_oss_sdk = __commonJS({
                     };
                   }
                   xhr.onerror = function() {
-                    if (self2._destroyed)
-                      return;
+                    if (self2._destroyed) return;
                     self2.emit("error", new Error("XHR error"));
                   };
                   try {
@@ -34627,16 +33551,13 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               ClientRequest.prototype._onXHRProgress = function() {
                 var self2 = this;
-                if (!statusValid(self2._xhr) || self2._destroyed)
-                  return;
-                if (!self2._response)
-                  self2._connect();
+                if (!statusValid(self2._xhr) || self2._destroyed) return;
+                if (!self2._response) self2._connect();
                 self2._response._onXHRProgress();
               };
               ClientRequest.prototype._connect = function() {
                 var self2 = this;
-                if (self2._destroyed)
-                  return;
+                if (self2._destroyed) return;
                 self2._response = new IncomingMessage(self2._xhr, self2._fetchResponse, self2._mode, self2._fetchTimer);
                 self2._response.on("error", function(err) {
                   self2.emit("error", err);
@@ -34652,12 +33573,9 @@ var require_aliyun_oss_sdk = __commonJS({
                 var self2 = this;
                 self2._destroyed = true;
                 global2.clearTimeout(self2._fetchTimer);
-                if (self2._response)
-                  self2._response._destroyed = true;
-                if (self2._xhr)
-                  self2._xhr.abort();
-                else if (self2._fetchAbortController)
-                  self2._fetchAbortController.abort();
+                if (self2._response) self2._response._destroyed = true;
+                if (self2._xhr) self2._xhr.abort();
+                else if (self2._fetchAbortController) self2._fetchAbortController.abort();
               };
               ClientRequest.prototype.end = function(data, encoding, cb) {
                 var self2 = this;
@@ -34741,8 +33659,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 if (mode === "fetch") {
                   var read = function read2() {
                     reader.read().then(function(result) {
-                      if (self2._destroyed)
-                        return;
+                      if (self2._destroyed) return;
                       if (result.done) {
                         global2.clearTimeout(fetchTimer);
                         self2.push(null);
@@ -34752,8 +33669,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       read2();
                     }).catch(function(err) {
                       global2.clearTimeout(fetchTimer);
-                      if (!self2._destroyed)
-                        self2.emit("error", err);
+                      if (!self2._destroyed) self2.emit("error", err);
                     });
                   };
                   self2._fetchResponse = response;
@@ -34779,19 +33695,16 @@ var require_aliyun_oss_sdk = __commonJS({
                       },
                       close: function close() {
                         global2.clearTimeout(fetchTimer);
-                        if (!self2._destroyed)
-                          self2.push(null);
+                        if (!self2._destroyed) self2.push(null);
                       },
                       abort: function abort(err) {
-                        if (!self2._destroyed)
-                          self2.emit("error", err);
+                        if (!self2._destroyed) self2.emit("error", err);
                       }
                     });
                     try {
                       response.body.pipeTo(writable).catch(function(err) {
                         global2.clearTimeout(fetchTimer);
-                        if (!self2._destroyed)
-                          self2.emit("error", err);
+                        if (!self2._destroyed) self2.emit("error", err);
                       });
                       return;
                     } catch (e) {
@@ -34832,8 +33745,7 @@ var require_aliyun_oss_sdk = __commonJS({
                         self2._charset = charsetMatch[1].toLowerCase();
                       }
                     }
-                    if (!self2._charset)
-                      self2._charset = "utf-8";
+                    if (!self2._charset) self2._charset = "utf-8";
                   }
                 }
               };
@@ -34852,8 +33764,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 var response = null;
                 switch (self2._mode) {
                   case "text:vbarray":
-                    if (xhr.readyState !== rStates.DONE)
-                      break;
+                    if (xhr.readyState !== rStates.DONE) break;
                     try {
                       response = new global2.VBArray(xhr.responseBody).toArray();
                     } catch (e) {
@@ -34862,6 +33773,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       self2.push(new Buffer2(response));
                       break;
                     }
+                  // Falls through in IE8
                   case "text":
                     try {
                       response = xhr.responseText;
@@ -34873,8 +33785,7 @@ var require_aliyun_oss_sdk = __commonJS({
                       var newData = response.substr(self2._pos);
                       if (self2._charset === "x-user-defined") {
                         var buffer = new Buffer2(newData.length);
-                        for (var i = 0; i < newData.length; i++)
-                          buffer[i] = newData.charCodeAt(i) & 255;
+                        for (var i = 0; i < newData.length; i++) buffer[i] = newData.charCodeAt(i) & 255;
                         self2.push(buffer);
                       } else {
                         self2.push(newData, self2._charset);
@@ -34883,21 +33794,18 @@ var require_aliyun_oss_sdk = __commonJS({
                     }
                     break;
                   case "arraybuffer":
-                    if (xhr.readyState !== rStates.DONE || !xhr.response)
-                      break;
+                    if (xhr.readyState !== rStates.DONE || !xhr.response) break;
                     response = xhr.response;
                     self2.push(new Buffer2(new Uint8Array(response)));
                     break;
                   case "moz-chunked-arraybuffer":
                     response = xhr.response;
-                    if (xhr.readyState !== rStates.LOADING || !response)
-                      break;
+                    if (xhr.readyState !== rStates.LOADING || !response) break;
                     self2.push(new Buffer2(new Uint8Array(response)));
                     break;
                   case "ms-stream":
                     response = xhr.response;
-                    if (xhr.readyState !== rStates.LOADING)
-                      break;
+                    if (xhr.readyState !== rStates.LOADING) break;
                     var reader = new global2.MSStreamReader();
                     reader.onprogress = function() {
                       if (reader.result.byteLength > self2._pos) {
@@ -34972,8 +33880,7 @@ var require_aliyun_oss_sdk = __commonJS({
             "file:": true
           }, querystring2 = require2("querystring");
           function urlParse(url, parseQueryString, slashesDenoteHost) {
-            if (url && util.isObject(url) && url instanceof Url)
-              return url;
+            if (url && util.isObject(url) && url instanceof Url) return url;
             var u = new Url();
             u.parse(url, parseQueryString, slashesDenoteHost);
             return u;
@@ -35025,8 +33932,7 @@ var require_aliyun_oss_sdk = __commonJS({
               var hostEnd = -1;
               for (var i = 0; i < hostEndingChars.length; i++) {
                 var hec = rest.indexOf(hostEndingChars[i]);
-                if (hec !== -1 && (hostEnd === -1 || hec < hostEnd))
-                  hostEnd = hec;
+                if (hec !== -1 && (hostEnd === -1 || hec < hostEnd)) hostEnd = hec;
               }
               var auth, atSign;
               if (hostEnd === -1) {
@@ -35042,11 +33948,9 @@ var require_aliyun_oss_sdk = __commonJS({
               hostEnd = -1;
               for (var i = 0; i < nonHostChars.length; i++) {
                 var hec = rest.indexOf(nonHostChars[i]);
-                if (hec !== -1 && (hostEnd === -1 || hec < hostEnd))
-                  hostEnd = hec;
+                if (hec !== -1 && (hostEnd === -1 || hec < hostEnd)) hostEnd = hec;
               }
-              if (hostEnd === -1)
-                hostEnd = rest.length;
+              if (hostEnd === -1) hostEnd = rest.length;
               this.host = rest.slice(0, hostEnd);
               rest = rest.slice(hostEnd);
               this.parseHost();
@@ -35056,8 +33960,7 @@ var require_aliyun_oss_sdk = __commonJS({
                 var hostparts = this.hostname.split(".");
                 for (var i = 0, l = hostparts.length; i < l; i++) {
                   var part = hostparts[i];
-                  if (!part)
-                    continue;
+                  if (!part) continue;
                   if (!part.match(hostnamePartPattern)) {
                     var newpart = "";
                     for (var j = 0, k = part.length; j < k; j++) {
@@ -35106,8 +34009,7 @@ var require_aliyun_oss_sdk = __commonJS({
             if (!unsafeProtocol[lowerProto]) {
               for (var i = 0, l = autoEscape.length; i < l; i++) {
                 var ae = autoEscape[i];
-                if (rest.indexOf(ae) === -1)
-                  continue;
+                if (rest.indexOf(ae) === -1) continue;
                 var esc = encodeURIComponent(ae);
                 if (esc === ae) {
                   esc = escape(ae);
@@ -35132,8 +34034,7 @@ var require_aliyun_oss_sdk = __commonJS({
               this.search = "";
               this.query = {};
             }
-            if (rest)
-              this.pathname = rest;
+            if (rest) this.pathname = rest;
             if (slashedProtocol[lowerProto] && this.hostname && !this.pathname) {
               this.pathname = "/";
             }
@@ -35146,10 +34047,8 @@ var require_aliyun_oss_sdk = __commonJS({
             return this;
           };
           function urlFormat(obj) {
-            if (util.isString(obj))
-              obj = urlParse(obj);
-            if (!(obj instanceof Url))
-              return Url.prototype.format.call(obj);
+            if (util.isString(obj)) obj = urlParse(obj);
+            if (!(obj instanceof Url)) return Url.prototype.format.call(obj);
             return obj.format();
           }
           Url.prototype.format = function() {
@@ -35172,19 +34071,15 @@ var require_aliyun_oss_sdk = __commonJS({
               query = querystring2.stringify(this.query);
             }
             var search = this.search || query && "?" + query || "";
-            if (protocol && protocol.substr(-1) !== ":")
-              protocol += ":";
+            if (protocol && protocol.substr(-1) !== ":") protocol += ":";
             if (this.slashes || (!protocol || slashedProtocol[protocol]) && host !== false) {
               host = "//" + (host || "");
-              if (pathname && pathname.charAt(0) !== "/")
-                pathname = "/" + pathname;
+              if (pathname && pathname.charAt(0) !== "/") pathname = "/" + pathname;
             } else if (!host) {
               host = "";
             }
-            if (hash && hash.charAt(0) !== "#")
-              hash = "#" + hash;
-            if (search && search.charAt(0) !== "?")
-              search = "?" + search;
+            if (hash && hash.charAt(0) !== "#") hash = "#" + hash;
+            if (search && search.charAt(0) !== "?") search = "?" + search;
             pathname = pathname.replace(/[?#]/g, function(match) {
               return encodeURIComponent(match);
             });
@@ -35198,8 +34093,7 @@ var require_aliyun_oss_sdk = __commonJS({
             return this.resolveObject(urlParse(relative, false, true)).format();
           };
           function urlResolveObject(source, relative) {
-            if (!source)
-              return relative;
+            if (!source) return relative;
             return urlParse(source, false, true).resolveObject(relative);
           }
           Url.prototype.resolveObject = function(relative) {
@@ -35223,8 +34117,7 @@ var require_aliyun_oss_sdk = __commonJS({
               var rkeys = Object.keys(relative);
               for (var rk = 0; rk < rkeys.length; rk++) {
                 var rkey = rkeys[rk];
-                if (rkey !== "protocol")
-                  result[rkey] = relative[rkey];
+                if (rkey !== "protocol") result[rkey] = relative[rkey];
               }
               if (slashedProtocol[result.protocol] && result.hostname && !result.pathname) {
                 result.path = result.pathname = "/";
@@ -35245,16 +34138,11 @@ var require_aliyun_oss_sdk = __commonJS({
               result.protocol = relative.protocol;
               if (!relative.host && !hostlessProtocol[relative.protocol]) {
                 var relPath = (relative.pathname || "").split("/");
-                while (relPath.length && !(relative.host = relPath.shift()))
-                  ;
-                if (!relative.host)
-                  relative.host = "";
-                if (!relative.hostname)
-                  relative.hostname = "";
-                if (relPath[0] !== "")
-                  relPath.unshift("");
-                if (relPath.length < 2)
-                  relPath.unshift("");
+                while (relPath.length && !(relative.host = relPath.shift())) ;
+                if (!relative.host) relative.host = "";
+                if (!relative.hostname) relative.hostname = "";
+                if (relPath[0] !== "") relPath.unshift("");
+                if (relPath.length < 2) relPath.unshift("");
                 result.pathname = relPath.join("/");
               } else {
                 result.pathname = relative.pathname;
@@ -35279,20 +34167,16 @@ var require_aliyun_oss_sdk = __commonJS({
               result.hostname = "";
               result.port = null;
               if (result.host) {
-                if (srcPath[0] === "")
-                  srcPath[0] = result.host;
-                else
-                  srcPath.unshift(result.host);
+                if (srcPath[0] === "") srcPath[0] = result.host;
+                else srcPath.unshift(result.host);
               }
               result.host = "";
               if (relative.protocol) {
                 relative.hostname = null;
                 relative.port = null;
                 if (relative.host) {
-                  if (relPath[0] === "")
-                    relPath[0] = relative.host;
-                  else
-                    relPath.unshift(relative.host);
+                  if (relPath[0] === "") relPath[0] = relative.host;
+                  else relPath.unshift(relative.host);
                 }
                 relative.host = null;
               }
@@ -35305,8 +34189,7 @@ var require_aliyun_oss_sdk = __commonJS({
               result.query = relative.query;
               srcPath = relPath;
             } else if (relPath.length) {
-              if (!srcPath)
-                srcPath = [];
+              if (!srcPath) srcPath = [];
               srcPath.pop();
               srcPath = srcPath.concat(relPath);
               result.search = relative.search;
@@ -35401,8 +34284,7 @@ var require_aliyun_oss_sdk = __commonJS({
               }
               host = host.substr(0, host.length - port.length);
             }
-            if (host)
-              this.hostname = host;
+            if (host) this.hostname = host;
           };
         }, { "./util": 544, "@babel/runtime/helpers/interopRequireDefault": 86, "@babel/runtime/helpers/typeof": 91, "core-js/modules/es.array.concat.js": 310, "core-js/modules/es.array.join.js": 317, "core-js/modules/es.array.slice.js": 319, "core-js/modules/es.array.splice.js": 321, "core-js/modules/es.object.keys.js": 328, "core-js/modules/es.regexp.exec.js": 338, "core-js/modules/es.string.match.js": 344, "core-js/modules/es.string.replace.js": 345, "core-js/modules/es.string.search.js": 346, "core-js/modules/es.string.split.js": 347, "core-js/modules/es.string.trim.js": 349, "punycode": 443, "querystring": 451 }], 544: [function(require2, module4, exports3) {
           "use strict";
@@ -36114,16 +34996,14 @@ var import_obsidian2 = require("obsidian");
 // src/imgs-renderer.ts
 function registerImage(imgFile, images) {
   for (const [name2, f] of images) {
-    if (f.path === imgFile.path)
-      return name2;
+    if (f.path === imgFile.path) return name2;
   }
   let name = imgFile.name;
   if (images.has(name)) {
     const ext = imgFile.extension ? `.${imgFile.extension}` : "";
     const base = imgFile.basename;
     let i = 1;
-    while (images.has(`${base}_${i}${ext}`))
-      i++;
+    while (images.has(`${base}_${i}${ext}`)) i++;
     name = `${base}_${i}${ext}`;
   }
   images.set(name, imgFile);
@@ -36134,16 +35014,13 @@ function parseImgsBlock(raw) {
   const paths = [];
   for (const line of raw.split(/\r?\n/)) {
     const trimmed = line.trim();
-    if (!trimmed)
-      continue;
+    if (!trimmed) continue;
     if (trimmed.endsWith(";;")) {
       const params = trimmed.slice(0, -2);
       for (const pair of params.split("&")) {
         const [key, val] = pair.split("=").map((s) => s.trim().toLowerCase());
-        if (key === "border")
-          config.border = val === "true";
-        if (key === "shadow")
-          config.shadow = val === "true";
+        if (key === "border") config.border = val === "true";
+        if (key === "shadow") config.shadow = val === "true";
       }
       continue;
     }
@@ -36162,18 +35039,14 @@ function processImgsBlocks(app, sourceFile, el, images) {
   el.querySelectorAll("code.language-imgs").forEach((code) => {
     var _a, _b, _c;
     const pre = (_a = code.closest("pre")) != null ? _a : code.parentElement;
-    if (!pre)
-      return;
+    if (!pre) return;
     const { config, paths } = parseImgsBlock((_b = code.textContent) != null ? _b : "");
-    const gallery = document.createElement("div");
-    gallery.className = "imgs-gallery";
-    if (config.border)
-      gallery.dataset.border = "true";
-    if (config.shadow)
-      gallery.dataset.shadow = "true";
+    const gallery = createDiv({ cls: "imgs-gallery" });
+    if (config.border) gallery.dataset.border = "true";
+    if (config.shadow) gallery.dataset.shadow = "true";
     for (const vaultPath of paths) {
       const imgFile = (_c = app.vault.getAbstractFileByPath(vaultPath)) != null ? _c : app.metadataCache.getFirstLinkpathDest(vaultPath, sourceFile.path);
-      const img = document.createElement("img");
+      const img = createEl("img");
       if (imgFile) {
         const name = registerImage(imgFile, images);
         img.setAttribute("src", `images/${name}`);
@@ -36196,8 +35069,7 @@ function splitTopLevelArgs(s) {
     const c = s[i];
     if (inStr) {
       cur += c;
-      if (c === strChar)
-        inStr = false;
+      if (c === strChar) inStr = false;
     } else if (c === '"' || c === "'") {
       inStr = true;
       strChar = c;
@@ -36215,8 +35087,7 @@ function splitTopLevelArgs(s) {
       cur += c;
     }
   }
-  if (cur.trim())
-    args.push(cur.trim());
+  if (cur.trim()) args.push(cur.trim());
   return args;
 }
 function findTopLevelOp(expr, op) {
@@ -36224,17 +35095,13 @@ function findTopLevelOp(expr, op) {
   for (let i = 0; i < expr.length; i++) {
     const c = expr[i];
     if (inStr) {
-      if (c === strChar)
-        inStr = false;
+      if (c === strChar) inStr = false;
     } else if (c === '"' || c === "'") {
       inStr = true;
       strChar = c;
-    } else if (c === "(" || c === "[")
-      depth++;
-    else if (c === ")" || c === "]")
-      depth--;
-    else if (depth === 0 && expr.startsWith(op, i))
-      return i;
+    } else if (c === "(" || c === "[") depth++;
+    else if (c === ")" || c === "]") depth--;
+    else if (depth === 0 && expr.startsWith(op, i)) return i;
   }
   return -1;
 }
@@ -36248,14 +35115,10 @@ function evalBoolExpr(expr, fm) {
 }
 function formatDateValue(val, fmt = "YYYY-MM-DD") {
   let d;
-  if (typeof val === "number")
-    d = new Date(val);
-  else if (/^\d{10,}$/.test(val))
-    d = new Date(parseInt(val));
-  else
-    d = new Date(val);
-  if (isNaN(d.getTime()))
-    return String(val);
+  if (typeof val === "number") d = new Date(val);
+  else if (/^\d{10,}$/.test(val)) d = new Date(parseInt(val));
+  else d = new Date(val);
+  if (isNaN(d.getTime())) return String(val);
   const tokens = {
     YYYY: String(d.getFullYear()),
     MM: String(d.getMonth() + 1).padStart(2, "0"),
@@ -36273,17 +35136,14 @@ function escapeHtml(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 function fmToString(v) {
-  if (Array.isArray(v))
-    return v.map((item) => item !== null && typeof item === "object" ? JSON.stringify(item) : String(item)).join(", ");
-  if (v !== null && typeof v === "object")
-    return JSON.stringify(v);
+  if (Array.isArray(v)) return v.map((item) => item !== null && typeof item === "object" ? JSON.stringify(item) : String(item)).join(", ");
+  if (v !== null && typeof v === "object") return JSON.stringify(v);
   return String(v);
 }
 function evalExpr(expr, ctx) {
   expr = expr.trim();
   const strLit = expr.match(/^(['"])(.*)\1$/s);
-  if (strLit)
-    return escapeHtml(strLit[2]);
+  if (strLit) return escapeHtml(strLit[2]);
   const linkM = expr.match(/^link\(([\s\S]+)\)$/);
   if (linkM) {
     const args = splitTopLevelArgs(linkM[1]);
@@ -36318,20 +35178,13 @@ function evalExpr(expr, ctx) {
   if (plusIdx !== -1) {
     return evalExpr(expr.slice(0, plusIdx), ctx) + evalExpr(expr.slice(plusIdx + 1), ctx);
   }
-  if (expr === "file.basename")
-    return escapeHtml(ctx.file.basename);
-  if (expr === "file.name")
-    return escapeHtml(ctx.file.name);
-  if (expr === "file.path")
-    return escapeHtml(ctx.file.path);
-  if (expr === "file.ext")
-    return escapeHtml(ctx.file.extension);
-  if (expr === "file.ctime")
-    return String(ctx.stat.ctime);
-  if (expr === "file.mtime")
-    return String(ctx.stat.mtime);
-  if (expr === "file.backlinks")
-    return "";
+  if (expr === "file.basename") return escapeHtml(ctx.file.basename);
+  if (expr === "file.name") return escapeHtml(ctx.file.name);
+  if (expr === "file.path") return escapeHtml(ctx.file.path);
+  if (expr === "file.ext") return escapeHtml(ctx.file.extension);
+  if (expr === "file.ctime") return String(ctx.stat.ctime);
+  if (expr === "file.mtime") return String(ctx.stat.mtime);
+  if (expr === "file.backlinks") return "";
   if (expr.startsWith("note.")) {
     const v2 = ctx.fm[expr.slice(5)];
     return v2 !== void 0 && v2 !== null ? escapeHtml(fmToString(v2)) : "";
@@ -36352,14 +35205,11 @@ function matchesFilter(expr, file, meta) {
     return req.every((t) => allTags.has(t));
   }
   const containsM = expr.match(/^file\.tags\.contains\((.+)\)$/);
-  if (containsM)
-    return allTags.has(containsM[1].replace(/["']/g, ""));
+  if (containsM) return allTags.has(containsM[1].replace(/["']/g, ""));
   const folderM = expr.match(/^file\.folder\s*==\s*["']([^"']+)["']$/);
-  if (folderM)
-    return ((_f = (_e = file.parent) == null ? void 0 : _e.path) != null ? _f : "") === folderM[1];
+  if (folderM) return ((_f = (_e = file.parent) == null ? void 0 : _e.path) != null ? _f : "") === folderM[1];
   const extM = expr.match(/^file\.ext\s*==\s*["']([^"']+)["']$/);
-  if (extM)
-    return file.extension === extM[1];
+  if (extM) return file.extension === extM[1];
   return true;
 }
 function colLabel(col, properties) {
@@ -36383,12 +35233,9 @@ async function renderBaseAsTable(app, baseFile, images) {
   let matched = app.vault.getMarkdownFiles().filter((f) => {
     const meta = app.metadataCache.getFileCache(f);
     const filters = config.filters;
-    if (!filters)
-      return true;
-    if (filters.and)
-      return filters.and.every((e) => matchesFilter(e, f, meta));
-    if (filters.or)
-      return filters.or.some((e) => matchesFilter(e, f, meta));
+    if (!filters) return true;
+    if (filters.and) return filters.and.every((e) => matchesFilter(e, f, meta));
+    if (filters.or) return filters.or.some((e) => matchesFilter(e, f, meta));
     return true;
   });
   if ((_d = view.sort) == null ? void 0 : _d.length) {
@@ -36404,12 +35251,9 @@ async function renderBaseAsTable(app, baseFile, images) {
           const key = sortProp.slice(8);
           return formulas[key] ? evalExpr(formulas[key], ctx) : "";
         }
-        if (sortProp === "file.mtime")
-          return String(f.stat.mtime);
-        if (sortProp === "file.ctime")
-          return String(f.stat.ctime);
-        if (sortProp === "file.name")
-          return f.name;
+        if (sortProp === "file.mtime") return String(f.stat.mtime);
+        if (sortProp === "file.ctime") return String(f.stat.ctime);
+        if (sortProp === "file.name") return f.name;
         const v = fm[sortProp];
         return v !== void 0 ? fmToString(v) : "";
       };
@@ -36418,10 +35262,8 @@ async function renderBaseAsTable(app, baseFile, images) {
       return desc ? -cmp : cmp;
     });
   }
-  if (view.limit)
-    matched = matched.slice(0, view.limit);
-  if (matched.length === 0)
-    return `<div class="base-empty">\uFF08\u65E0\u5339\u914D\u8BB0\u5F55\uFF09</div>`;
+  if (view.limit) matched = matched.slice(0, view.limit);
+  if (matched.length === 0) return `<div class="base-empty">\uFF08\u65E0\u5339\u914D\u8BB0\u5F55\uFF09</div>`;
   const viewType = ((_e = view.type) != null ? _e : "table").toLowerCase();
   if (viewType === "cards" || viewType === "list") {
     return renderCards(app, baseFile, config, view, matched, formulas, properties, vaultName, images);
@@ -36438,16 +35280,11 @@ async function renderBaseAsTable(app, baseFile, images) {
         const key = col.slice(8);
         return formulas[key] ? evalExpr(formulas[key], ctx) : "";
       }
-      if (col === "file.mtime")
-        return formatDateValue(f.stat.mtime);
-      if (col === "file.ctime")
-        return formatDateValue(f.stat.ctime);
-      if (col === "file.name")
-        return escapeHtml(f.name);
-      if (col === "file.basename")
-        return escapeHtml(f.basename);
-      if (col === "file.backlinks")
-        return "";
+      if (col === "file.mtime") return formatDateValue(f.stat.mtime);
+      if (col === "file.ctime") return formatDateValue(f.stat.ctime);
+      if (col === "file.name") return escapeHtml(f.name);
+      if (col === "file.basename") return escapeHtml(f.basename);
+      if (col === "file.backlinks") return "";
       const v = fm[col];
       return v !== void 0 ? escapeHtml(fmToString(v)) : "";
     });
@@ -36505,8 +35342,7 @@ function renderCards(app, baseFile, config, view, matched, formulas, properties,
         const v = fm[col];
         val = v !== void 0 ? escapeHtml(fmToString(v)) : "";
       }
-      if (!val)
-        return "";
+      if (!val) return "";
       const label = colLabel(col, properties);
       return `<div class="base-card-row" title="${escapeHtml(label)}">${val}</div>`;
     }).join("");
@@ -36554,12 +35390,10 @@ function collectImages(app, sourceFile, el, images = /* @__PURE__ */ new Map()) 
   el.querySelectorAll(".internal-embed").forEach((embed) => {
     var _a;
     const imgEl = embed.querySelector("img");
-    if (!imgEl)
-      return;
+    if (!imgEl) return;
     const src = (_a = embed.getAttribute("src")) != null ? _a : "";
     const imgFile = app.metadataCache.getFirstLinkpathDest(src, sourceFile.path);
-    if (!imgFile)
-      return;
+    if (!imgFile) return;
     const name = registerImage(imgFile, images);
     imgEl.setAttribute("src", `images/${name}`);
     imgEl.removeAttribute("srcset");
@@ -36567,16 +35401,13 @@ function collectImages(app, sourceFile, el, images = /* @__PURE__ */ new Map()) 
   el.querySelectorAll("img").forEach((img) => {
     var _a;
     const src = (_a = img.getAttribute("src")) != null ? _a : "";
-    if (!src.startsWith("app://local") || !vaultBasePath)
-      return;
+    if (!src.startsWith("app://local") || !vaultBasePath) return;
     try {
       const absPath = decodeURIComponent(src.replace(/^app:\/\/local/, ""));
-      if (!absPath.startsWith(vaultBasePath))
-        return;
+      if (!absPath.startsWith(vaultBasePath)) return;
       const relPath = absPath.slice(vaultBasePath.length).replace(/^[/\\]/, "");
       const imgFile = app.vault.getAbstractFileByPath(relPath);
-      if (!imgFile)
-        return;
+      if (!imgFile) return;
       const name = registerImage(imgFile, images);
       img.setAttribute("src", `images/${name}`);
       img.removeAttribute("srcset");
@@ -36608,8 +35439,7 @@ function protectPluginCodeBlocks(content) {
   return content.replace(
     /^(`{3,})([\w][\w-]*)[ \t]*$/gm,
     (match, fence, lang) => {
-      if (!PLUGIN_CODE_LANGS.has(lang.toLowerCase()))
-        return match;
+      if (!PLUGIN_CODE_LANGS.has(lang.toLowerCase())) return match;
       return `${fence}${PLUGIN_LANG_PREFIX}${lang}`;
     }
   );
@@ -36628,10 +35458,8 @@ async function renderNote(app, file, rawContent) {
   content = resolveBaseEmbeds(content);
   content = protectPluginCodeBlocks(content);
   const { processed, entries } = extractMath(content);
-  const el = document.createElement("div");
-  el.className = "markdown-preview-view markdown-rendered";
-  el.addClass("opal-render-scratch");
-  document.body.appendChild(el);
+  const el = createDiv({ cls: "markdown-preview-view markdown-rendered opal-render-scratch" });
+  activeDocument.body.appendChild(el);
   const component = new import_obsidian3.Component();
   component.load();
   await import_obsidian3.MarkdownRenderer.render(app, processed, el, file.path, component);
@@ -36643,18 +35471,17 @@ async function renderNote(app, file, rawContent) {
       if (pendingMermaid === 0 && elapsed >= 300 || elapsed >= 1500) {
         resolve();
       } else {
-        setTimeout(check, 100);
+        activeWindow.setTimeout(check, 100);
       }
     };
-    setTimeout(check, 300);
+    activeWindow.setTimeout(check, 300);
   });
   component.unload();
   el.querySelectorAll("[data-mi]").forEach((placeholder) => {
     var _a2;
     const idx = parseInt((_a2 = placeholder.getAttribute("data-mi")) != null ? _a2 : "0");
     const entry = entries[idx];
-    if (entry)
-      placeholder.textContent = entry.latex;
+    if (entry) placeholder.textContent = entry.latex;
   });
   el.querySelectorAll(".copy-code-button").forEach((b) => b.remove());
   restorePluginCodeLangs(el);
@@ -36672,17 +35499,14 @@ async function renderNote(app, file, rawContent) {
       );
       placeholder.replaceWith(...Array.from(parsed.body.childNodes));
     } else {
-      const errorP = document.createElement("p");
-      errorP.className = "base-error";
-      errorP.textContent = `Base \u672A\u627E\u5230: ${name}`;
+      const errorP = createEl("p", { cls: "base-error", text: `Base \u672A\u627E\u5230: ${name}` });
       placeholder.replaceWith(errorP);
     }
   }
   const internalEmbeds = Array.from(el.querySelectorAll(".internal-embed"));
   for (const embed of internalEmbeds) {
     const src = (_b = embed.getAttribute("src")) != null ? _b : "";
-    if (!src.endsWith(".base"))
-      continue;
+    if (!src.endsWith(".base")) continue;
     const baseName = (_c = src.split("/").pop()) != null ? _c : src;
     const baseFile = app.vault.getFiles().find(
       (f) => f.path === src || f.name === baseName
@@ -36694,25 +35518,21 @@ async function renderNote(app, file, rawContent) {
       );
       embed.replaceWith(...Array.from(parsed.body.childNodes));
     } else {
-      const errorP = document.createElement("p");
-      errorP.className = "base-error";
-      errorP.textContent = `Base \u672A\u627E\u5230: ${src}`;
+      const errorP = createEl("p", { cls: "base-error", text: `Base \u672A\u627E\u5230: ${src}` });
       embed.replaceWith(errorP);
     }
   }
   el.querySelectorAll("table").forEach((table) => {
     var _a2;
-    if (table.closest(".table-wrapper"))
-      return;
-    const wrapper = document.createElement("div");
-    wrapper.className = "table-wrapper";
+    if (table.closest(".table-wrapper")) return;
+    const wrapper = createDiv({ cls: "table-wrapper" });
     (_a2 = table.parentNode) == null ? void 0 : _a2.insertBefore(wrapper, table);
     wrapper.appendChild(table);
   });
   processImgsBlocks(app, file, el, images);
   collectImages(app, file, el, images);
   const html = el.innerHTML;
-  document.body.removeChild(el);
+  activeDocument.body.removeChild(el);
   return { html, css: buildCss(), images };
 }
 function buildHtml(title, htmlBody) {
@@ -37681,8 +36501,7 @@ function rewriteInternalLinks(html, subFolderMap) {
   return html.replace(/<a([^>]*?)>/g, (match, attrs) => {
     var _a, _b;
     const dataHrefMatch = attrs.match(/data-href="([^"]*)"/);
-    if (!dataHrefMatch)
-      return match;
+    if (!dataHrefMatch) return match;
     const dataHref = dataHrefMatch[1].split("#")[0].replace(/\.md$/i, "");
     const subFolder = (_b = subFolderMap.get(dataHref)) != null ? _b : subFolderMap.get((_a = dataHref.split("/").pop()) != null ? _a : "");
     if (!subFolder) {
@@ -37856,8 +36675,7 @@ var ExportToast = class {
     requestAnimationFrame(() => this.el.classList.add("is-visible"));
   }
   setSuccess(text = "\u4E0A\u4F20\u6210\u529F") {
-    if (this.state === "done")
-      return;
+    if (this.state === "done") return;
     this.state = "done";
     clearTimeout(this.timer);
     this.el.empty();
@@ -37867,8 +36685,7 @@ var ExportToast = class {
     this.timer = window.setTimeout(() => this.dismiss(), 2800);
   }
   setError(text) {
-    if (this.state === "done")
-      return;
+    if (this.state === "done") return;
     this.state = "done";
     clearTimeout(this.timer);
     this.el.empty();
@@ -37913,8 +36730,7 @@ var ShareOnlinePlugin = class extends import_obsidian4.Plugin {
     this.registerEvent(
       this.app.metadataCache.on("changed", (changedFile) => {
         const active = this.app.workspace.getActiveFile();
-        if (active && changedFile.path === active.path)
-          this.updateStatusBar();
+        if (active && changedFile.path === active.path) this.updateStatusBar();
       })
     );
   }
@@ -37944,8 +36760,7 @@ var ShareOnlinePlugin = class extends import_obsidian4.Plugin {
     const file = this.app.workspace.getActiveFile();
     const published = file ? !!this.getShareLink(file) : false;
     const svg = this.statusBarEl.querySelector("svg");
-    if (svg)
-      svg.style.color = published ? THEME_COLOR : "var(--text-muted)";
+    if (svg) svg.style.color = published ? THEME_COLOR : "var(--text-muted)";
     this.statusBarEl.title = published ? "\u5DF2\u53D1\u5E03 \u2014 \u70B9\u51FB\u7BA1\u7406" : "\u5206\u4EAB\u7B14\u8BB0";
   }
   showShareMenu(event) {

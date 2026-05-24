@@ -3,8 +3,6 @@ import { ShareOnlineSettings, DEFAULT_SETTINGS, ShareOnlineSettingTab } from "./
 import { exportToLocal, prepareExport, collectLinkedNotes, rewriteInternalLinks } from "./src/exporter";
 import { uploadToOss, uploadSubNoteToOss, deleteFromOss } from "./src/oss";
 
-const THEME_COLOR = "#65A692";
-
 /* ── Export Toast ──────────────────────────────────────────────────────── */
 
 class ExportToast {
@@ -13,11 +11,10 @@ class ExportToast {
 	private timer = 0;
 
 	constructor(loadingText = "上传中...") {
-		this.el = document.createElement("div");
-		this.el.className = "opal-toast";
+		this.el = createDiv({ cls: "opal-toast" });
 		this.el.createDiv({ cls: "opal-spinner" });
 		this.el.createSpan({ text: loadingText });
-		document.body.appendChild(this.el);
+		activeDocument.body.appendChild(this.el);
 		requestAnimationFrame(() => this.el.classList.add("is-visible"));
 	}
 
@@ -29,7 +26,7 @@ class ExportToast {
 		const iconEl = this.el.createDiv();
 		setIcon(iconEl, "check");
 		this.el.createSpan({ text });
-		this.timer = window.setTimeout(() => this.dismiss(), 2800);
+		this.timer = activeWindow.setTimeout(() => this.dismiss(), 2800);
 	}
 
 	setError(text: string) {
@@ -40,13 +37,13 @@ class ExportToast {
 		const iconEl = this.el.createDiv();
 		setIcon(iconEl, "x");
 		this.el.createSpan({ text });
-		this.timer = window.setTimeout(() => this.dismiss(), 4000);
+		this.timer = activeWindow.setTimeout(() => this.dismiss(), 4000);
 	}
 
 	dismiss() {
 		clearTimeout(this.timer);
 		this.el.classList.remove("is-visible");
-		setTimeout(() => this.el.remove(), 250);
+		activeWindow.setTimeout(() => this.el.remove(), 250);
 	}
 }
 
@@ -93,7 +90,7 @@ export default class ShareOnlinePlugin extends Plugin {
 	}
 
 	async loadSettings() {
-		this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+		this.settings = Object.assign({}, DEFAULT_SETTINGS, (await this.loadData()) as Partial<ShareOnlineSettings>);
 	}
 
 	async saveSettings() {
@@ -123,8 +120,7 @@ export default class ShareOnlinePlugin extends Plugin {
 	private updateStatusBar() {
 		const file = this.app.workspace.getActiveFile();
 		const published = file ? !!this.getShareLink(file) : false;
-		const svg = this.statusBarEl.querySelector("svg");
-		if (svg) svg.style.color = published ? THEME_COLOR : "var(--text-muted)";
+		this.statusBarEl.toggleClass("opal-status-published", published);
 		this.statusBarEl.title = published ? "已发布 — 点击管理" : "分享笔记";
 	}
 

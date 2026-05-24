@@ -147,11 +147,9 @@ export async function renderNote(
   content = protectPluginCodeBlocks(content);
   const { processed, entries } = extractMath(content);
 
-  const el = document.createElement("div");
-  el.className = "markdown-preview-view markdown-rendered";
+  const el = createDiv({ cls: "markdown-preview-view markdown-rendered opal-render-scratch" });
   // Attach off-screen so mermaid (and other renderers) can use DOM layout APIs.
-  el.addClass("opal-render-scratch");
-  document.body.appendChild(el);
+  activeDocument.body.appendChild(el);
 
   const component = new Component();
   component.load();
@@ -167,10 +165,10 @@ export async function renderNote(
       if ((pendingMermaid === 0 && elapsed >= 300) || elapsed >= 1500) {
         resolve();
       } else {
-        setTimeout(check, 100);
+        activeWindow.setTimeout(check, 100);
       }
     };
-    setTimeout(check, 300);
+    activeWindow.setTimeout(check, 300);
   });
   component.unload();
 
@@ -203,9 +201,7 @@ export async function renderNote(
       );
       placeholder.replaceWith(...Array.from(parsed.body.childNodes));
     } else {
-      const errorP = document.createElement("p");
-      errorP.className = "base-error";
-      errorP.textContent = `Base 未找到: ${name}`;
+      const errorP = createEl("p", { cls: "base-error", text: `Base 未找到: ${name}` });
       placeholder.replaceWith(errorP);
     }
   }
@@ -226,9 +222,7 @@ export async function renderNote(
       );
       embed.replaceWith(...Array.from(parsed.body.childNodes));
     } else {
-      const errorP = document.createElement("p");
-      errorP.className = "base-error";
-      errorP.textContent = `Base 未找到: ${src}`;
+      const errorP = createEl("p", { cls: "base-error", text: `Base 未找到: ${src}` });
       embed.replaceWith(errorP);
     }
   }
@@ -236,8 +230,7 @@ export async function renderNote(
   // Wrap tables in .table-wrapper (skip tables already inside one)
   el.querySelectorAll("table").forEach((table) => {
     if (table.closest(".table-wrapper")) return;
-    const wrapper = document.createElement("div");
-    wrapper.className = "table-wrapper";
+    const wrapper = createDiv({ cls: "table-wrapper" });
     table.parentNode?.insertBefore(wrapper, table);
     wrapper.appendChild(table);
   });
@@ -247,7 +240,7 @@ export async function renderNote(
   collectImages(app, file, el, images);
 
   const html = el.innerHTML;
-  document.body.removeChild(el);
+  activeDocument.body.removeChild(el);
   return { html, css: buildCss(), images };
 }
 

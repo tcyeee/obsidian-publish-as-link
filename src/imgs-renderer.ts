@@ -101,8 +101,7 @@ export function processImgsBlocks(
 
     const { config, paths } = parseImgsBlock(code.textContent ?? "");
 
-    const gallery = document.createElement("div");
-    gallery.className = "imgs-gallery";
+    const gallery = createDiv({ cls: "imgs-gallery" });
     if (config.border) gallery.dataset.border = "true";
     if (config.shadow) gallery.dataset.shadow = "true";
 
@@ -112,7 +111,7 @@ export function processImgsBlocks(
         app.metadataCache.getFirstLinkpathDest(vaultPath, sourceFile.path)
       ) as TFile | null;
 
-      const img = document.createElement("img");
+      const img = createEl("img");
       if (imgFile) {
         const name = registerImage(imgFile, images);
         img.setAttribute("src", `images/${name}`);

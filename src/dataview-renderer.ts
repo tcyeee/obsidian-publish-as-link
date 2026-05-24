@@ -364,9 +364,9 @@ function renderList(
  * Returns an error div if the query cannot be parsed.
  */
 export function renderDataviewQuery(
-  app:        App,
-  sourceFile: TFile,
-  queryText:  string
+  app:         App,
+  _sourceFile: TFile,
+  queryText:   string
 ): string {
   const query = parseDataviewQuery(queryText);
   if (!query) return `<div class="base-error">无法解析 Dataview 查询</div>`;

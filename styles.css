@@ -42,6 +42,9 @@
   align-items: center;
   padding: 0 4px;
 }
+.opal-status-bar-btn.opal-status-published svg {
+  color: #65a692;
+}
 
 /* ── Offscreen render scratch pad ── */
 .opal-render-scratch {
